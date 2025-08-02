@@ -9,11 +9,27 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { Menu, Phone, Mail, MapPin, Clock, Facebook, Twitter, Instagram, Globe, ChevronDown } from "lucide-react"
+import {
+  Menu,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Facebook,
+  Twitter,
+  Instagram,
+  Globe,
+  ChevronDown,
+  Sparkles,
+  Sun,
+  Droplets,
+  Wrench,
+} from "lucide-react"
+import ServiceItem from "./service-item"
+import MobileServiceItem from "./mobile-service-item"
 
 interface Language {
   code: string
@@ -28,38 +44,46 @@ const languages: Language[] = [
   { code: "fy", name: "Frisian", nativeName: "Frysk", flag: "🏴" },
 ]
 
+const services = [
+  {
+    title: "General Cleaning",
+    description: "Complete office and commercial cleaning with professional standards and attention to detail",
+    price: "€35/hr",
+    href: "/services/general-cleaning",
+    icon: Sparkles,
+    gradient: "bg-gradient-to-br from-blue-500 to-blue-600",
+  },
+  {
+    title: "Solar Panel Cleaning",
+    description: "Maximize energy efficiency with professional solar panel maintenance and cleaning services",
+    price: "€150-500",
+    href: "/services/solar-panel-cleaning",
+    icon: Sun,
+    gradient: "bg-gradient-to-br from-orange-500 to-yellow-500",
+  },
+  {
+    title: "Window Cleaning",
+    description: "Crystal clear windows for enhanced natural light and beautiful views throughout your space",
+    price: "€150-550",
+    href: "/services/window-cleaning",
+    icon: Droplets,
+    gradient: "bg-gradient-to-br from-cyan-500 to-blue-500",
+  },
+  {
+    title: "Drain Cleaning",
+    description: "Professional drain maintenance and blockage removal services for optimal water flow",
+    price: "€20-120",
+    href: "/services/drain-cleaning",
+    icon: Wrench,
+    gradient: "bg-gradient-to-br from-emerald-500 to-green-600",
+  },
+]
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedLanguage, setSelectedLanguage] = useState("en")
   const [isLanguageOpen, setIsLanguageOpen] = useState(false)
   const [showLanguagePrompt, setShowLanguagePrompt] = useState(false)
-
-  const services = [
-    {
-      title: "General Cleaning",
-      description: "Complete office and commercial cleaning with professional standards",
-      price: "€35/hr",
-      href: "/services/general-cleaning",
-    },
-    {
-      title: "Solar Panel Cleaning",
-      description: "Maximize energy efficiency with professional solar panel maintenance",
-      price: "€150-500",
-      href: "/services/solar-panel-cleaning",
-    },
-    {
-      title: "Window Cleaning",
-      description: "Crystal clear windows for enhanced natural light and beautiful views",
-      price: "€150-550",
-      href: "/services/window-cleaning",
-    },
-    {
-      title: "Drain Cleaning",
-      description: "Professional drain maintenance and blockage removal services",
-      price: "€20-120",
-      href: "/services/drain-cleaning",
-    },
-  ]
 
   // Handle first visit language prompt
   useEffect(() => {
@@ -105,7 +129,7 @@ export default function Navbar() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-emerald-600" />
-                <span>info@glowhousekeeping.nl</span>
+                <span>info@glowhousekeeping.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-emerald-600" />
@@ -161,20 +185,42 @@ export default function Navbar() {
                       SERVICES
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="grid w-[600px] gap-3 p-6 bg-white shadow-xl border border-slate-200 rounded-lg">
-                        {services.map((service) => (
-                          <NavigationMenuLink
-                            key={service.href}
-                            href={service.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-emerald-50 hover:text-emerald-700 focus:bg-emerald-50 focus:text-emerald-700"
-                          >
-                            <div className="flex items-center justify-between">
-                              <div className="text-sm font-medium leading-none text-slate-800">{service.title}</div>
-                              <div className="text-sm font-semibold text-emerald-600">{service.price}</div>
+                      <div className="w-[700px] p-6 bg-white shadow-2xl border border-slate-200 rounded-xl">
+                        <div className="mb-6">
+                          <h3 className="text-lg font-bold text-slate-800 mb-2">Our Professional Services</h3>
+                          <p className="text-sm text-slate-600">
+                            Choose from our comprehensive range of cleaning solutions
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          {services.map((service) => (
+                            <ServiceItem
+                              key={service.href}
+                              title={service.title}
+                              description={service.description}
+                              price={service.price}
+                              href={service.href}
+                              icon={service.icon}
+                              gradient={service.gradient}
+                            />
+                          ))}
+                        </div>
+                        <div className="mt-6 pt-4 border-t border-slate-200">
+                          <div className="flex items-center justify-between">
+                            <div className="text-sm text-slate-600">
+                              Need a custom solution?{" "}
+                              <Link href="/contact" className="text-emerald-600 hover:text-emerald-700 font-medium">
+                                Contact us
+                              </Link>
                             </div>
-                            <p className="line-clamp-2 text-sm leading-snug text-slate-600">{service.description}</p>
-                          </NavigationMenuLink>
-                        ))}
+                            <Button
+                              size="sm"
+                              className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-4"
+                            >
+                              <Link href="/book-service">Book Now</Link>
+                            </Button>
+                          </div>
+                        </div>
                       </div>
                     </NavigationMenuContent>
                   </NavigationMenuItem>
@@ -185,7 +231,7 @@ export default function Navbar() {
                 href="/about"
                 className="text-slate-700 hover:text-emerald-600 transition-colors font-medium text-sm uppercase tracking-wide"
               >
-                ABOUT
+                ABOUT US
               </Link>
               <Link
                 href="/blog"
@@ -354,22 +400,25 @@ export default function Navbar() {
                     </div>
 
                     {/* Mobile Services */}
-                    <div className="border-t pt-4 space-y-2">
-                      <h3 className="font-semibold text-slate-800 mb-3 uppercase tracking-wide text-sm">Services</h3>
-                      {services.map((service) => (
-                        <a
-                          key={service.href}
-                          href={service.href}
-                          className="block p-3 rounded-lg hover:bg-emerald-50 transition-colors"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <div className="flex justify-between items-start">
-                            <div className="text-sm font-medium text-slate-700">{service.title}</div>
-                            <div className="text-sm font-semibold text-emerald-600">{service.price}</div>
-                          </div>
-                          <p className="text-xs text-slate-600 mt-1">{service.description}</p>
-                        </a>
-                      ))}
+                    <div className="border-t pt-4 space-y-3">
+                      <h3 className="font-semibold text-slate-800 mb-3 uppercase tracking-wide text-sm flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-emerald-600" />
+                        Our Services
+                      </h3>
+                      <div className="space-y-3">
+                        {services.map((service) => (
+                          <MobileServiceItem
+                            key={service.href}
+                            title={service.title}
+                            description={service.description}
+                            price={service.price}
+                            href={service.href}
+                            icon={service.icon}
+                            gradient={service.gradient}
+                            onClick={() => setIsOpen(false)}
+                          />
+                        ))}
+                      </div>
                     </div>
 
                     {/* Mobile CTA */}

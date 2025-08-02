@@ -108,7 +108,7 @@ export default function AutoScrollingGallery() {
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="w-8 h-8 text-blue-600" />
+            
             <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">
               Professional Results
             </Badge>
