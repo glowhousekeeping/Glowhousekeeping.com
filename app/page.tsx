@@ -133,8 +133,8 @@ export default function HomePage() {
                 <div className="relative w-full h-64 sm:h-72 animate-fade-in-up">
                   <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
-                      alt="Professional cleaner creating sparkling clean spaces"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/diverse-cleaning-team-b8BLxqvRQjydxD98L0gTeL4Z8MJPSA.png"
+                      alt="Professional diverse cleaning team in action - Glow Housekeeping"
                       fill
                       className="object-cover"
                       priority
@@ -312,8 +312,8 @@ export default function HomePage() {
                     <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-105 hover:-rotate-1">
                       {/* Background Image */}
                       <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
-                        alt="Professional cleaner creating sparkling clean spaces with care and attention to detail"
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/diverse-cleaning-team-b8BLxqvRQjydxD98L0gTeL4Z8MJPSA.png"
+                        alt="Professional diverse cleaning team in action - Glow Housekeeping"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         priority

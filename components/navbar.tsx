@@ -48,57 +48,7 @@ export default function Navbar() {
   return (
     <>
       {/* Top Contact Bar */}
-      <div className="bg-gradient-to-r from-blue-900 to-blue-800 text-white py-3 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap items-center justify-between text-sm">
-            <div className="flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-blue-300" />
-                <span className="text-blue-100">Call Us Today</span>
-                <a href="tel:+31610756699" className="text-white font-semibold hover:text-blue-200 transition-colors">
-                  +31 6 10756699
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-blue-300" />
-                <span className="text-blue-100">Drop Us An Email</span>
-                <a
-                  href="mailto:gbeberina@gmail.com"
-                  className="text-white font-semibold hover:text-blue-200 transition-colors"
-                >
-                  gbeberina@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-blue-300" />
-                <span className="text-blue-100">Service Area</span>
-                <span className="text-white font-semibold">Netherlands</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-blue-300" />
-                <span className="text-blue-100">Open Hours</span>
-                <span className="text-white font-semibold">07AM - 06PM</span>
-              </div>
-
-              {/* Social Links */}
-              <div className="flex items-center gap-3 ml-4">
-                <a href="#" className="text-blue-300 hover:text-white transition-colors">
-                  <Facebook className="w-4 h-4" />
-                </a>
-                <a href="#" className="text-blue-300 hover:text-white transition-colors">
-                  <Twitter className="w-4 h-4" />
-                </a>
-                <a href="#" className="text-blue-300 hover:text-white transition-colors">
-                  <Instagram className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
       {/* Main Navigation */}
       <nav className="sticky top-0 z-50 w-full bg-gradient-to-r from-blue-600 to-green-600 shadow-xl">
