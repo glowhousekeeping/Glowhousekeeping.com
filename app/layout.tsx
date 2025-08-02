@@ -12,6 +12,11 @@ export const metadata: Metadata = {
   title: "Glow Housekeeping - Professional Cleaning Services in Netherlands",
   description:
     "Professional housekeeping and cleaning services across the Netherlands. We treat every space like it's our own home, delivering exceptional results with flexibility, affordability, and trust.",
+  icons: {
+    icon: "/glow-housekeeping-logo.png",
+    shortcut: "/glow-housekeeping-logo.png",
+    apple: "/glow-housekeeping-logo.png",
+  },
     generator: 'v0.dev'
 }
 
