@@ -25,7 +25,7 @@ const languages: Language[] = [
   { code: "en", name: "English", flag: "🇬🇧", nativeName: "English" },
 ]
 
-// Multi-language strings (placeholder for future translation system)
+// Multi-language strings
 const translations = {
   en: {
     greeting:
@@ -84,7 +84,7 @@ const translations = {
       quote:
         "Geweldich! Ik kin dy helpe mei in persoanlike offerte. Lit my dy trochferwize nei ús boekingsformulier wêr't do dyn spesifike behoeften diele kinst.",
       booking: "Perfekt! Do kinst direkt in ôfspraak meitsje fia ús aginda of WhatsApp. Wat hat dyn foarkar?",
-      whatsapp: "Ik ferbyn dy mei ús WhatsApp stipe! Do kinst direkt chatten mei ús team foar direkte help.",
+      whatsapp: "Ik ferbyn dy mei ús WhatsApp stipe! Do kinst direkt chatten mei ús team foar direkte hulp.",
     },
   },
 }
@@ -98,27 +98,29 @@ export default function AIChatbotGlorija() {
   const [soundEnabled, setSoundEnabled] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [showLanguageSelector, setShowLanguageSelector] = useState(true)
+  const [showAutoGreeting, setShowAutoGreeting] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const t = translations[currentLanguage]
 
-  // Auto-open greeting on first visit
+  // Auto-show greeting bubble on first visit
   useEffect(() => {
     const hasVisited = localStorage.getItem("glorija-greeted")
     if (!hasVisited) {
       const timer = setTimeout(() => {
-        setIsOpen(true)
-        addMessage("bot", t.greeting, true)
-        setHasGreeted(true)
-        localStorage.setItem("glorija-greeted", "true")
-      }, 2000) // Delay greeting by 2 seconds
+        setShowAutoGreeting(true)
+        // Auto-hide greeting bubble after 8 seconds
+        setTimeout(() => {
+          setShowAutoGreeting(false)
+        }, 8000)
+      }, 3000) // Show greeting bubble after 3 seconds
 
       return () => clearTimeout(timer)
     } else {
       setHasGreeted(true)
       setShowLanguageSelector(false)
     }
-  }, [t.greeting])
+  }, [])
 
   // Scroll to bottom when new messages arrive
   useEffect(() => {
@@ -190,9 +192,12 @@ export default function AIChatbotGlorija() {
 
   const toggleChatbot = () => {
     setIsOpen(!isOpen)
+    setShowAutoGreeting(false)
+
     if (!hasGreeted && !isOpen) {
       addMessage("bot", t.greeting, true)
       setHasGreeted(true)
+      localStorage.setItem("glorija-greeted", "true")
     }
   }
 
@@ -200,6 +205,30 @@ export default function AIChatbotGlorija() {
     <>
       {/* Floating Chatbot Button */}
       <div className="fixed bottom-6 right-6 z-50">
+        {/* Auto-greeting bubble */}
+        {showAutoGreeting && !isOpen && (
+          <div className="absolute bottom-20 right-0 w-64 sm:w-72 bg-white rounded-2xl shadow-2xl p-4 border border-gray-100 animate-bounce">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-sm font-bold">G</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-sm text-gray-800 font-medium mb-1">Hi! I'm Glorija 👋</p>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  Your personal housekeeping assistant. Click to chat with me about our services!
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAutoGreeting(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white border-r border-b border-gray-100 transform rotate-45"></div>
+          </div>
+        )}
+
         {/* Chatbot Icon */}
         <button
           onClick={toggleChatbot}
@@ -208,6 +237,11 @@ export default function AIChatbotGlorija() {
               ? "bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700"
               : "bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600"
           }`}
+          style={{
+            boxShadow: isOpen
+              ? "0 20px 40px rgba(59, 130, 246, 0.3)"
+              : "0 10px 30px rgba(59, 130, 246, 0.2), 0 0 20px rgba(34, 197, 94, 0.1)",
+          }}
         >
           {/* Sparkle Animation */}
           <div className="absolute -top-1 -right-1 w-6 h-6 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
@@ -223,22 +257,6 @@ export default function AIChatbotGlorija() {
           {/* Glow Effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-green-400 opacity-20 animate-pulse"></div>
         </button>
-
-        {/* Auto-greeting bubble */}
-        {!isOpen && !hasGreeted && (
-          <div className="absolute bottom-20 right-0 w-56 sm:w-64 bg-white rounded-2xl shadow-2xl p-4 border border-gray-100 animate-bounce">
-            <div className="flex items-start gap-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-sm font-bold">G</span>
-              </div>
-              <div>
-                <p className="text-sm text-gray-800 font-medium">Hi! I'm Glorija 👋</p>
-                <p className="text-xs text-gray-600 mt-1">Click to chat with me!</p>
-              </div>
-            </div>
-            <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-r border-b border-gray-100 transform rotate-45"></div>
-          </div>
-        )}
       </div>
 
       {/* Chat Window */}
@@ -266,6 +284,7 @@ export default function AIChatbotGlorija() {
                   <button
                     onClick={() => setSoundEnabled(!soundEnabled)}
                     className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                    title={soundEnabled ? "Disable sound" : "Enable sound"}
                   >
                     {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
                   </button>
@@ -273,6 +292,7 @@ export default function AIChatbotGlorija() {
                   <button
                     onClick={() => setIsDarkMode(!isDarkMode)}
                     className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                    title={isDarkMode ? "Light mode" : "Dark mode"}
                   >
                     {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                   </button>
@@ -280,6 +300,7 @@ export default function AIChatbotGlorija() {
                   <button
                     onClick={() => setIsOpen(false)}
                     className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                    title="Close chat"
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -311,12 +332,12 @@ export default function AIChatbotGlorija() {
                             <p className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
                               {t.languagePrompt}
                             </p>
-                            <div className="flex flex-col sm:flex-row flex-wrap gap-2">
+                            <div className="flex flex-col gap-2">
                               {languages.map((lang) => (
                                 <button
                                   key={lang.code}
                                   onClick={() => handleLanguageSelect(lang.code as keyof typeof translations)}
-                                  className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full text-sm font-medium hover:from-blue-600 hover:to-green-600 transition-all duration-200 transform hover:scale-105"
+                                  className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full text-sm font-medium hover:from-blue-600 hover:to-green-600 transition-all duration-200 transform hover:scale-105 shadow-md"
                                 >
                                   <span>{lang.flag}</span>
                                   <span>{lang.nativeName}</span>
@@ -328,12 +349,12 @@ export default function AIChatbotGlorija() {
 
                         {/* Quick Reply Buttons */}
                         {!showLanguageSelector && message.content === t.conversationPrompt && (
-                          <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <div className="mt-3 grid grid-cols-1 gap-2">
                             {Object.entries(t.quickReplies).map(([key, label]) => (
                               <button
                                 key={key}
                                 onClick={() => handleQuickReply(key)}
-                                className={`p-3 rounded-xl text-xs font-medium transition-all duration-200 transform hover:scale-105 ${
+                                className={`p-3 rounded-xl text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-sm ${
                                   isDarkMode
                                     ? "bg-gray-600 text-white hover:bg-gray-500"
                                     : "bg-blue-50 text-blue-600 hover:bg-blue-100"
@@ -401,6 +422,51 @@ export default function AIChatbotGlorija() {
             left: 1rem;
             width: calc(100vw - 2rem);
             max-width: 350px;
+          }
+        }
+        
+        @keyframes animate-in {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-in {
+          animation: animate-in 0.3s ease-out;
+        }
+        
+        .slide-in-from-bottom-2 {
+          animation: slide-in-from-bottom-2 0.3s ease-out;
+        }
+        
+        .slide-in-from-bottom-4 {
+          animation: slide-in-from-bottom-4 0.3s ease-out;
+        }
+        
+        @keyframes slide-in-from-bottom-2 {
+          from {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slide-in-from-bottom-4 {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
       `}</style>
