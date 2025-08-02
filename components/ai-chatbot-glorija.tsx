@@ -226,7 +226,7 @@ export default function AIChatbotGlorija() {
 
         {/* Auto-greeting bubble */}
         {!isOpen && !hasGreeted && (
-          <div className="absolute bottom-20 right-0 w-64 bg-white rounded-2xl shadow-2xl p-4 border border-gray-100 animate-bounce">
+          <div className="absolute bottom-20 right-0 w-56 sm:w-64 bg-white rounded-2xl shadow-2xl p-4 border border-gray-100 animate-bounce">
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-white text-sm font-bold">G</span>
@@ -236,7 +236,6 @@ export default function AIChatbotGlorija() {
                 <p className="text-xs text-gray-600 mt-1">Click to chat with me!</p>
               </div>
             </div>
-            {/* Arrow pointing to button */}
             <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white border-r border-b border-gray-100 transform rotate-45"></div>
           </div>
         )}
@@ -244,7 +243,7 @@ export default function AIChatbotGlorija() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-96 h-[500px] z-50 animate-in slide-in-from-bottom-4 duration-300">
+        <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-[500px] max-h-[80vh] z-50 animate-in slide-in-from-bottom-4 duration-300 chatbot-container">
           <div
             className={`w-full h-full rounded-2xl shadow-2xl border ${
               isDarkMode ? "bg-gray-900 border-gray-700" : "bg-white border-gray-200"
@@ -312,12 +311,12 @@ export default function AIChatbotGlorija() {
                             <p className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
                               {t.languagePrompt}
                             </p>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-col sm:flex-row flex-wrap gap-2">
                               {languages.map((lang) => (
                                 <button
                                   key={lang.code}
                                   onClick={() => handleLanguageSelect(lang.code as keyof typeof translations)}
-                                  className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full text-xs font-medium hover:from-blue-600 hover:to-green-600 transition-all duration-200 transform hover:scale-105"
+                                  className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full text-sm font-medium hover:from-blue-600 hover:to-green-600 transition-all duration-200 transform hover:scale-105"
                                 >
                                   <span>{lang.flag}</span>
                                   <span>{lang.nativeName}</span>
@@ -329,12 +328,12 @@ export default function AIChatbotGlorija() {
 
                         {/* Quick Reply Buttons */}
                         {!showLanguageSelector && message.content === t.conversationPrompt && (
-                          <div className="mt-3 grid grid-cols-2 gap-2">
+                          <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
                             {Object.entries(t.quickReplies).map(([key, label]) => (
                               <button
                                 key={key}
                                 onClick={() => handleQuickReply(key)}
-                                className={`p-2 rounded-xl text-xs font-medium transition-all duration-200 transform hover:scale-105 ${
+                                className={`p-3 rounded-xl text-xs font-medium transition-all duration-200 transform hover:scale-105 ${
                                   isDarkMode
                                     ? "bg-gray-600 text-white hover:bg-gray-500"
                                     : "bg-blue-50 text-blue-600 hover:bg-blue-100"
@@ -397,10 +396,11 @@ export default function AIChatbotGlorija() {
       {/* Mobile Responsive Adjustments */}
       <style jsx>{`
         @media (max-width: 640px) {
-          .fixed.bottom-24.right-6 {
+          .chatbot-container {
             right: 1rem;
             left: 1rem;
-            width: auto;
+            width: calc(100vw - 2rem);
+            max-width: 350px;
           }
         }
       `}</style>
