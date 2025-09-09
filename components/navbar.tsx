@@ -175,7 +175,7 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation - Exact Order: Home, Services, About, Blog, Contact, Careers */}
+            {/* Desktop Navigation - Exact Order: Home, Contact, Blog, Services, About, Careers */}
             <div className="hidden lg:flex items-center space-x-1">
               {/* Home */}
               <Link
@@ -197,6 +197,60 @@ export default function Navbar() {
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
                       isActive("/") ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+                    }`}
+                  ></span>
+                </span>
+              </Link>
+
+              {/* Contact */}
+              <Link
+                href="/contact"
+                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                  isActive("/contact")
+                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                    : "text-white/90 hover:text-white hover:bg-white/8"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                <Phone
+                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                    isActive("/contact") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                  }`}
+                />
+                <span className="relative z-10">
+                  Contact
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                      isActive("/contact")
+                        ? "w-full opacity-100"
+                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+                    }`}
+                  ></span>
+                </span>
+              </Link>
+
+              {/* Blog */}
+              <Link
+                href="/blog"
+                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                  isActive("/blog")
+                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                    : "text-white/90 hover:text-white hover:bg-white/8"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                <FileText
+                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                    isActive("/blog") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                  }`}
+                />
+                <span className="relative z-10">
+                  Blog
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                      isActive("/blog")
+                        ? "w-full opacity-100"
+                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                     }`}
                   ></span>
                 </span>
@@ -278,60 +332,6 @@ export default function Navbar() {
                   <span
                     className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
                       isActive("/about")
-                        ? "w-full opacity-100"
-                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
-                    }`}
-                  ></span>
-                </span>
-              </Link>
-
-              {/* Blog */}
-              <Link
-                href="/blog"
-                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
-                  isActive("/blog")
-                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
-                    : "text-white/90 hover:text-white hover:bg-white/8"
-                }`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
-                <FileText
-                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
-                    isActive("/blog") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
-                  }`}
-                />
-                <span className="relative z-10">
-                  Blog
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
-                      isActive("/blog")
-                        ? "w-full opacity-100"
-                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
-                    }`}
-                  ></span>
-                </span>
-              </Link>
-
-              {/* Contact */}
-              <Link
-                href="/contact"
-                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
-                  isActive("/contact")
-                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
-                    : "text-white/90 hover:text-white hover:bg-white/8"
-                }`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
-                <Phone
-                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
-                    isActive("/contact") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
-                  }`}
-                />
-                <span className="relative z-10">
-                  Contact
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
-                      isActive("/contact")
                         ? "w-full opacity-100"
                         : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                     }`}
@@ -489,7 +489,7 @@ export default function Navbar() {
                     )}
                   </div>
 
-                  {/* Main Navigation - Exact Order: Home, Services, About, Blog, Contact, Careers */}
+                  {/* Main Navigation - Exact Order: Home, Contact, Blog, Services, About, Careers */}
                   <div className="space-y-2 border-t border-white/20 pt-6">
                     <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
                       <Home className="w-4 h-4 text-blue-600" />
@@ -514,6 +514,52 @@ export default function Navbar() {
                       <span className="relative">
                         Home
                         {isActive("/") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                        )}
+                      </span>
+                    </Link>
+
+                    {/* Contact */}
+                    <Link
+                      href="/contact"
+                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
+                        isActive("/contact")
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Phone
+                        className={`w-5 h-5 transition-colors duration-300 ${
+                          isActive("/contact") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span className="relative">
+                        Contact
+                        {isActive("/contact") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                        )}
+                      </span>
+                    </Link>
+
+                    {/* Blog */}
+                    <Link
+                      href="/blog"
+                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
+                        isActive("/blog")
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <FileText
+                        className={`w-5 h-5 transition-colors duration-300 ${
+                          isActive("/blog") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span className="relative">
+                        Blog
+                        {isActive("/blog") && (
                           <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
                         )}
                       </span>
@@ -573,52 +619,6 @@ export default function Navbar() {
                       <span className="relative">
                         About
                         {isActive("/about") && (
-                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
-                        )}
-                      </span>
-                    </Link>
-
-                    {/* Blog */}
-                    <Link
-                      href="/blog"
-                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
-                        isActive("/blog")
-                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
-                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <FileText
-                        className={`w-5 h-5 transition-colors duration-300 ${
-                          isActive("/blog") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
-                        }`}
-                      />
-                      <span className="relative">
-                        Blog
-                        {isActive("/blog") && (
-                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
-                        )}
-                      </span>
-                    </Link>
-
-                    {/* Contact */}
-                    <Link
-                      href="/contact"
-                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
-                        isActive("/contact")
-                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
-                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <Phone
-                        className={`w-5 h-5 transition-colors duration-300 ${
-                          isActive("/contact") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
-                        }`}
-                      />
-                      <span className="relative">
-                        Contact
-                        {isActive("/contact") && (
                           <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
                         )}
                       </span>
