@@ -1,62 +1,122 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { CheckCircle, Eye, Sparkles, Home, Star } from "lucide-react"
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { CheckCircle, Eye, Home, Building, Sparkles, Shield, Phone, Mail } from "lucide-react"
 
 export default function WindowCleaningPage() {
+  const pricingTiers = [
+    {
+      title: "Residential Basic",
+      price: "€150",
+      description: "Perfect for small homes and apartments",
+      features: [
+        "Up to 15 windows",
+        "Interior & exterior cleaning",
+        "Screen cleaning included",
+        "Streak-free guarantee",
+      ],
+    },
+    {
+      title: "Residential Premium",
+      price: "€300",
+      description: "Comprehensive service for larger homes",
+      features: [
+        "Up to 30 windows",
+        "Interior & exterior cleaning",
+        "Screen & sill cleaning",
+        "Gutter cleaning included",
+        "Quarterly maintenance plan",
+      ],
+      popular: true,
+    },
+    {
+      title: "Commercial",
+      price: "€400-550",
+      description: "Professional service for businesses",
+      features: [
+        "30+ windows",
+        "High-rise equipment",
+        "Safety certified team",
+        "Flexible scheduling",
+        "Monthly service contracts",
+      ],
+    },
+  ]
+
+  const benefits = [
+    {
+      icon: Eye,
+      title: "Crystal Clear Views",
+      description: "Enjoy unobstructed views and maximum natural light",
+    },
+    {
+      icon: Home,
+      title: "Enhanced Curb Appeal",
+      description: "Clean windows significantly improve your property's appearance",
+    },
+    {
+      icon: Sparkles,
+      title: "Professional Results",
+      description: "Streak-free, spotless windows using professional techniques",
+    },
+    {
+      icon: Shield,
+      title: "Window Protection",
+      description: "Regular cleaning prevents permanent damage and extends window life",
+    },
+  ]
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 to-blue-50">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-sky-50 via-white to-blue-100 py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative py-20 px-4 bg-gradient-to-r from-sky-600 to-blue-500 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-400/20 rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-sky-400/20 rounded-full blur-xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <Badge className="bg-sky-100 text-sky-800 hover:bg-sky-100">Window Cleaning Service</Badge>
-                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                  Crystal Clear <span className="text-sky-600">Windows</span> for Beautiful Views
-                </h1>
-                <p className="text-xl text-gray-600 leading-relaxed">
-                  Professional window cleaning services that enhance natural light, improve your property's appearance,
-                  and provide crystal-clear views. Perfect for homes, offices, and commercial buildings.
-                </p>
-              </div>
-
-              <div className="flex items-center gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-sky-600">€150-550</div>
-                  <div className="text-sm text-gray-600">per service</div>
-                </div>
-                <div className="h-12 w-px bg-gray-300"></div>
-                <div className="flex items-center gap-2">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">4.9/5 rating</span>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-sky-600 hover:bg-sky-700 rounded-full px-8">
-                  Book Service
+            <div>
+              <Badge className="mb-4 bg-blue-500/20 text-blue-100 border-blue-400/30">
+                Professional Window Cleaning
+              </Badge>
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Crystal Clear
+                <span className="block text-sky-300">Windows</span>
+              </h1>
+              <p className="text-xl mb-8 text-sky-100 leading-relaxed">
+                Transform your property with professionally cleaned windows. Enhance natural light, improve curb appeal,
+                and enjoy pristine views with our expert window cleaning services.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  size="lg"
+                  className="bg-sky-500 hover:bg-sky-600 text-blue-900 font-bold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Link href="/book-service">Book Cleaning</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent">
-                  <Link href="https://wa.me/31610756699">WhatsApp Quote</Link>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-sky-600 px-8 py-3 rounded-full transition-all duration-300 bg-transparent"
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Call Now
                 </Button>
               </div>
             </div>
-
             <div className="relative">
               <Image
                 src="/professional-window-cleaning.png"
-                alt="Professional window cleaning service"
+                alt="Professional Window Cleaning Service"
                 width={600}
-                height={500}
-                className="rounded-3xl shadow-2xl"
+                height={400}
+                className="rounded-2xl shadow-2xl"
+                priority
               />
             </div>
           </div>
@@ -64,157 +124,194 @@ export default function WindowCleaningPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Why Professional Window Cleaning?</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Professional Window Cleaning Matters</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Clean windows do more than just look good – they improve natural light, enhance your property value, and
-              create a healthier indoor environment.
+              Clean windows do more than just look good. They enhance natural light, improve energy efficiency, and
+              significantly boost your property's value and appeal.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <Card className="rounded-2xl border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="bg-yellow-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Eye className="w-8 h-8 text-yellow-600" />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Enhanced Natural Light</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Clean windows allow up to 40% more natural light into your space, reducing energy costs and creating a
-                  brighter, more welcoming environment.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="bg-sky-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Home className="w-8 h-8 text-sky-600" />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Improved Property Value</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Well-maintained windows significantly enhance your property's curb appeal and can increase its market
-                  value by creating a positive first impression.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <div className="bg-green-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Sparkles className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Professional Results</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Our specialized equipment and techniques ensure streak-free, spotless windows that stay cleaner longer
-                  than DIY cleaning methods.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* What's Included */}
-          <div className="bg-gray-50 rounded-3xl p-8 lg:p-12">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-8 text-center">
-              Our Window Cleaning Service Includes
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                "Interior and exterior window cleaning",
-                "Window frame and sill cleaning",
-                "Screen cleaning and maintenance",
-                "Professional squeegee technique",
-                "Eco-friendly cleaning solutions",
-                "Streak-free finish guarantee",
-                "Safety equipment and procedures",
-                "Post-service quality inspection",
-                "Flexible scheduling options",
-              ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3">
-                  <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
-                  <span className="text-gray-700">{item}</span>
-                </div>
-              ))}
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, index) => (
+              <Card
+                key={index}
+                className="text-center hover:shadow-lg transition-all duration-300 border-sky-200 hover:border-sky-300"
+              >
+                <CardHeader>
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-r from-sky-500 to-blue-500 rounded-full flex items-center justify-center mb-4">
+                    <benefit.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-gray-900">{benefit.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-sky-50 to-blue-50">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Transparent Window Cleaning Pricing</h2>
-            <p className="text-xl text-gray-600">Fair pricing based on property size and number of windows</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Transparent Pricing</h2>
+            <p className="text-xl text-gray-600">Choose the perfect window cleaning package for your property</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="rounded-2xl border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-semibold mb-4">Residential</h3>
-                <div className="text-3xl font-bold text-sky-600 mb-2">€150-250</div>
-                <p className="text-gray-600 mb-6">Standard homes</p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li>• Up to 15 windows</li>
-                  <li>• Interior & exterior cleaning</li>
-                  <li>• Frame and sill cleaning</li>
-                  <li>• Screen cleaning included</li>
-                </ul>
-              </CardContent>
-            </Card>
+            {pricingTiers.map((tier, index) => (
+              <Card
+                key={index}
+                className={`relative hover:shadow-xl transition-all duration-300 ${
+                  tier.popular ? "border-sky-500 shadow-lg scale-105" : "border-gray-200"
+                }`}
+              >
+                {tier.popular && (
+                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-sky-500 to-blue-500 text-white">
+                    Most Popular
+                  </Badge>
+                )}
+                <CardHeader className="text-center">
+                  <CardTitle className="text-2xl text-gray-900">{tier.title}</CardTitle>
+                  <div className="text-4xl font-bold text-sky-600 my-4">{tier.price}</div>
+                  <CardDescription className="text-gray-600">{tier.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {tier.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className={`w-full mt-6 rounded-full font-bold transition-all duration-300 ${
+                      tier.popular
+                        ? "bg-gradient-to-r from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 text-white"
+                        : "bg-gray-100 hover:bg-gray-200 text-gray-900"
+                    }`}
+                  >
+                    <Link href="/book-service">Choose Plan</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <Card className="rounded-2xl border-0 shadow-lg ring-2 ring-sky-200">
-              <CardContent className="p-8 text-center">
-                <Badge className="bg-sky-100 text-sky-800 mb-4">Most Popular</Badge>
-                <h3 className="text-xl font-semibold mb-4">Commercial</h3>
-                <div className="text-3xl font-bold text-sky-600 mb-2">€250-400</div>
-                <p className="text-gray-600 mb-6">Small to medium offices</p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li>• Up to 30 windows</li>
-                  <li>• Professional grade cleaning</li>
-                  <li>• Flexible scheduling</li>
-                  <li>• Regular maintenance plans</li>
-                </ul>
-              </CardContent>
-            </Card>
+      {/* Process Section */}
+      <section className="py-20 px-4 bg-gradient-to-r from-sky-50 to-blue-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Professional Process</h2>
+            <p className="text-xl text-gray-600">Meticulous attention to detail for perfect results</p>
+          </div>
 
-            <Card className="rounded-2xl border-0 shadow-lg">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-xl font-semibold mb-4">Large Commercial</h3>
-                <div className="text-3xl font-bold text-sky-600 mb-2">€400-550</div>
-                <p className="text-gray-600 mb-6">Large buildings</p>
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li>• 30+ windows</li>
-                  <li>• High-rise equipment</li>
-                  <li>• Safety certified team</li>
-                  <li>• Custom service plans</li>
-                </ul>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { step: "01", title: "Assessment", description: "Evaluate window condition and cleaning requirements" },
+              { step: "02", title: "Preparation", description: "Protect surrounding areas and set up equipment" },
+              {
+                step: "03",
+                title: "Professional Cleaning",
+                description: "Use specialized tools and eco-friendly solutions",
+              },
+              { step: "04", title: "Quality Check", description: "Final inspection to ensure streak-free results" },
+            ].map((process, index) => (
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-sky-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white font-bold text-lg">{process.step}</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{process.title}</h3>
+                <p className="text-gray-600">{process.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Choose Our Window Cleaning Service?</h2>
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: Building,
+                    title: "Residential & Commercial",
+                    description: "We serve both homes and businesses with equal expertise",
+                  },
+                  {
+                    icon: Shield,
+                    title: "Fully Insured",
+                    description: "Complete insurance coverage for your peace of mind",
+                  },
+                  {
+                    icon: Sparkles,
+                    title: "Eco-Friendly Solutions",
+                    description: "Safe, biodegradable cleaning products",
+                  },
+                  {
+                    icon: Eye,
+                    title: "Streak-Free Guarantee",
+                    description: "Perfect results or we'll return to fix it free",
+                  },
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-sky-500 to-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <feature.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                      <p className="text-gray-600">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <Image
+                src="/professional-window-cleaning.png"
+                alt="Professional Window Cleaning Results"
+                width={600}
+                height={400}
+                className="rounded-2xl shadow-xl"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-sky-600 to-blue-700">
+      <section className="py-20 px-4 bg-gradient-to-r from-sky-600 to-blue-500 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Ready for Crystal Clear Windows?</h2>
-          <p className="text-xl text-sky-100 mb-8 leading-relaxed">
-            Transform your space with professional window cleaning. Enjoy brighter rooms, better views, and enhanced
-            property appeal with our expert service.
+          <h2 className="text-4xl font-bold mb-6">Ready for Crystal Clear Windows?</h2>
+          <p className="text-xl mb-8 text-sky-100">
+            Transform your property with professional window cleaning. Book your service today.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-sky-600 hover:bg-gray-100 rounded-full px-8">
-              Book Window Cleaning
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              className="bg-white text-sky-600 hover:bg-gray-100 font-bold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              <Link href="/book-service">Book Service Now</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-sky-600 rounded-full px-8 bg-transparent"
+              className="border-white text-white hover:bg-white hover:text-sky-600 px-8 py-3 rounded-full transition-all duration-300 bg-transparent"
             >
-              <Link href="/contact">Get Free Estimate</Link>
+              <Mail className="w-4 h-4 mr-2" />
+              Get Quote
             </Button>
           </div>
         </div>
