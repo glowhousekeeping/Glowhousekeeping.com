@@ -73,11 +73,13 @@ const heroContent = {
 }
 
 export default function HomePage() {
-  const [currentLanguage, setCurrentLanguage] = useState("en")
-  const content = heroContent[currentLanguage as keyof typeof heroContent]
+  const [currentLanguage, setCurrentLanguage] = useState<keyof typeof heroContent>("en")
+  const content = heroContent[currentLanguage]
 
   const handleLanguageChange = (language: string) => {
-    setCurrentLanguage(language)
+    if (language in heroContent) {
+      setCurrentLanguage(language as keyof typeof heroContent)
+    }
   }
 
   return (

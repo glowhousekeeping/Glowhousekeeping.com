@@ -40,13 +40,25 @@ export default function AnimatedLanguageSwitcher({ onLanguageChange, className =
   // Load saved language from localStorage
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const savedLanguage = localStorage.getItem("glow-language")
-      if (savedLanguage && languages.find((lang) => lang.code === savedLanguage)) {
+      const savedLanguage = localStorage.getItem("glow-language") || "en"
+      if (languages.find((lang) => lang.code === savedLanguage)) {
         setSelectedLanguage(savedLanguage)
-        onLanguageChange(savedLanguage)
+        // Call onLanguageChange immediately on mount
+        setTimeout(() => onLanguageChange(savedLanguage), 0)
+      } else {
+        // Default to English if no saved language or invalid language
+        setSelectedLanguage("en")
+        setTimeout(() => onLanguageChange("en"), 0)
       }
     }
-  }, [onLanguageChange])
+  }, [])
+
+  // Ensure the parent component gets the current language on mount
+  useEffect(() => {
+    if (selectedLanguage && onLanguageChange) {
+      onLanguageChange(selectedLanguage)
+    }
+  }, [selectedLanguage, onLanguageChange])
 
   const handleLanguageSelect = (langCode: string) => {
     setSelectedLanguage(langCode)
@@ -54,6 +66,7 @@ export default function AnimatedLanguageSwitcher({ onLanguageChange, className =
     if (typeof window !== "undefined") {
       localStorage.setItem("glow-language", langCode)
     }
+    // Immediately call the language change handler
     onLanguageChange(langCode)
   }
 

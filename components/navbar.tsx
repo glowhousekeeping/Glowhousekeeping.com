@@ -130,7 +130,7 @@ export default function Navbar() {
                       SERVICES
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="grid w-[600px] gap-3 p-6 bg-white">
+                      <div className="grid w-[600px] gap-3 p-6 bg-white shadow-lg rounded-lg border border-gray-100">
                         {services.map((service) => (
                           <Link
                             key={service.href}
