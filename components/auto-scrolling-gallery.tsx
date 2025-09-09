@@ -1,90 +1,60 @@
 "use client"
 
-import type React from "react"
-
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
+import { Sparkles } from "lucide-react"
 
-const AutoScrollingGallery = () => {
-  const galleryImages = [
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ab5bebcd-e2eb-48ee-9462-738915c244f8-4Dwql9zDm9EDiKrC9oO2IKDNAyfsmh.jpeg",
-      alt: "Modern dishwasher cleaning result",
-      caption: "Spotless Kitchen Appliances",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7622768b-5906-4ee9-b67b-73bcf55768f6-xlagS1u7tsPAtvINBfWA24glCTyxUO.jpeg",
-      alt: "Perfect floor and baseboard cleaning",
-      caption: "Pristine Floor Detailing",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-mastercowley-713297.jpg-kOCc9hVm8Rd9WziREzjPj6K0039xzo.jpeg",
-      alt: "Professional window cleaning service",
-      caption: "Crystal Clear Windows",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5b98614e-1817-413f-8d40-fdf73b446a10-3tLl9ZqykLhbg3Tz0svqDhY7mOgKks.jpeg",
-      alt: "Sparkling clean modern shower",
-      caption: "Luxurious Shower Spaces",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ea253628-dd30-4009-a220-fc27324c6b1b-Y573GFY1IwMOpGnj8d0TecRo5XyHsK.jpeg",
-      alt: "Clean shower enclosure with glass doors",
-      caption: "Immaculate Bathroom Details",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-mizunokozuki-13735879.jpg-8u1K1RMNxspMSz8XhCPBWn58lReD9I.jpeg",
-      alt: "Professional appliance cleaning",
-      caption: "Expert Equipment Care",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2d81f7e3-9f50-4d6f-b3eb-26b06ca6abd1-E5NWVqGtWeSn9Z0BL71PsTlKxijs0D.jpeg",
-      alt: "Pristine white bathtub",
-      caption: "Gleaming Bathtub Restoration",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/40c8e121-0628-4a1a-bd35-7d8be957981b-YUdzELnYyZM5WDgGoQgwroJ8T6jsSV.jpeg",
-      alt: "Sparkling chrome fixtures",
-      caption: "Polished Chrome Perfection",
-    },
-    {
-      src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/93c2ecae-0a6e-4006-9d11-067e21836a15-Gcq2il96rqYTs4VCeYsmLrhuQ0JFVs.jpeg",
-      alt: "Clean bathroom vanity area",
-      caption: "Modern Vanity Excellence",
-    },
-  ]
+const galleryImages = [
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ab5bebcd-e2eb-48ee-9462-738915c244f8-4Dwql9zDm9EDiKrC9oO2IKDNAyfsmh.jpeg",
+    alt: "Modern dishwasher cleaning result",
+    caption: "Spotless Kitchen Appliances",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/7622768b-5906-4ee9-b67b-73bcf55768f6-xlagS1u7tsPAtvINBfWA24glCTyxUO.jpeg",
+    alt: "Perfect floor and baseboard cleaning",
+    caption: "Pristine Floor Detailing",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-mastercowley-713297.jpg-kOCc9hVm8Rd9WziREzjPj6K0039xzo.jpeg",
+    alt: "Professional window cleaning service",
+    caption: "Crystal Clear Windows",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5b98614e-1817-413f-8d40-fdf73b446a10-3tLl9ZqykLhbg3Tz0svqDhY7mOgKks.jpeg",
+    alt: "Sparkling clean modern shower",
+    caption: "Luxurious Shower Spaces",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ea253628-dd30-4009-a220-fc27324c6b1b-Y573GFY1IwMOpGnj8d0TecRo5XyHsK.jpeg",
+    alt: "Clean shower enclosure with glass doors",
+    caption: "Immaculate Bathroom Details",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-mizunokozuki-13735879.jpg-8u1K1RMNxspMSz8XhCPBWn58lReD9I.jpeg",
+    alt: "Professional appliance cleaning",
+    caption: "Expert Equipment Care",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2d81f7e3-9f50-4d6f-b3eb-26b06ca6abd1-E5NWVqGtWeSn9Z0BL71PsTlKxijs0D.jpeg",
+    alt: "Pristine white bathtub",
+    caption: "Gleaming Bathtub Restoration",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/40c8e121-0628-4a1a-bd35-7d8be957981b-YUdzELnYyZM5WDgGoQgwroJ8T6jsSV.jpeg",
+    alt: "Sparkling chrome fixtures",
+    caption: "Polished Chrome Perfection",
+  },
+  {
+    src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/93c2ecae-0a6e-4006-9d11-067e21836a15-Gcq2il96rqYTs4VCeYsmLrhuQ0JFVs.jpeg",
+    alt: "Clean bathroom vanity area",
+    caption: "Modern Vanity Excellence",
+  },
+]
 
-  const [mobileSlideIndex, setMobileSlideIndex] = useState(0)
-  const [isMobile, setIsMobile] = useState(false)
-  const [touchStart, setTouchStart] = useState(0)
-  const [touchEnd, setTouchEnd] = useState(0)
+export default function AutoScrollingGallery() {
   const scrollRef = useRef<HTMLDivElement>(null)
-
-  // Check if mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
-  // Mobile auto-slide
-  useEffect(() => {
-    if (!isMobile) return
-
-    const mobileInterval = setInterval(() => {
-      setMobileSlideIndex((prevIndex) => {
-        const maxIndex = Math.ceil(galleryImages.length / 2) - 1
-        return prevIndex >= maxIndex ? 0 : prevIndex + 1
-      })
-    }, 3500) // 3.5 seconds for mobile
-
-    return () => clearInterval(mobileInterval)
-  }, [isMobile, galleryImages.length])
 
   useEffect(() => {
     const scrollContainer = scrollRef.current
@@ -92,7 +62,7 @@ const AutoScrollingGallery = () => {
 
     let animationId: number
     let scrollPosition = 0
-    const scrollSpeed = 1.2 // pixels per frame (increased from 0.5)
+    const scrollSpeed = 0.5 // pixels per frame
     let isPaused = false
 
     const animate = () => {
@@ -133,41 +103,12 @@ const AutoScrollingGallery = () => {
   // Duplicate images for seamless loop
   const duplicatedImages = [...galleryImages, ...galleryImages]
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX)
-  }
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX)
-  }
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return
-
-    const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > 50
-    const isRightSwipe = distance < -50
-
-    if (isLeftSwipe) {
-      setMobileSlideIndex((prevIndex) => {
-        const maxIndex = Math.ceil(galleryImages.length / 2) - 1
-        return prevIndex >= maxIndex ? 0 : prevIndex + 1
-      })
-    }
-
-    if (isRightSwipe) {
-      setMobileSlideIndex((prevIndex) => {
-        const maxIndex = Math.ceil(galleryImages.length / 2) - 1
-        return prevIndex <= 0 ? maxIndex : prevIndex - 1
-      })
-    }
-  }
-
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 mb-12">
         <div className="text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
+            <Sparkles className="w-8 h-8 text-blue-600" />
             <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">
               Professional Results
             </Badge>
@@ -220,49 +161,26 @@ const AutoScrollingGallery = () => {
         </div>
       </div>
 
-      {/* Mobile Gallery - Auto-Sliding */}
-      <div className="md:hidden relative overflow-hidden">
-        {/* Mobile Scrolling Container */}
-        <div
-          className="flex gap-4 transition-transform duration-500 ease-linear"
-          style={{
-            transform: `translateX(-${mobileSlideIndex * 280}px)`,
-            width: `${galleryImages.length * 280}px`,
-          }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          {galleryImages.map((image, index) => (
-            <div key={index} className="flex-shrink-0 group" style={{ width: "260px" }}>
+      {/* Mobile Gallery - Stacked Grid */}
+      <div className="md:hidden px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {galleryImages.slice(0, 6).map((image, index) => (
+            <div key={index} className="group">
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                 <div className="relative overflow-hidden">
                   <Image
                     src={image.src || "/placeholder.svg"}
                     alt={image.alt}
-                    width={260}
-                    height={200}
-                    className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
+                    width={320}
+                    height={250}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
-                <div className="p-3 text-center">
-                  <h3 className="font-semibold text-gray-900 text-sm">{image.caption}</h3>
+                <div className="p-4 text-center">
+                  <h3 className="font-semibold text-gray-900">{image.caption}</h3>
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Mobile Slide Indicators */}
-        <div className="flex justify-center mt-4 gap-2">
-          {galleryImages.slice(0, Math.ceil(galleryImages.length / 2)).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setMobileSlideIndex(index)}
-              className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                index === mobileSlideIndex ? "bg-blue-500" : "bg-gray-300"
-              }`}
-            />
           ))}
         </div>
       </div>
@@ -288,5 +206,3 @@ const AutoScrollingGallery = () => {
     </section>
   )
 }
-
-export default AutoScrollingGallery

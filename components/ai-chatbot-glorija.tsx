@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { MessageCircle, X, Volume2, VolumeX, Sun, Moon, Sparkles, Send } from "lucide-react"
+import { MessageCircle, X, Volume2, VolumeX, Sun, Moon, Sparkles } from "lucide-react"
 
 interface Message {
   id: string
@@ -48,9 +48,6 @@ const translations = {
       whatsapp:
         "Connecting you to our WhatsApp support! You'll be able to chat directly with our team for immediate assistance.",
     },
-    placeholders: {
-      typeMessage: "Type your message...",
-    },
   },
   nl: {
     greeting: "Hoi! Ik ben Glorija 🌟 — jouw persoonlijke schoonmaakassistent. Wil je doorgaan in een andere taal?",
@@ -69,9 +66,6 @@ const translations = {
         "Geweldig! Ik kan je helpen met een persoonlijke offerte. Laat me je doorverwijzen naar ons boekingsformulier waar je je specifieke behoeften kunt delen.",
       booking: "Perfect! Je kunt direct een afspraak maken via onze agenda of WhatsApp. Wat heeft je voorkeur?",
       whatsapp: "Ik verbind je met onze WhatsApp ondersteuning! Je kunt direct chatten met ons team voor directe hulp.",
-    },
-    placeholders: {
-      typeMessage: "Typ je bericht...",
     },
   },
   fy: {
@@ -92,9 +86,6 @@ const translations = {
       booking: "Perfekt! Do kinst direkt in ôfspraak meitsje fia ús aginda of WhatsApp. Wat hat dyn foarkar?",
       whatsapp: "Ik ferbyn dy mei ús WhatsApp stipe! Do kinst direkt chatten mei ús team foar direkte hulp.",
     },
-    placeholders: {
-      typeMessage: "Typ dyn berjocht...",
-    },
   },
 }
 
@@ -107,59 +98,34 @@ export default function AIChatbotGlorija() {
   const [soundEnabled, setSoundEnabled] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
   const [showLanguageSelector, setShowLanguageSelector] = useState(true)
-  const [inputMessage, setInputMessage] = useState("")
+  const [showAutoGreeting, setShowAutoGreeting] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   const t = translations[currentLanguage]
 
-  // Auto-greeting on first visit
+  // Auto-show greeting bubble on first visit
   useEffect(() => {
     const hasVisited = localStorage.getItem("glorija-greeted")
-    if (!hasVisited && !isOpen) {
+    if (!hasVisited) {
       const timer = setTimeout(() => {
-        setIsOpen(true)
-        addMessage("bot", t.greeting, true)
-        setHasGreeted(true)
-        localStorage.setItem("glorija-greeted", "true")
-      }, 3000) // Auto-open after 3 seconds
+        setShowAutoGreeting(true)
+        // Auto-hide greeting bubble after 8 seconds
+        setTimeout(() => {
+          setShowAutoGreeting(false)
+        }, 8000)
+      }, 3000) // Show greeting bubble after 3 seconds
 
       return () => clearTimeout(timer)
     } else {
       setHasGreeted(true)
       setShowLanguageSelector(false)
     }
-  }, [t.greeting, isOpen])
+  }, [])
 
   // Scroll to bottom when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [messages])
-
-  // Play subtle sound when opening (optional)
-  const playNotificationSound = () => {
-    if (soundEnabled && typeof window !== "undefined") {
-      try {
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
-        const oscillator = audioContext.createOscillator()
-        const gainNode = audioContext.createGain()
-
-        oscillator.connect(gainNode)
-        gainNode.connect(audioContext.destination)
-
-        oscillator.frequency.setValueAtTime(800, audioContext.currentTime)
-        oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1)
-
-        gainNode.gain.setValueAtTime(0, audioContext.currentTime)
-        gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01)
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2)
-
-        oscillator.start(audioContext.currentTime)
-        oscillator.stop(audioContext.currentTime + 0.2)
-      } catch (error) {
-        console.log("Audio not supported")
-      }
-    }
-  }
 
   const addMessage = (type: "bot" | "user" | "system", content: string, isLanguageSelector = false) => {
     const newMessage: Message = {
@@ -224,32 +190,14 @@ export default function AIChatbotGlorija() {
     })
   }
 
-  const handleSendMessage = () => {
-    if (inputMessage.trim()) {
-      addMessage("user", inputMessage)
-      setInputMessage("")
-
-      // Simple bot response
-      simulateTyping(() => {
-        addMessage(
-          "bot",
-          "Thank you for your message! For immediate assistance, please use our WhatsApp support or quick reply buttons above.",
-        )
-      })
-    }
-  }
-
   const toggleChatbot = () => {
     setIsOpen(!isOpen)
+    setShowAutoGreeting(false)
 
-    if (!isOpen) {
-      playNotificationSound()
-
-      if (!hasGreeted) {
-        addMessage("bot", t.greeting, true)
-        setHasGreeted(true)
-        localStorage.setItem("glorija-greeted", "true")
-      }
+    if (!hasGreeted && !isOpen) {
+      addMessage("bot", t.greeting, true)
+      setHasGreeted(true)
+      localStorage.setItem("glorija-greeted", "true")
     }
   }
 
@@ -257,6 +205,31 @@ export default function AIChatbotGlorija() {
     <>
       {/* Floating Chatbot Button */}
       <div className="fixed bottom-6 right-6 z-50">
+        {/* Auto-greeting bubble */}
+        {showAutoGreeting && !isOpen && (
+          <div className="absolute bottom-20 right-0 w-64 sm:w-72 bg-white rounded-2xl shadow-2xl p-4 border border-gray-100 animate-bounce">
+            <div className="flex items-start gap-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <span className="text-white text-sm font-bold">G</span>
+              </div>
+              <div className="flex-1">
+                <p className="text-sm text-gray-800 font-medium mb-1">Hi! I'm Glorija 👋</p>
+                <p className="text-xs text-gray-600 leading-relaxed">
+                  Your personal housekeeping assistant. Click to chat with me about our services!
+                </p>
+              </div>
+              <button
+                onClick={() => setShowAutoGreeting(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white border-r border-b border-gray-100 transform rotate-45"></div>
+          </div>
+        )}
+
+        {/* Chatbot Icon */}
         <button
           onClick={toggleChatbot}
           className={`relative w-16 h-16 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 ${
@@ -288,7 +261,7 @@ export default function AIChatbotGlorija() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-[500px] max-h-[80vh] z-50 animate-in slide-in-from-bottom-4 duration-300">
+        <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-[500px] max-h-[80vh] z-50 animate-in slide-in-from-bottom-4 duration-300 chatbot-container">
           <div
             className={`w-full h-full rounded-2xl shadow-2xl border ${
               isDarkMode ? "bg-gray-900 border-gray-700" : "bg-white border-gray-200"
@@ -429,30 +402,9 @@ export default function AIChatbotGlorija() {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input Area */}
+            {/* Footer */}
             <div className={`p-3 border-t ${isDarkMode ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-white"}`}>
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={inputMessage}
-                  onChange={(e) => setInputMessage(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                  placeholder={t.placeholders.typeMessage}
-                  className={`flex-1 px-3 py-2 rounded-full border ${
-                    isDarkMode
-                      ? "bg-gray-800 border-gray-600 text-white placeholder-gray-400"
-                      : "bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-500"
-                  } focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm`}
-                />
-                <button
-                  onClick={handleSendMessage}
-                  disabled={!inputMessage.trim()}
-                  className="p-2 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full hover:from-blue-600 hover:to-green-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-                >
-                  <Send className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="text-center mt-2">
+              <div className="flex items-center justify-center">
                 <p className={`text-xs ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
                   Powered by Glow Housekeeping ✨
                 </p>
@@ -462,8 +414,17 @@ export default function AIChatbotGlorija() {
         </div>
       )}
 
-      {/* Custom Styles */}
+      {/* Mobile Responsive Adjustments */}
       <style jsx>{`
+        @media (max-width: 640px) {
+          .chatbot-container {
+            right: 1rem;
+            left: 1rem;
+            width: calc(100vw - 2rem);
+            max-width: 350px;
+          }
+        }
+        
         @keyframes animate-in {
           from {
             opacity: 0;
@@ -506,16 +467,6 @@ export default function AIChatbotGlorija() {
           to {
             opacity: 1;
             transform: translateY(0);
-          }
-        }
-
-        /* Mobile Responsive Adjustments */
-        @media (max-width: 640px) {
-          .chatbot-container {
-            right: 1rem;
-            left: 1rem;
-            width: calc(100vw - 2rem);
-            max-width: 350px;
           }
         }
       `}</style>

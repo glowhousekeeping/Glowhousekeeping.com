@@ -27,7 +27,7 @@ export default function JoinOurTeamPage() {
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-8">
                   <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfCAYy3SpoE5apdVfkjBaE6jjghogN1Lfc0KfFiXLwFt3F8eg/viewform"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfCAYy3SpoE5apdVfkjBaE6jjghogN1Lfc0KfFiXLwFt3F8eg/viewform?usp=header"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -128,8 +128,8 @@ export default function JoinOurTeamPage() {
             </p>
           </div>
 
-          <div className="flex justify-center">
-            <Card className="rounded-2xl border-0 shadow-lg max-w-lg w-full">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="rounded-2xl border-0 shadow-lg">
               <CardContent className="p-8">
                 <div className="flex items-start justify-between mb-4">
                   <div>
@@ -165,7 +165,53 @@ export default function JoinOurTeamPage() {
 
                 <Button className="w-full bg-blue-600 hover:bg-blue-700 rounded-full">
                   <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfCAYy3SpoE5apdVfkjBaE6jjghogN1Lfc0KfFiXLwFt3F8eg/viewform"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfCAYy3SpoE5apdVfkjBaE6jjghogN1Lfc0KfFiXLwFt3F8eg/viewform?usp=header"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apply for This Position
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl border-0 shadow-lg">
+              <CardContent className="p-8">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Solar Panel Technician</h3>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <Badge className="bg-yellow-100 text-yellow-800">Specialized</Badge>
+                      <Badge className="bg-green-100 text-green-800">Part-time</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4 mb-6">
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">What you'll do:</h4>
+                    <ul className="text-gray-600 space-y-1">
+                      <li>• Clean and maintain solar panel installations</li>
+                      <li>• Perform safety inspections and basic maintenance</li>
+                      <li>• Work at heights with proper safety equipment</li>
+                      <li>• Document work and report any issues</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">What we're looking for:</h4>
+                    <ul className="text-gray-600 space-y-1">
+                      <li>• Experience with heights and safety protocols</li>
+                      <li>• Technical aptitude and problem-solving skills</li>
+                      <li>• Physical fitness and comfort working outdoors</li>
+                      <li>• Valid driver's license</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <Button className="w-full bg-yellow-600 hover:bg-yellow-700 rounded-full">
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfCAYy3SpoE5apdVfkjBaE6jjghogN1Lfc0KfFiXLwFt3F8eg/viewform?usp=header"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -300,7 +346,7 @@ export default function JoinOurTeamPage() {
                   </div>
                   <div>
                     <p className="font-semibold">Mark J.</p>
-                    <p className="text-sm text-gray-500">Cleaning Specialist, 1 year</p>
+                    <p className="text-sm text-gray-500">Solar Panel Technician, 1 year</p>
                   </div>
                 </div>
               </CardContent>

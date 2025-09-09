@@ -133,8 +133,8 @@ export default function HomePage() {
                 <div className="relative w-full h-64 sm:h-72 animate-fade-in-up">
                   <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/diverse-cleaning-team-b8BLxqvRQjydxD98L0gTeL4Z8MJPSA.png"
-                      alt="Professional diverse cleaning team in action - Glow Housekeeping"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
+                      alt="Professional cleaner creating sparkling clean spaces"
                       fill
                       className="object-cover"
                       priority
@@ -207,7 +207,7 @@ export default function HomePage() {
                   <div className="flex flex-col gap-3 w-full max-w-sm mx-auto lg:hidden">
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full transform hover:scale-105"
+                      className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
                       <Link href="/book-service" className="flex items-center justify-center gap-2">
                         {content.buttons.quote}
@@ -217,7 +217,7 @@ export default function HomePage() {
 
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full transform hover:scale-105"
+                      className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center justify-center gap-2">
                         <MessageCircle className="w-4 h-4" />
@@ -227,7 +227,7 @@ export default function HomePage() {
 
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full transform hover:scale-105"
+                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
                       <a
                         href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
@@ -242,7 +242,8 @@ export default function HomePage() {
 
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full transform hover:scale-105"
+                      variant="outline"
+                      className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
                       <Link href="/client-assessment" className="flex items-center justify-center gap-2">
                         <ClipboardList className="w-4 h-4" />
@@ -251,11 +252,11 @@ export default function HomePage() {
                     </Button>
                   </div>
 
-                  {/* Desktop Layout - 2x2 Grid */}
-                  <div className="hidden lg:grid lg:grid-cols-2 gap-4 xl:gap-6 max-w-2xl">
+                  {/* Desktop Layout - Horizontal */}
+                  <div className="hidden lg:flex flex-wrap gap-4 xl:gap-6">
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                      className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
                       <Link href="/book-service" className="flex items-center gap-2">
                         {content.buttons.quote}
@@ -265,7 +266,7 @@ export default function HomePage() {
 
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                      className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
                         <MessageCircle className="w-5 h-5" />
@@ -275,7 +276,7 @@ export default function HomePage() {
 
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
                       <a
                         href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
@@ -290,7 +291,8 @@ export default function HomePage() {
 
                     <Button
                       size="lg"
-                      className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                      variant="outline"
+                      className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
                       <Link href="/client-assessment" className="flex items-center gap-2">
                         <ClipboardList className="w-5 h-5" />
@@ -310,8 +312,8 @@ export default function HomePage() {
                     <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-105 hover:-rotate-1">
                       {/* Background Image */}
                       <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/diverse-cleaning-team-b8BLxqvRQjydxD98L0gTeL4Z8MJPSA.png"
-                        alt="Professional diverse cleaning team in action - Glow Housekeeping"
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
+                        alt="Professional cleaner creating sparkling clean spaces with care and attention to detail"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
                         priority

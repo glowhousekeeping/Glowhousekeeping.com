@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     shortcut: "/glow-housekeeping-logo.png",
     apple: "/glow-housekeeping-logo.png",
   },
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
