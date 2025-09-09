@@ -130,16 +130,20 @@ export default function Navbar() {
                       SERVICES
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="grid w-[600px] gap-3 p-6 bg-white shadow-lg rounded-lg border border-gray-100">
+                      <div className="grid w-[600px] gap-3 p-6 bg-white shadow-lg rounded-lg border border-gray-200">
                         {services.map((service) => (
                           <Link
                             key={service.href}
                             href={service.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600"
+                            className="block select-none space-y-1 rounded-md p-4 leading-none no-underline outline-none transition-all duration-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 hover:shadow-md focus:bg-gradient-to-r focus:from-blue-50 focus:to-green-50 focus:shadow-md border border-transparent hover:border-blue-200"
                           >
-                            <div className="flex items-center justify-between">
-                              <div className="text-sm font-medium leading-none">{service.title}</div>
-                              <div className="text-sm font-semibold text-blue-600">{service.price}</div>
+                            <div className="flex items-center justify-between mb-2">
+                              <div className="text-base font-semibold leading-none text-gray-900 hover:text-blue-700 transition-colors">
+                                {service.title}
+                              </div>
+                              <div className="text-sm font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">
+                                {service.price}
+                              </div>
                             </div>
                             <p className="line-clamp-2 text-sm leading-snug text-gray-600">{service.description}</p>
                           </Link>
