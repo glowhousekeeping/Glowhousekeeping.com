@@ -61,14 +61,6 @@ export default function Navbar() {
     },
   ]
 
-  const navigationItems = [
-    { href: "/", label: "Home", icon: Home },
-    { href: "/about", label: "About", icon: Info },
-    { href: "/blog", label: "Blog", icon: FileText },
-    { href: "/contact", label: "Contact", icon: Phone },
-    { href: "/join-our-team", label: "Careers", icon: Briefcase },
-  ]
-
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/"
     return pathname.startsWith(href)
@@ -158,40 +150,34 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation - Exact Order: Home, Services, About, Blog, Contact, Careers */}
             <div className="hidden lg:flex items-center space-x-1">
-              {navigationItems.map((item) => {
-                const IconComponent = item.icon
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
-                      isActive(item.href)
-                        ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
-                        : "text-white/90 hover:text-white hover:bg-white/8"
+              {/* Home */}
+              <Link
+                href="/"
+                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                  isActive("/")
+                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                    : "text-white/90 hover:text-white hover:bg-white/8"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                <Home
+                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                    isActive("/") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                  }`}
+                />
+                <span className="relative z-10">
+                  Home
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                      isActive("/") ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                     }`}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
-                    <IconComponent
-                      className={`w-4 h-4 relative z-10 transition-all duration-300 ${
-                        isActive(item.href) ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
-                      }`}
-                    />
-                    <span className="relative z-10">
-                      {item.label}
-                      <span
-                        className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
-                          isActive(item.href)
-                            ? "w-full opacity-100"
-                            : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
-                        }`}
-                      ></span>
-                    </span>
-                  </Link>
-                )
-              })}
+                  ></span>
+                </span>
+              </Link>
 
+              {/* Services */}
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
@@ -246,6 +232,114 @@ export default function Navbar() {
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
+
+              {/* About */}
+              <Link
+                href="/about"
+                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                  isActive("/about")
+                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                    : "text-white/90 hover:text-white hover:bg-white/8"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                <Info
+                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                    isActive("/about") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                  }`}
+                />
+                <span className="relative z-10">
+                  About
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                      isActive("/about")
+                        ? "w-full opacity-100"
+                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+                    }`}
+                  ></span>
+                </span>
+              </Link>
+
+              {/* Blog */}
+              <Link
+                href="/blog"
+                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                  isActive("/blog")
+                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                    : "text-white/90 hover:text-white hover:bg-white/8"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                <FileText
+                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                    isActive("/blog") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                  }`}
+                />
+                <span className="relative z-10">
+                  Blog
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                      isActive("/blog")
+                        ? "w-full opacity-100"
+                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+                    }`}
+                  ></span>
+                </span>
+              </Link>
+
+              {/* Contact */}
+              <Link
+                href="/contact"
+                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                  isActive("/contact")
+                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                    : "text-white/90 hover:text-white hover:bg-white/8"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                <Phone
+                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                    isActive("/contact") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                  }`}
+                />
+                <span className="relative z-10">
+                  Contact
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                      isActive("/contact")
+                        ? "w-full opacity-100"
+                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+                    }`}
+                  ></span>
+                </span>
+              </Link>
+
+              {/* Careers */}
+              <Link
+                href="/join-our-team"
+                className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                  isActive("/join-our-team")
+                    ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                    : "text-white/90 hover:text-white hover:bg-white/8"
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                <Briefcase
+                  className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                    isActive("/join-our-team") ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                  }`}
+                />
+                <span className="relative z-10">
+                  Careers
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                      isActive("/join-our-team")
+                        ? "w-full opacity-100"
+                        : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+                    }`}
+                  ></span>
+                </span>
+              </Link>
             </div>
 
             {/* CTA Button */}
@@ -292,67 +386,163 @@ export default function Navbar() {
                 </div>
 
                 <div className="relative flex flex-col space-y-6 mt-8">
-                  {/* Services Section */}
-                  <div className="space-y-3">
-                    <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
-                      <Sparkles className="w-4 h-4 text-blue-600" />
-                      Services
-                    </h3>
-                    {services.map((service) => (
-                      <Link
-                        key={service.href}
-                        href={service.href}
-                        className="block p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/5"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <div className="flex justify-between items-start mb-1">
-                          <div className="text-sm font-semibold group-hover:text-blue-700 transition-colors text-gray-900">
-                            {service.title}
-                          </div>
-                          <div className="text-xs font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-2 py-1 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300">
-                            {service.price}
-                          </div>
-                        </div>
-                        <p className="text-xs text-gray-600 group-hover:text-gray-700 transition-colors leading-relaxed">
-                          {service.description}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-
-                  {/* Main Navigation */}
-                  <div className="border-t border-white/20 pt-6 space-y-2">
+                  {/* Main Navigation - Exact Order: Home, Services, About, Blog, Contact, Careers */}
+                  <div className="space-y-2">
                     <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
                       <Home className="w-4 h-4 text-blue-600" />
                       Main Menu
                     </h3>
-                    {navigationItems.map((item) => {
-                      const IconComponent = item.icon
-                      return (
+
+                    {/* Home */}
+                    <Link
+                      href="/"
+                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
+                        isActive("/")
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Home
+                        className={`w-5 h-5 transition-colors duration-300 ${
+                          isActive("/") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span className="relative">
+                        Home
+                        {isActive("/") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                        )}
+                      </span>
+                    </Link>
+
+                    {/* Services Section */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 p-4 rounded-xl font-medium text-gray-900 bg-gradient-to-r from-gray-50 to-gray-100/50">
+                        <Sparkles className="w-5 h-5 text-blue-600" />
+                        <span className="font-semibold">Services</span>
+                      </div>
+                      {services.map((service) => (
                         <Link
-                          key={item.href}
-                          href={item.href}
-                          className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
-                            isActive(item.href)
-                              ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
-                              : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                          key={service.href}
+                          href={service.href}
+                          className={`block p-4 ml-4 rounded-xl transition-all duration-300 group border ${
+                            isActive(service.href)
+                              ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border-blue-200/30 shadow-lg shadow-blue-500/5"
+                              : "hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 border-transparent hover:border-blue-200/30 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/5"
                           }`}
                           onClick={() => setIsOpen(false)}
                         >
-                          <IconComponent
-                            className={`w-5 h-5 transition-colors duration-300 ${
-                              isActive(item.href) ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
-                            }`}
-                          />
-                          <span className="relative">
-                            {item.label}
-                            {isActive(item.href) && (
-                              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
-                            )}
-                          </span>
+                          <div className="flex justify-between items-start mb-1">
+                            <div
+                              className={`text-sm font-semibold transition-colors ${
+                                isActive(service.href) ? "text-blue-700" : "text-gray-900 group-hover:text-blue-700"
+                              }`}
+                            >
+                              {service.title}
+                            </div>
+                            <div className="text-xs font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-2 py-1 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300">
+                              {service.price}
+                            </div>
+                          </div>
+                          <p className="text-xs text-gray-600 group-hover:text-gray-700 transition-colors leading-relaxed">
+                            {service.description}
+                          </p>
                         </Link>
-                      )
-                    })}
+                      ))}
+                    </div>
+
+                    {/* About */}
+                    <Link
+                      href="/about"
+                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
+                        isActive("/about")
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Info
+                        className={`w-5 h-5 transition-colors duration-300 ${
+                          isActive("/about") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span className="relative">
+                        About
+                        {isActive("/about") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                        )}
+                      </span>
+                    </Link>
+
+                    {/* Blog */}
+                    <Link
+                      href="/blog"
+                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
+                        isActive("/blog")
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <FileText
+                        className={`w-5 h-5 transition-colors duration-300 ${
+                          isActive("/blog") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span className="relative">
+                        Blog
+                        {isActive("/blog") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                        )}
+                      </span>
+                    </Link>
+
+                    {/* Contact */}
+                    <Link
+                      href="/contact"
+                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
+                        isActive("/contact")
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Phone
+                        className={`w-5 h-5 transition-colors duration-300 ${
+                          isActive("/contact") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span className="relative">
+                        Contact
+                        {isActive("/contact") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                        )}
+                      </span>
+                    </Link>
+
+                    {/* Careers */}
+                    <Link
+                      href="/join-our-team"
+                      className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
+                        isActive("/join-our-team")
+                          ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                          : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Briefcase
+                        className={`w-5 h-5 transition-colors duration-300 ${
+                          isActive("/join-our-team") ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                        }`}
+                      />
+                      <span className="relative">
+                        Careers
+                        {isActive("/join-our-team") && (
+                          <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                        )}
+                      </span>
+                    </Link>
                   </div>
 
                   {/* CTA Button */}
