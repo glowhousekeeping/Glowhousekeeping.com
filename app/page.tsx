@@ -1,6 +1,4 @@
 "use client"
-
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -18,84 +16,12 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import AutoScrollingGallery from "@/components/auto-scrolling-gallery"
-import AnimatedLanguageSwitcher from "@/components/animated-language-switcher"
-
-// Multi-language content for hero section
-const heroContent = {
-  en: {
-    mainHeading: "Want Your Business To Shine With Professionalism?",
-    subHeading:
-      "We provide exceptional commercial cleaning services in Venlo, Limburg tailored to satisfy businesses who strive for excellence - while focusing on what really matters.",
-    specialization: "Specialized care for offices, retail stores, restaurants and professional facilities.",
-    tagline: "Venlo's Leading Commercial Cleaning Service",
-    serviceArea: "SERVING VENLO, LIMBURG AND SURROUNDING AREAS WITH PERSONALIZED CARE!",
-    buttons: {
-      quote: "Request Price Quote",
-      whatsapp: "WhatsApp",
-      booking: "Book Appointment",
-      assessment: "Client Assessment →",
-    },
-    imageCaption: "We don't just clean — we care.",
-    imageSubCaption: "Professional cleaning with a personal touch",
-  },
-  nl: {
-    mainHeading: "Wilt u dat uw bedrijf straalt van professionaliteit?",
-    subHeading:
-      "Wij bieden uitzonderlijke commerciële schoonmaakdiensten in Venlo, Limburg, op maat gemaakt voor bedrijven die streven naar excellentie - terwijl we ons richten op wat er echt toe doet.",
-    specialization: "Gespecialiseerde zorg voor kantoren, winkels, restaurants en professionele faciliteiten.",
-    tagline: "Venlo's Toonaangevende Commerciële Schoonmaakservice",
-    serviceArea: "VENLO, LIMBURG EN OMGEVING BEDIENEN MET PERSOONLIJKE ZORG!",
-    buttons: {
-      quote: "Prijsofferte Aanvragen",
-      whatsapp: "WhatsApp",
-      booking: "Afspraak Maken",
-      assessment: "Klantbeoordeling →",
-    },
-    imageCaption: "We maken niet alleen schoon — we geven om je.",
-    imageSubCaption: "Professionele reiniging met een persoonlijke touch",
-  },
-  fy: {
-    mainHeading: "Wolsto dat dyn bedriuw strielt fan professionaliteit?",
-    subHeading:
-      "Wy biede útsûnderlike kommersjele skjinmaaktsjinsten yn Venlo, Limburg, op maat makke foar bedriuwen dy't stribje nei eksellinsje - wylst wy ús rjochtsje op wat der werklik ta docht.",
-    specialization: "Spesjalisearre soarch foar kantoaren, winkels, restaurants en profesjonele fasiliteiten.",
-    tagline: "Venlo's Liedende Kommersjele Skjinmaaktsjinst",
-    serviceArea: "VENLO, LIMBURG EN OMJOUWING TSJINJE MEI PERSOANLIKE SOARCH!",
-    buttons: {
-      quote: "Priisofferte Freegje",
-      whatsapp: "WhatsApp",
-      booking: "Ôfspraak Meitsje",
-      assessment: "Klantbeoardieling →",
-    },
-    imageCaption: "Wy meitsje net allinne skjin — wy jouwe om dy.",
-    imageSubCaption: "Profesjonele reiniging mei in persoanlike oanpak",
-  },
-}
 
 export default function HomePage() {
-  const [currentLanguage, setCurrentLanguage] = useState<keyof typeof heroContent>("en")
-  const content = heroContent[currentLanguage]
-
-  const handleLanguageChange = (language: string) => {
-    if (language in heroContent) {
-      setCurrentLanguage(language as keyof typeof heroContent)
-    }
-  }
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] md:min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-amber-50 overflow-hidden">
-        {/* Language Switcher - Fixed Position */}
-        <div className="absolute top-4 right-4 z-20 md:top-6 md:right-6">
-          <AnimatedLanguageSwitcher onLanguageChange={handleLanguageChange} />
-        </div>
-
-        {/* Mobile Language Switcher - Sticky */}
-        <div className="md:hidden fixed top-16 right-4 z-50">
-          <AnimatedLanguageSwitcher onLanguageChange={handleLanguageChange} />
-        </div>
-
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-16 h-16">
@@ -148,7 +74,7 @@ export default function HomePage() {
                     <div className="absolute bottom-3 left-3 right-3">
                       <div className="bg-white/90 backdrop-blur-md rounded-xl p-3 shadow-lg">
                         <p className="text-slate-800 font-bold text-sm sm:text-base text-center">
-                          "{content.imageCaption}"
+                          "We don't just clean — we care."
                         </p>
                       </div>
                     </div>
@@ -171,34 +97,31 @@ export default function HomePage() {
                 {/* Main Headline - Mobile Responsive */}
                 <div className="space-y-4 lg:space-y-6 animate-fade-in">
                   <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-800 leading-tight">
-                    {content.mainHeading.split(" ").map((word, index) => {
-                      if (word === "Shine" || word === "straalt" || word === "strielt") {
-                        return (
-                          <span
-                            key={index}
-                            className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent"
-                          >
-                            {word}{" "}
-                          </span>
-                        )
-                      }
-                      return word + " "
-                    })}
+                    Want Your Business To{" "}
+                    <span className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent">
+                      Shine
+                    </span>{" "}
+                    With Professionalism?
                   </h1>
 
                   <div className="space-y-3 lg:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed">
-                    <p>{content.subHeading}</p>
                     <p>
-                      <span className="font-semibold text-green-700">{content.specialization}</span>
+                      We provide exceptional commercial cleaning services in Venlo, Limburg tailored to satisfy
+                      businesses who strive for excellence - while focusing on what really matters.
+                    </p>
+                    <p>
+                      <span className="font-semibold text-green-700">
+                        Specialized care for offices, retail stores, restaurants and professional facilities.
+                      </span>
                     </p>
                   </div>
 
                   <div className="bg-white/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-white/40">
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-800 mb-2">
-                      {content.tagline}
+                      Venlo's Leading Commercial Cleaning Service
                     </p>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-600 font-medium">
-                      {content.serviceArea}
+                      SERVING VENLO, LIMBURG AND SURROUNDING AREAS WITH PERSONALIZED CARE!
                     </p>
                   </div>
                 </div>
@@ -212,7 +135,7 @@ export default function HomePage() {
                       className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
                       <Link href="/book-service" className="flex items-center justify-center gap-2">
-                        {content.buttons.quote}
+                        Request Price Quote
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </Button>
@@ -223,7 +146,7 @@ export default function HomePage() {
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center justify-center gap-2">
                         <MessageCircle className="w-4 h-4" />
-                        {content.buttons.whatsapp}
+                        WhatsApp
                       </Link>
                     </Button>
 
@@ -238,7 +161,7 @@ export default function HomePage() {
                         className="flex items-center justify-center gap-2"
                       >
                         <Calendar className="w-4 h-4" />
-                        {content.buttons.booking}
+                        Book Appointment
                       </a>
                     </Button>
 
@@ -249,7 +172,7 @@ export default function HomePage() {
                     >
                       <Link href="/client-assessment" className="flex items-center justify-center gap-2">
                         <ClipboardList className="w-4 h-4" />
-                        {content.buttons.assessment}
+                        Client Assessment →
                       </Link>
                     </Button>
                   </div>
@@ -261,7 +184,7 @@ export default function HomePage() {
                       className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
                       <Link href="/book-service" className="flex items-center gap-2">
-                        {content.buttons.quote}
+                        Request Price Quote
                         <ArrowRight className="w-5 h-5" />
                       </Link>
                     </Button>
@@ -272,7 +195,7 @@ export default function HomePage() {
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
                         <MessageCircle className="w-5 h-5" />
-                        {content.buttons.whatsapp}
+                        WhatsApp
                       </Link>
                     </Button>
 
@@ -287,7 +210,7 @@ export default function HomePage() {
                         className="flex items-center gap-2"
                       >
                         <Calendar className="w-5 h-5" />
-                        {content.buttons.booking}
+                        Book Appointment
                       </a>
                     </Button>
 
@@ -298,7 +221,7 @@ export default function HomePage() {
                     >
                       <Link href="/client-assessment" className="flex items-center gap-2">
                         <ClipboardList className="w-5 h-5" />
-                        {content.buttons.assessment}
+                        Client Assessment →
                       </Link>
                     </Button>
                   </div>
@@ -335,9 +258,9 @@ export default function HomePage() {
                       <div className="absolute bottom-0 left-0 right-0 p-8">
                         <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/50 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                           <p className="text-slate-800 font-bold text-xl mb-2 leading-tight">
-                            "{content.imageCaption}"
+                            "We don't just clean — we care."
                           </p>
-                          <p className="text-slate-600 text-sm">{content.imageSubCaption}</p>
+                          <p className="text-slate-600 text-sm">Professional cleaning with a personal touch</p>
                         </div>
                       </div>
                     </div>

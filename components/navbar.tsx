@@ -27,6 +27,7 @@ import {
   Info,
   FileText,
   Briefcase,
+  X,
 } from "lucide-react"
 
 export default function Navbar() {
@@ -61,11 +62,11 @@ export default function Navbar() {
   ]
 
   const navigationItems = [
-    { href: "/", label: "HOME", icon: Home },
-    { href: "/about", label: "ABOUT", icon: Info },
-    { href: "/blog", label: "BLOG", icon: FileText },
-    { href: "/contact", label: "CONTACT", icon: Phone },
-    { href: "/join-our-team", label: "CAREERS", icon: Briefcase },
+    { href: "/", label: "Home", icon: Home },
+    { href: "/about", label: "About", icon: Info },
+    { href: "/blog", label: "Blog", icon: FileText },
+    { href: "/contact", label: "Contact", icon: Phone },
+    { href: "/join-our-team", label: "Careers", icon: Briefcase },
   ]
 
   const isActive = (href: string) => {
@@ -132,22 +133,26 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <nav className="sticky top-0 z-50 w-full bg-gradient-to-r from-blue-600 via-blue-500 to-green-500 shadow-2xl backdrop-blur-sm">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-blue-500/90 to-green-500/90 backdrop-blur-sm"></div>
-        <div className="absolute inset-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] pointer-events-none"></div>
+      {/* Main Navigation - Glassmorphism Style */}
+      <nav className="sticky top-0 z-50 w-full">
+        {/* Glassmorphism Background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 via-blue-800/25 to-teal-600/20 backdrop-blur-xl border-b border-white/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-cyan-500/10 to-teal-500/10"></div>
+        <div className="absolute inset-0 shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] shadow-blue-500/10"></div>
+        <div className="absolute inset-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),inset_0_-1px_0_rgba(255,255,255,0.05)] pointer-events-none"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             {/* Logo Section */}
-            <Link href="/" className="flex items-center space-x-3 z-10">
+            <Link href="/" className="flex items-center space-x-3 z-10 group">
               <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-teal-400/20 rounded-xl blur-sm group-hover:blur-md transition-all duration-300"></div>
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_0518.JPG-0ntakJPjzjG266UJGltFUfmQn1pf6H.jpeg"
                   alt="Glow Housekeeping Logo"
                   width={140}
                   height={70}
-                  className="h-12 w-auto md:h-14 object-contain"
+                  className="relative h-12 w-auto md:h-14 object-contain drop-shadow-lg"
                   priority
                 />
               </div>
@@ -161,18 +166,25 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 group ${
+                    className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
                       isActive(item.href)
-                        ? "text-yellow-300 font-bold bg-white/10 shadow-lg"
-                        : "text-white hover:text-blue-100 hover:bg-white/5"
+                        ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                        : "text-white/90 hover:text-white hover:bg-white/8"
                     }`}
                   >
-                    <IconComponent className="w-4 h-4" />
-                    <span className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                    <IconComponent
+                      className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                        isActive(item.href) ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                      }`}
+                    />
+                    <span className="relative z-10">
                       {item.label}
                       <span
-                        className={`absolute -bottom-1 left-0 h-0.5 bg-yellow-300 transition-all duration-300 ${
-                          isActive(item.href) ? "w-full" : "w-0 group-hover:w-full"
+                        className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                          isActive(item.href)
+                            ? "w-full opacity-100"
+                            : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                         }`}
                       ></span>
                     </span>
@@ -184,35 +196,43 @@ export default function Navbar() {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger
-                      className={`relative flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 group ${
+                      className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
                         isServicesActive()
-                          ? "text-yellow-300 font-bold bg-white/10 shadow-lg"
-                          : "text-white hover:text-blue-100 hover:bg-white/5"
-                      } bg-transparent hover:bg-white/5 data-[state=open]:bg-white/10`}
+                          ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
+                          : "text-white/90 hover:text-white hover:bg-white/8"
+                      } bg-transparent hover:bg-white/8 data-[state=open]:bg-white/12 data-[state=open]:shadow-lg data-[state=open]:shadow-blue-500/20`}
                     >
-                      <Sparkles className="w-4 h-4" />
-                      <span className="relative">
-                        SERVICES
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                      <Sparkles
+                        className={`w-4 h-4 relative z-10 transition-all duration-300 ${
+                          isServicesActive() ? "text-cyan-300" : "text-white/80 group-hover:text-cyan-200"
+                        }`}
+                      />
+                      <span className="relative z-10">
+                        Services
                         <span
-                          className={`absolute -bottom-1 left-0 h-0.5 bg-yellow-300 transition-all duration-300 ${
-                            isServicesActive() ? "w-full" : "w-0 group-hover:w-full"
+                          className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full transition-all duration-300 ease-out ${
+                            isServicesActive()
+                              ? "w-full opacity-100"
+                              : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
                           }`}
                         ></span>
                       </span>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="grid w-[600px] gap-3 p-6 bg-white shadow-2xl rounded-lg border border-gray-200 backdrop-blur-sm">
+                      <div className="grid w-[600px] gap-3 p-6 bg-white/95 backdrop-blur-xl shadow-2xl shadow-blue-500/10 rounded-2xl border border-white/20">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/50 to-teal-50/50 rounded-2xl"></div>
                         {services.map((service) => (
                           <Link
                             key={service.href}
                             href={service.href}
-                            className="block select-none space-y-1 rounded-md p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 hover:shadow-lg focus:bg-gradient-to-r focus:from-blue-50 focus:to-green-50 focus:shadow-lg border border-transparent hover:border-blue-200 group"
+                            className="relative block select-none space-y-1 rounded-xl p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 hover:shadow-lg hover:shadow-blue-500/5 focus:bg-gradient-to-r focus:from-blue-50/80 focus:to-teal-50/80 focus:shadow-lg border border-transparent hover:border-blue-200/50 group backdrop-blur-sm"
                           >
                             <div className="flex items-center justify-between mb-2">
                               <div className="text-base font-semibold leading-none text-gray-900 group-hover:text-blue-700 transition-colors">
                                 {service.title}
                               </div>
-                              <div className="text-sm font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full group-hover:bg-blue-100 transition-colors">
+                              <div className="text-sm font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-3 py-1 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300 shadow-sm">
                                 {service.price}
                               </div>
                             </div>
@@ -230,8 +250,11 @@ export default function Navbar() {
 
             {/* CTA Button */}
             <div className="hidden lg:flex items-center">
-              <Button className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-full font-bold px-6 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <Link href="/book-service">GET QUOTE</Link>
+              <Button className="relative bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 hover:from-yellow-600 hover:via-amber-600 hover:to-orange-600 text-white rounded-full font-bold px-8 py-3 shadow-lg shadow-yellow-500/25 hover:shadow-xl hover:shadow-yellow-500/35 transition-all duration-300 transform hover:scale-105 border border-white/10 backdrop-blur-sm">
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-400/20 rounded-full blur-sm"></div>
+                <Link href="/book-service" className="relative z-10">
+                  GET QUOTE
+                </Link>
               </Button>
             </div>
 
@@ -241,64 +264,103 @@ export default function Navbar() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-white hover:bg-white/10 rounded-lg transition-all duration-300"
+                  className="relative text-white hover:bg-white/10 rounded-xl transition-all duration-300 backdrop-blur-sm border border-white/5 hover:border-white/20 shadow-lg shadow-blue-500/10"
                 >
-                  <Menu className="h-6 w-6" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-teal-400/10 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  <Menu className="h-6 w-6 relative z-10" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-white/95 backdrop-blur-md">
-                <div className="flex flex-col space-y-4 mt-8">
-                  <div className="space-y-2">
-                    <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <Sparkles className="w-4 h-4" />
+              <SheetContent
+                side="right"
+                className="w-[300px] sm:w-[400px] bg-white/95 backdrop-blur-2xl border-l border-white/20 shadow-2xl shadow-blue-500/10"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white/40 to-teal-50/30"></div>
+
+                {/* Mobile Header */}
+                <div className="relative flex items-center justify-between pb-6 border-b border-white/20">
+                  <h2 className="text-lg font-bold bg-gradient-to-r from-blue-700 to-teal-700 bg-clip-text text-transparent">
+                    Navigation
+                  </h2>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => setIsOpen(false)}
+                    className="h-8 w-8 rounded-lg hover:bg-gray-100/80 transition-colors duration-200"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+
+                <div className="relative flex flex-col space-y-6 mt-8">
+                  {/* Services Section */}
+                  <div className="space-y-3">
+                    <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
+                      <Sparkles className="w-4 h-4 text-blue-600" />
                       Services
                     </h3>
                     {services.map((service) => (
                       <Link
                         key={service.href}
                         href={service.href}
-                        className="block p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-green-50 transition-all duration-300 group"
+                        className="block p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/5"
                         onClick={() => setIsOpen(false)}
                       >
-                        <div className="flex justify-between items-start">
-                          <div className="text-sm font-medium group-hover:text-blue-700 transition-colors">
+                        <div className="flex justify-between items-start mb-1">
+                          <div className="text-sm font-semibold group-hover:text-blue-700 transition-colors text-gray-900">
                             {service.title}
                           </div>
-                          <div className="text-sm font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded-full group-hover:bg-blue-100 transition-colors">
+                          <div className="text-xs font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-2 py-1 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300">
                             {service.price}
                           </div>
                         </div>
-                        <p className="text-xs text-gray-600 mt-1 group-hover:text-gray-700 transition-colors">
+                        <p className="text-xs text-gray-600 group-hover:text-gray-700 transition-colors leading-relaxed">
                           {service.description}
                         </p>
                       </Link>
                     ))}
                   </div>
 
-                  <div className="border-t pt-4 space-y-2">
+                  {/* Main Navigation */}
+                  <div className="border-t border-white/20 pt-6 space-y-2">
+                    <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
+                      <Home className="w-4 h-4 text-blue-600" />
+                      Main Menu
+                    </h3>
                     {navigationItems.map((item) => {
                       const IconComponent = item.icon
                       return (
                         <Link
                           key={item.href}
                           href={item.href}
-                          className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-300 font-medium ${
+                          className={`flex items-center gap-3 p-4 rounded-xl transition-all duration-300 font-medium group ${
                             isActive(item.href)
-                              ? "bg-gradient-to-r from-blue-50 to-green-50 text-blue-700 font-bold"
-                              : "hover:bg-gray-50 text-gray-700 hover:text-blue-700"
+                              ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border border-blue-200/30 shadow-lg shadow-blue-500/5"
+                              : "hover:bg-gray-50/80 text-gray-700 hover:text-blue-700 border border-transparent hover:border-gray-200/50"
                           }`}
                           onClick={() => setIsOpen(false)}
                         >
-                          <IconComponent className="w-4 h-4" />
-                          {item.label}
+                          <IconComponent
+                            className={`w-5 h-5 transition-colors duration-300 ${
+                              isActive(item.href) ? "text-blue-600" : "text-gray-500 group-hover:text-blue-600"
+                            }`}
+                          />
+                          <span className="relative">
+                            {item.label}
+                            {isActive(item.href) && (
+                              <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-teal-400 rounded-full"></span>
+                            )}
+                          </span>
                         </Link>
                       )
                     })}
                   </div>
 
-                  <div className="border-t pt-4">
-                    <Button className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300">
-                      <Link href="/book-service">GET QUOTE</Link>
+                  {/* CTA Button */}
+                  <div className="border-t border-white/20 pt-6">
+                    <Button className="w-full bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 hover:from-yellow-600 hover:via-amber-600 hover:to-orange-600 text-white rounded-xl font-bold py-4 shadow-lg shadow-yellow-500/25 hover:shadow-xl hover:shadow-yellow-500/35 transition-all duration-300 transform hover:scale-[1.02] backdrop-blur-sm border border-white/10">
+                      <Link href="/book-service" onClick={() => setIsOpen(false)}>
+                        GET QUOTE
+                      </Link>
                     </Button>
                   </div>
                 </div>
