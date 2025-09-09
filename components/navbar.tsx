@@ -28,10 +28,14 @@ import {
   FileText,
   Briefcase,
   X,
+  ChevronDown,
+  Globe,
 } from "lucide-react"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false)
+  const [isMobileLanguageOpen, setIsMobileLanguageOpen] = useState(false)
   const pathname = usePathname()
 
   const services = [
@@ -61,6 +65,21 @@ export default function Navbar() {
     },
   ]
 
+  const languages = [
+    {
+      code: "en",
+      name: "English",
+      flag: "🇺🇸",
+      href: "/en",
+    },
+    {
+      code: "nl",
+      name: "Nederlands",
+      flag: "🇳🇱",
+      href: "/nl",
+    },
+  ]
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/"
     return pathname.startsWith(href)
@@ -68,6 +87,12 @@ export default function Navbar() {
 
   const isServicesActive = () => {
     return pathname.startsWith("/services")
+  }
+
+  const handleLanguageSelect = (href: string) => {
+    window.location.href = href
+    setIsLanguageOpen(false)
+    setIsMobileLanguageOpen(false)
   }
 
   return (
@@ -340,6 +365,45 @@ export default function Navbar() {
                   ></span>
                 </span>
               </Link>
+
+              {/* Language Switcher - Desktop */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                  className="relative group flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out text-white/90 hover:text-white hover:bg-white/8"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+                  <Globe className="w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200" />
+                  <span className="relative z-10 text-lg">🇺🇸</span>
+                  <ChevronDown
+                    className={`w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200 ${
+                      isLanguageOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Language Dropdown */}
+                {isLanguageOpen && (
+                  <div className="absolute top-full right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl shadow-2xl shadow-blue-500/10 rounded-2xl border border-white/20 overflow-hidden z-50 animate-in slide-in-from-top-2 duration-200">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/50 to-teal-50/50 rounded-2xl"></div>
+                    {languages.map((language) => (
+                      <button
+                        key={language.code}
+                        onClick={() => handleLanguageSelect(language.href)}
+                        className="relative w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border-b border-gray-100/50 last:border-b-0"
+                      >
+                        <span className="text-xl">{language.flag}</span>
+                        <span className="text-sm font-medium text-gray-900 group-hover:text-blue-700 transition-colors">
+                          {language.name}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* Backdrop for closing dropdown */}
+                {isLanguageOpen && <div className="fixed inset-0 z-40" onClick={() => setIsLanguageOpen(false)}></div>}
+              </div>
             </div>
 
             {/* CTA Button */}
@@ -386,8 +450,47 @@ export default function Navbar() {
                 </div>
 
                 <div className="relative flex flex-col space-y-6 mt-8">
+                  {/* Language Switcher - Mobile */}
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => setIsMobileLanguageOpen(!isMobileLanguageOpen)}
+                      className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30 backdrop-blur-sm"
+                    >
+                      <div className="flex items-center gap-3">
+                        <Globe className="w-5 h-5 text-blue-600" />
+                        <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                          Language
+                        </span>
+                        <span className="text-xl">🇺🇸</span>
+                      </div>
+                      <ChevronDown
+                        className={`w-4 h-4 text-gray-500 group-hover:text-blue-600 transition-all duration-300 ${
+                          isMobileLanguageOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {/* Mobile Language Options */}
+                    {isMobileLanguageOpen && (
+                      <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
+                        {languages.map((language) => (
+                          <button
+                            key={language.code}
+                            onClick={() => handleLanguageSelect(language.href)}
+                            className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
+                          >
+                            <span className="text-lg">{language.flag}</span>
+                            <span className="text-sm font-medium text-gray-700 group-hover:text-blue-700 transition-colors">
+                              {language.name}
+                            </span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
                   {/* Main Navigation - Exact Order: Home, Services, About, Blog, Contact, Careers */}
-                  <div className="space-y-2">
+                  <div className="space-y-2 border-t border-white/20 pt-6">
                     <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2 text-sm uppercase tracking-wide">
                       <Home className="w-4 h-4 text-blue-600" />
                       Main Menu
