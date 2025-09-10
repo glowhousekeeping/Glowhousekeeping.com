@@ -38,28 +38,28 @@ export default function Navbar() {
 
   const services = [
     {
-      title: "General Cleaning",
-      description: "Complete office and commercial cleaning with professional standards",
+      title: "Cleaning",
+      description: "Professional residential and commercial cleaning services",
       price: "€35/hr",
-      href: "/services/general-cleaning",
+      href: "/services/cleaning",
     },
     {
-      title: "Solar Panel Cleaning",
-      description: "Maximize energy efficiency with professional solar panel maintenance",
-      price: "€150-500",
-      href: "/services/solar-panel-cleaning",
-    },
-    {
-      title: "Window Cleaning",
+      title: "Window Washing",
       description: "Crystal clear windows for enhanced natural light and beautiful views",
       price: "€150-550",
-      href: "/services/window-cleaning",
+      href: "/services/window-washing",
     },
     {
-      title: "Drain Cleaning",
-      description: "Professional drain maintenance and blockage removal services",
-      price: "€20-120",
-      href: "/services/drain-cleaning",
+      title: "Deep Cleaning",
+      description: "Comprehensive deep cleaning for thorough sanitization",
+      price: "€200-800",
+      href: "/services/deep-cleaning",
+    },
+    {
+      title: "Carpet Care",
+      description: "Professional carpet cleaning and maintenance services",
+      price: "€100-400",
+      href: "/services/carpet-care",
     },
   ]
 
@@ -238,11 +238,11 @@ export default function Navbar() {
                 <NavigationMenuList>
                   <NavigationMenuItem>
                     <NavigationMenuTrigger
-                      className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-300 ease-out ${
+                      className={`relative group flex items-center gap-2 px-5 py-3 rounded-xl font-medium transition-all duration-200 ease-out ${
                         isServicesActive()
                           ? "text-white font-bold bg-white/15 shadow-lg shadow-blue-500/20 backdrop-blur-sm border border-white/10"
                           : "text-white/90 hover:text-white hover:bg-white/8"
-                      } bg-transparent hover:bg-white/8 data-[state=open]:bg-white/12 data-[state=open]:shadow-lg data-[state=open]:shadow-blue-500/20`}
+                      } bg-transparent hover:bg-white/8 data-[state=open]:bg-white/12 data-[state=open]:shadow-lg data-[state=open]:shadow-blue-500/20 data-[state=open]:text-white`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
                       <Sparkles
@@ -262,25 +262,31 @@ export default function Navbar() {
                       </span>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <div className="grid w-[600px] gap-3 p-6 bg-white/95 backdrop-blur-xl shadow-2xl shadow-blue-500/10 rounded-2xl border border-white/20">
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/50 to-teal-50/50 rounded-2xl"></div>
-                        {services.map((service) => (
+                      <div className="grid w-[600px] gap-3 p-6 bg-white/98 backdrop-blur-xl shadow-2xl shadow-blue-500/15 rounded-2xl border border-white/30 animate-in fade-in-0 zoom-in-95 duration-200">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/60 via-white/60 to-teal-50/60 rounded-2xl"></div>
+                        <div className="absolute inset-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.3)] rounded-2xl pointer-events-none"></div>
+                        {services.map((service, index) => (
                           <Link
                             key={service.href}
                             href={service.href}
-                            className="relative block select-none space-y-1 rounded-xl p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 hover:shadow-lg hover:shadow-blue-500/5 focus:bg-gradient-to-r focus:from-blue-50/80 focus:to-teal-50/80 focus:shadow-lg border border-transparent hover:border-blue-200/50 group backdrop-blur-sm"
+                            className="relative block select-none space-y-1 rounded-xl p-4 leading-none no-underline outline-none transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50/90 hover:to-teal-50/90 hover:shadow-lg hover:shadow-blue-500/10 focus:bg-gradient-to-r focus:from-blue-50/90 focus:to-teal-50/90 focus:shadow-lg border border-transparent hover:border-blue-200/60 group backdrop-blur-sm transform hover:scale-[1.02] hover:-translate-y-0.5"
+                            style={{
+                              animationDelay: `${index * 50}ms`,
+                            }}
                           >
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="text-base font-semibold leading-none text-gray-900 group-hover:text-blue-700 transition-colors">
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                            <div className="flex items-center justify-between mb-2 relative z-10">
+                              <div className="text-base font-semibold leading-none text-gray-900 group-hover:text-blue-700 transition-colors duration-300">
                                 {service.title}
                               </div>
-                              <div className="text-sm font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-3 py-1 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300 shadow-sm">
+                              <div className="text-sm font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-3 py-1.5 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300 shadow-sm group-hover:shadow-md border border-blue-100/50">
                                 {service.price}
                               </div>
                             </div>
-                            <p className="line-clamp-2 text-sm leading-snug text-gray-600 group-hover:text-gray-700 transition-colors">
+                            <p className="line-clamp-2 text-sm leading-snug text-gray-600 group-hover:text-gray-700 transition-colors duration-300 relative z-10">
                               {service.description}
                             </p>
+                            <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-blue-400/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></div>
                           </Link>
                         ))}
                       </div>
@@ -476,16 +482,19 @@ export default function Navbar() {
                         <Sparkles className="w-5 h-5 text-blue-600" />
                         <span className="font-semibold">Services</span>
                       </div>
-                      {services.map((service) => (
+                      {services.map((service, index) => (
                         <Link
                           key={service.href}
                           href={service.href}
-                          className={`block p-4 ml-4 rounded-xl transition-all duration-300 group border ${
+                          className={`block p-4 ml-4 rounded-xl transition-all duration-300 group border transform hover:scale-[1.01] ${
                             isActive(service.href)
                               ? "bg-gradient-to-r from-blue-50 to-teal-50 text-blue-700 font-bold border-blue-200/30 shadow-lg shadow-blue-500/5"
-                              : "hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 border-transparent hover:border-blue-200/30 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/5"
+                              : "hover:bg-gradient-to-r hover:from-blue-50/90 hover:to-teal-50/90 border-transparent hover:border-blue-200/40 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/8"
                           }`}
                           onClick={() => setIsOpen(false)}
+                          style={{
+                            animationDelay: `${index * 100}ms`,
+                          }}
                         >
                           <div className="flex justify-between items-start mb-1">
                             <div
@@ -495,13 +504,14 @@ export default function Navbar() {
                             >
                               {service.title}
                             </div>
-                            <div className="text-xs font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-2 py-1 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300">
+                            <div className="text-xs font-bold text-blue-600 bg-gradient-to-r from-blue-50 to-cyan-50 px-2 py-1 rounded-full group-hover:from-blue-100 group-hover:to-cyan-100 transition-all duration-300 shadow-sm">
                               {service.price}
                             </div>
                           </div>
                           <p className="text-xs text-gray-600 group-hover:text-gray-700 transition-colors leading-relaxed">
                             {service.description}
                           </p>
+                          <div className="absolute bottom-0 left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-blue-400/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-full"></div>
                         </Link>
                       ))}
                     </div>
