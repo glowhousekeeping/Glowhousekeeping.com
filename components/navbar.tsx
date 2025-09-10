@@ -381,7 +381,7 @@ export default function Navbar() {
                 </SheetTrigger>
                 <SheetContent
                   side="right"
-                  className="w-[320px] sm:w-[380px] bg-white/98 backdrop-blur-2xl border-l border-white/30 shadow-2xl shadow-blue-500/20 overflow-y-auto"
+                  className="w-[320px] sm:w-[380px] bg-white/98 backdrop-blur-2xl border-l border-white/30 shadow-2xl shadow-blue-500/20 overflow-y-auto z-[100]"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-white/50 to-teal-50/40"></div>
 
@@ -610,14 +610,14 @@ export default function Navbar() {
                       <div className="space-y-3">
                         <a
                           href="tel:+31610756699"
-                          className="flex items-center gap-3 text-gray-700 hover:text-blue-700 transition-colors p-2 rounded-lg hover:bg-blue-50/50"
+                          className="flex items-center gap-3 text-gray-700 hover:text-blue-700 transition-colors p-2 rounded-lg hover:bg-blue-50/50 min-h-[48px]"
                         >
                           <Phone className="w-5 h-5 text-blue-600" />
                           <span className="text-base">+31 6 10756699</span>
                         </a>
                         <a
                           href="mailto:gbeberina@gmail.com"
-                          className="flex items-center gap-3 text-gray-700 hover:text-blue-700 transition-colors p-2 rounded-lg hover:bg-blue-50/50"
+                          className="flex items-center gap-3 text-gray-700 hover:text-blue-700 transition-colors p-2 rounded-lg hover:bg-blue-50/50 min-h-[48px]"
                         >
                           <Mail className="w-5 h-5 text-blue-600" />
                           <span className="text-base">gbeberina@gmail.com</span>
