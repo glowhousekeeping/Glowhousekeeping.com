@@ -38,28 +38,28 @@ export default function Navbar() {
 
   const services = [
     {
-      title: "Cleaning",
-      description: "Professional residential and commercial cleaning services",
+      title: "General Cleaning",
+      description: "Complete office and commercial cleaning with professional standards",
       price: "€35/hr",
-      href: "/services/cleaning",
+      href: "/services/general-cleaning",
     },
     {
-      title: "Window Washing",
+      title: "Solar Panel Cleaning",
+      description: "Maximize energy efficiency with professional solar panel maintenance",
+      price: "€150-500",
+      href: "/services/solar-panel-cleaning",
+    },
+    {
+      title: "Window Cleaning",
       description: "Crystal clear windows for enhanced natural light and beautiful views",
       price: "€150-550",
-      href: "/services/window-washing",
+      href: "/services/window-cleaning",
     },
     {
-      title: "Deep Cleaning",
-      description: "Comprehensive deep cleaning for thorough sanitization",
-      price: "€200-800",
-      href: "/services/deep-cleaning",
-    },
-    {
-      title: "Carpet Care",
-      description: "Professional carpet cleaning and maintenance services",
-      price: "€100-400",
-      href: "/services/carpet-care",
+      title: "Drain Cleaning",
+      description: "Professional drain maintenance and blockage removal services",
+      price: "€20-120",
+      href: "/services/drain-cleaning",
     },
   ]
 
