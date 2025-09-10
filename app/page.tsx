@@ -1,4 +1,6 @@
 "use client"
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -16,8 +18,46 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import AutoScrollingGallery from "@/components/auto-scrolling-gallery"
+import { translations } from "@/components/language-switcher"
 
 export default function HomePage() {
+  const [currentLanguage, setCurrentLanguage] = useState<string>("en")
+  const [t, setT] = useState(translations.en)
+
+  useEffect(() => {
+    // Check if we're on a language-specific route
+    if (typeof window !== "undefined") {
+      const path = window.location.pathname
+      if (path.startsWith("/nl")) {
+        setCurrentLanguage("nl")
+        setT(translations.nl)
+      } else if (path.startsWith("/en")) {
+        setCurrentLanguage("en")
+        setT(translations.en)
+      } else {
+        // Check localStorage for saved preference
+        const savedLanguage = localStorage.getItem("preferred-language")
+        if (savedLanguage && (savedLanguage === "en" || savedLanguage === "nl")) {
+          setCurrentLanguage(savedLanguage)
+          setT(translations[savedLanguage as keyof typeof translations])
+        }
+      }
+
+      // Listen for language change events
+      const handleLanguageChange = (event: CustomEvent) => {
+        const { language, translations: newTranslations } = event.detail
+        setCurrentLanguage(language)
+        setT(newTranslations)
+      }
+
+      window.addEventListener("languageChanged", handleLanguageChange as EventListener)
+
+      return () => {
+        window.removeEventListener("languageChanged", handleLanguageChange as EventListener)
+      }
+    }
+  }, [])
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -73,9 +113,7 @@ export default function HomePage() {
                     {/* Mobile Caption */}
                     <div className="absolute bottom-3 left-3 right-3">
                       <div className="bg-white/90 backdrop-blur-md rounded-xl p-3 shadow-lg">
-                        <p className="text-slate-800 font-bold text-sm sm:text-base text-center">
-                          "We don't just clean — we care."
-                        </p>
+                        <p className="text-slate-800 font-bold text-sm sm:text-base text-center">"{t.imageCaption}"</p>
                       </div>
                     </div>
 
@@ -97,31 +135,34 @@ export default function HomePage() {
                 {/* Main Headline - Mobile Responsive */}
                 <div className="space-y-4 lg:space-y-6 animate-fade-in">
                   <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-800 leading-tight">
-                    Want Your Business To{" "}
-                    <span className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent">
-                      Shine
-                    </span>{" "}
-                    With Professionalism?
+                    {t.heroTitle.split(" ").map((word, index) => {
+                      if (word === "Shine" || word === "straalt" || word === "strielt") {
+                        return (
+                          <span
+                            key={index}
+                            className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent"
+                          >
+                            {word}{" "}
+                          </span>
+                        )
+                      }
+                      return word + " "
+                    })}
                   </h1>
 
                   <div className="space-y-3 lg:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed">
+                    <p>{t.heroSubtitle}</p>
                     <p>
-                      We provide exceptional commercial cleaning services in Venlo, Limburg tailored to satisfy
-                      businesses who strive for excellence - while focusing on what really matters.
-                    </p>
-                    <p>
-                      <span className="font-semibold text-green-700">
-                        Specialized care for offices, retail stores, restaurants and professional facilities.
-                      </span>
+                      <span className="font-semibold text-green-700">{t.heroSpecialization}</span>
                     </p>
                   </div>
 
                   <div className="bg-white/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-white/40">
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-800 mb-2">
-                      Venlo's Leading Commercial Cleaning Service
+                      {t.heroTagline}
                     </p>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-600 font-medium">
-                      SERVING VENLO, LIMBURG AND SURROUNDING AREAS WITH PERSONALIZED CARE!
+                      {t.heroServiceArea}
                     </p>
                   </div>
                 </div>
@@ -135,7 +176,7 @@ export default function HomePage() {
                       className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
                       <Link href="/book-service" className="flex items-center justify-center gap-2">
-                        Request Price Quote
+                        {t.requestQuote}
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </Button>
@@ -146,7 +187,7 @@ export default function HomePage() {
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center justify-center gap-2">
                         <MessageCircle className="w-4 h-4" />
-                        WhatsApp
+                        {t.whatsapp}
                       </Link>
                     </Button>
 
@@ -161,7 +202,7 @@ export default function HomePage() {
                         className="flex items-center justify-center gap-2"
                       >
                         <Calendar className="w-4 h-4" />
-                        Book Appointment
+                        {t.bookAppointment}
                       </a>
                     </Button>
 
@@ -172,7 +213,7 @@ export default function HomePage() {
                     >
                       <Link href="/client-assessment" className="flex items-center justify-center gap-2">
                         <ClipboardList className="w-4 h-4" />
-                        Client Assessment →
+                        {t.clientAssessment}
                       </Link>
                     </Button>
                   </div>
@@ -184,7 +225,7 @@ export default function HomePage() {
                       className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
                       <Link href="/book-service" className="flex items-center gap-2">
-                        Request Price Quote
+                        {t.requestQuote}
                         <ArrowRight className="w-5 h-5" />
                       </Link>
                     </Button>
@@ -195,7 +236,7 @@ export default function HomePage() {
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
                         <MessageCircle className="w-5 h-5" />
-                        WhatsApp
+                        {t.whatsapp}
                       </Link>
                     </Button>
 
@@ -210,7 +251,7 @@ export default function HomePage() {
                         className="flex items-center gap-2"
                       >
                         <Calendar className="w-5 h-5" />
-                        Book Appointment
+                        {t.bookAppointment}
                       </a>
                     </Button>
 
@@ -221,7 +262,7 @@ export default function HomePage() {
                     >
                       <Link href="/client-assessment" className="flex items-center gap-2">
                         <ClipboardList className="w-5 h-5" />
-                        Client Assessment →
+                        {t.clientAssessment}
                       </Link>
                     </Button>
                   </div>
@@ -257,10 +298,8 @@ export default function HomePage() {
                       {/* Caption Overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-8">
                         <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/50 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                          <p className="text-slate-800 font-bold text-xl mb-2 leading-tight">
-                            "We don't just clean — we care."
-                          </p>
-                          <p className="text-slate-600 text-sm">Professional cleaning with a personal touch</p>
+                          <p className="text-slate-800 font-bold text-xl mb-2 leading-tight">"{t.imageCaption}"</p>
+                          <p className="text-slate-600 text-sm">{t.imageSubCaption}</p>
                         </div>
                       </div>
                     </div>
@@ -315,12 +354,12 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Sparkles className="w-8 h-8 text-blue-600" />
-              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">Transformation</Badge>
+              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">
+                {t.transformation}
+              </Badge>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Before & After: Real Transformations</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              We don't just clean — we elevate your space. See the difference for yourself.
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.transformationTitle}</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.transformationSubtitle}</p>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto rounded-full mt-6"></div>
           </div>
 
@@ -339,7 +378,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">Before</Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -353,14 +392,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">After</Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">💼 Office Transformation</h3>
-                  <p className="text-gray-600">Complete office space cleaning with professional organization</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.officeTransformation}</h3>
+                  <p className="text-gray-600">{t.officeTransformationDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -379,7 +418,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">Before</Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -393,14 +432,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">After</Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">🍳 Kitchen Cleaning</h3>
-                  <p className="text-gray-600">From moving chaos to a pristine modern kitchen</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.kitchenCleaning}</h3>
+                  <p className="text-gray-600">{t.kitchenCleaningDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -419,7 +458,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">Before</Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -433,14 +472,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">After</Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">🛁 Bathroom Cleaning</h3>
-                  <p className="text-gray-600">A bathroom deep-clean that sparkles</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.bathroomCleaning}</h3>
+                  <p className="text-gray-600">{t.bathroomCleaningDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -459,7 +498,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">Before</Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -473,14 +512,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">After</Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">🚰 Sink Cleaning</h3>
-                  <p className="text-gray-600">Spotless sinks with a touch of Glow</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.sinkCleaning}</h3>
+                  <p className="text-gray-600">{t.sinkCleaningDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -489,14 +528,11 @@ export default function HomePage() {
           {/* Call to Action */}
           <div className="text-center mt-16">
             <div className="bg-white rounded-3xl p-12 shadow-xl border border-blue-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready for Your Own Transformation?</h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                Experience the same dramatic results in your space. Our professional team is ready to transform your
-                home or office with the same attention to detail you see above.
-              </p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.readyForTransformation}</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">{t.transformationCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-8">
-                  <Link href="/book-service">Get Your Quote</Link>
+                  <Link href="/book-service">{t.getYourQuote}</Link>
                 </Button>
                 <Button
                   size="lg"
@@ -504,7 +540,7 @@ export default function HomePage() {
                   className="rounded-full px-8 bg-transparent border-blue-300 text-blue-600 hover:bg-blue-50"
                 >
                   <a href="https://calendar.app.google/RU6yxXUM6GZED7Nm7" target="_blank" rel="noopener noreferrer">
-                    Book Now
+                    {t.bookNow}
                   </a>
                 </Button>
               </div>
@@ -517,11 +553,8 @@ export default function HomePage() {
       <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Our Professional Services</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From general cleaning to specialized services, we provide comprehensive solutions for all your cleaning
-              needs.
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.ourProfessionalServices}</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.servicesSubtitle}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -539,13 +572,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">General Cleaning</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    Complete office and commercial cleaning with professional standards
-                  </p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.generalCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.generalCleaningDesc}</p>
                   <Link href="/services/general-cleaning">
                     <Button variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
-                      Learn More →
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -566,13 +597,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">Solar Panel Cleaning</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    Maximize energy efficiency with professional solar panel maintenance
-                  </p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.solarPanelCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.solarPanelCleaningDesc}</p>
                   <Link href="/services/solar-panel-cleaning">
                     <Button variant="ghost" className="text-yellow-600 hover:text-yellow-700 hover:bg-yellow-50">
-                      Learn More →
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -593,13 +622,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">Window Cleaning</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    Crystal clear windows for enhanced natural light and beautiful views
-                  </p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.windowCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.windowCleaningDesc}</p>
                   <Link href="/services/window-cleaning">
                     <Button variant="ghost" className="text-green-600 hover:text-green-700 hover:bg-green-50">
-                      Learn More →
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -620,13 +647,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">Drain Cleaning</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    Professional drain maintenance and blockage removal services
-                  </p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.drainCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.drainCleaningDesc}</p>
                   <Link href="/services/drain-cleaning">
                     <Button variant="ghost" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50">
-                      Learn More →
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -644,10 +669,8 @@ export default function HomePage() {
               <Sparkles className="w-8 h-8 text-green-600" />
               <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-lg px-4 py-2">Why Choose Us</Badge>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Why Choose Glow Housekeeping?</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Discover what makes us the trusted choice for professional cleaning services across the Netherlands.
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.whyChooseUs}</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.whyChooseUsSubtitle}</p>
             <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-400 mx-auto rounded-full mt-6"></div>
           </div>
 
@@ -672,11 +695,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">
-                      Trusted Cleaners
+                      {t.trustedCleaners}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      Screened professionals with experience and reliability you can count on.
-                    </p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.trustedCleanersDesc}</p>
                   </div>
                 </div>
               </div>
@@ -695,11 +716,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                      Professional Results
+                      {t.professionalResults}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      We deliver hotel-level sparkle and precision in every cleaning session.
-                    </p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.professionalResultsDesc}</p>
                   </div>
                 </div>
               </div>
@@ -725,11 +744,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">
-                      Affordable Rates
+                      {t.affordableRates}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      Competitive pricing with no surprise fees - transparent and fair.
-                    </p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.affordableRatesDesc}</p>
                   </div>
                 </div>
               </div>
@@ -755,11 +772,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors duration-300">
-                      Easy Booking
+                      {t.easyBooking}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      Book your service in minutes, stress-free through multiple channels.
-                    </p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.easyBookingDesc}</p>
                   </div>
                 </div>
               </div>
@@ -778,11 +793,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-rose-600 transition-colors duration-300">
-                      Flexible & Passionate
+                      {t.flexiblePassionate}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">
-                      We care deeply about what we do and adapt to each client's unique needs.
-                    </p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.flexiblePassionateDesc}</p>
                   </div>
                 </div>
               </div>
@@ -803,10 +816,8 @@ export default function HomePage() {
                     <Shield className="w-8 h-8 text-white" />
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-green-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Trusted Cleaners</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Screened professionals with experience and reliability you can count on.
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.trustedCleaners}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.trustedCleanersDesc}</p>
                   </div>
                 </div>
 
@@ -816,10 +827,8 @@ export default function HomePage() {
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-blue-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Professional Results</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      We deliver hotel-level sparkle and precision in every cleaning session.
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.professionalResults}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.professionalResultsDesc}</p>
                   </div>
                 </div>
 
@@ -836,10 +845,8 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-purple-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Affordable Rates</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Competitive pricing with no surprise fees - transparent and fair.
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.affordableRates}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.affordableRatesDesc}</p>
                   </div>
                 </div>
 
@@ -856,10 +863,8 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-orange-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Easy Booking</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      Book your service in minutes, stress-free through multiple channels.
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.easyBooking}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.easyBookingDesc}</p>
                   </div>
                 </div>
 
@@ -869,11 +874,8 @@ export default function HomePage() {
                     <Heart className="w-8 h-8 text-white" />
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-rose-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Flexible & Passionate</h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      We care deeply about what we do and adapt to each client's unique needs - no cookie-cutter
-                      cleaning.
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.flexiblePassionate}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.flexiblePassionateDesc}</p>
                   </div>
                 </div>
               </div>
@@ -883,21 +885,18 @@ export default function HomePage() {
           {/* Call to Action */}
           <div className="text-center mt-20">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-green-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Experience the Glow Difference Today</h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                Join hundreds of satisfied customers who trust us with their most important spaces. See why we're the
-                preferred choice for professional cleaning in the Netherlands.
-              </p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.experienceGlowDifference}</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">{t.experienceGlowCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" className="bg-green-600 hover:bg-green-700 rounded-full px-8">
-                  <Link href="/book-service">Get Started Today</Link>
+                  <Link href="/book-service">{t.getStartedToday}</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="rounded-full px-8 bg-transparent border-green-300 text-green-600 hover:bg-green-50"
                 >
-                  <Link href="/about">Learn More About Us</Link>
+                  <Link href="/about">{t.learnMoreAboutUs}</Link>
                 </Button>
               </div>
             </div>
@@ -911,12 +910,10 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Heart className="w-8 h-8 text-rose-600" />
-              <Badge className="bg-rose-100 text-rose-800 hover:bg-rose-100 text-lg px-4 py-2">Client Love</Badge>
+              <Badge className="bg-rose-100 text-rose-800 hover:bg-rose-100 text-lg px-4 py-2">{t.clientLove}</Badge>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Words from the people we've had the joy to serve — real notes, real gratitude.
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.whatClientsSay}</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.clientsSaySubtitle}</p>
             <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-amber-400 mx-auto rounded-full mt-6"></div>
           </div>
 
@@ -1212,21 +1209,18 @@ export default function HomePage() {
           {/* Call to Action */}
           <div className="text-center mt-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-rose-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Want to Share Your Experience?</h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                We'd love to hear from you! Your words and experiences help us grow and inspire others to experience the
-                Glow difference.
-              </p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.shareYourExperience}</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">{t.shareExperienceCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" className="bg-rose-600 hover:bg-rose-700 rounded-full px-8">
-                  <Link href="https://wa.me/31610756699">Share Your Story</Link>
+                  <Link href="https://wa.me/31610756699">{t.shareYourStory}</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="rounded-full px-8 bg-transparent border-rose-300 text-rose-600 hover:bg-rose-50"
                 >
-                  <Link href="/book-service">Book Your Service</Link>
+                  <Link href="/book-service">{t.bookYourService}</Link>
                 </Button>
               </div>
             </div>
@@ -1237,21 +1231,18 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Ready to Experience the Glow Difference?</h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            Join hundreds of satisfied customers across the Netherlands. Get your personalized quote today and see why
-            we're the trusted choice for professional cleaning.
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">{t.readyToExperience}</h2>
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">{t.ctaSubtitle}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
-              <Link href="/book-service">Get Free Quote</Link>
+              <Link href="/book-service">{t.getFreeQuote}</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-blue-600 rounded-full px-8 bg-transparent"
             >
-              <Link href="https://wa.me/31610756699">Contact WhatsApp</Link>
+              <Link href="https://wa.me/31610756699">{t.contactWhatsApp}</Link>
             </Button>
           </div>
         </div>
