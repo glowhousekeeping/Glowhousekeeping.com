@@ -101,7 +101,7 @@ export default function HomePage() {
                 <div className="relative w-full h-64 sm:h-72 animate-fade-in-up">
                   <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/hero-background-premium-nPEKpy8sbY1qJn07YpZghvDdTem30M.jpg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
                       alt="Professional cleaner creating sparkling clean spaces"
                       fill
                       className="object-cover"
@@ -132,169 +132,137 @@ export default function HomePage() {
 
               {/* Text Content - Mobile Optimized */}
               <div className="order-2 lg:order-1 space-y-6 lg:space-y-8 text-center lg:text-left lg:mt-16">
-                {/* Main Headline - Enhanced Mobile Responsive */}
+                {/* Main Headline - Mobile Responsive */}
                 <div className="space-y-4 lg:space-y-6 animate-fade-in">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-slate-800 leading-[1.1] tracking-tight">
-                    <span className="block">
-                      <span className="relative inline-block">
-                        Your Home
-                        <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 to-green-400/20 blur-lg rounded-lg"></div>
-                        <span className="relative bg-gradient-to-r from-slate-800 to-slate-700 bg-clip-text text-transparent drop-shadow-sm">
-                          Your Home
-                        </span>
-                      </span>
-                    </span>
-                    <span className="block mt-2">
-                      <span className="relative inline-block">
-                        Deserves to
-                        <div className="absolute -inset-1 bg-gradient-to-r from-green-400/20 to-blue-400/20 blur-lg rounded-lg"></div>
-                        <span className="relative bg-gradient-to-r from-slate-800 to-slate-700 bg-clip-text text-transparent drop-shadow-sm">
-                          Deserves to
-                        </span>
-                      </span>
-                    </span>
-                    <span className="block mt-2">
-                      <span className="relative inline-block bg-gradient-to-r from-green-600 via-blue-600 to-emerald-500 bg-clip-text text-transparent animate-pulse">
-                        <div className="absolute -inset-2 bg-gradient-to-r from-green-400/30 via-blue-400/30 to-emerald-400/30 blur-xl rounded-2xl"></div>
-                        <span className="relative font-black tracking-wider drop-shadow-lg">SHINE</span>
-                      </span>
-                    </span>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-800 leading-tight">
+                    {t.heroTitle.split(" ").map((word, index) => {
+                      if (word === "Shine" || word === "straalt" || word === "strielt") {
+                        return (
+                          <span
+                            key={index}
+                            className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent"
+                          >
+                            {word}{" "}
+                          </span>
+                        )
+                      }
+                      return word + " "
+                    })}
                   </h1>
 
-                  <div className="space-y-4 lg:space-y-6 text-base sm:text-lg md:text-xl lg:text-2xl text-slate-700 leading-relaxed font-medium">
-                    <p className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 lg:p-6 shadow-lg border border-white/50">
-                      <span className="block text-slate-800 font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2">
-                        {t.heroSubtitle}
-                      </span>
-                      <span className="text-green-700 font-semibold">{t.heroSpecialization}</span>
+                  <div className="space-y-3 lg:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed">
+                    <p>{t.heroSubtitle}</p>
+                    <p>
+                      <span className="font-semibold text-green-700">{t.heroSpecialization}</span>
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-r from-white/90 via-blue-50/90 to-green-50/90 backdrop-blur-md rounded-2xl lg:rounded-3xl p-6 lg:p-8 shadow-2xl border border-white/60">
-                    <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 mb-3 bg-gradient-to-r from-blue-700 to-green-700 bg-clip-text text-transparent">
+                  <div className="bg-white/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-white/40">
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-800 mb-2">
                       {t.heroTagline}
                     </p>
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 font-semibold">
+                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-600 font-medium">
                       {t.heroServiceArea}
                     </p>
                   </div>
                 </div>
 
-                {/* CTA Buttons - Enhanced Mobile Optimized */}
-                <div className="space-y-6 lg:space-y-8 animate-fade-in-up">
-                  {/* Mobile Layout - Enhanced Full Width Stacked */}
-                  <div className="flex flex-col gap-4 w-full max-w-md mx-auto lg:hidden">
+                {/* CTA Buttons - Mobile Optimized */}
+                <div className="space-y-4 lg:space-y-6 animate-fade-in-up">
+                  {/* Mobile Layout - Full Width Stacked */}
+                  <div className="flex flex-col gap-3 w-full max-w-sm mx-auto lg:hidden">
                     <Button
                       size="lg"
-                      className="relative bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 hover:from-green-600 hover:via-emerald-600 hover:to-green-700 text-white rounded-2xl px-8 py-6 text-lg font-black shadow-2xl shadow-green-500/40 hover:shadow-3xl hover:shadow-green-500/50 transition-all duration-500 w-full transform hover:scale-105 hover:-translate-y-1 border-2 border-white/20"
+                      className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-400/30 to-emerald-400/30 rounded-2xl blur-sm"></div>
-                      <Link href="/book-service" className="flex items-center justify-center gap-3 relative z-10">
-                        <span className="text-xl">✨</span>
+                      <Link href="/book-service" className="flex items-center justify-center gap-2">
                         {t.requestQuote}
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        <ArrowRight className="w-4 h-4" />
                       </Link>
                     </Button>
 
                     <Button
                       size="lg"
-                      className="relative bg-white/95 hover:bg-white text-green-600 border-3 border-green-300 hover:border-green-400 rounded-2xl px-8 py-6 text-lg font-black shadow-2xl shadow-green-500/20 hover:shadow-3xl hover:shadow-green-500/30 transition-all duration-500 w-full transform hover:scale-105 hover:-translate-y-1 backdrop-blur-sm"
+                      className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-50/50 to-emerald-50/50 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                      <Link
-                        href="https://wa.me/31610756699"
-                        className="flex items-center justify-center gap-3 relative z-10"
-                      >
-                        <MessageCircle className="w-5 h-5" />
+                      <Link href="https://wa.me/31610756699" className="flex items-center justify-center gap-2">
+                        <MessageCircle className="w-4 h-4" />
                         {t.whatsapp}
-                        <span className="text-xl">💬</span>
                       </Link>
                     </Button>
 
                     <Button
                       size="lg"
-                      className="relative bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 hover:from-blue-600 hover:via-cyan-600 hover:to-blue-700 text-white rounded-2xl px-8 py-6 text-lg font-black shadow-2xl shadow-blue-500/40 hover:shadow-3xl hover:shadow-blue-500/50 transition-all duration-500 w-full transform hover:scale-105 hover:-translate-y-1 border-2 border-white/20"
+                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-cyan-400/30 rounded-2xl blur-sm"></div>
                       <a
                         href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-3 relative z-10"
+                        className="flex items-center justify-center gap-2"
                       >
-                        <Calendar className="w-5 h-5" />
+                        <Calendar className="w-4 h-4" />
                         {t.bookAppointment}
-                        <span className="text-xl">📅</span>
                       </a>
                     </Button>
 
                     <Button
                       size="lg"
                       variant="outline"
-                      className="relative bg-white/90 hover:bg-white text-slate-700 hover:text-slate-800 border-3 border-slate-300 hover:border-slate-400 rounded-2xl px-8 py-6 text-lg font-black shadow-2xl shadow-slate-500/20 hover:shadow-3xl hover:shadow-slate-500/30 transition-all duration-500 w-full transform hover:scale-105 hover:-translate-y-1 backdrop-blur-sm"
+                      className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-slate-50/50 to-gray-50/50 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                      <Link href="/client-assessment" className="flex items-center justify-center gap-3 relative z-10">
-                        <ClipboardList className="w-5 h-5" />
+                      <Link href="/client-assessment" className="flex items-center justify-center gap-2">
+                        <ClipboardList className="w-4 h-4" />
                         {t.clientAssessment}
-                        <span className="text-xl">📋</span>
                       </Link>
                     </Button>
                   </div>
 
-                  {/* Desktop Layout - Enhanced Horizontal */}
-                  <div className="hidden lg:flex flex-wrap gap-6 xl:gap-8 justify-center">
+                  {/* Desktop Layout - Horizontal */}
+                  <div className="hidden lg:flex flex-wrap gap-4 xl:gap-6">
                     <Button
                       size="lg"
-                      className="relative bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 hover:from-green-600 hover:via-emerald-600 hover:to-green-700 text-white rounded-3xl px-10 py-6 text-xl font-black shadow-2xl shadow-green-500/40 hover:shadow-3xl hover:shadow-green-500/50 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 border-2 border-white/20 group"
+                      className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-400/30 to-emerald-400/30 rounded-3xl blur-sm group-hover:blur-md transition-all duration-500"></div>
-                      <Link href="/book-service" className="flex items-center gap-3 relative z-10">
-                        <span className="text-2xl animate-bounce">✨</span>
+                      <Link href="/book-service" className="flex items-center gap-2">
                         {t.requestQuote}
-                        <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                        <ArrowRight className="w-5 h-5" />
                       </Link>
                     </Button>
 
                     <Button
                       size="lg"
-                      className="relative bg-white/95 hover:bg-white text-green-600 border-3 border-green-300 hover:border-green-400 rounded-3xl px-10 py-6 text-xl font-black shadow-2xl shadow-green-500/20 hover:shadow-3xl hover:shadow-green-500/30 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 backdrop-blur-sm group"
+                      className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-green-50/50 to-emerald-50/50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <Link href="https://wa.me/31610756699" className="flex items-center gap-3 relative z-10">
-                        <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                      <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
+                        <MessageCircle className="w-5 h-5" />
                         {t.whatsapp}
-                        <span className="text-2xl group-hover:animate-pulse">💬</span>
                       </Link>
                     </Button>
 
                     <Button
                       size="lg"
-                      className="relative bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600 hover:from-blue-600 hover:via-cyan-600 hover:to-blue-700 text-white rounded-3xl px-10 py-6 text-xl font-black shadow-2xl shadow-blue-500/40 hover:shadow-3xl hover:shadow-blue-500/50 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 border-2 border-white/20 group"
+                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 to-cyan-400/30 rounded-3xl blur-sm group-hover:blur-md transition-all duration-500"></div>
                       <a
                         href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-3 relative z-10"
+                        className="flex items-center gap-2"
                       >
-                        <Calendar className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                        <Calendar className="w-5 h-5" />
                         {t.bookAppointment}
-                        <span className="text-2xl group-hover:animate-bounce">📅</span>
                       </a>
                     </Button>
 
                     <Button
                       size="lg"
                       variant="outline"
-                      className="relative bg-white/90 hover:bg-white text-slate-700 hover:text-slate-800 border-3 border-slate-300 hover:border-slate-400 rounded-3xl px-10 py-6 text-xl font-black shadow-2xl shadow-slate-500/20 hover:shadow-3xl hover:shadow-slate-500/30 transition-all duration-500 transform hover:scale-110 hover:-translate-y-2 backdrop-blur-sm group"
+                      className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-slate-50/50 to-gray-50/50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <Link href="/client-assessment" className="flex items-center gap-3 relative z-10">
-                        <ClipboardList className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
+                      <Link href="/client-assessment" className="flex items-center gap-2">
+                        <ClipboardList className="w-5 h-5" />
                         {t.clientAssessment}
-                        <span className="text-2xl group-hover:animate-pulse">📋</span>
                       </Link>
                     </Button>
                   </div>
@@ -310,7 +278,7 @@ export default function HomePage() {
                     <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-105 hover:-rotate-1">
                       {/* Background Image */}
                       <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/attachments/gen-images/public/hero-background-premium-nPEKpy8sbY1qJn07YpZghvDdTem30M.jpg"
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
                         alt="Professional cleaner creating sparkling clean spaces with care and attention to detail"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
