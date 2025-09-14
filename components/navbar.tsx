@@ -202,6 +202,11 @@ export default function Navbar() {
                     </Link>
                   </NavigationMenuItem>
 
+                  {/* Language Switcher - Desktop */}
+                  <NavigationMenuItem>
+                    <LanguageSwitcher />
+                  </NavigationMenuItem>
+
                   {/* Language Switcher */}
                   <LanguageSwitcher />
                 </NavigationMenuList>

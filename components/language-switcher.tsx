@@ -157,6 +157,41 @@ const translations: Translations = {
     careersSubtitle: "Build your career with Glow Housekeeping",
     currentOpenings: "Current Openings",
     applyNow: "Apply Now",
+
+    // Footer
+    quickLinks: "Quick Links",
+    ourServices: "Our Services",
+    followUs: "Follow Us",
+    allRightsReserved: "All rights reserved.",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+
+    // Service Pages
+    serviceOverview: "Service Overview",
+    whyChooseThisService: "Why Choose This Service?",
+    serviceProcess: "Our Process",
+    getQuoteForService: "Get Quote for This Service",
+    bookThisService: "Book This Service",
+    serviceFeatures: "Service Features",
+    pricingInformation: "Pricing Information",
+    frequentlyAskedQuestions: "Frequently Asked Questions",
+
+    // Booking Form
+    bookingTitle: "Book Your Cleaning Service",
+    firstName: "First Name",
+    lastName: "Last Name",
+    email: "Email",
+    phone: "Phone",
+    address: "Address",
+    city: "City",
+    postalCode: "Postal Code",
+    serviceType: "Service Type",
+    preferredDate: "Preferred Date",
+    preferredTime: "Preferred Time",
+    additionalNotes: "Additional Notes",
+    submitBooking: "Submit Booking",
+    bookingSuccess: "Booking submitted successfully!",
+    bookingError: "Error submitting booking. Please try again.",
   },
   nl: {
     // Navigation
@@ -283,6 +318,41 @@ const translations: Translations = {
     careersSubtitle: "Bouw uw carrière met Glow Housekeeping",
     currentOpenings: "Huidige Vacatures",
     applyNow: "Solliciteer Nu",
+
+    // Footer
+    quickLinks: "Snelle Links",
+    ourServices: "Onze Diensten",
+    followUs: "Volg Ons",
+    allRightsReserved: "Alle rechten voorbehouden.",
+    privacyPolicy: "Privacybeleid",
+    termsOfService: "Servicevoorwaarden",
+
+    // Service Pages
+    serviceOverview: "Service Overzicht",
+    whyChooseThisService: "Waarom Deze Service Kiezen?",
+    serviceProcess: "Ons Proces",
+    getQuoteForService: "Offerte voor Deze Service",
+    bookThisService: "Boek Deze Service",
+    serviceFeatures: "Service Kenmerken",
+    pricingInformation: "Prijsinformatie",
+    frequentlyAskedQuestions: "Veelgestelde Vragen",
+
+    // Booking Form
+    bookingTitle: "Boek Uw Schoonmaakservice",
+    firstName: "Voornaam",
+    lastName: "Achternaam",
+    email: "E-mail",
+    phone: "Telefoon",
+    address: "Adres",
+    city: "Stad",
+    postalCode: "Postcode",
+    serviceType: "Service Type",
+    preferredDate: "Gewenste Datum",
+    preferredTime: "Gewenste Tijd",
+    additionalNotes: "Aanvullende Opmerkingen",
+    submitBooking: "Boeking Indienen",
+    bookingSuccess: "Boeking succesvol ingediend!",
+    bookingError: "Fout bij het indienen van de boeking. Probeer opnieuw.",
   },
   fy: {
     // Navigation
@@ -407,6 +477,41 @@ const translations: Translations = {
     careersSubtitle: "Bou jo karriêre mei Glow Housekeeping",
     currentOpenings: "Aktuele Fakatures",
     applyNow: "Sollisitearje No",
+
+    // Footer
+    quickLinks: "Flugge Keppelings",
+    ourServices: "Us Tsjinsten",
+    followUs: "Folgje Ús",
+    allRightsReserved: "Alle rjochten foarbehâlden.",
+    privacyPolicy: "Privacybelied",
+    termsOfService: "Tsjinstfoarwaarden",
+
+    // Service Pages
+    serviceOverview: "Tsjinst Oersicht",
+    whyChooseThisService: "Wêrom Dizze Tsjinst Kieze?",
+    serviceProcess: "Us Proses",
+    getQuoteForService: "Offerte foar Dizze Tsjinst",
+    bookThisService: "Boekje Dizze Tsjinst",
+    serviceFeatures: "Tsjinst Skaaimerken",
+    pricingInformation: "Priisynformaasje",
+    frequentlyAskedQuestions: "Faak Stelde Fragen",
+
+    // Booking Form
+    bookingTitle: "Boekje Jo Skjinmaktsjinst",
+    firstName: "Foarnamme",
+    lastName: "Efternamme",
+    email: "E-post",
+    phone: "Telefoan",
+    address: "Adres",
+    city: "Stêd",
+    postalCode: "Postkoade",
+    serviceType: "Tsjinst Type",
+    preferredDate: "Foarkar Datum",
+    preferredTime: "Foarkar Tiid",
+    additionalNotes: "Oanfoljende Opmerkings",
+    submitBooking: "Boeking Yntsjinje",
+    bookingSuccess: "Boeking mei sukses yntsjinne!",
+    bookingError: "Flater by it yntsjinjen fan de boeking. Probearje opnij.",
   },
 }
 
@@ -479,17 +584,12 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative group flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out text-white/90 hover:text-white hover:bg-white/8"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 gap-2"
         aria-label="Select language"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
-        <Globe className="w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200" />
-        <span className="relative z-10 text-lg">{getCurrentLanguageObj().flag}</span>
-        <ChevronDown
-          className={`w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <Globe className="w-4 h-4" />
+        <span className="text-lg">{getCurrentLanguageObj().flag}</span>
+        <ChevronDown className={`w-4 h-4 transition-all duration-300 ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
       {/* Language Dropdown */}
