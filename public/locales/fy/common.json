@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Thús",
+    "about": "Oer Ús",
+    "services": "Tsjinsten",
+    "contact": "Kontakt",
+    "blog": "Blog",
+    "joinTeam": "Doch Mei by Ús Team"
+  },
+  "hero": {
+    "title": "Profesjonele Skjinmaktsjinsten yn Nederlân",
+    "subtitle": "Transformearje jo romte mei ús eksperte skjinmaktsjinsten. Fan huzen oant kantoaren, wy bringe de glâns werom yn jo wrâld.",
+    "cta": "Boekje Jo Tsjinst",
+    "learnMore": "Mear Ynformaasje"
+  },
+  "about": {
+    "title": "Oer Glow Housekeeping",
+    "founder": "Glorija Beberina",
+    "founderTitle": "Oprjochter & CEO",
+    "founderDescription": "Glorija Beberina is de oprjochter en CEO fan Glow Housekeeping, in bedriuw boud op fertrouwen, transparânsje en in passy foar it helpen fan oaren om te libjen en wurkje yn skjinne, opbeurende romtes."
+  },
+  "services": {
+    "title": "Ús Tsjinsten",
+    "generalCleaning": "Algemiene Skjinmaak",
+    "solarPanelCleaning": "Sinnepaniel Skjinmaak",
+    "windowCleaning": "Ruten Waskjen",
+    "drainCleaning": "Ôfwetter Skjinmaak"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "phone": "Telefoan",
+    "email": "E-post",
+    "address": "Adres"
+  },
+  "footer": {
+    "company": "Glow Housekeeping",
+    "description": "Profesjonele skjinmaktsjinsten troch hiel Nederlân",
+    "rights": "Alle rjochten foarbehâlden"
+  }
+}

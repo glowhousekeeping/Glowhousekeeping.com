@@ -60,7 +60,7 @@ export default function AboutPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/PHOTO-2025-07-24-23-36-45%20%281%29%20-%20Copy.jpg-tyznK0h4KEFdNsuZh2flOllKICk6a0.jpeg"
-                  alt="Glorija Gbeberina, Founder & CEO of Glow Housekeeping"
+                  alt="Glorija Beberina, Founder & CEO of Glow Housekeeping"
                   width={500}
                   height={600}
                   className="w-full object-cover"
@@ -81,12 +81,12 @@ export default function AboutPage() {
                 <div className="inline-block bg-rose-100 text-rose-800 px-4 py-2 rounded-full text-sm font-medium">
                   Founder & CEO of Glow Housekeeping
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900">Glorija Gbeberina</h3>
+                <h3 className="text-3xl font-bold text-gray-900">Glorija Beberina</h3>
               </div>
 
               <div className="prose prose-lg max-w-none space-y-6">
                 <p className="text-gray-700 leading-relaxed">
-                  Glorija Gbeberina is the founder and CEO of Glow Housekeeping, a company built on trust, transparency,
+                  Glorija Beberina is the founder and CEO of Glow Housekeeping, a company built on trust, transparency,
                   and a passion for helping others live and work in clean, uplifting spaces.
                 </p>
 
@@ -143,7 +143,7 @@ export default function AboutPage() {
               </blockquote>
               <div className="flex items-center justify-center gap-4">
                 <div className="w-12 h-px bg-rose-400"></div>
-                <cite className="text-rose-600 font-medium not-italic">Glorija Gbeberina</cite>
+                <cite className="text-rose-600 font-medium not-italic">Glorija Beberina</cite>
                 <div className="w-12 h-px bg-rose-400"></div>
               </div>
             </div>

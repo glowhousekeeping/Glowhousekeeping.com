@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "blog": "Blog",
+    "joinTeam": "Join Our Team"
+  },
+  "hero": {
+    "title": "Professional Cleaning Services in the Netherlands",
+    "subtitle": "Transform your space with our expert cleaning services. From homes to offices, we bring the shine back to your world.",
+    "cta": "Book Your Service",
+    "learnMore": "Learn More"
+  },
+  "about": {
+    "title": "About Glow Housekeeping",
+    "founder": "Glorija Beberina",
+    "founderTitle": "Founder & CEO",
+    "founderDescription": "Glorija Beberina is the founder and CEO of Glow Housekeeping, a company built on trust, transparency, and a passion for helping others live and work in clean, uplifting spaces."
+  },
+  "services": {
+    "title": "Our Services",
+    "generalCleaning": "General Cleaning",
+    "solarPanelCleaning": "Solar Panel Cleaning",
+    "windowCleaning": "Window Cleaning",
+    "drainCleaning": "Drain Cleaning"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address"
+  },
+  "footer": {
+    "company": "Glow Housekeeping",
+    "description": "Professional cleaning services across the Netherlands",
+    "rights": "All rights reserved"
+  }
+}
