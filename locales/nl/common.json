@@ -1,0 +1,117 @@
+{
+  "navigation": {
+    "home": "Home",
+    "contact": "Contact",
+    "blog": "Blog",
+    "services": "Diensten",
+    "about": "Over Ons",
+    "careers": "Carrières",
+    "getQuote": "OFFERTE KRIJGEN"
+  },
+  "hero": {
+    "title": "Wilt u dat uw bedrijf straalt van professionaliteit?",
+    "subtitle": "Wij bieden uitzonderlijke commerciële schoonmaakdiensten in Venlo, Limburg, op maat gemaakt voor bedrijven die streven naar excellentie - terwijl we ons richten op wat er echt toe doet.",
+    "specialization": "Gespecialiseerde zorg voor kantoren, winkels, restaurants en professionele faciliteiten.",
+    "tagline": "Venlo's Toonaangevende Commerciële Schoonmaakservice",
+    "serviceArea": "VENLO, LIMBURG EN OMGEVING BEDIENEN MET PERSOONLIJKE ZORG!",
+    "requestQuote": "Prijsofferte Aanvragen",
+    "whatsapp": "WhatsApp",
+    "bookAppointment": "Afspraak Maken",
+    "clientAssessment": "Klantbeoordeling →",
+    "imageCaption": "We maken niet alleen schoon — we geven om je.",
+    "imageSubCaption": "Professionele reiniging met een persoonlijke touch"
+  },
+  "services": {
+    "generalCleaning": "Algemene Reiniging",
+    "generalCleaningDesc": "Complete kantoor- en commerciële reiniging met professionele standaarden",
+    "solarPanelCleaning": "Zonnepanelen Reiniging",
+    "solarPanelCleaningDesc": "Maximaliseer energie-efficiëntie met professioneel zonnepaneel onderhoud",
+    "windowCleaning": "Ramen Wassen",
+    "windowCleaningDesc": "Kristalheldere ramen voor meer natuurlijk licht en prachtige uitzichten",
+    "drainCleaning": "Afvoer Reiniging",
+    "drainCleaningDesc": "Professioneel afvoeronderhoud en ontstoppingsdiensten",
+    "ourProfessionalServices": "Onze Professionele Diensten",
+    "servicesSubtitle": "Van algemene reiniging tot gespecialiseerde diensten, wij bieden uitgebreide oplossingen voor al uw schoonmaakbehoeften."
+  },
+  "transformation": {
+    "title": "Voor & Na: Echte Transformaties",
+    "subtitle": "We maken niet alleen schoon — we tillen uw ruimte naar een hoger niveau. Zie het verschil voor uzelf.",
+    "officeTransformation": "💼 Kantoor Transformatie",
+    "officeTransformationDesc": "Complete kantoorruimte reiniging met professionele organisatie",
+    "kitchenCleaning": "🍳 Keuken Reiniging",
+    "kitchenCleaningDesc": "Van verhuischaos naar een onberispelijke moderne keuken",
+    "bathroomCleaning": "🛁 Badkamer Reiniging",
+    "bathroomCleaningDesc": "Een badkamer diepreiniging die schittert",
+    "sinkCleaning": "🚰 Gootsteen Reiniging",
+    "sinkCleaningDesc": "Vlekkeloze gootstenen met een vleugje Glow",
+    "readyForTransformation": "Klaar voor Uw Eigen Transformatie?",
+    "transformationCTA": "Ervaar dezelfde dramatische resultaten in uw ruimte. Ons professionele team staat klaar om uw huis of kantoor te transformeren met dezelfde aandacht voor detail die u hierboven ziet.",
+    "getYourQuote": "Krijg Uw Offerte",
+    "bookNow": "Boek Nu"
+  },
+  "whyChooseUs": {
+    "title": "Waarom Kiezen voor Glow Housekeeping?",
+    "subtitle": "Ontdek wat ons de vertrouwde keuze maakt voor professionele schoonmaakdiensten in heel Nederland.",
+    "trustedCleaners": "Vertrouwde Schoonmakers",
+    "trustedCleanersDesc": "Gescreende professionals met ervaring en betrouwbaarheid waar u op kunt rekenen.",
+    "professionalResults": "Professionele Resultaten",
+    "professionalResultsDesc": "We leveren hotel-niveau glans en precisie in elke schoonmaaksessie.",
+    "affordableRates": "Betaalbare Tarieven",
+    "affordableRatesDesc": "Concurrerende prijzen zonder verrassingen - transparant en eerlijk.",
+    "easyBooking": "Eenvoudig Boeken",
+    "easyBookingDesc": "Boek uw service in minuten, stressvrij via meerdere kanalen.",
+    "flexiblePassionate": "Flexibel & Gepassioneerd",
+    "flexiblePassionateDesc": "We geven diep om wat we doen en passen ons aan de unieke behoeften van elke klant aan - geen standaard schoonmaak.",
+    "experienceGlowDifference": "Ervaar Vandaag het Glow Verschil",
+    "experienceGlowCTA": "Sluit je aan bij honderden tevreden klanten die ons vertrouwen met hun belangrijkste ruimtes. Zie waarom we de voorkeurskeuze zijn voor professionele reiniging in Nederland.",
+    "getStartedToday": "Begin Vandaag",
+    "learnMoreAboutUs": "Leer Meer Over Ons"
+  },
+  "testimonials": {
+    "clientLove": "Klant Liefde",
+    "whatClientsSay": "Wat Onze Klanten Zeggen",
+    "clientsSaySubtitle": "Woorden van de mensen die we met vreugde hebben mogen bedienen — echte notities, echte dankbaarheid.",
+    "shareYourExperience": "Wilt U Uw Ervaring Delen?",
+    "shareExperienceCTA": "We horen graag van u! Uw woorden en ervaringen helpen ons groeien en inspireren anderen om het Glow verschil te ervaren.",
+    "shareYourStory": "Deel Uw Verhaal",
+    "bookYourService": "Boek Uw Service"
+  },
+  "cta": {
+    "readyToExperience": "Klaar om het Glow Verschil te Ervaren?",
+    "ctaSubtitle": "Sluit je aan bij honderden tevreden klanten in heel Nederland. Krijg vandaag uw persoonlijke offerte en zie waarom we de vertrouwde keuze zijn voor professionele reiniging.",
+    "getFreeQuote": "Gratis Offerte Krijgen",
+    "contactWhatsApp": "Contact WhatsApp"
+  },
+  "common": {
+    "learnMore": "Leer Meer →",
+    "before": "Voor",
+    "after": "Na",
+    "transformation": "Transformatie"
+  },
+  "about": {
+    "title": "Over Glow Housekeeping",
+    "subtitle": "Uw vertrouwde partner in professionele schoonmaakdiensten",
+    "ourStory": "Ons Verhaal",
+    "ourMission": "Onze Missie",
+    "ourValues": "Onze Waarden",
+    "meetTheTeam": "Ontmoet Het Team"
+  },
+  "contact": {
+    "title": "Contact Opnemen",
+    "subtitle": "Neem contact op met ons professionele schoonmaakteam",
+    "getInTouch": "Neem Contact Op",
+    "contactInfo": "Contactinformatie",
+    "businessHours": "Openingstijden"
+  },
+  "blog": {
+    "title": "Schoonmaaktips & Inzichten",
+    "subtitle": "Deskundig advies en branche-inzichten van ons professionele schoonmaakteam",
+    "readMore": "Lees Meer"
+  },
+  "careers": {
+    "title": "Word Lid Van Ons Team",
+    "subtitle": "Bouw uw carrière met Glow Housekeeping",
+    "currentOpenings": "Huidige Vacatures",
+    "applyNow": "Solliciteer Nu"
+  }
+}

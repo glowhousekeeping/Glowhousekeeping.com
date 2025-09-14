@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { useRouter } from "next/router"
 import { Globe, ChevronDown } from "lucide-react"
-import { updateGlobalTranslations, getCurrentLanguage } from "./language-switcher"
 
 interface Language {
   code: string
@@ -28,89 +28,54 @@ const languages: Language[] = [
   },
 ]
 
-interface MobileLanguageSwitcherProps {
-  onLanguageChange?: (language: string) => void
-}
-
-export default function MobileLanguageSwitcher({ onLanguageChange }: MobileLanguageSwitcherProps) {
+export default function MobileLanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentLanguage, setCurrentLanguage] = useState<string>("en")
-
-  useEffect(() => {
-    // Initialize with current global language
-    setCurrentLanguage(getCurrentLanguage())
-
-    // Listen for global language changes
-    const handleGlobalLanguageChange = (event: CustomEvent) => {
-      setCurrentLanguage(event.detail.language)
-    }
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
-
-      return () => {
-        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
-      }
-    }
-  }, [])
+  const router = useRouter()
+  const { locale, locales, asPath } = router
 
   const handleLanguageChange = (languageCode: string) => {
-    setCurrentLanguage(languageCode)
-    updateGlobalTranslations(languageCode)
+    router.push(asPath, asPath, { locale: languageCode })
     setIsOpen(false)
-
-    if (onLanguageChange) {
-      onLanguageChange(languageCode)
-    }
   }
 
   const getCurrentLanguageObj = () => {
-    return languages.find((lang) => lang.code === currentLanguage) || languages[0]
+    return languages.find((lang) => lang.code === locale) || languages[0]
   }
 
   return (
-    <div className="space-y-3">
+    <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30 backdrop-blur-sm"
+        className="flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out text-white/90 hover:text-white hover:bg-white/8 w-full"
         aria-label="Select language"
       >
-        <div className="flex items-center gap-3">
-          <Globe className="w-5 h-5 text-blue-600" />
-          <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Language</span>
-          <span className="text-xl">{getCurrentLanguageObj().flag}</span>
-        </div>
-        <ChevronDown
-          className={`w-4 h-4 text-gray-500 group-hover:text-blue-600 transition-all duration-300 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <Globe className="w-4 h-4" />
+        <span className="text-lg">{getCurrentLanguageObj().flag}</span>
+        <span className="flex-1 text-left">{getCurrentLanguageObj().name}</span>
+        <ChevronDown className={`w-4 h-4 transition-all duration-300 ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
-      {/* Mobile Language Options */}
+      {/* Language Dropdown */}
       {isOpen && (
-        <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
+        <div className="mt-2 w-full bg-white/95 backdrop-blur-xl shadow-2xl shadow-blue-500/10 rounded-2xl border border-white/20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/50 to-teal-50/50 rounded-2xl"></div>
           {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
-              className={`w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30 ${
-                currentLanguage === language.code
-                  ? "bg-gradient-to-r from-blue-50/60 to-teal-50/60 border-blue-200/30"
-                  : ""
+              className={`relative w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border-b border-gray-100/50 last:border-b-0 ${
+                locale === language.code ? "bg-gradient-to-r from-blue-50/60 to-teal-50/60" : ""
               }`}
             >
-              <span className="text-lg">{language.flag}</span>
+              <span className="text-xl">{language.flag}</span>
               <span
                 className={`text-sm font-medium transition-colors ${
-                  currentLanguage === language.code
-                    ? "text-blue-700 font-semibold"
-                    : "text-gray-700 group-hover:text-blue-700"
+                  locale === language.code ? "text-blue-700 font-semibold" : "text-gray-900 group-hover:text-blue-700"
                 }`}
               >
                 {language.name}
               </span>
-              {currentLanguage === language.code && <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>}
+              {locale === language.code && <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>}
             </button>
           ))}
         </div>

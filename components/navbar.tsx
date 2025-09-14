@@ -1,109 +1,30 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { useTranslation } from "next-i18next"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, Phone, Mail, MapPin, ChevronDown } from "lucide-react"
+import { Menu, X, Phone, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
-import LanguageSwitcher from "./language-switcher"
-import MobileLanguageSwitcher from "./mobile-language-switcher"
-import { getCurrentTranslations } from "./language-switcher"
-
-const services = [
-  {
-    title: "General Cleaning",
-    titleKey: "generalCleaning",
-    href: "/services/general-cleaning",
-    description: "Complete office and commercial cleaning with professional standards",
-    descriptionKey: "generalCleaningDesc",
-    price: "€35/hr",
-  },
-  {
-    title: "Solar Panel Cleaning",
-    titleKey: "solarPanelCleaning",
-    href: "/services/solar-panel-cleaning",
-    description: "Maximize energy efficiency with professional solar panel maintenance",
-    descriptionKey: "solarPanelCleaningDesc",
-    price: "€150-500",
-  },
-  {
-    title: "Window Cleaning",
-    titleKey: "windowCleaning",
-    href: "/services/window-cleaning",
-    description: "Crystal clear windows for enhanced natural light and beautiful views",
-    descriptionKey: "windowCleaningDesc",
-    price: "€150-550",
-  },
-  {
-    title: "Drain Cleaning",
-    titleKey: "drainCleaning",
-    href: "/services/drain-cleaning",
-    description: "Professional drain maintenance and blockage removal services",
-    descriptionKey: "drainCleaningDesc",
-    price: "€20-120",
-  },
-]
+import LanguageSwitcher from "@/components/language-switcher"
+import MobileLanguageSwitcher from "@/components/mobile-language-switcher"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const [translations, setTranslations] = useState(getCurrentTranslations())
+  const { t } = useTranslation("common")
 
-  useEffect(() => {
-    // Listen for global language changes
-    const handleGlobalLanguageChange = (event: CustomEvent) => {
-      setTranslations(event.detail.translations)
-    }
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
-
-      return () => {
-        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
-      }
-    }
-  }, [])
-
-  const t = translations
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+  }
 
   return (
-    <header className="sticky top-0 z-50 w-full">
-      {/* Top Contact Bar - Hidden on Mobile */}
-      <div className="hidden lg:block bg-gradient-to-r from-blue-600 to-green-600 text-white py-2">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              <span>glorija.berina@gmail.com</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4" />
-              <span>+31 6 10756699</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4" />
-            <span>Service Area: Netherlands</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navigation */}
-      <nav className="bg-white/90 backdrop-blur-md border-b border-white/20 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
+    <nav className="bg-gradient-to-r from-blue-600 via-blue-700 to-green-600 shadow-lg sticky top-0 z-50 backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+              <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300">
                 <Image
                   src="/glow-housekeeping-logo.png"
                   alt="Glow Housekeeping Logo"
@@ -113,275 +34,276 @@ export default function Navbar() {
                 />
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                <h1 className="text-xl font-bold text-white group-hover:text-cyan-200 transition-colors duration-300">
                   Glow Housekeeping
                 </h1>
-                <p className="text-xs text-gray-600">Professional Cleaning Services</p>
+                <p className="text-xs text-blue-100 group-hover:text-cyan-300 transition-colors duration-300">
+                  Professional Cleaning Services
+                </p>
               </div>
             </Link>
+          </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <NavigationMenu>
-                <NavigationMenuList className="flex items-center space-x-6">
-                  <NavigationMenuItem>
-                    <Link href="/" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                        {t.home}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
+          {/* Desktop Navigation */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-4">
+              <Link
+                href="/"
+                className="group relative px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 font-medium"
+              >
+                <span className="relative z-10">{t("navigation.home")}</span>
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-lg transition-all duration-300"></div>
+              </Link>
 
-                  <NavigationMenuItem>
-                    <Link href="/contact" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                        {t.contact}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-
-                  <NavigationMenuItem>
-                    <Link href="/blog" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                        {t.blog}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-
-                  {/* Services Dropdown */}
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                      {t.services}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <div className="w-[600px] p-6 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-white/20">
-                        <div className="grid grid-cols-2 gap-4">
-                          {services.map((service) => (
-                            <Link
-                              key={service.href}
-                              href={service.href}
-                              className="group block p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 border border-transparent hover:border-blue-200/30 hover:shadow-lg transform hover:scale-105"
-                            >
-                              <div className="flex justify-between items-start mb-2">
-                                <h3 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                                  {t[service.titleKey] || service.title}
-                                </h3>
-                                <span className="text-sm font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
-                                  {service.price}
-                                </span>
-                              </div>
-                              <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors leading-relaxed">
-                                {t[service.descriptionKey] || service.description}
-                              </p>
-                              <div className="mt-3 flex items-center text-blue-600 text-sm font-medium group-hover:text-blue-700 transition-colors">
-                                {t.learnMore}
-                                <div className="ml-1 w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">
-                                  <span>→</span>
-                                </div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-
-                  <NavigationMenuItem>
-                    <Link href="/about" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                        {t.about}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-
-                  <NavigationMenuItem>
-                    <Link href="/join-our-team" legacyBehavior passHref>
-                      <NavigationMenuLink className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50">
-                        {t.careers}
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-
-                  {/* Language Switcher */}
-                  <LanguageSwitcher />
-                </NavigationMenuList>
-              </NavigationMenu>
-
-              {/* CTA Button */}
-              <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-full px-6 py-2 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
-                <Link href="/book-service">{t.getQuote}</Link>
-              </Button>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="lg:hidden">
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="relative h-12 w-12 rounded-xl bg-white/90 backdrop-blur-md hover:bg-white border-2 border-blue-200 hover:border-blue-300 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              <div className="relative group">
+                <button className="group relative px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 font-medium flex items-center gap-1">
+                  <span className="relative z-10">{t("navigation.services")}</span>
+                  <svg
+                    className="w-4 h-4 transition-transform group-hover:rotate-180"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400 to-green-400 opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
-                    <div className="relative flex items-center justify-center">
-                      {isOpen ? <X className="h-6 w-6 text-slate-700" /> : <Menu className="h-6 w-6 text-slate-700" />}
-                    </div>
-                  </Button>
-                </SheetTrigger>
-                <SheetContent
-                  side="right"
-                  className="w-full sm:w-80 bg-white/95 backdrop-blur-xl border-l border-white/20 shadow-2xl"
-                >
-                  <div className="flex flex-col h-full">
-                    {/* Mobile Header */}
-                    <div className="flex items-center justify-between p-6 border-b border-gray-100">
-                      <div className="flex items-center space-x-3">
-                        <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-lg">
-                          <Image
-                            src="/glow-housekeeping-logo.png"
-                            alt="Glow Housekeeping Logo"
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div>
-                          <h2 className="text-lg font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                            Glow Housekeeping
-                          </h2>
-                          <p className="text-xs text-gray-600">Professional Cleaning</p>
-                        </div>
-                      </div>
-                    </div>
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-lg transition-all duration-300"></div>
+                </button>
 
-                    {/* Mobile Navigation */}
-                    <nav className="flex-1 px-6 py-6 space-y-2">
-                      <Link
-                        href="/"
-                        className="flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors text-lg">
-                          {t.home}
-                        </span>
-                      </Link>
-
-                      <Link
-                        href="/contact"
-                        className="flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors text-lg">
-                          {t.contact}
-                        </span>
-                      </Link>
-
-                      <Link
-                        href="/blog"
-                        className="flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors text-lg">
-                          {t.blog}
-                        </span>
-                      </Link>
-
-                      {/* Mobile Services Dropdown */}
-                      <div className="space-y-2">
-                        <button
-                          onClick={() => setServicesOpen(!servicesOpen)}
-                          className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
-                        >
-                          <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors text-lg">
-                            {t.services}
-                          </span>
-                          <ChevronDown
-                            className={`w-5 h-5 text-gray-500 group-hover:text-blue-600 transition-all duration-300 ${
-                              servicesOpen ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-
-                        {servicesOpen && (
-                          <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
-                            {services.map((service) => (
-                              <Link
-                                key={service.href}
-                                href={service.href}
-                                className="block p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
-                                onClick={() => setIsOpen(false)}
-                              >
-                                <div className="flex justify-between items-center mb-1">
-                                  <span className="font-medium text-gray-800 group-hover:text-blue-700 transition-colors">
-                                    {t[service.titleKey] || service.title}
-                                  </span>
-                                  <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">
-                                    {service.price}
-                                  </span>
-                                </div>
-                                <p className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors">
-                                  {t[service.descriptionKey] || service.description}
-                                </p>
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-
-                      <Link
-                        href="/about"
-                        className="flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors text-lg">
-                          {t.about}
-                        </span>
-                      </Link>
-
-                      <Link
-                        href="/join-our-team"
-                        className="flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors text-lg">
-                          {t.careers}
-                        </span>
-                      </Link>
-
-                      {/* Mobile Language Switcher */}
-                      <MobileLanguageSwitcher onLanguageChange={() => setIsOpen(false)} />
-
-                      {/* Mobile CTA Button */}
-                      <div className="pt-4">
-                        <Button
-                          className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <Link href="/book-service">{t.getQuote}</Link>
-                        </Button>
-                      </div>
-                    </nav>
-
-                    {/* Mobile Contact Info */}
-                    <div className="p-6 border-t border-gray-100 bg-gradient-to-r from-blue-50/50 to-green-50/50">
-                      <h3 className="font-semibold text-gray-900 mb-3">Quick Contact</h3>
-                      <div className="space-y-2 text-sm">
-                        <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
-                          <Phone className="w-4 h-4" />
-                          <a href="tel:+31610756699">+31 6 10756699</a>
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
-                          <Mail className="w-4 h-4" />
-                          <a href="mailto:glorija.berina@gmail.com">glorija.berina@gmail.com</a>
-                        </div>
-                      </div>
-                    </div>
+                {/* Services Dropdown */}
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-white/20 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <div className="p-2">
+                    <Link
+                      href="/services/general-cleaning"
+                      className="block px-4 py-3 text-gray-800 hover:bg-blue-50 rounded-xl transition-colors duration-200 font-medium"
+                    >
+                      General Cleaning
+                    </Link>
+                    <Link
+                      href="/services/solar-panel-cleaning"
+                      className="block px-4 py-3 text-gray-800 hover:bg-blue-50 rounded-xl transition-colors duration-200 font-medium"
+                    >
+                      Solar Panel Cleaning
+                    </Link>
+                    <Link
+                      href="/services/window-cleaning"
+                      className="block px-4 py-3 text-gray-800 hover:bg-blue-50 rounded-xl transition-colors duration-200 font-medium"
+                    >
+                      Window Cleaning
+                    </Link>
+                    <Link
+                      href="/services/drain-cleaning"
+                      className="block px-4 py-3 text-gray-800 hover:bg-blue-50 rounded-xl transition-colors duration-200 font-medium"
+                    >
+                      Drain Cleaning
+                    </Link>
+                    <Link
+                      href="/services/deep-cleaning"
+                      className="block px-4 py-3 text-gray-800 hover:bg-blue-50 rounded-xl transition-colors duration-200 font-medium"
+                    >
+                      Deep Cleaning
+                    </Link>
+                    <Link
+                      href="/services/carpet-care"
+                      className="block px-4 py-3 text-gray-800 hover:bg-blue-50 rounded-xl transition-colors duration-200 font-medium"
+                    >
+                      Carpet Care
+                    </Link>
                   </div>
-                </SheetContent>
-              </Sheet>
+                </div>
+              </div>
+
+              <Link
+                href="/about"
+                className="group relative px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 font-medium"
+              >
+                <span className="relative z-10">{t("navigation.about")}</span>
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-lg transition-all duration-300"></div>
+              </Link>
+
+              <Link
+                href="/blog"
+                className="group relative px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 font-medium"
+              >
+                <span className="relative z-10">{t("navigation.blog")}</span>
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-lg transition-all duration-300"></div>
+              </Link>
+
+              <Link
+                href="/contact"
+                className="group relative px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 font-medium"
+              >
+                <span className="relative z-10">{t("navigation.contact")}</span>
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-lg transition-all duration-300"></div>
+              </Link>
+
+              <Link
+                href="/join-our-team"
+                className="group relative px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 font-medium"
+              >
+                <span className="relative z-10">{t("navigation.careers")}</span>
+                <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 rounded-lg transition-all duration-300"></div>
+              </Link>
+            </div>
+          </div>
+
+          {/* Desktop CTA and Language Switcher */}
+          <div className="hidden md:flex items-center space-x-4">
+            <LanguageSwitcher />
+            <Button
+              asChild
+              className="bg-white/20 hover:bg-white/30 text-white border border-white/30 hover:border-white/50 backdrop-blur-sm rounded-xl px-6 py-2 font-semibold transition-all duration-300 transform hover:scale-105"
+            >
+              <Link href="/book-service">{t("navigation.getQuote")}</Link>
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center space-x-2">
+            <button
+              onClick={toggleMenu}
+              className="inline-flex items-center justify-center p-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? (
+                <X className="block h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="block h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"}`}
+      >
+        <div className="px-2 pt-2 pb-3 space-y-1 bg-gradient-to-b from-blue-700/95 to-green-700/95 backdrop-blur-xl border-t border-white/10">
+          <Link
+            href="/"
+            className="block px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+            onClick={() => setIsOpen(false)}
+          >
+            {t("navigation.home")}
+          </Link>
+
+          {/* Mobile Services Submenu */}
+          <div className="space-y-1">
+            <div className="px-4 py-2 text-white/70 text-sm font-semibold uppercase tracking-wider">
+              {t("navigation.services")}
+            </div>
+            <Link
+              href="/services/general-cleaning"
+              className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              General Cleaning
+            </Link>
+            <Link
+              href="/services/solar-panel-cleaning"
+              className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              Solar Panel Cleaning
+            </Link>
+            <Link
+              href="/services/window-cleaning"
+              className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              Window Cleaning
+            </Link>
+            <Link
+              href="/services/drain-cleaning"
+              className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              Drain Cleaning
+            </Link>
+            <Link
+              href="/services/deep-cleaning"
+              className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              Deep Cleaning
+            </Link>
+            <Link
+              href="/services/carpet-care"
+              className="block px-6 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 text-sm"
+              onClick={() => setIsOpen(false)}
+            >
+              Carpet Care
+            </Link>
+          </div>
+
+          <Link
+            href="/about"
+            className="block px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+            onClick={() => setIsOpen(false)}
+          >
+            {t("navigation.about")}
+          </Link>
+
+          <Link
+            href="/blog"
+            className="block px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+            onClick={() => setIsOpen(false)}
+          >
+            {t("navigation.blog")}
+          </Link>
+
+          <Link
+            href="/contact"
+            className="block px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+            onClick={() => setIsOpen(false)}
+          >
+            {t("navigation.contact")}
+          </Link>
+
+          <Link
+            href="/join-our-team"
+            className="block px-4 py-3 rounded-xl text-white/90 hover:text-white hover:bg-white/10 transition-all duration-300 font-medium"
+            onClick={() => setIsOpen(false)}
+          >
+            {t("navigation.careers")}
+          </Link>
+
+          {/* Mobile Language Switcher */}
+          <div className="px-4 py-2">
+            <MobileLanguageSwitcher />
+          </div>
+
+          {/* Mobile CTA */}
+          <div className="px-4 py-4">
+            <Button
+              asChild
+              className="w-full bg-white/20 hover:bg-white/30 text-white border border-white/30 hover:border-white/50 backdrop-blur-sm rounded-xl py-3 font-semibold transition-all duration-300"
+            >
+              <Link href="/book-service" onClick={() => setIsOpen(false)}>
+                {t("navigation.getQuote")}
+              </Link>
+            </Button>
+          </div>
+
+          {/* Contact Info */}
+          <div className="px-4 py-4 border-t border-white/10">
+            <div className="flex flex-col space-y-2 text-white/80 text-sm">
+              <div className="flex items-center space-x-2">
+                <Phone className="w-4 h-4" />
+                <span>+31 6 10756699</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="w-4 h-4" />
+                <span>info@glowhousekeeping.nl</span>
+              </div>
             </div>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
   )
 }

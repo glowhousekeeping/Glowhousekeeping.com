@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { useRouter } from "next/router"
 import { Globe, ChevronDown } from "lucide-react"
 
 interface Language {
@@ -410,86 +411,30 @@ const translations: Translations = {
   },
 }
 
-// Global translation context
-let globalTranslations = translations.en
-let globalLanguage = "en"
-
-// Function to get current translations
-export function getCurrentTranslations() {
-  return globalTranslations
-}
-
-// Function to get current language
-export function getCurrentLanguage() {
-  return globalLanguage
-}
-
-// Function to update global translations
-export function updateGlobalTranslations(language: string) {
-  if (translations[language]) {
-    globalTranslations = translations[language]
-    globalLanguage = language
-
-    // Store in localStorage
-    if (typeof window !== "undefined") {
-      localStorage.setItem("preferred-language", language)
-    }
-
-    // Dispatch global event for all components to update
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("globalLanguageChanged", {
-          detail: { language, translations: globalTranslations },
-        }),
-      )
-    }
-  }
-}
-
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false)
-  const [currentLanguage, setCurrentLanguage] = useState<string>("en")
-
-  useEffect(() => {
-    // Initialize with English as default
-    setCurrentLanguage("en")
-    updateGlobalTranslations("en")
-
-    // Check localStorage for saved preference
-    if (typeof window !== "undefined") {
-      const savedLanguage = localStorage.getItem("preferred-language")
-      if (savedLanguage && translations[savedLanguage]) {
-        setCurrentLanguage(savedLanguage)
-        updateGlobalTranslations(savedLanguage)
-      }
-    }
-  }, [])
+  const router = useRouter()
+  const { locale, locales, asPath } = router
 
   const handleLanguageChange = (languageCode: string) => {
-    setCurrentLanguage(languageCode)
-    updateGlobalTranslations(languageCode)
+    router.push(asPath, asPath, { locale: languageCode })
     setIsOpen(false)
   }
 
   const getCurrentLanguageObj = () => {
-    return languages.find((lang) => lang.code === currentLanguage) || languages[0]
+    return languages.find((lang) => lang.code === locale) || languages[0]
   }
 
   return (
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative group flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out text-white/90 hover:text-white hover:bg-white/8"
+        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-blue-50 hover:text-blue-600 focus:bg-blue-50 focus:text-blue-600 focus:outline-none disabled:pointer-events-none disabled:opacity-50 gap-2"
         aria-label="Select language"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
-        <Globe className="w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200" />
-        <span className="relative z-10 text-lg">{getCurrentLanguageObj().flag}</span>
-        <ChevronDown
-          className={`w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
+        <Globe className="w-4 h-4" />
+        <span className="text-lg">{getCurrentLanguageObj().flag}</span>
+        <ChevronDown className={`w-4 h-4 transition-all duration-300 ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
       {/* Language Dropdown */}
@@ -501,20 +446,18 @@ export default function LanguageSwitcher() {
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
               className={`relative w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border-b border-gray-100/50 last:border-b-0 ${
-                currentLanguage === language.code ? "bg-gradient-to-r from-blue-50/60 to-teal-50/60" : ""
+                locale === language.code ? "bg-gradient-to-r from-blue-50/60 to-teal-50/60" : ""
               }`}
             >
               <span className="text-xl">{language.flag}</span>
               <span
                 className={`text-sm font-medium transition-colors ${
-                  currentLanguage === language.code
-                    ? "text-blue-700 font-semibold"
-                    : "text-gray-900 group-hover:text-blue-700"
+                  locale === language.code ? "text-blue-700 font-semibold" : "text-gray-900 group-hover:text-blue-700"
                 }`}
               >
                 {language.name}
               </span>
-              {currentLanguage === language.code && <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>}
+              {locale === language.code && <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>}
             </button>
           ))}
         </div>
