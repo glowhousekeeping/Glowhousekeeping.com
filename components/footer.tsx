@@ -102,7 +102,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">info@glowhousekeeping.nl</p>
+                  <p className="text-gray-300">glowhousekeeping.org@gmail.com</p>
                   <p className="text-sm text-gray-400">Quick response guaranteed</p>
                 </div>
               </div>
