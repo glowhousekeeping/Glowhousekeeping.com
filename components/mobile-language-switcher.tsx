@@ -1,84 +1,58 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/router"
-import { Globe, ChevronDown } from "lucide-react"
-
-interface Language {
-  code: string
-  name: string
-  flag: string
-}
-
-const languages: Language[] = [
-  {
-    code: "en",
-    name: "English",
-    flag: "🇺🇸",
-  },
-  {
-    code: "nl",
-    name: "Nederlands",
-    flag: "🇳🇱",
-  },
-  {
-    code: "fy",
-    name: "Frysk",
-    flag: "🏴",
-  },
-]
+import { useRouter, usePathname } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import { Globe } from "lucide-react"
+import { languages, languageFlags, locales, type Locale } from "@/lib/i18n"
+import { useTranslation } from "@/hooks/use-translation"
 
 export default function MobileLanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
-  const { locale, locales, asPath } = router
+  const pathname = usePathname()
+  const { locale } = useTranslation()
 
-  const handleLanguageChange = (languageCode: string) => {
-    router.push(asPath, asPath, { locale: languageCode })
+  const switchLanguage = (newLocale: Locale) => {
+    const segments = pathname.split("/")
+    segments[1] = newLocale
+    const newPath = segments.join("/")
+    router.push(newPath)
     setIsOpen(false)
   }
 
-  const getCurrentLanguageObj = () => {
-    return languages.find((lang) => lang.code === locale) || languages[0]
-  }
+  const currentFlag = languageFlags[locale]
 
   return (
     <div className="relative">
-      <button
+      <Button
+        variant="ghost"
+        size="sm"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out text-white/90 hover:text-white hover:bg-white/8 w-full"
-        aria-label="Select language"
+        className="flex items-center gap-2 px-3 py-2"
       >
         <Globe className="w-4 h-4" />
-        <span className="text-lg">{getCurrentLanguageObj().flag}</span>
-        <span className="flex-1 text-left">{getCurrentLanguageObj().name}</span>
-        <ChevronDown className={`w-4 h-4 transition-all duration-300 ${isOpen ? "rotate-180" : ""}`} />
-      </button>
+        <span className="text-lg">{currentFlag}</span>
+      </Button>
 
-      {/* Language Dropdown */}
       {isOpen && (
-        <div className="mt-2 w-full bg-white/95 backdrop-blur-xl shadow-2xl shadow-blue-500/10 rounded-2xl border border-white/20 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/50 to-teal-50/50 rounded-2xl"></div>
-          {languages.map((language) => (
-            <button
-              key={language.code}
-              onClick={() => handleLanguageChange(language.code)}
-              className={`relative w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border-b border-gray-100/50 last:border-b-0 ${
-                locale === language.code ? "bg-gradient-to-r from-blue-50/60 to-teal-50/60" : ""
-              }`}
-            >
-              <span className="text-xl">{language.flag}</span>
-              <span
-                className={`text-sm font-medium transition-colors ${
-                  locale === language.code ? "text-blue-700 font-semibold" : "text-gray-900 group-hover:text-blue-700"
+        <>
+          <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
+          <div className="absolute right-0 top-full mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
+            {locales.map((lang) => (
+              <button
+                key={lang}
+                onClick={() => switchLanguage(lang)}
+                className={`w-full px-4 py-2 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${
+                  locale === lang ? "bg-blue-50 text-blue-600" : "text-gray-700"
                 }`}
               >
-                {language.name}
-              </span>
-              {locale === language.code && <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>}
-            </button>
-          ))}
-        </div>
+                <span className="text-lg">{languageFlags[lang]}</span>
+                <span className="font-medium text-sm">{languages[lang]}</span>
+              </button>
+            ))}
+          </div>
+        </>
       )}
     </div>
   )

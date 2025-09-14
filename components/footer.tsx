@@ -1,200 +1,127 @@
-"use client"
-
-import { useTranslation } from "next-i18next"
 import Link from "next/link"
 import Image from "next/image"
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Linkedin } from "lucide-react"
+import { Phone, Mail, MapPin, MessageCircle } from "lucide-react"
+import { useTranslation } from "@/hooks/use-translation"
 
 export default function Footer() {
-  const { t } = useTranslation("common")
+  const { t, locale } = useTranslation()
 
   return (
-    <footer className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20">
-                <Image src="/glow-housekeeping-logo.png" alt="Glow Housekeeping Logo" fill className="object-cover" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white">Glow Housekeeping</h3>
-                <p className="text-blue-200 text-sm">Professional Cleaning Services</p>
-              </div>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-2">
+              <Image
+                src="/glow-housekeeping-logo.png"
+                alt="Glow Housekeeping"
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
+              <span className="text-xl font-bold">Glow Housekeeping</span>
             </div>
-            <p className="text-slate-300 leading-relaxed">
-              We treat every space like it's our own home, delivering exceptional results with flexibility,
-              affordability, and trust across the Netherlands.
+            <p className="text-gray-300 leading-relaxed">
+              Professional cleaning services across the Netherlands. Like it's our own home.
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-300"
+                href="https://wa.me/31610756699"
+                className="bg-green-600 hover:bg-green-700 p-2 rounded-full transition-colors"
               >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-300"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors duration-300"
-              >
-                <Linkedin className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5" />
               </a>
             </div>
           </div>
 
           {/* Services */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">{t("navigation.services")}</h4>
-            <ul className="space-y-3">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">{t("footer.ourServices")}</h3>
+            <ul className="space-y-2 text-gray-300">
               <li>
-                <Link
-                  href="/services/general-cleaning"
-                  className="text-slate-300 hover:text-white transition-colors duration-300"
-                >
-                  General Cleaning
+                <Link href={`/${locale}/services/general-cleaning`} className="hover:text-white transition-colors">
+                  {t("services.generalCleaning")}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/services/solar-panel-cleaning"
-                  className="text-slate-300 hover:text-white transition-colors duration-300"
-                >
-                  Solar Panel Cleaning
+                <Link href={`/${locale}/services/solar-panel-cleaning`} className="hover:text-white transition-colors">
+                  {t("services.solarPanelCleaning")}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/services/window-cleaning"
-                  className="text-slate-300 hover:text-white transition-colors duration-300"
-                >
-                  Window Cleaning
+                <Link href={`/${locale}/services/window-cleaning`} className="hover:text-white transition-colors">
+                  {t("services.windowCleaning")}
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/services/drain-cleaning"
-                  className="text-slate-300 hover:text-white transition-colors duration-300"
-                >
-                  Drain Cleaning
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/deep-cleaning"
-                  className="text-slate-300 hover:text-white transition-colors duration-300"
-                >
-                  Deep Cleaning
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services/carpet-care"
-                  className="text-slate-300 hover:text-white transition-colors duration-300"
-                >
-                  Carpet Care
+                <Link href={`/${locale}/services/drain-cleaning`} className="hover:text-white transition-colors">
+                  {t("services.drainCleaning")}
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Quick Links</h4>
-            <ul className="space-y-3">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">{t("footer.quickLinks")}</h3>
+            <ul className="space-y-2 text-gray-300">
               <li>
-                <Link href="/about" className="text-slate-300 hover:text-white transition-colors duration-300">
-                  {t("navigation.about")}
+                <Link href={`/${locale}/about`} className="hover:text-white transition-colors">
+                  {t("nav.about")}
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-slate-300 hover:text-white transition-colors duration-300">
-                  {t("navigation.blog")}
+                <Link href={`/${locale}/contact`} className="hover:text-white transition-colors">
+                  {t("nav.contact")}
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-slate-300 hover:text-white transition-colors duration-300">
-                  {t("navigation.contact")}
+                <Link href={`/${locale}/blog`} className="hover:text-white transition-colors">
+                  {t("nav.blog")}
                 </Link>
               </li>
               <li>
-                <Link href="/join-our-team" className="text-slate-300 hover:text-white transition-colors duration-300">
-                  {t("navigation.careers")}
-                </Link>
-              </li>
-              <li>
-                <Link href="/book-service" className="text-slate-300 hover:text-white transition-colors duration-300">
-                  Book Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/client-assessment"
-                  className="text-slate-300 hover:text-white transition-colors duration-300"
-                >
-                  Client Assessment
+                <Link href={`/${locale}/join-our-team`} className="hover:text-white transition-colors">
+                  {t("nav.joinTeam")}
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">{t("contact.contactInfo")}</h4>
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <Phone className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-white font-medium">+31 6 10756699</p>
-                  <p className="text-slate-300 text-sm">Available 24/7</p>
-                </div>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">{t("footer.contactInfo")}</h3>
+            <div className="space-y-3 text-gray-300">
+              <div className="flex items-center space-x-2">
+                <Phone className="w-4 h-4" />
+                <a href="tel:+31610756699" className="hover:text-white transition-colors">
+                  +31 6 10756699
+                </a>
               </div>
-              <div className="flex items-start space-x-3">
-                <Mail className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-white font-medium">info@glowhousekeeping.nl</p>
-                  <p className="text-slate-300 text-sm">Quick response guaranteed</p>
-                </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="w-4 h-4" />
+                <a href="mailto:info@glowhousekeeping.nl" className="hover:text-white transition-colors">
+                  info@glowhousekeeping.nl
+                </a>
               </div>
-              <div className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-white font-medium">Venlo, Limburg</p>
-                  <p className="text-slate-300 text-sm">Serving all of Netherlands</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <Clock className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <div>
-                  <p className="text-white font-medium">Mon - Fri: 8:00 - 18:00</p>
-                  <p className="text-slate-300 text-sm">Weekend: By appointment</p>
-                </div>
+              <div className="flex items-center space-x-2">
+                <MapPin className="w-4 h-4" />
+                <span>Venlo, Limburg, Netherlands</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-slate-700 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-slate-400 text-sm">© 2024 Glow Housekeeping. All rights reserved.</div>
-            <div className="flex space-x-6 text-sm">
-              <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors duration-300">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-slate-400 hover:text-white transition-colors duration-300">
-                Terms of Service
-              </Link>
-              <Link href="/cookies" className="text-slate-400 hover:text-white transition-colors duration-300">
-                Cookie Policy
-              </Link>
-            </div>
+        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">© 2024 Glow Housekeeping. {t("footer.allRightsReserved")}.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href={`/${locale}/privacy`} className="text-gray-400 hover:text-white text-sm transition-colors">
+              {t("footer.privacyPolicy")}
+            </Link>
+            <Link href={`/${locale}/terms`} className="text-gray-400 hover:text-white text-sm transition-colors">
+              {t("footer.termsOfService")}
+            </Link>
           </div>
         </div>
       </div>
