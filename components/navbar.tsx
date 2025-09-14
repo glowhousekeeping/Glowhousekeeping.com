@@ -201,11 +201,11 @@ export default function Navbar() {
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
+
+                  {/* Language Switcher */}
+                  <LanguageSwitcher />
                 </NavigationMenuList>
               </NavigationMenu>
-
-              {/* Language Switcher */}
-              <LanguageSwitcher />
 
               {/* CTA Button */}
               <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-full px-6 py-2 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
@@ -348,7 +348,7 @@ export default function Navbar() {
                       </Link>
 
                       {/* Mobile Language Switcher */}
-                      <MobileLanguageSwitcher />
+                      <MobileLanguageSwitcher onLanguageChange={() => setIsOpen(false)} />
 
                       {/* Mobile CTA Button */}
                       <div className="pt-4">

@@ -471,7 +471,7 @@ export default function LanguageSwitcher() {
     setIsOpen(false)
   }
 
-  const getCurrentLanguage = () => {
+  const getCurrentLanguageObj = () => {
     return languages.find((lang) => lang.code === currentLanguage) || languages[0]
   }
 
@@ -484,7 +484,7 @@ export default function LanguageSwitcher() {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
         <Globe className="w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200" />
-        <span className="relative z-10 text-lg">{getCurrentLanguage().flag}</span>
+        <span className="relative z-10 text-lg">{getCurrentLanguageObj().flag}</span>
         <ChevronDown
           className={`w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200 ${
             isOpen ? "rotate-180" : ""
