@@ -1,277 +1,363 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Phone, Mail, MapPin, Clock, MessageCircle, Send, User } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
+import { getCurrentTranslations } from "@/components/language-switcher"
 
 export default function ContactPage() {
+  const [translations, setTranslations] = useState(getCurrentTranslations())
+
+  useEffect(() => {
+    // Listen for global language changes
+    const handleGlobalLanguageChange = (event: CustomEvent) => {
+      setTranslations(event.detail.translations)
+    }
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+
+      return () => {
+        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+      }
+    }
+  }, [])
+
+  const t = translations
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Get in Touch</h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Ready to experience the Glow difference? We're here to answer your questions and provide you with a
-            personalized cleaning solution.
-          </p>
+          <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 text-sm px-4 py-2 mb-6">
+            ✨ {t.getInTouch}
+          </Badge>
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{t.contactTitle}</h1>
+          <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">{t.contactSubtitle}</p>
         </div>
       </section>
 
-      {/* Contact Information & Form */}
-      <section className="py-20 px-4">
+      {/* Contact Information */}
+      <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Contact Details */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  We're available to discuss your cleaning needs and provide personalized quotes. Reach out through any
-                  of the methods below.
-                </p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">{t.contactInfo}</h2>
+
+                <div className="space-y-6">
+                  {/* Phone */}
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-green-100 p-3 rounded-full">
+                          <Phone className="w-6 h-6 text-green-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
+                          <a href="tel:+31610756699" className="text-green-600 hover:text-green-700 font-medium">
+                            +31 6 10756699
+                          </a>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Email */}
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-blue-100 p-3 rounded-full">
+                          <Mail className="w-6 h-6 text-blue-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                          <a
+                            href="mailto:glowhousekeeping.org@gmail.com"
+                            className="text-blue-600 hover:text-blue-700 font-medium"
+                          >
+                            glowhousekeeping.org@gmail.com
+                          </a>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Location */}
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-purple-100 p-3 rounded-full">
+                          <MapPin className="w-6 h-6 text-purple-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 mb-1">Service Area</h3>
+                          <p className="text-gray-600">Venlo, Limburg & Surrounding Areas</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Business Hours */}
+                  <Card className="hover:shadow-lg transition-shadow duration-300">
+                    <CardContent className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-orange-100 p-3 rounded-full">
+                          <Clock className="w-6 h-6 text-orange-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-gray-900 mb-1">{t.businessHours}</h3>
+                          <div className="text-gray-600 space-y-1">
+                            <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                            <p>Saturday: 9:00 AM - 4:00 PM</p>
+                            <p>Sunday: By appointment</p>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
 
-              <div className="space-y-6">
-                <Card className="rounded-2xl border-0 shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-blue-100 p-3 rounded-full">
-                        <Mail className="w-6 h-6 text-blue-600" />
+              {/* Quick Actions */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-semibold text-gray-900">Quick Actions</h3>
+                <div className="grid gap-4">
+                  <Button className="bg-green-600 hover:bg-green-700 justify-start h-auto p-4">
+                    <Link href="https://wa.me/31610756699" className="flex items-center gap-3 w-full">
+                      <MessageCircle className="w-5 h-5" />
+                      <div className="text-left">
+                        <div className="font-semibold">WhatsApp</div>
+                        <div className="text-sm opacity-90">Get instant response</div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">Email</h3>
-                        <a
-                          href="mailto:glowhousekeeping.org@gmail.com"
-                          className="text-blue-600 hover:text-blue-700 transition-colors"
-                        >
-                          glowhousekeeping.org@gmail.com
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </Link>
+                  </Button>
 
-                <Card className="rounded-2xl border-0 shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-green-100 p-3 rounded-full">
-                        <Phone className="w-6 h-6 text-green-600" />
+                  <Button
+                    variant="outline"
+                    className="justify-start h-auto p-4 border-blue-200 hover:bg-blue-50 bg-transparent"
+                  >
+                    <a href="mailto:glowhousekeeping.org@gmail.com" className="flex items-center gap-3 w-full">
+                      <Send className="w-5 h-5 text-blue-600" />
+                      <div className="text-left">
+                        <div className="font-semibold text-blue-600">Send Email</div>
+                        <div className="text-sm text-gray-600">Detailed inquiries</div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">WhatsApp</h3>
-                        <a
-                          href="https://wa.me/31610756699"
-                          className="text-green-600 hover:text-green-700 transition-colors"
-                        >
-                          +31 6 10756699
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </a>
+                  </Button>
 
-                <Card className="rounded-2xl border-0 shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-purple-100 p-3 rounded-full">
-                        <MapPin className="w-6 h-6 text-purple-600" />
+                  <Button
+                    variant="outline"
+                    className="justify-start h-auto p-4 border-purple-200 hover:bg-purple-50 bg-transparent"
+                  >
+                    <Link href="/book-service" className="flex items-center gap-3 w-full">
+                      <User className="w-5 h-5 text-purple-600" />
+                      <div className="text-left">
+                        <div className="font-semibold text-purple-600">Book Service</div>
+                        <div className="text-sm text-gray-600">Schedule cleaning</div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">Service Area</h3>
-                        <p className="text-gray-600">Netherlands</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="rounded-2xl border-0 shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-yellow-100 p-3 rounded-full">
-                        <Clock className="w-6 h-6 text-yellow-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-900">Response Time</h3>
-                        <p className="text-gray-600">Within 24 hours</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="bg-blue-50 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Prefer Instant Communication?</h3>
-                <p className="text-gray-600 mb-4">
-                  For immediate responses and quick quotes, WhatsApp is your best option. We're usually online during
-                  business hours and respond quickly.
-                </p>
-                <Button className="bg-green-600 hover:bg-green-700 rounded-full">
-                  <Link href="https://wa.me/31610756699">Chat on WhatsApp</Link>
-                </Button>
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div>
-              <Card className="rounded-2xl border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-
-                  <form className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                          First Name *
-                        </label>
-                        <Input
-                          id="firstName"
-                          type="text"
-                          required
-                          className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Your first name"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                          Last Name *
-                        </label>
-                        <Input
-                          id="lastName"
-                          type="text"
-                          required
-                          className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Your last name"
-                        />
-                      </div>
-                    </div>
-
+            <Card className="shadow-xl">
+              <CardHeader>
+                <CardTitle className="text-2xl text-center">Send us a Message</CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                <form className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                        First Name
                       </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        required
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="your.email@example.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number
-                      </label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="+31 6 12345678"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject *
-                      </label>
-                      <Input
-                        id="subject"
+                      <input
                         type="text"
-                        required
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="What can we help you with?"
+                        id="firstName"
+                        name="firstName"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Your first name"
                       />
                     </div>
-
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                        Last Name
                       </label>
-                      <Textarea
-                        id="message"
-                        required
-                        rows={6}
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Please describe your cleaning needs, preferred schedule, and any specific requirements..."
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Your last name"
                       />
                     </div>
-
-                    <div className="bg-gray-50 rounded-xl p-4">
-                      <p className="text-sm text-gray-600">
-                        <strong>For faster service:</strong> Include your location, type of property (office/home),
-                        approximate size, and preferred cleaning frequency in your message.
-                      </p>
-                    </div>
-
-                    <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl">
-                      Send Message
-                    </Button>
-                  </form>
-
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <p className="text-sm text-gray-500 text-center">
-                      We respect your privacy and will never share your information with third parties. You can expect a
-                      response within 24 hours.
-                    </p>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="+31 6 12345678"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
+                      Service Interested In
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="">Select a service</option>
+                      <option value="general-cleaning">General Cleaning</option>
+                      <option value="solar-panel-cleaning">Solar Panel Cleaning</option>
+                      <option value="window-cleaning">Window Cleaning</option>
+                      <option value="drain-cleaning">Drain Cleaning</option>
+                      <option value="deep-cleaning">Deep Cleaning</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Tell us about your cleaning needs..."
+                    ></textarea>
+                  </div>
+
+                  <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 py-3 text-lg">
+                    <Send className="w-5 h-5 mr-2" />
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
+      {/* Founder Section */}
+      <section className="py-16 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Our Founder</h2>
+            <p className="text-xl text-gray-600">Personal service with a professional touch</p>
+          </div>
+
+          <Card className="overflow-hidden shadow-xl">
+            <CardContent className="p-0">
+              <div className="grid lg:grid-cols-2 gap-0">
+                <div className="relative h-64 lg:h-auto">
+                  <Image
+                    src="/glorija-founder-actual.jpeg"
+                    alt="Glorija Beberina, Founder of Glow Housekeeping"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Glorija Beberina</h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">
+                    "I founded Glow Housekeeping with a simple mission: to treat every space like it's my own home. With
+                    years of experience in professional cleaning, I believe that attention to detail and genuine care
+                    make all the difference. When you choose Glow Housekeeping, you're not just getting a cleaning
+                    service – you're getting a partner who truly cares about your space and your satisfaction."
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <Button className="bg-green-600 hover:bg-green-700">
+                      <Link href="https://wa.me/31610756699">Contact Glorija</Link>
+                    </Button>
+                    <Button variant="outline">
+                      <Link href="/about">Learn More</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-gray-600">Quick answers to common questions about our services.</p>
+            <p className="text-xl text-gray-600">Quick answers to common questions</p>
           </div>
 
           <div className="space-y-6">
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">How quickly can you provide a quote?</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">What areas do you serve?</h3>
                 <p className="text-gray-600">
-                  We typically provide quotes within 24 hours via email, or immediately via WhatsApp for standard
-                  services. For complex projects, we may schedule a brief consultation.
+                  We primarily serve Venlo, Limburg, and surrounding areas in the Netherlands. Contact us to confirm
+                  service availability in your specific location.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Do you provide cleaning supplies and equipment?
-                </h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I get a quote?</h3>
                 <p className="text-gray-600">
-                  Yes, we bring all necessary professional-grade cleaning supplies and equipment. We use eco-friendly
-                  products that are safe for your family, pets, and the environment.
+                  You can get a free quote by calling us, sending a WhatsApp message, or filling out our online booking
+                  form. We'll assess your needs and provide a transparent, competitive quote.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Are you insured and bonded?</h3>
                 <p className="text-gray-600">
-                  Absolutely. We are fully insured and bonded for your peace of mind. All our team members are
-                  background-checked and professionally trained.
+                  Yes, Glow Housekeeping is fully insured and bonded for your peace of mind. We take the security and
+                  safety of your property seriously.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  What areas do you serve in the Netherlands?
-                </h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">What cleaning products do you use?</h3>
                 <p className="text-gray-600">
-                  We provide services throughout the Netherlands. Contact us to confirm availability in your specific
-                  area and discuss any travel fees if applicable.
+                  We use eco-friendly, non-toxic cleaning products that are safe for your family, pets, and the
+                  environment. We can also accommodate specific product preferences upon request.
                 </p>
               </CardContent>
             </Card>
