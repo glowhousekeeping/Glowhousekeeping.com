@@ -22,6 +22,7 @@
   "services": {
     "title": "Our Services",
     "generalCleaning": "General Cleaning",
+    "generalCleaningPricing": "Pricing starts at €35 per hour and may vary depending on the size of your space",
     "solarPanelCleaning": "Solar Panel Cleaning",
     "windowCleaning": "Window Cleaning",
     "drainCleaning": "Drain Cleaning"

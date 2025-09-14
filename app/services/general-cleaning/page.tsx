@@ -25,6 +25,13 @@ export default function GeneralCleaningPage() {
                 </p>
               </div>
 
+              <div className="bg-white rounded-2xl p-6 shadow-lg border">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600 mb-2">Pricing starts at €35 per hour</div>
+                  <div className="text-sm text-gray-600">and may vary depending on the size of your space</div>
+                </div>
+              </div>
+
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-8">
                   <Link href="/book-service">Book Now</Link>
@@ -275,7 +282,9 @@ export default function GeneralCleaningPage() {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-gray-600 mb-4">*Prices vary based on home size, condition, and specific requirements</p>
+            <p className="text-gray-600 mb-4">
+              *Pricing starts at €35 per hour and may vary depending on the size of your space
+            </p>
             <Button variant="outline" size="lg" className="rounded-full bg-transparent">
               <Link href="/contact">Get Custom Quote</Link>
             </Button>
