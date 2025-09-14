@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Globe, ChevronDown } from "lucide-react"
-import { translations } from "./language-switcher"
+import { updateGlobalTranslations, getCurrentLanguage } from "./language-switcher"
 
 interface Language {
   code: string
@@ -21,6 +21,11 @@ const languages: Language[] = [
     name: "Nederlands",
     flag: "🇳🇱",
   },
+  {
+    code: "fy",
+    name: "Frysk",
+    flag: "🏴",
+  },
 ]
 
 interface MobileLanguageSwitcherProps {
@@ -32,55 +37,34 @@ export default function MobileLanguageSwitcher({ onLanguageChange }: MobileLangu
   const [currentLanguage, setCurrentLanguage] = useState<string>("en")
 
   useEffect(() => {
-    // Check if we're on a language-specific route
+    // Initialize with current global language
+    setCurrentLanguage(getCurrentLanguage())
+
+    // Listen for global language changes
+    const handleGlobalLanguageChange = (event: CustomEvent) => {
+      setCurrentLanguage(event.detail.language)
+    }
+
     if (typeof window !== "undefined") {
-      const path = window.location.pathname
-      if (path.startsWith("/nl")) {
-        setCurrentLanguage("nl")
-      } else if (path.startsWith("/en")) {
-        setCurrentLanguage("en")
-      } else {
-        // Check localStorage for saved preference
-        const savedLanguage = localStorage.getItem("preferred-language")
-        if (savedLanguage && (savedLanguage === "en" || savedLanguage === "nl")) {
-          setCurrentLanguage(savedLanguage)
-        }
+      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+
+      return () => {
+        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
       }
     }
   }, [])
 
   const handleLanguageChange = (languageCode: string) => {
-    if (typeof window !== "undefined") {
-      const currentPath = window.location.pathname
-
-      // Check if we're on a language-specific route
-      if (currentPath.startsWith("/en") || currentPath.startsWith("/nl")) {
-        // We have separate language pages - redirect to the appropriate route
-        if (languageCode === "en") {
-          window.location.href = currentPath.replace(/^\/(nl|en)/, "/en")
-        } else {
-          window.location.href = currentPath.replace(/^\/(nl|en)/, "/nl")
-        }
-      } else {
-        // We're using dynamic translation - update the page content
-        setCurrentLanguage(languageCode)
-        localStorage.setItem("preferred-language", languageCode)
-
-        // Dispatch custom event to update page content
-        window.dispatchEvent(
-          new CustomEvent("languageChanged", {
-            detail: { language: languageCode, translations: translations[languageCode] },
-          }),
-        )
-      }
-    }
+    setCurrentLanguage(languageCode)
+    updateGlobalTranslations(languageCode)
     setIsOpen(false)
+
     if (onLanguageChange) {
       onLanguageChange(languageCode)
     }
   }
 
-  const getCurrentLanguage = () => {
+  const getCurrentLanguageObj = () => {
     return languages.find((lang) => lang.code === currentLanguage) || languages[0]
   }
 
@@ -94,7 +78,7 @@ export default function MobileLanguageSwitcher({ onLanguageChange }: MobileLangu
         <div className="flex items-center gap-3">
           <Globe className="w-5 h-5 text-blue-600" />
           <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Language</span>
-          <span className="text-xl">{getCurrentLanguage().flag}</span>
+          <span className="text-xl">{getCurrentLanguageObj().flag}</span>
         </div>
         <ChevronDown
           className={`w-4 h-4 text-gray-500 group-hover:text-blue-600 transition-all duration-300 ${

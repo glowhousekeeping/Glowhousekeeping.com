@@ -18,45 +18,27 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import AutoScrollingGallery from "@/components/auto-scrolling-gallery"
-import { translations } from "@/components/language-switcher"
+import { getCurrentTranslations } from "@/components/language-switcher"
 
 export default function HomePage() {
-  const [currentLanguage, setCurrentLanguage] = useState<string>("en")
-  const [t, setT] = useState(translations.en)
+  const [translations, setTranslations] = useState(getCurrentTranslations())
 
   useEffect(() => {
-    // Check if we're on a language-specific route
+    // Listen for global language changes
+    const handleGlobalLanguageChange = (event: CustomEvent) => {
+      setTranslations(event.detail.translations)
+    }
+
     if (typeof window !== "undefined") {
-      const path = window.location.pathname
-      if (path.startsWith("/nl")) {
-        setCurrentLanguage("nl")
-        setT(translations.nl)
-      } else if (path.startsWith("/en")) {
-        setCurrentLanguage("en")
-        setT(translations.en)
-      } else {
-        // Check localStorage for saved preference
-        const savedLanguage = localStorage.getItem("preferred-language")
-        if (savedLanguage && (savedLanguage === "en" || savedLanguage === "nl")) {
-          setCurrentLanguage(savedLanguage)
-          setT(translations[savedLanguage as keyof typeof translations])
-        }
-      }
-
-      // Listen for language change events
-      const handleLanguageChange = (event: CustomEvent) => {
-        const { language, translations: newTranslations } = event.detail
-        setCurrentLanguage(language)
-        setT(newTranslations)
-      }
-
-      window.addEventListener("languageChanged", handleLanguageChange as EventListener)
+      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
 
       return () => {
-        window.removeEventListener("languageChanged", handleLanguageChange as EventListener)
+        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
       }
     }
   }, [])
+
+  const t = translations
 
   return (
     <div className="min-h-screen">

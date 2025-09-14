@@ -26,6 +26,11 @@ const languages: Language[] = [
     name: "Nederlands",
     flag: "🇳🇱",
   },
+  {
+    code: "fy",
+    name: "Frysk",
+    flag: "🏴",
+  },
 ]
 
 const translations: Translations = {
@@ -126,6 +131,32 @@ const translations: Translations = {
     ourProfessionalServices: "Our Professional Services",
     servicesSubtitle:
       "From general cleaning to specialized services, we provide comprehensive solutions for all your cleaning needs.",
+
+    // About Page
+    aboutTitle: "About Glow Housekeeping",
+    aboutSubtitle: "Your trusted partner in professional cleaning services",
+    ourStory: "Our Story",
+    ourMission: "Our Mission",
+    ourValues: "Our Values",
+    meetTheTeam: "Meet The Team",
+
+    // Contact Page
+    contactTitle: "Contact Us",
+    contactSubtitle: "Get in touch with our professional cleaning team",
+    getInTouch: "Get In Touch",
+    contactInfo: "Contact Information",
+    businessHours: "Business Hours",
+
+    // Blog Page
+    blogTitle: "Cleaning Tips & Insights",
+    blogSubtitle: "Expert advice and industry insights from our professional cleaning team",
+    readMore: "Read More",
+
+    // Careers Page
+    careersTitle: "Join Our Team",
+    careersSubtitle: "Build your career with Glow Housekeeping",
+    currentOpenings: "Current Openings",
+    applyNow: "Apply Now",
   },
   nl: {
     // Navigation
@@ -226,7 +257,193 @@ const translations: Translations = {
     ourProfessionalServices: "Onze Professionele Diensten",
     servicesSubtitle:
       "Van algemene reiniging tot gespecialiseerde diensten, wij bieden uitgebreide oplossingen voor al uw schoonmaakbehoeften.",
+
+    // About Page
+    aboutTitle: "Over Glow Housekeeping",
+    aboutSubtitle: "Uw vertrouwde partner in professionele schoonmaakdiensten",
+    ourStory: "Ons Verhaal",
+    ourMission: "Onze Missie",
+    ourValues: "Onze Waarden",
+    meetTheTeam: "Ontmoet Het Team",
+
+    // Contact Page
+    contactTitle: "Contact Opnemen",
+    contactSubtitle: "Neem contact op met ons professionele schoonmaakteam",
+    getInTouch: "Neem Contact Op",
+    contactInfo: "Contactinformatie",
+    businessHours: "Openingstijden",
+
+    // Blog Page
+    blogTitle: "Schoonmaaktips & Inzichten",
+    blogSubtitle: "Deskundig advies en branche-inzichten van ons professionele schoonmaakteam",
+    readMore: "Lees Meer",
+
+    // Careers Page
+    careersTitle: "Word Lid Van Ons Team",
+    careersSubtitle: "Bouw uw carrière met Glow Housekeeping",
+    currentOpenings: "Huidige Vacatures",
+    applyNow: "Solliciteer Nu",
   },
+  fy: {
+    // Navigation
+    home: "Home",
+    contact: "Kontakt",
+    blog: "Blog",
+    services: "Tsjinsten",
+    about: "Oer Ús",
+    careers: "Karriêres",
+    getQuote: "OFFERTE KRIJE",
+
+    // Hero Section
+    heroTitle: "Wolsto dat jo bedriuw strielt fan professionaliteit?",
+    heroSubtitle:
+      "Wy biede útsûnderlike kommersjele skjinmaktsjinsten yn Venlo, Limburg op maat makke foar bedriuwen dy't stribje nei eksellinsje - wylst wy ús rjochtsje op wat der werklik ta docht.",
+    heroSpecialization: "Spesjalisearre soarch foar kantoaren, winkels, restaurants en profesjonele fasiliteiten.",
+    heroTagline: "Venlo's Liedende Kommersjele Skjinmaktsjinst",
+    heroServiceArea: "VENLO, LIMBURG EN OMJOUWING TSJINJE MEI PERSOANLIKE SOARCH!",
+    requestQuote: "Priisofferte Freegje",
+    whatsapp: "WhatsApp",
+    bookAppointment: "Ôfspraak Meitsje",
+    clientAssessment: "Klantbeoardieling →",
+    imageCaption: "Wy meitsje net allinne skjin — wy jaan om jo.",
+    imageSubCaption: "Profesjonele reiniging mei in persoanlike oanpak",
+
+    // Services
+    generalCleaning: "Algemiene Reiniging",
+    generalCleaningDesc: "Folsleine kantoor- en kommersjele reiniging mei profesjonele standerts",
+    solarPanelCleaning: "Sinnepanielen Reiniging",
+    solarPanelCleaningDesc: "Maksimalisearje enerzjy-effisjinsje mei profesjoneel sinnepaniel ûnderhâld",
+    windowCleaning: "Ruten Waskjen",
+    windowCleaningDesc: "Kristalheldere ruten foar mear natuerlik ljocht en prachtige útsichten",
+    drainCleaning: "Ôfwetter Reiniging",
+    drainCleaningDesc: "Profesjoneel ôfwetterûnderhâld en ûntstoppingstsjinsten",
+
+    // Before & After Section
+    transformationTitle: "Foar & Nei: Echte Transformaasjes",
+    transformationSubtitle:
+      "Wy meitsje net allinne skjin — wy heffe jo romte nei in heger nivo. Sjoch it ferskil foar josels.",
+    officeTransformation: "💼 Kantoor Transformaasje",
+    officeTransformationDesc: "Folsleine kantoorromte reiniging mei profesjonele organisaasje",
+    kitchenCleaning: "🍳 Keuken Reiniging",
+    kitchenCleaningDesc: "Fan ferhuischaos nei in ûnberispelike moderne keuken",
+    bathroomCleaning: "🛁 Badkamer Reiniging",
+    bathroomCleaningDesc: "In badkamer djipte-reiniging dy't skitteret",
+    sinkCleaning: "🚰 Spoelbak Reiniging",
+    sinkCleaningDesc: "Flekleaze spoelbakken mei in fleugje Glow",
+    readyForTransformation: "Klear foar Jo Eigen Transformaasje?",
+    transformationCTA:
+      "Ûnderfyn deselde dramatyske resultaten yn jo romte. Us profesjonele team stiet klear om jo hûs of kantoor te transformearjen mei deselde oandacht foar detail dy't jo hjirboppe sjogge.",
+    getYourQuote: "Krij Jo Offerte",
+    bookNow: "Boekje No",
+
+    // Why Choose Us Section
+    whyChooseUs: "Wêrom Kieze foar Glow Housekeeping?",
+    whyChooseUsSubtitle: "Untdek wat ús de fertrouwde kar makket foar profesjonele skjinmaktsjinsten yn hiel Nederlân.",
+    trustedCleaners: "Fertrouwde Skjinmakers",
+    trustedCleanersDesc: "Skreende profesjonals mei ûnderfining en betrouberens wêrop jo rekkenje kinne.",
+    professionalResults: "Profesjonele Resultaten",
+    professionalResultsDesc: "Wy leverje hotel-nivo glâns en presyzje yn elke skjinmaksesje.",
+    affordableRates: "Betealbere Tarieven",
+    affordableRatesDesc: "Konkurrearjende prizen sûnder ferraskings - transparant en earlik.",
+    easyBooking: "Ienfâldich Boekjen",
+    easyBookingDesc: "Boekje jo tsjinst yn minuten, stressfij fia meardere kanalen.",
+    flexiblePassionate: "Fleksibel & Passy",
+    flexiblePassionateDesc:
+      "Wy jaan djip om wat wy dogge en passe ús oan de unike behoeften fan elke klant oan - gjin standert skjinmaak.",
+    experienceGlowDifference: "Ûnderfyn Hjoed it Glow Ferskil",
+    experienceGlowCTA:
+      "Slút jo oan by hûnderden tefreden klanten dy't ús fertrouwe mei har wichtichste romtes. Sjoch wêrom wy de foarkarkar binne foar profesjonele reiniging yn Nederlân.",
+    getStartedToday: "Begjin Hjoed",
+    learnMoreAboutUs: "Learje Mear Oer Ús",
+
+    // Testimonials Section
+    clientLove: "Klant Leafde",
+    whatClientsSay: "Wat Us Klanten Sizze",
+    clientsSaySubtitle: "Wurden fan de minsken dy't wy mei freugde tsjinje mochten — echte notysjes, echte dankberens.",
+    shareYourExperience: "Wolsto Jo Ûnderfining Diele?",
+    shareExperienceCTA:
+      "Wy hearre graach fan jo! Jo wurden en ûnderfinings helpe ús groeie en ynspirearje oaren om it Glow ferskil te ûnderfinen.",
+    shareYourStory: "Diel Jo Ferhaal",
+    bookYourService: "Boekje Jo Tsjinst",
+
+    // CTA Section
+    readyToExperience: "Klear om it Glow Ferskil te Ûnderfinen?",
+    ctaSubtitle:
+      "Slút jo oan by hûnderden tefreden klanten yn hiel Nederlân. Krij hjoed jo persoanlike offerte en sjoch wêrom wy de fertrouwde kar binne foar profesjonele reiniging.",
+    getFreeQuote: "Fergees Offerte Krije",
+    contactWhatsApp: "Kontakt WhatsApp",
+
+    // Common
+    learnMore: "Learje Mear →",
+    before: "Foar",
+    after: "Nei",
+    transformation: "Transformaasje",
+    ourProfessionalServices: "Us Profesjonele Tsjinsten",
+    servicesSubtitle:
+      "Fan algemiene reiniging oant spesjalisearre tsjinsten, wy biede wiidweidige oplossings foar al jo skjinmakbehoeften.",
+
+    // About Page
+    aboutTitle: "Oer Glow Housekeeping",
+    aboutSubtitle: "Jo fertrouwde partner yn profesjonele skjinmaktsjinsten",
+    ourStory: "Us Ferhaal",
+    ourMission: "Us Missy",
+    ourValues: "Us Wearden",
+    meetTheTeam: "Moetsje It Team",
+
+    // Contact Page
+    contactTitle: "Kontakt Opnimme",
+    contactSubtitle: "Nim kontakt op mei us profesjonele skjinmakteam",
+    getInTouch: "Nim Kontakt Op",
+    contactInfo: "Kontaktynformaasje",
+    businessHours: "Iepeningstiden",
+
+    // Blog Page
+    blogTitle: "Skjinmaktips & Ynsjoggen",
+    blogSubtitle: "Saakkundich advys en brânsjeinsjoggen fan us profesjonele skjinmakteam",
+    readMore: "Lês Mear",
+
+    // Careers Page
+    careersTitle: "Wurde Lid Fan Us Team",
+    careersSubtitle: "Bou jo karriêre mei Glow Housekeeping",
+    currentOpenings: "Aktuele Fakatures",
+    applyNow: "Sollisitearje No",
+  },
+}
+
+// Global translation context
+let globalTranslations = translations.en
+let globalLanguage = "en"
+
+// Function to get current translations
+export function getCurrentTranslations() {
+  return globalTranslations
+}
+
+// Function to get current language
+export function getCurrentLanguage() {
+  return globalLanguage
+}
+
+// Function to update global translations
+export function updateGlobalTranslations(language: string) {
+  if (translations[language]) {
+    globalTranslations = translations[language]
+    globalLanguage = language
+
+    // Store in localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("preferred-language", language)
+    }
+
+    // Dispatch global event for all components to update
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("globalLanguageChanged", {
+          detail: { language, translations: globalTranslations },
+        }),
+      )
+    }
+  }
 }
 
 export default function LanguageSwitcher() {
@@ -234,48 +451,23 @@ export default function LanguageSwitcher() {
   const [currentLanguage, setCurrentLanguage] = useState<string>("en")
 
   useEffect(() => {
-    // Check if we're on a language-specific route
+    // Initialize with English as default
+    setCurrentLanguage("en")
+    updateGlobalTranslations("en")
+
+    // Check localStorage for saved preference
     if (typeof window !== "undefined") {
-      const path = window.location.pathname
-      if (path.startsWith("/nl")) {
-        setCurrentLanguage("nl")
-      } else if (path.startsWith("/en")) {
-        setCurrentLanguage("en")
-      } else {
-        // Check localStorage for saved preference
-        const savedLanguage = localStorage.getItem("preferred-language")
-        if (savedLanguage && (savedLanguage === "en" || savedLanguage === "nl")) {
-          setCurrentLanguage(savedLanguage)
-        }
+      const savedLanguage = localStorage.getItem("preferred-language")
+      if (savedLanguage && translations[savedLanguage]) {
+        setCurrentLanguage(savedLanguage)
+        updateGlobalTranslations(savedLanguage)
       }
     }
   }, [])
 
   const handleLanguageChange = (languageCode: string) => {
-    if (typeof window !== "undefined") {
-      const currentPath = window.location.pathname
-
-      // Check if we're on a language-specific route
-      if (currentPath.startsWith("/en") || currentPath.startsWith("/nl")) {
-        // We have separate language pages - redirect to the appropriate route
-        if (languageCode === "en") {
-          window.location.href = currentPath.replace(/^\/(nl|en)/, "/en")
-        } else {
-          window.location.href = currentPath.replace(/^\/(nl|en)/, "/nl")
-        }
-      } else {
-        // We're using dynamic translation - update the page content
-        setCurrentLanguage(languageCode)
-        localStorage.setItem("preferred-language", languageCode)
-
-        // Dispatch custom event to update page content
-        window.dispatchEvent(
-          new CustomEvent("languageChanged", {
-            detail: { language: languageCode, translations: translations[languageCode] },
-          }),
-        )
-      }
-    }
+    setCurrentLanguage(languageCode)
+    updateGlobalTranslations(languageCode)
     setIsOpen(false)
   }
 
