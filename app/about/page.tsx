@@ -11,8 +11,8 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
+          <div className="flex justify-center">
+            <div className="space-y-8 text-center max-w-4xl">
               <div className="space-y-4">
                 <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200">Our Story</Badge>
                 <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
@@ -24,7 +24,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="flex items-center gap-6">
+              <div className="flex items-center justify-center gap-8">
                 <div className="flex items-center gap-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
@@ -38,16 +38,6 @@ export default function AboutPage() {
                   <span className="text-sm text-gray-600">500+ Happy Clients</span>
                 </div>
               </div>
-            </div>
-
-            <div className="relative">
-              <Image
-                src="/cleaning-company-founder-portrait.png"
-                alt="Glorija Beberina, Founder of Glow Housekeeping"
-                width={500}
-                height={600}
-                className="rounded-3xl shadow-2xl"
-              />
             </div>
           </div>
         </div>
