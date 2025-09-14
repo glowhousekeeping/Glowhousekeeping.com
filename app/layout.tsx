@@ -9,21 +9,31 @@ import AIChatbotGlorija from "@/components/ai-chatbot-glorija"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Glow Housekeeping - Professional Cleaning Services Netherlands",
+  title: "Glow Housekeeping - Professional Cleaning Services in Netherlands",
   description:
-    "Professional cleaning services across the Netherlands. Residential and commercial cleaning, solar panel cleaning, window cleaning, and more. Like it's our own home.",
+    "Professional housekeeping and cleaning services across the Netherlands. We treat every space like it's our own home, delivering exceptional results with flexibility, affordability, and trust.",
+  icons: {
+    icon: "/glow-housekeeping-logo.png",
+    shortcut: "/glow-housekeeping-logo.png",
+    apple: "/glow-housekeeping-logo.png",
+  },
     generator: 'v0.app'
 }
 
 export default function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode
-  params: { locale?: string }
 }) {
   return (
-    <html lang={params.locale || "en"}>
+    <html lang="en">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6205268462730211"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={inter.className}>
         <Navbar />
         <main>{children}</main>

@@ -1,62 +1,50 @@
 import Link from "next/link"
-import Image from "next/image"
-import { Phone, Mail, MapPin, MessageCircle } from "lucide-react"
-import { useTranslation } from "@/hooks/use-translation"
+import { Sparkles, Mail, Phone, MapPin } from "lucide-react"
 
 export default function Footer() {
-  const { t, locale } = useTranslation()
-
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Image
-                src="/glow-housekeeping-logo.png"
-                alt="Glow Housekeeping"
-                width={40}
-                height={40}
-                className="rounded-lg"
-              />
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="bg-gradient-to-r from-blue-600 to-green-600 p-2 rounded-xl">
+                <Sparkles className="h-6 w-6 text-white" />
+              </div>
               <span className="text-xl font-bold">Glow Housekeeping</span>
-            </div>
-            <p className="text-gray-300 leading-relaxed">
-              Professional cleaning services across the Netherlands. Like it's our own home.
+            </Link>
+            <p className="text-gray-400 leading-relaxed">
+              Professional housekeeping and cleaning services across the Netherlands. We treat every space like it's our
+              own home.
             </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://wa.me/31610756699"
-                className="bg-green-600 hover:bg-green-700 p-2 rounded-full transition-colors"
-              >
-                <MessageCircle className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
           {/* Services */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t("footer.ourServices")}</h3>
-            <ul className="space-y-2 text-gray-300">
+            <h3 className="text-lg font-semibold">Services</h3>
+            <ul className="space-y-2">
               <li>
-                <Link href={`/${locale}/services/general-cleaning`} className="hover:text-white transition-colors">
-                  {t("services.generalCleaning")}
+                <Link href="/services/general-cleaning" className="text-gray-400 hover:text-white transition-colors">
+                  General Cleaning
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/services/solar-panel-cleaning`} className="hover:text-white transition-colors">
-                  {t("services.solarPanelCleaning")}
+                <Link
+                  href="/services/solar-panel-cleaning"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  Solar Panel Cleaning
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/services/window-cleaning`} className="hover:text-white transition-colors">
-                  {t("services.windowCleaning")}
+                <Link href="/services/window-cleaning" className="text-gray-400 hover:text-white transition-colors">
+                  Window Cleaning
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/services/drain-cleaning`} className="hover:text-white transition-colors">
-                  {t("services.drainCleaning")}
+                <Link href="/services/drain-cleaning" className="text-gray-400 hover:text-white transition-colors">
+                  Drain Cleaning
                 </Link>
               </li>
             </ul>
@@ -64,26 +52,26 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t("footer.quickLinks")}</h3>
-            <ul className="space-y-2 text-gray-300">
+            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <ul className="space-y-2">
               <li>
-                <Link href={`/${locale}/about`} className="hover:text-white transition-colors">
-                  {t("nav.about")}
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/contact`} className="hover:text-white transition-colors">
-                  {t("nav.contact")}
+                <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+                  Blog
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/blog`} className="hover:text-white transition-colors">
-                  {t("nav.blog")}
+                <Link href="/join-our-team" className="text-gray-400 hover:text-white transition-colors">
+                  Join Our Team
                 </Link>
               </li>
               <li>
-                <Link href={`/${locale}/join-our-team`} className="hover:text-white transition-colors">
-                  {t("nav.joinTeam")}
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -91,38 +79,30 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold">{t("footer.contactInfo")}</h3>
-            <div className="space-y-3 text-gray-300">
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4" />
-                <a href="tel:+31610756699" className="hover:text-white transition-colors">
+            <h3 className="text-lg font-semibold">Contact Info</h3>
+            <ul className="space-y-3">
+              <li className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 text-blue-400" />
+                <a href="mailto:gbeberina@gmail.com" className="text-gray-400 hover:text-white transition-colors">
+                  gbeberina@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center space-x-3">
+                <Phone className="h-5 w-5 text-green-400" />
+                <a href="https://wa.me/31610756699" className="text-gray-400 hover:text-white transition-colors">
                   +31 6 10756699
                 </a>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4" />
-                <a href="mailto:info@glowhousekeeping.nl" className="hover:text-white transition-colors">
-                  info@glowhousekeeping.nl
-                </a>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="w-4 h-4" />
-                <span>Venlo, Limburg, Netherlands</span>
-              </div>
-            </div>
+              </li>
+              <li className="flex items-center space-x-3">
+                <MapPin className="h-5 w-5 text-purple-400" />
+                <span className="text-gray-400">Netherlands</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">© 2024 Glow Housekeeping. {t("footer.allRightsReserved")}.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href={`/${locale}/privacy`} className="text-gray-400 hover:text-white text-sm transition-colors">
-              {t("footer.privacyPolicy")}
-            </Link>
-            <Link href={`/${locale}/terms`} className="text-gray-400 hover:text-white text-sm transition-colors">
-              {t("footer.termsOfService")}
-            </Link>
-          </div>
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p className="text-gray-400">© {new Date().getFullYear()} Glow Housekeeping. All rights reserved.</p>
         </div>
       </div>
     </footer>

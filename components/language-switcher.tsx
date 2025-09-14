@@ -1,11 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter, usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { ChevronDown, Globe } from "lucide-react"
-import { languages, languageFlags, locales, type Locale } from "@/lib/i18n"
-import { useTranslation } from "@/hooks/use-translation"
+import { useState, useEffect } from "react"
+import { Globe, ChevronDown } from "lucide-react"
 
 interface Language {
   code: string
@@ -18,6 +14,24 @@ interface Translations {
     [key: string]: string
   }
 }
+
+const languages: Language[] = [
+  {
+    code: "en",
+    name: "English",
+    flag: "🇺🇸",
+  },
+  {
+    code: "nl",
+    name: "Nederlands",
+    flag: "🇳🇱",
+  },
+  {
+    code: "fy",
+    name: "Frysk",
+    flag: "🏴",
+  },
+]
 
 const translations: Translations = {
   en: {
@@ -396,56 +410,118 @@ const translations: Translations = {
   },
 }
 
+// Global translation context
+let globalTranslations = translations.en
+let globalLanguage = "en"
+
+// Function to get current translations
+export function getCurrentTranslations() {
+  return globalTranslations
+}
+
+// Function to get current language
+export function getCurrentLanguage() {
+  return globalLanguage
+}
+
+// Function to update global translations
+export function updateGlobalTranslations(language: string) {
+  if (translations[language]) {
+    globalTranslations = translations[language]
+    globalLanguage = language
+
+    // Store in localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("preferred-language", language)
+    }
+
+    // Dispatch global event for all components to update
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("globalLanguageChanged", {
+          detail: { language, translations: globalTranslations },
+        }),
+      )
+    }
+  }
+}
+
 export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false)
-  const router = useRouter()
-  const pathname = usePathname()
-  const { locale } = useTranslation()
+  const [currentLanguage, setCurrentLanguage] = useState<string>("en")
 
-  const switchLanguage = (newLocale: Locale) => {
-    const segments = pathname.split("/")
-    segments[1] = newLocale
-    const newPath = segments.join("/")
-    router.push(newPath)
+  useEffect(() => {
+    // Initialize with English as default
+    setCurrentLanguage("en")
+    updateGlobalTranslations("en")
+
+    // Check localStorage for saved preference
+    if (typeof window !== "undefined") {
+      const savedLanguage = localStorage.getItem("preferred-language")
+      if (savedLanguage && translations[savedLanguage]) {
+        setCurrentLanguage(savedLanguage)
+        updateGlobalTranslations(savedLanguage)
+      }
+    }
+  }, [])
+
+  const handleLanguageChange = (languageCode: string) => {
+    setCurrentLanguage(languageCode)
+    updateGlobalTranslations(languageCode)
     setIsOpen(false)
   }
 
-  const currentLanguage = languages[locale]
-  const currentFlag = languageFlags[locale]
+  const getCurrentLanguageObj = () => {
+    return languages.find((lang) => lang.code === currentLanguage) || languages[0]
+  }
 
   return (
     <div className="relative">
-      <Button
-        variant="ghost"
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+        className="relative group flex items-center gap-2 px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-out text-white/90 hover:text-white hover:bg-white/8"
+        aria-label="Select language"
       >
-        <Globe className="w-4 h-4" />
-        <span className="text-lg">{currentFlag}</span>
-        <span className="hidden sm:inline">{currentLanguage}</span>
-        <ChevronDown className="w-4 h-4" />
-      </Button>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-cyan-400/0 to-teal-400/0 group-hover:from-blue-400/10 group-hover:via-cyan-400/10 group-hover:to-teal-400/10 rounded-xl transition-all duration-500"></div>
+        <Globe className="w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200" />
+        <span className="relative z-10 text-lg">{getCurrentLanguageObj().flag}</span>
+        <ChevronDown
+          className={`w-4 h-4 relative z-10 transition-all duration-300 text-white/80 group-hover:text-cyan-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
 
+      {/* Language Dropdown */}
       {isOpen && (
-        <>
-          <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
-            {locales.map((lang) => (
-              <button
-                key={lang}
-                onClick={() => switchLanguage(lang)}
-                className={`w-full px-4 py-2 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${
-                  locale === lang ? "bg-blue-50 text-blue-600" : "text-gray-700"
+        <div className="absolute top-full right-0 mt-2 w-48 bg-white/95 backdrop-blur-xl shadow-2xl shadow-blue-500/10 rounded-2xl border border-white/20 overflow-hidden z-50 animate-in slide-in-from-top-2 duration-200">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white/50 to-teal-50/50 rounded-2xl"></div>
+          {languages.map((language) => (
+            <button
+              key={language.code}
+              onClick={() => handleLanguageChange(language.code)}
+              className={`relative w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border-b border-gray-100/50 last:border-b-0 ${
+                currentLanguage === language.code ? "bg-gradient-to-r from-blue-50/60 to-teal-50/60" : ""
+              }`}
+            >
+              <span className="text-xl">{language.flag}</span>
+              <span
+                className={`text-sm font-medium transition-colors ${
+                  currentLanguage === language.code
+                    ? "text-blue-700 font-semibold"
+                    : "text-gray-900 group-hover:text-blue-700"
                 }`}
               >
-                <span className="text-lg">{languageFlags[lang]}</span>
-                <span className="font-medium">{languages[lang]}</span>
-                {locale === lang && <div className="ml-auto w-2 h-2 bg-blue-600 rounded-full" />}
-              </button>
-            ))}
-          </div>
-        </>
+                {language.name}
+              </span>
+              {currentLanguage === language.code && <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>}
+            </button>
+          ))}
+        </div>
       )}
+
+      {/* Backdrop for closing dropdown */}
+      {isOpen && <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)}></div>}
     </div>
   )
 }

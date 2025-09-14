@@ -1,6 +1,6 @@
-import type { GetStaticProps } from "next"
-import { serverSideTranslations } from "next-i18next/serverSideTranslations"
-import { useTranslation } from "next-i18next"
+"use client"
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -18,9 +18,27 @@ import {
 import Link from "next/link"
 import Image from "next/image"
 import AutoScrollingGallery from "@/components/auto-scrolling-gallery"
+import { getCurrentTranslations } from "@/components/language-switcher"
 
 export default function HomePage() {
-  const { t } = useTranslation("common")
+  const [translations, setTranslations] = useState(getCurrentTranslations())
+
+  useEffect(() => {
+    // Listen for global language changes
+    const handleGlobalLanguageChange = (event: CustomEvent) => {
+      setTranslations(event.detail.translations)
+    }
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+
+      return () => {
+        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+      }
+    }
+  }, [])
+
+  const t = translations
 
   return (
     <div className="min-h-screen">
@@ -77,9 +95,7 @@ export default function HomePage() {
                     {/* Mobile Caption */}
                     <div className="absolute bottom-3 left-3 right-3">
                       <div className="bg-white/90 backdrop-blur-md rounded-xl p-3 shadow-lg">
-                        <p className="text-slate-800 font-bold text-sm sm:text-base text-center">
-                          "{t("hero.imageCaption")}"
-                        </p>
+                        <p className="text-slate-800 font-bold text-sm sm:text-base text-center">"{t.imageCaption}"</p>
                       </div>
                     </div>
 
@@ -101,36 +117,34 @@ export default function HomePage() {
                 {/* Main Headline - Mobile Responsive */}
                 <div className="space-y-4 lg:space-y-6 animate-fade-in">
                   <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-800 leading-tight">
-                    {t("hero.title")
-                      .split(" ")
-                      .map((word, index) => {
-                        if (word === "Shine" || word === "straalt" || word === "strielt") {
-                          return (
-                            <span
-                              key={index}
-                              className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent"
-                            >
-                              {word}{" "}
-                            </span>
-                          )
-                        }
-                        return word + " "
-                      })}
+                    {t.heroTitle.split(" ").map((word, index) => {
+                      if (word === "Shine" || word === "straalt" || word === "strielt") {
+                        return (
+                          <span
+                            key={index}
+                            className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent"
+                          >
+                            {word}{" "}
+                          </span>
+                        )
+                      }
+                      return word + " "
+                    })}
                   </h1>
 
                   <div className="space-y-3 lg:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed">
-                    <p>{t("hero.subtitle")}</p>
+                    <p>{t.heroSubtitle}</p>
                     <p>
-                      <span className="font-semibold text-green-700">{t("hero.specialization")}</span>
+                      <span className="font-semibold text-green-700">{t.heroSpecialization}</span>
                     </p>
                   </div>
 
                   <div className="bg-white/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-white/40">
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-800 mb-2">
-                      {t("hero.tagline")}
+                      {t.heroTagline}
                     </p>
                     <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-600 font-medium">
-                      {t("hero.serviceArea")}
+                      {t.heroServiceArea}
                     </p>
                   </div>
                 </div>
@@ -144,7 +158,7 @@ export default function HomePage() {
                       className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                     >
                       <Link href="/book-service" className="flex items-center justify-center gap-2">
-                        {t("hero.requestQuote")}
+                        {t.requestQuote}
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </Button>
@@ -155,7 +169,7 @@ export default function HomePage() {
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center justify-center gap-2">
                         <MessageCircle className="w-4 h-4" />
-                        {t("hero.whatsapp")}
+                        {t.whatsapp}
                       </Link>
                     </Button>
 
@@ -170,7 +184,7 @@ export default function HomePage() {
                         className="flex items-center justify-center gap-2"
                       >
                         <Calendar className="w-4 h-4" />
-                        {t("hero.bookAppointment")}
+                        {t.bookAppointment}
                       </a>
                     </Button>
 
@@ -181,7 +195,7 @@ export default function HomePage() {
                     >
                       <Link href="/client-assessment" className="flex items-center justify-center gap-2">
                         <ClipboardList className="w-4 h-4" />
-                        {t("hero.clientAssessment")}
+                        {t.clientAssessment}
                       </Link>
                     </Button>
                   </div>
@@ -193,7 +207,7 @@ export default function HomePage() {
                       className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                     >
                       <Link href="/book-service" className="flex items-center gap-2">
-                        {t("hero.requestQuote")}
+                        {t.requestQuote}
                         <ArrowRight className="w-5 h-5" />
                       </Link>
                     </Button>
@@ -204,7 +218,7 @@ export default function HomePage() {
                     >
                       <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
                         <MessageCircle className="w-5 h-5" />
-                        {t("hero.whatsapp")}
+                        {t.whatsapp}
                       </Link>
                     </Button>
 
@@ -219,7 +233,7 @@ export default function HomePage() {
                         className="flex items-center gap-2"
                       >
                         <Calendar className="w-5 h-5" />
-                        {t("hero.bookAppointment")}
+                        {t.bookAppointment}
                       </a>
                     </Button>
 
@@ -230,7 +244,7 @@ export default function HomePage() {
                     >
                       <Link href="/client-assessment" className="flex items-center gap-2">
                         <ClipboardList className="w-5 h-5" />
-                        {t("hero.clientAssessment")}
+                        {t.clientAssessment}
                       </Link>
                     </Button>
                   </div>
@@ -266,10 +280,8 @@ export default function HomePage() {
                       {/* Caption Overlay */}
                       <div className="absolute bottom-0 left-0 right-0 p-8">
                         <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/50 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                          <p className="text-slate-800 font-bold text-xl mb-2 leading-tight">
-                            "{t("hero.imageCaption")}"
-                          </p>
-                          <p className="text-slate-600 text-sm">{t("hero.imageSubCaption")}</p>
+                          <p className="text-slate-800 font-bold text-xl mb-2 leading-tight">"{t.imageCaption}"</p>
+                          <p className="text-slate-600 text-sm">{t.imageSubCaption}</p>
                         </div>
                       </div>
                     </div>
@@ -325,11 +337,11 @@ export default function HomePage() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Sparkles className="w-8 h-8 text-blue-600" />
               <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">
-                {t("common.transformation")}
+                {t.transformation}
               </Badge>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t("transformation.title")}</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t("transformation.subtitle")}</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.transformationTitle}</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.transformationSubtitle}</p>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto rounded-full mt-6"></div>
           </div>
 
@@ -348,9 +360,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">
-                        {t("common.before")}
-                      </Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -364,16 +374,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">
-                        {t("common.after")}
-                      </Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t("transformation.officeTransformation")}</h3>
-                  <p className="text-gray-600">{t("transformation.officeTransformationDesc")}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.officeTransformation}</h3>
+                  <p className="text-gray-600">{t.officeTransformationDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -392,9 +400,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">
-                        {t("common.before")}
-                      </Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -408,16 +414,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">
-                        {t("common.after")}
-                      </Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t("transformation.kitchenCleaning")}</h3>
-                  <p className="text-gray-600">{t("transformation.kitchenCleaningDesc")}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.kitchenCleaning}</h3>
+                  <p className="text-gray-600">{t.kitchenCleaningDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -436,9 +440,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">
-                        {t("common.before")}
-                      </Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -452,16 +454,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">
-                        {t("common.after")}
-                      </Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t("transformation.bathroomCleaning")}</h3>
-                  <p className="text-gray-600">{t("transformation.bathroomCleaningDesc")}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.bathroomCleaning}</h3>
+                  <p className="text-gray-600">{t.bathroomCleaningDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -480,9 +480,7 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 left-3">
-                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">
-                        {t("common.before")}
-                      </Badge>
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
                     </div>
                   </div>
 
@@ -496,16 +494,14 @@ export default function HomePage() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="absolute top-3 right-3">
-                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">
-                        {t("common.after")}
-                      </Badge>
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
                     </div>
                   </div>
                 </div>
 
                 <div className="text-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t("transformation.sinkCleaning")}</h3>
-                  <p className="text-gray-600">{t("transformation.sinkCleaningDesc")}</p>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{t.sinkCleaning}</h3>
+                  <p className="text-gray-600">{t.sinkCleaningDesc}</p>
                 </div>
               </CardContent>
             </Card>
@@ -514,11 +510,11 @@ export default function HomePage() {
           {/* Call to Action */}
           <div className="text-center mt-16">
             <div className="bg-white rounded-3xl p-12 shadow-xl border border-blue-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("transformation.readyForTransformation")}</h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">{t("transformation.transformationCTA")}</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.readyForTransformation}</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">{t.transformationCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-8">
-                  <Link href="/book-service">{t("transformation.getYourQuote")}</Link>
+                  <Link href="/book-service">{t.getYourQuote}</Link>
                 </Button>
                 <Button
                   size="lg"
@@ -526,7 +522,7 @@ export default function HomePage() {
                   className="rounded-full px-8 bg-transparent border-blue-300 text-blue-600 hover:bg-blue-50"
                 >
                   <a href="https://calendar.app.google/RU6yxXUM6GZED7Nm7" target="_blank" rel="noopener noreferrer">
-                    {t("transformation.bookNow")}
+                    {t.bookNow}
                   </a>
                 </Button>
               </div>
@@ -539,10 +535,8 @@ export default function HomePage() {
       <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              {t("services.ourProfessionalServices")}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t("services.servicesSubtitle")}</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.ourProfessionalServices}</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.servicesSubtitle}</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -560,11 +554,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t("services.generalCleaning")}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{t("services.generalCleaningDesc")}</p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.generalCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.generalCleaningDesc}</p>
                   <Link href="/services/general-cleaning">
                     <Button variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50">
-                      {t("common.learnMore")}
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -585,11 +579,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t("services.solarPanelCleaning")}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{t("services.solarPanelCleaningDesc")}</p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.solarPanelCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.solarPanelCleaningDesc}</p>
                   <Link href="/services/solar-panel-cleaning">
                     <Button variant="ghost" className="text-yellow-600 hover:text-yellow-700 hover:bg-yellow-50">
-                      {t("common.learnMore")}
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -610,11 +604,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t("services.windowCleaning")}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{t("services.windowCleaningDesc")}</p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.windowCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.windowCleaningDesc}</p>
                   <Link href="/services/window-cleaning">
                     <Button variant="ghost" className="text-green-600 hover:text-green-700 hover:bg-green-50">
-                      {t("common.learnMore")}
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -635,11 +629,11 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6 text-center">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t("services.drainCleaning")}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{t("services.drainCleaningDesc")}</p>
+                  <h3 className="text-xl font-semibold mb-3 text-gray-900">{t.drainCleaning}</h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{t.drainCleaningDesc}</p>
                   <Link href="/services/drain-cleaning">
                     <Button variant="ghost" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50">
-                      {t("common.learnMore")}
+                      {t.learnMore}
                     </Button>
                   </Link>
                 </div>
@@ -657,8 +651,8 @@ export default function HomePage() {
               <Sparkles className="w-8 h-8 text-green-600" />
               <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-lg px-4 py-2">Why Choose Us</Badge>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t("whyChooseUs.title")}</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t("whyChooseUs.subtitle")}</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.whyChooseUs}</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.whyChooseUsSubtitle}</p>
             <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-400 mx-auto rounded-full mt-6"></div>
           </div>
 
@@ -683,9 +677,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">
-                      {t("whyChooseUs.trustedCleaners")}
+                      {t.trustedCleaners}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">{t("whyChooseUs.trustedCleanersDesc")}</p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.trustedCleanersDesc}</p>
                   </div>
                 </div>
               </div>
@@ -704,9 +698,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                      {t("whyChooseUs.professionalResults")}
+                      {t.professionalResults}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">{t("whyChooseUs.professionalResultsDesc")}</p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.professionalResultsDesc}</p>
                   </div>
                 </div>
               </div>
@@ -732,9 +726,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">
-                      {t("whyChooseUs.affordableRates")}
+                      {t.affordableRates}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">{t("whyChooseUs.affordableRatesDesc")}</p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.affordableRatesDesc}</p>
                   </div>
                 </div>
               </div>
@@ -760,9 +754,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors duration-300">
-                      {t("whyChooseUs.easyBooking")}
+                      {t.easyBooking}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">{t("whyChooseUs.easyBookingDesc")}</p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.easyBookingDesc}</p>
                   </div>
                 </div>
               </div>
@@ -781,9 +775,9 @@ export default function HomePage() {
 
                     {/* Content */}
                     <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-rose-600 transition-colors duration-300">
-                      {t("whyChooseUs.flexiblePassionate")}
+                      {t.flexiblePassionate}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed text-sm">{t("whyChooseUs.flexiblePassionateDesc")}</p>
+                    <p className="text-gray-600 leading-relaxed text-sm">{t.flexiblePassionateDesc}</p>
                   </div>
                 </div>
               </div>
@@ -804,8 +798,8 @@ export default function HomePage() {
                     <Shield className="w-8 h-8 text-white" />
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-green-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t("whyChooseUs.trustedCleaners")}</h3>
-                    <p className="text-gray-600 leading-relaxed">{t("whyChooseUs.trustedCleanersDesc")}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.trustedCleaners}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.trustedCleanersDesc}</p>
                   </div>
                 </div>
 
@@ -815,8 +809,8 @@ export default function HomePage() {
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-blue-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t("whyChooseUs.professionalResults")}</h3>
-                    <p className="text-gray-600 leading-relaxed">{t("whyChooseUs.professionalResultsDesc")}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.professionalResults}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.professionalResultsDesc}</p>
                   </div>
                 </div>
 
@@ -833,8 +827,8 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-purple-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t("whyChooseUs.affordableRates")}</h3>
-                    <p className="text-gray-600 leading-relaxed">{t("whyChooseUs.affordableRatesDesc")}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.affordableRates}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.affordableRatesDesc}</p>
                   </div>
                 </div>
 
@@ -851,8 +845,8 @@ export default function HomePage() {
                     </svg>
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-orange-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t("whyChooseUs.easyBooking")}</h3>
-                    <p className="text-gray-600 leading-relaxed">{t("whyChooseUs.easyBookingDesc")}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.easyBooking}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.easyBookingDesc}</p>
                   </div>
                 </div>
 
@@ -862,8 +856,8 @@ export default function HomePage() {
                     <Heart className="w-8 h-8 text-white" />
                   </div>
                   <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-rose-100">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t("whyChooseUs.flexiblePassionate")}</h3>
-                    <p className="text-gray-600 leading-relaxed">{t("whyChooseUs.flexiblePassionateDesc")}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{t.flexiblePassionate}</h3>
+                    <p className="text-gray-600 leading-relaxed">{t.flexiblePassionateDesc}</p>
                   </div>
                 </div>
               </div>
@@ -873,20 +867,18 @@ export default function HomePage() {
           {/* Call to Action */}
           <div className="text-center mt-20">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-green-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("whyChooseUs.experienceGlowDifference")}</h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                {t("whyChooseUs.experienceGlowCTA")}
-              </p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.experienceGlowDifference}</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">{t.experienceGlowCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" className="bg-green-600 hover:bg-green-700 rounded-full px-8">
-                  <Link href="/book-service">{t("whyChooseUs.getStartedToday")}</Link>
+                  <Link href="/book-service">{t.getStartedToday}</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="rounded-full px-8 bg-transparent border-green-300 text-green-600 hover:bg-green-50"
                 >
-                  <Link href="/about">{t("whyChooseUs.learnMoreAboutUs")}</Link>
+                  <Link href="/about">{t.learnMoreAboutUs}</Link>
                 </Button>
               </div>
             </div>
@@ -900,14 +892,10 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Heart className="w-8 h-8 text-rose-600" />
-              <Badge className="bg-rose-100 text-rose-800 hover:bg-rose-100 text-lg px-4 py-2">
-                {t("testimonials.clientLove")}
-              </Badge>
+              <Badge className="bg-rose-100 text-rose-800 hover:bg-rose-100 text-lg px-4 py-2">{t.clientLove}</Badge>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t("testimonials.whatClientsSay")}</h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              {t("testimonials.clientsSaySubtitle")}
-            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.whatClientsSay}</h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.clientsSaySubtitle}</p>
             <div className="w-24 h-1 bg-gradient-to-r from-rose-400 to-amber-400 mx-auto rounded-full mt-6"></div>
           </div>
 
@@ -1203,20 +1191,18 @@ export default function HomePage() {
           {/* Call to Action */}
           <div className="text-center mt-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-rose-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t("testimonials.shareYourExperience")}</h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                {t("testimonials.shareExperienceCTA")}
-              </p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.shareYourExperience}</h3>
+              <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">{t.shareExperienceCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button size="lg" className="bg-rose-600 hover:bg-rose-700 rounded-full px-8">
-                  <Link href="https://wa.me/31610756699">{t("testimonials.shareYourStory")}</Link>
+                  <Link href="https://wa.me/31610756699">{t.shareYourStory}</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
                   className="rounded-full px-8 bg-transparent border-rose-300 text-rose-600 hover:bg-rose-50"
                 >
-                  <Link href="/book-service">{t("testimonials.bookYourService")}</Link>
+                  <Link href="/book-service">{t.bookYourService}</Link>
                 </Button>
               </div>
             </div>
@@ -1227,30 +1213,22 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">{t("cta.readyToExperience")}</h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">{t("cta.ctaSubtitle")}</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">{t.readyToExperience}</h2>
+          <p className="text-xl text-blue-100 mb-8 leading-relaxed">{t.ctaSubtitle}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
-              <Link href="/book-service">{t("cta.getFreeQuote")}</Link>
+              <Link href="/book-service">{t.getFreeQuote}</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-blue-600 rounded-full px-8 bg-transparent"
             >
-              <Link href="https://wa.me/31610756699">{t("cta.contactWhatsApp")}</Link>
+              <Link href="https://wa.me/31610756699">{t.contactWhatsApp}</Link>
             </Button>
           </div>
         </div>
       </section>
     </div>
   )
-}
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale ?? "en", ["common"])),
-    },
-  }
 }

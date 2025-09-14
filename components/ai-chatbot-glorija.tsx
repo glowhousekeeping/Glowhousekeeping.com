@@ -1,9 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { MessageCircle, X, Send, Sparkles } from "lucide-react"
+import { MessageCircle, X, Volume2, VolumeX, Sun, Moon, Sparkles } from "lucide-react"
 
 interface Message {
   id: string
@@ -95,16 +93,7 @@ export default function AIChatbotGlorija() {
   const [isOpen, setIsOpen] = useState(false)
   const [hasGreeted, setHasGreeted] = useState(false)
   const [currentLanguage, setCurrentLanguage] = useState<keyof typeof translations>("en")
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: Date.now().toString(),
-      type: "bot",
-      content: translations.en.greeting,
-      timestamp: new Date(),
-      isLanguageSelector: true,
-    },
-  ])
-  const [inputMessage, setInputMessage] = useState("")
+  const [messages, setMessages] = useState<Message[]>([])
   const [isTyping, setIsTyping] = useState(false)
   const [soundEnabled, setSoundEnabled] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -212,32 +201,6 @@ export default function AIChatbotGlorija() {
     }
   }
 
-  const handleSendMessage = () => {
-    if (!inputMessage.trim()) return
-
-    const newMessage = {
-      id: Date.now().toString(),
-      type: "user",
-      content: inputMessage,
-      timestamp: new Date(),
-    }
-
-    setMessages([...messages, newMessage])
-    setInputMessage("")
-
-    // Simulate bot response
-    simulateTyping(() => {
-      const botResponse = {
-        id: Date.now().toString(),
-        type: "bot",
-        content:
-          "Thanks for your message! For immediate assistance, please call us at +31 6 10756699 or send us a WhatsApp message. We'll get back to you right away!",
-        timestamp: new Date(),
-      }
-      setMessages((prev) => [...prev, botResponse])
-    })
-  }
-
   return (
     <>
       {/* Floating Chatbot Button */}
@@ -267,7 +230,7 @@ export default function AIChatbotGlorija() {
         )}
 
         {/* Chatbot Icon */}
-        <Button
+        <button
           onClick={toggleChatbot}
           className={`relative w-16 h-16 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 ${
             isDarkMode
@@ -293,97 +256,161 @@ export default function AIChatbotGlorija() {
 
           {/* Glow Effect */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-green-400 opacity-20 animate-pulse"></div>
-        </Button>
+        </button>
       </div>
 
       {/* Chat Window */}
       {isOpen && (
         <div className="fixed bottom-24 right-6 w-80 sm:w-96 h-[500px] max-h-[80vh] z-50 animate-in slide-in-from-bottom-4 duration-300 chatbot-container">
-          <Card className="rounded-2xl border-0 shadow-2xl overflow-hidden">
+          <div
+            className={`w-full h-full rounded-2xl shadow-2xl border ${
+              isDarkMode ? "bg-gray-900 border-gray-700" : "bg-white border-gray-200"
+            } flex flex-col overflow-hidden`}
+          >
+            {/* Header */}
             <div className="bg-gradient-to-r from-blue-500 to-green-500 p-4 text-white">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <span className="text-sm font-bold">G</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">G</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold">Glorija</h3>
+                    <p className="text-xs opacity-90">Housekeeping Assistant</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold">Glorija</h3>
-                  <p className="text-xs text-green-100">Glow Housekeeping</p>
+                <div className="flex items-center gap-2">
+                  {/* Sound Toggle */}
+                  <button
+                    onClick={() => setSoundEnabled(!soundEnabled)}
+                    className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                    title={soundEnabled ? "Disable sound" : "Enable sound"}
+                  >
+                    {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                  </button>
+                  {/* Theme Toggle */}
+                  <button
+                    onClick={() => setIsDarkMode(!isDarkMode)}
+                    className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                    title={isDarkMode ? "Light mode" : "Dark mode"}
+                  >
+                    {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                  </button>
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                    title="Close chat"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             </div>
 
-            <CardContent className="p-0">
-              <div className="h-64 overflow-y-auto p-4 space-y-3">
-                {messages.map((message) => (
-                  <div key={message.id} className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}>
-                    <div
-                      className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
-                        message.type === "user" ? "bg-green-600 text-white" : "bg-gray-100 text-gray-800"
-                      }`}
-                    >
-                      {message.content}
-                    </div>
-
-                    {/* Language Selector */}
-                    {message.isLanguageSelector && showLanguageSelector && (
-                      <div className="mt-3 space-y-2">
-                        <p className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
-                          {t.languagePrompt}
-                        </p>
-                        <div className="flex flex-col gap-2">
-                          {languages.map((lang) => (
-                            <Button
-                              key={lang.code}
-                              onClick={() => handleLanguageSelect(lang.code as keyof typeof translations)}
-                              className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full text-sm font-medium hover:from-blue-600 hover:to-green-600 transition-all duration-200 transform hover:scale-105 shadow-md"
-                            >
-                              <span>{lang.flag}</span>
-                              <span>{lang.nativeName}</span>
-                            </Button>
-                          ))}
+            {/* Messages Area */}
+            <div className={`flex-1 overflow-y-auto p-4 space-y-4 ${isDarkMode ? "bg-gray-800" : "bg-gray-50"}`}>
+              {messages.map((message) => (
+                <div key={message.id} className="animate-in slide-in-from-bottom-2 duration-300">
+                  {message.type === "bot" ? (
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-white text-xs font-bold">G</span>
+                      </div>
+                      <div className="flex-1">
+                        <div
+                          className={`p-3 rounded-2xl rounded-tl-md max-w-xs ${
+                            isDarkMode ? "bg-gray-700 text-white" : "bg-white text-gray-800"
+                          } shadow-sm`}
+                        >
+                          <p className="text-sm leading-relaxed">{message.content}</p>
                         </div>
-                      </div>
-                    )}
 
-                    {/* Quick Reply Buttons */}
-                    {!showLanguageSelector && message.content === t.conversationPrompt && (
-                      <div className="mt-3 grid grid-cols-1 gap-2">
-                        {Object.entries(t.quickReplies).map(([key, label]) => (
-                          <Button
-                            key={key}
-                            onClick={() => handleQuickReply(key)}
-                            className={`p-3 rounded-xl text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-sm ${
-                              isDarkMode
-                                ? "bg-gray-600 text-white hover:bg-gray-500"
-                                : "bg-blue-50 text-blue-600 hover:bg-blue-100"
-                            }`}
-                          >
-                            {label}
-                          </Button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+                        {/* Language Selector */}
+                        {message.isLanguageSelector && showLanguageSelector && (
+                          <div className="mt-3 space-y-2">
+                            <p className={`text-xs ${isDarkMode ? "text-gray-300" : "text-gray-600"}`}>
+                              {t.languagePrompt}
+                            </p>
+                            <div className="flex flex-col gap-2">
+                              {languages.map((lang) => (
+                                <button
+                                  key={lang.code}
+                                  onClick={() => handleLanguageSelect(lang.code as keyof typeof translations)}
+                                  className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full text-sm font-medium hover:from-blue-600 hover:to-green-600 transition-all duration-200 transform hover:scale-105 shadow-md"
+                                >
+                                  <span>{lang.flag}</span>
+                                  <span>{lang.nativeName}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
 
-              <div className="border-t p-4">
-                <div className="flex space-x-2">
-                  <input
-                    type="text"
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-                    placeholder="Type your message..."
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm"
-                  />
-                  <Button onClick={handleSendMessage} size="sm" className="bg-green-600 hover:bg-green-700 px-3">
-                    <Send className="w-4 h-4" />
-                  </Button>
+                        {/* Quick Reply Buttons */}
+                        {!showLanguageSelector && message.content === t.conversationPrompt && (
+                          <div className="mt-3 grid grid-cols-1 gap-2">
+                            {Object.entries(t.quickReplies).map(([key, label]) => (
+                              <button
+                                key={key}
+                                onClick={() => handleQuickReply(key)}
+                                className={`p-3 rounded-xl text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-sm ${
+                                  isDarkMode
+                                    ? "bg-gray-600 text-white hover:bg-gray-500"
+                                    : "bg-blue-50 text-blue-600 hover:bg-blue-100"
+                                }`}
+                              >
+                                {label}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex justify-end">
+                      <div className="bg-gradient-to-r from-blue-500 to-green-500 text-white p-3 rounded-2xl rounded-tr-md max-w-xs shadow-sm">
+                        <p className="text-sm">{message.content}</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
+              ))}
+
+              {/* Typing Indicator */}
+              {isTyping && (
+                <div className="flex items-start gap-3 animate-in slide-in-from-bottom-2 duration-300">
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-xs font-bold">G</span>
+                  </div>
+                  <div className={`p-3 rounded-2xl rounded-tl-md ${isDarkMode ? "bg-gray-700" : "bg-white"} shadow-sm`}>
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                      <div
+                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                        style={{ animationDelay: "0.1s" }}
+                      ></div>
+                      <div
+                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                        style={{ animationDelay: "0.2s" }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Footer */}
+            <div className={`p-3 border-t ${isDarkMode ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-white"}`}>
+              <div className="flex items-center justify-center">
+                <p className={`text-xs ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
+                  Powered by Glow Housekeeping ✨
+                </p>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       )}
 

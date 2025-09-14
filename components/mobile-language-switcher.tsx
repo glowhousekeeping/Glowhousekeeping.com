@@ -1,58 +1,119 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter, usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Globe } from "lucide-react"
-import { languages, languageFlags, locales, type Locale } from "@/lib/i18n"
-import { useTranslation } from "@/hooks/use-translation"
+import { useState, useEffect } from "react"
+import { Globe, ChevronDown } from "lucide-react"
+import { updateGlobalTranslations, getCurrentLanguage } from "./language-switcher"
 
-export default function MobileLanguageSwitcher() {
+interface Language {
+  code: string
+  name: string
+  flag: string
+}
+
+const languages: Language[] = [
+  {
+    code: "en",
+    name: "English",
+    flag: "🇺🇸",
+  },
+  {
+    code: "nl",
+    name: "Nederlands",
+    flag: "🇳🇱",
+  },
+  {
+    code: "fy",
+    name: "Frysk",
+    flag: "🏴",
+  },
+]
+
+interface MobileLanguageSwitcherProps {
+  onLanguageChange?: (language: string) => void
+}
+
+export default function MobileLanguageSwitcher({ onLanguageChange }: MobileLanguageSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const router = useRouter()
-  const pathname = usePathname()
-  const { locale } = useTranslation()
+  const [currentLanguage, setCurrentLanguage] = useState<string>("en")
 
-  const switchLanguage = (newLocale: Locale) => {
-    const segments = pathname.split("/")
-    segments[1] = newLocale
-    const newPath = segments.join("/")
-    router.push(newPath)
+  useEffect(() => {
+    // Initialize with current global language
+    setCurrentLanguage(getCurrentLanguage())
+
+    // Listen for global language changes
+    const handleGlobalLanguageChange = (event: CustomEvent) => {
+      setCurrentLanguage(event.detail.language)
+    }
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+
+      return () => {
+        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+      }
+    }
+  }, [])
+
+  const handleLanguageChange = (languageCode: string) => {
+    setCurrentLanguage(languageCode)
+    updateGlobalTranslations(languageCode)
     setIsOpen(false)
+
+    if (onLanguageChange) {
+      onLanguageChange(languageCode)
+    }
   }
 
-  const currentFlag = languageFlags[locale]
+  const getCurrentLanguageObj = () => {
+    return languages.find((lang) => lang.code === currentLanguage) || languages[0]
+  }
 
   return (
-    <div className="relative">
-      <Button
-        variant="ghost"
-        size="sm"
+    <div className="space-y-3">
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2"
+        className="w-full flex items-center justify-between p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30 backdrop-blur-sm"
+        aria-label="Select language"
       >
-        <Globe className="w-4 h-4" />
-        <span className="text-lg">{currentFlag}</span>
-      </Button>
+        <div className="flex items-center gap-3">
+          <Globe className="w-5 h-5 text-blue-600" />
+          <span className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">Language</span>
+          <span className="text-xl">{getCurrentLanguageObj().flag}</span>
+        </div>
+        <ChevronDown
+          className={`w-4 h-4 text-gray-500 group-hover:text-blue-600 transition-all duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
 
+      {/* Mobile Language Options */}
       {isOpen && (
-        <>
-          <div className="fixed inset-0 z-10" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 top-full mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-20">
-            {locales.map((lang) => (
-              <button
-                key={lang}
-                onClick={() => switchLanguage(lang)}
-                className={`w-full px-4 py-2 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${
-                  locale === lang ? "bg-blue-50 text-blue-600" : "text-gray-700"
+        <div className="ml-4 space-y-2 animate-in slide-in-from-top-2 duration-200">
+          {languages.map((language) => (
+            <button
+              key={language.code}
+              onClick={() => handleLanguageChange(language.code)}
+              className={`w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-teal-50/80 transition-all duration-300 group border border-transparent hover:border-blue-200/30 ${
+                currentLanguage === language.code
+                  ? "bg-gradient-to-r from-blue-50/60 to-teal-50/60 border-blue-200/30"
+                  : ""
+              }`}
+            >
+              <span className="text-lg">{language.flag}</span>
+              <span
+                className={`text-sm font-medium transition-colors ${
+                  currentLanguage === language.code
+                    ? "text-blue-700 font-semibold"
+                    : "text-gray-700 group-hover:text-blue-700"
                 }`}
               >
-                <span className="text-lg">{languageFlags[lang]}</span>
-                <span className="font-medium text-sm">{languages[lang]}</span>
-              </button>
-            ))}
-          </div>
-        </>
+                {language.name}
+              </span>
+              {currentLanguage === language.code && <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   )
