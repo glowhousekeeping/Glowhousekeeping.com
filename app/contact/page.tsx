@@ -1,226 +1,280 @@
-"use client"
-
-import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Clock, MessageCircle, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import Link from "next/link"
-import { getCurrentTranslations } from "@/components/language-switcher"
 
 export default function ContactPage() {
-  const [translations, setTranslations] = useState(getCurrentTranslations())
-
-  useEffect(() => {
-    // Listen for global language changes
-    const handleGlobalLanguageChange = (event: CustomEvent) => {
-      setTranslations(event.detail.translations)
-    }
-
-    if (typeof window !== "undefined") {
-      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
-
-      return () => {
-        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
-      }
-    }
-  }, [])
-
-  const t = translations
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute top-20 right-20 w-32 h-32 bg-blue-200/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-40 h-40 bg-green-200/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <section className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Get in Touch</h1>
+          <p className="text-xl text-gray-600 leading-relaxed">
+            Ready to experience the Glow difference? We're here to answer your questions and provide you with a
+            personalized cleaning solution.
+          </p>
+        </div>
+      </section>
 
+      {/* Contact Information & Form */}
+      <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <MessageCircle className="w-8 h-8 text-blue-600" />
-              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">{t.contact}</Badge>
-            </div>
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">{t.contactTitle}</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">{t.contactSubtitle}</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-green-400 mx-auto rounded-full mt-6"></div>
-          </div>
-
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div className="space-y-8">
-              <div className="bg-white rounded-3xl p-8 shadow-xl border border-blue-100">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.getInTouch}</h2>
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center">
-                      <Mail className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{t.email}</h3>
-                      <a
-                        href="mailto:glorija.berina@gmail.com"
-                        className="text-blue-600 hover:text-blue-700 transition-colors"
-                      >
-                        glorija.berina@gmail.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center">
-                      <Phone className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{t.phone}</h3>
-                      <a href="tel:+31610756699" className="text-green-600 hover:text-green-700 transition-colors">
-                        +31 6 10756699
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">Location</h3>
-                      <p className="text-gray-600">Venlo, Limburg, Netherlands</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-3xl p-8 shadow-xl border border-green-100">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-green-600" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900">{t.businessHours}</h2>
-                </div>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex justify-between">
-                    <span>Monday - Friday:</span>
-                    <span className="font-medium">8:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday:</span>
-                    <span className="font-medium">9:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday:</span>
-                    <span className="font-medium">Closed</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-r from-blue-600 to-green-600 rounded-3xl p-8 text-white">
-                <h3 className="text-xl font-bold mb-4">Quick Contact</h3>
-                <p className="mb-6 text-blue-100">
-                  Need immediate assistance? Contact us directly via WhatsApp for the fastest response.
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  We're available to discuss your cleaning needs and provide personalized quotes. Reach out through any
+                  of the methods below.
                 </p>
-                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8 w-full">
-                  <Link href="https://wa.me/31610756699" className="flex items-center justify-center gap-2">
-                    <MessageCircle className="w-5 h-5" />
-                    {t.whatsapp}
-                  </Link>
+              </div>
+
+              <div className="space-y-6">
+                <Card className="rounded-2xl border-0 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="bg-blue-100 p-3 rounded-full">
+                        <Mail className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Email</h3>
+                        <a
+                          href="mailto:gbeberina@gmail.com"
+                          className="text-blue-600 hover:text-blue-700 transition-colors"
+                        >
+                          gbeberina@gmail.com
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="rounded-2xl border-0 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="bg-green-100 p-3 rounded-full">
+                        <Phone className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">WhatsApp</h3>
+                        <a
+                          href="https://wa.me/31610756699"
+                          className="text-green-600 hover:text-green-700 transition-colors"
+                        >
+                          +31 6 10756699
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="rounded-2xl border-0 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="bg-purple-100 p-3 rounded-full">
+                        <MapPin className="w-6 h-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Service Area</h3>
+                        <p className="text-gray-600">Netherlands</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="rounded-2xl border-0 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4">
+                      <div className="bg-yellow-100 p-3 rounded-full">
+                        <Clock className="w-6 h-6 text-yellow-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Response Time</h3>
+                        <p className="text-gray-600">Within 24 hours</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="bg-blue-50 rounded-2xl p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Prefer Instant Communication?</h3>
+                <p className="text-gray-600 mb-4">
+                  For immediate responses and quick quotes, WhatsApp is your best option. We're usually online during
+                  business hours and respond quickly.
+                </p>
+                <Button className="bg-green-600 hover:bg-green-700 rounded-full">
+                  <Link href="https://wa.me/31610756699">Chat on WhatsApp</Link>
                 </Button>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-              <form className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t.firstName}
-                    </label>
-                    <Input
-                      id="firstName"
-                      type="text"
-                      placeholder="Your first name"
-                      className="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                    />
+            <div>
+              <Card className="rounded-2xl border-0 shadow-lg">
+                <CardContent className="p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
+
+                  <form className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                          First Name *
+                        </label>
+                        <Input
+                          id="firstName"
+                          type="text"
+                          required
+                          className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="Your first name"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                          Last Name *
+                        </label>
+                        <Input
+                          id="lastName"
+                          type="text"
+                          required
+                          className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="Your last name"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        Email Address *
+                      </label>
+                      <Input
+                        id="email"
+                        type="email"
+                        required
+                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number
+                      </label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="+31 6 12345678"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                        Subject *
+                      </label>
+                      <Input
+                        id="subject"
+                        type="text"
+                        required
+                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="What can we help you with?"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                        Message *
+                      </label>
+                      <Textarea
+                        id="message"
+                        required
+                        rows={6}
+                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="Please describe your cleaning needs, preferred schedule, and any specific requirements..."
+                      />
+                    </div>
+
+                    <div className="bg-gray-50 rounded-xl p-4">
+                      <p className="text-sm text-gray-600">
+                        <strong>For faster service:</strong> Include your location, type of property (office/home),
+                        approximate size, and preferred cleaning frequency in your message.
+                      </p>
+                    </div>
+
+                    <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl">
+                      Send Message
+                    </Button>
+                  </form>
+
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <p className="text-sm text-gray-500 text-center">
+                      We respect your privacy and will never share your information with third parties. You can expect a
+                      response within 24 hours.
+                    </p>
                   </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t.lastName}
-                    </label>
-                    <Input
-                      id="lastName"
-                      type="text"
-                      placeholder="Your last name"
-                      className="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.email}
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="your.email@example.com"
-                    className="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.phone}
-                  </label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+31 6 12345678"
-                    className="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t.serviceType}
-                  </label>
-                  <select
-                    id="service"
-                    className="w-full rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500 px-4 py-3"
-                  >
-                    <option value="">Select a service</option>
-                    <option value="general">{t.generalCleaning}</option>
-                    <option value="solar">{t.solarPanelCleaning}</option>
-                    <option value="window">{t.windowCleaning}</option>
-                    <option value="drain">{t.drainCleaning}</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    rows={5}
-                    placeholder="Tell us about your cleaning needs..."
-                    className="rounded-xl border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 rounded-xl"
-                >
-                  <Send className="w-5 h-5 mr-2" />
-                  Send Message
-                </Button>
-              </form>
+                </CardContent>
+              </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-600">Quick answers to common questions about our services.</p>
+          </div>
+
+          <div className="space-y-6">
+            <Card className="rounded-2xl border-0 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">How quickly can you provide a quote?</h3>
+                <p className="text-gray-600">
+                  We typically provide quotes within 24 hours via email, or immediately via WhatsApp for standard
+                  services. For complex projects, we may schedule a brief consultation.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl border-0 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  Do you provide cleaning supplies and equipment?
+                </h3>
+                <p className="text-gray-600">
+                  Yes, we bring all necessary professional-grade cleaning supplies and equipment. We use eco-friendly
+                  products that are safe for your family, pets, and the environment.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl border-0 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Are you insured and bonded?</h3>
+                <p className="text-gray-600">
+                  Absolutely. We are fully insured and bonded for your peace of mind. All our team members are
+                  background-checked and professionally trained.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl border-0 shadow-lg">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  What areas do you serve in the Netherlands?
+                </h3>
+                <p className="text-gray-600">
+                  We provide services throughout the Netherlands. Contact us to confirm availability in your specific
+                  area and discuss any travel fees if applicable.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
