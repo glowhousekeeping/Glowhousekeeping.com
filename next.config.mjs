@@ -1,36 +1,35 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // React strict mode to catch potential issues early
   reactStrictMode: true,
-
-  // SWC minifier for faster production builds
   swcMinify: true,
-
-  // Standalone output for optimal Vercel deployment
   output: 'standalone',
-
-  // i18n setup for English and Dutch
   i18n: {
-    locales: ['en', 'nl'],
+    locales: ['en', 'nl', 'fy'],
     defaultLocale: 'en',
   },
-
-  // Image optimization domains (add any external image hosts)
   images: {
-    domains: ['your-image-domains.com'], // replace with your domains
+    domains: ['blob.v0.app', 'blobs.vusercontent.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'blob.v0.app',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blobs.vusercontent.net',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
-
-  // TypeScript settings
   typescript: {
     ignoreBuildErrors: false,
   },
-
-  // ESLint settings
   eslint: {
     ignoreDuringBuilds: false,
   },
-
-  // Optional headers for security
   async headers() {
     return [
       {
@@ -44,5 +43,4 @@ const nextConfig = {
   },
 };
 
-// Export as ES module
 export default nextConfig;
