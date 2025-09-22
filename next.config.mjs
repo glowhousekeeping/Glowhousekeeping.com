@@ -20,11 +20,6 @@ const nextConfig = {
     domains: ['your-image-domains.com'], // replace with your domains
   },
 
-  // Experimental settings for Next.js App Router
-  experimental: {
-    appDir: true,
-  },
-
   // TypeScript settings
   typescript: {
     ignoreBuildErrors: false,

@@ -84,7 +84,7 @@ export default function HomePage() {
                 <div className="relative w-full h-64 sm:h-72 animate-fade-in-up">
                   <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-karolina-grabowska-4239037.jpg-F1ZZXCKsy4c2EOlGWhQPlnUwsbVKcw.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-karolina-grabowska-4239037.jpg-86SNsGpejjPYV6MIQ4gcquwtXOJZ0w.jpeg"
                       alt="Professional cleaner creating sparkling clean spaces"
                       fill
                       className="object-cover"
@@ -261,7 +261,7 @@ export default function HomePage() {
                     <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-105 hover:-rotate-1">
                       {/* Background Image */}
                       <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-karolina-grabowska-4239037.jpg-F1ZZXCKsy4c2EOlGWhQPlnUwsbVKcw.jpeg"
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-karolina-grabowska-4239037.jpg-86SNsGpejjPYV6MIQ4gcquwtXOJZ0w.jpeg"
                         alt="Professional cleaner creating sparkling clean spaces with care and attention to detail"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -354,7 +354,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1013%20%281%29-EQcJlmfsGRJXt3bpxmnDNzmNq8k5f3.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1013%20%281%29-zfGG0SeFGOU02Yn2gEl7WooKfp77Or.jpeg"
                       alt="Office before cleaning"
                       width={400}
                       height={250}
@@ -368,7 +368,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1013-BBcImoAHbXCu90bXCG87pw05N5zavs.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1013-bEwlZgGbudNnCwojLy06ICOaNwwEDp.jpeg"
                       alt="Office after cleaning"
                       width={400}
                       height={250}
@@ -394,7 +394,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1009-hegKNaElFIugoHRadfWs7WQbVBN79y.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1009-nmNHuI4RpYNCDqFgyXqpNpY0Sj93Xf.jpeg"
                       alt="Kitchen before cleaning"
                       width={400}
                       height={250}
@@ -408,7 +408,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1009%20%281%29-rwVgywquw6vrUydZV8pwkqF2iYiVIP.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1009%20%281%29-YK7wjPeUhUy6Uy106huwinJSJOMGMR.jpeg"
                       alt="Kitchen after cleaning"
                       width={400}
                       height={250}
@@ -434,7 +434,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1011%20%281%29-ncOC3D7C96II3v2p7yZOltNRhCOTep.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1011%20%281%29-y0QcYy9STSBunXxPtnalqawplolX0n.jpeg"
                       alt="Bathroom before cleaning"
                       width={400}
                       height={250}
@@ -448,7 +448,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1011-1P4LsFokIcVkorFVCFRwv1sMIic64V.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1011-DZMhlwmIWNh9bLgzCFSc8VoMMM0Y7Y.jpeg"
                       alt="Bathroom after cleaning"
                       width={400}
                       height={250}
@@ -474,7 +474,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1015%20%281%29-cdgDGhMxO8DzsYyz97swr4YOFhRbrx.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1015%20%281%29-ffWt2DvAcEcQPRriVb2rLDOBfSRcZM.jpeg"
                       alt="Sink before cleaning"
                       width={400}
                       height={250}
@@ -488,7 +488,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1015-v95qAMQhFsIde9jn4jzKR0ZNT00ob8.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/IMG_1015-K0VdgPp88OrkkpenTLdH7xOgCbTMth.jpeg"
                       alt="Sink after cleaning"
                       width={400}
                       height={250}
@@ -546,7 +546,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-karolina-grabowska-4239037.jpg-F1ZZXCKsy4c2EOlGWhQPlnUwsbVKcw.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-karolina-grabowska-4239037.jpg-86SNsGpejjPYV6MIQ4gcquwtXOJZ0w.jpeg"
                     alt="Professional general cleaning service"
                     width={400}
                     height={250}
@@ -571,7 +571,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/image-iWcoY39GM5OD39Y68yzYkaL9gRt3w1.png"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/image-QKhLW7XARRqT96XqsWtN6mBBGf721n.png"
                     alt="Professional solar panel cleaning service"
                     width={400}
                     height={250}
@@ -596,7 +596,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-mvntlie-17085462.jpg-7nXhWXwuM00HW6qxa2l9FdFXVS0ZWk.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-mvntlie-17085462.jpg-BBGntTBNVzMR4j9gMyVfQmKiYbpaQJ.jpeg"
                     alt="Professional window cleaning service"
                     width={400}
                     height={250}
@@ -621,7 +621,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-vi-nguy-n-hoang-duy-256538407-14308927.jpg-c2xP9dzTAgQr9UV1WpfxU73v5FXNmc.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/pexels-vi-nguy-n-hoang-duy-256538407-14308927.jpg-vpBKezjsy00ifnvGx58BTe4coKpnDF.jpeg"
                     alt="Professional drain cleaning service"
                     width={400}
                     height={250}
@@ -915,7 +915,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/8095c50d-8884-420d-8536-8a37460d83b3-xrSakS8IuBf8nizFliRIhTMgv9SKhr.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/8095c50d-8884-420d-8536-8a37460d83b3-roEEYS0SSRWXvlkjylk38TTcIK2Cy5.jpeg"
                       alt="Beautiful rainbow card saying Specially for You"
                       width={400}
                       height={300}
@@ -954,7 +954,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf-QxwL517TIAQPG9BwPRKo7RiNyZ4TkP.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf-zJAFCcfsBC6RdZXL2nPRqAhvQS79lV.jpeg"
                       alt="Sweet note from local bakery saying just eat the pie"
                       width={400}
                       height={300}
@@ -994,7 +994,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/58298937-1665-437a-9b72-75fe53794c85-d5iSP4iGN0jP54r57UxgkukemgrXtU.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/58298937-1665-437a-9b72-75fe53794c85-OA9PaouOIXlhSm5GRP1xMBySGc6gsE.jpeg"
                       alt="Handmade congratulations card from children with Peppa Pig stickers"
                       width={400}
                       height={300}
@@ -1033,7 +1033,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/c0fd41ea-09a1-42b7-a4f3-64ddfa80a80f-nC6pELBfx3XKYzffqhBS6mX2w7rwje.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/c0fd41ea-09a1-42b7-a4f3-64ddfa80a80f-OMcyqBXXh9Wz1VEkq193laUZSy7Fou.jpeg"
                       alt="Sinterklaas gift wrapped with love for Glorija"
                       width={400}
                       height={300}
@@ -1072,7 +1072,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/18d2f142-9684-4f30-8db0-27790e613abd-W4UzK1Ics3YdBx14dZ0q7mz1eGbg6c.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/18d2f142-9684-4f30-8db0-27790e613abd-wE4fQiruJKoeE0PhIsNy0kXfXFDOVL.jpeg"
                       alt="Pink card with Glorija's name and thoughtful gift"
                       width={400}
                       height={300}
@@ -1095,7 +1095,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/9f7fbb6e-62d1-4306-8c50-830ac07381f2-dKFXRUOtvJYM1g1IF5ebP38br7x6sr.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/9f7fbb6e-62d1-4306-8c50-830ac07381f2-X8JBY0m1GO7m5TZAJ0JBNK1OI25I3E.jpeg"
                       alt="Handwritten thank you note in Dutch with thoughtful gifts"
                       width={400}
                       height={300}
@@ -1116,7 +1116,7 @@ export default function HomePage() {
             <div className="bg-white rounded-3xl p-6 shadow-lg border border-rose-100">
               <div className="relative rounded-2xl overflow-hidden mb-4">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/8095c50d-8884-420d-8536-8a37460d83b3-xrSakS8IuBf8nizFliRIhTMgv9SKhr.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/8095c50d-8884-420d-8536-8a37460d83b3-roEEYS0SSRWXvlkjylk38TTcIK2Cy5.jpeg"
                   alt="Beautiful rainbow card saying Specially for You"
                   width={400}
                   height={300}
@@ -1141,7 +1141,7 @@ export default function HomePage() {
             <div className="bg-white rounded-3xl p-6 shadow-lg border border-amber-100">
               <div className="relative rounded-2xl overflow-hidden mb-4">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf-QxwL517TIAQPG9BwPRKo7RiNyZ4TkP.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf-zJAFCcfsBC6RdZXL2nPRqAhvQS79lV.jpeg"
                   alt="Sweet note from local bakery"
                   width={400}
                   height={300}
@@ -1166,7 +1166,7 @@ export default function HomePage() {
             <div className="bg-white rounded-3xl p-6 shadow-lg border border-yellow-100">
               <div className="relative rounded-2xl overflow-hidden mb-4">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/58298937-1665-437a-9b72-75fe53794c85-d5iSP4iGN0jP54r57UxgkukemgrXtU.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/design-mode-images/58298937-1665-437a-9b72-75fe53794c85-OA9PaouOIXlhSm5GRP1xMBySGc6gsE.jpeg"
                   alt="Handmade congratulations card from children"
                   width={400}
                   height={300}
