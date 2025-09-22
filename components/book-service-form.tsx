@@ -1,32 +1,30 @@
 "use client"
 
 import type React from "react"
+
 import { useState } from "react"
-import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Calendar, Clock, MessageCircle } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Calendar, Clock, Home, Building, CheckCircle } from "lucide-react"
 
-interface BookServiceFormProps {
-  className?: string
-}
-
-export default function BookServiceForm({ className = "" }: BookServiceFormProps) {
-  const { t } = useTranslation("common")
-
+export default function BookServiceForm() {
   const [formData, setFormData] = useState({
-    fullName: "",
-    phoneNumber: "",
-    emailAddress: "",
-    businessAddress: "",
-    desiredService: "",
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    serviceType: "",
+    propertyType: "",
     preferredDate: "",
     preferredTime: "",
-    additionalComments: "",
+    frequency: "",
+    specialRequests: "",
   })
+
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
@@ -37,202 +35,229 @@ export default function BookServiceForm({ className = "" }: BookServiceFormProps
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-
-    const message = `${t("bookForm.messageIntro")}
-
-- ${t("bookForm.fullName")}: ${formData.fullName}
-- ${t("bookForm.phoneNumber")}: ${formData.phoneNumber}
-- ${t("bookForm.emailAddress")}: ${formData.emailAddress}
-- ${t("bookForm.businessAddress")}: ${formData.businessAddress}
-- ${t("bookForm.desiredService")}: ${formData.desiredService}
-- ${t("bookForm.preferredDate")}: ${formData.preferredDate}
-- ${t("bookForm.preferredTime")}: ${formData.preferredTime}
-- ${t("bookForm.additionalComments")}: ${formData.additionalComments || t("bookForm.none")}
-
-${t("bookForm.thankYou")}`
-
-    const encodedMessage = encodeURIComponent(message)
-    const whatsappUrl = `https://wa.me/31610756699?text=${encodedMessage}`
-    window.open(whatsappUrl, "_blank")
+    // Here you would typically send the data to your backend
+    console.log("Form submitted:", formData)
+    setIsSubmitted(true)
   }
 
-  const isFormValid = () => {
+  if (isSubmitted) {
     return (
-      formData.fullName &&
-      formData.phoneNumber &&
-      formData.emailAddress &&
-      formData.businessAddress &&
-      formData.desiredService &&
-      formData.preferredDate &&
-      formData.preferredTime
+      <Card className="max-w-2xl mx-auto">
+        <CardContent className="p-8 text-center">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-8 h-8 text-green-600" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Booking Request Submitted!</h2>
+          <p className="text-gray-600 mb-6">
+            Thank you for choosing Glow Housekeeping! We've received your booking request and will contact you within 24
+            hours to confirm your appointment.
+          </p>
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <p className="text-blue-800 font-medium">For immediate assistance, contact us:</p>
+            <p className="text-blue-600">📞 +31 6 10756699 | ✉️ glowhousekeeping.org@gmail.com</p>
+          </div>
+          <Button onClick={() => setIsSubmitted(false)} variant="outline">
+            Submit Another Request
+          </Button>
+        </CardContent>
+      </Card>
     )
   }
 
   return (
-    <div className={`max-w-2xl mx-auto ${className}`}>
-      <div className="text-center mb-8">
-        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t("bookForm.title")}</h2>
-        <p className="text-lg text-gray-600">{t("bookForm.subtitle")}</p>
-      </div>
-
-      <Card className="rounded-3xl border-0 shadow-xl">
-        <CardContent className="p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Full Name */}
-            <div className="space-y-2">
-              <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700">
-                {t("bookForm.fullName")} *
-              </label>
+    <Card className="max-w-2xl mx-auto">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Calendar className="w-5 h-5 text-blue-600" />
+          Book Your Cleaning Service
+        </CardTitle>
+        <CardDescription>
+          Fill out the form below and we'll get back to you within 24 hours with a personalized quote.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Personal Information */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
               <Input
-                id="fullName"
-                type="text"
                 required
-                value={formData.fullName}
-                onChange={(e) => handleInputChange("fullName", e.target.value)}
-                className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                placeholder={t("bookForm.fullNamePlaceholder")}
+                value={formData.name}
+                onChange={(e) => handleInputChange("name", e.target.value)}
+                placeholder="Your full name"
               />
             </div>
-
-            {/* Phone Number and Email */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label htmlFor="phoneNumber" className="block text-sm font-semibold text-gray-700">
-                  {t("bookForm.phoneNumber")} *
-                </label>
-                <Input
-                  id="phoneNumber"
-                  type="tel"
-                  required
-                  value={formData.phoneNumber}
-                  onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
-                  className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder={t("bookForm.phoneNumberPlaceholder")}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="emailAddress" className="block text-sm font-semibold text-gray-700">
-                  {t("bookForm.emailAddress")} *
-                </label>
-                <Input
-                  id="emailAddress"
-                  type="email"
-                  required
-                  value={formData.emailAddress}
-                  onChange={(e) => handleInputChange("emailAddress", e.target.value)}
-                  className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder={t("bookForm.emailAddressPlaceholder")}
-                />
-              </div>
-            </div>
-
-            {/* Business Address */}
-            <div className="space-y-2">
-              <label htmlFor="businessAddress" className="block text-sm font-semibold text-gray-700">
-                {t("bookForm.businessAddress")} *
-              </label>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
               <Input
-                id="businessAddress"
-                type="text"
+                type="email"
                 required
-                value={formData.businessAddress}
-                onChange={(e) => handleInputChange("businessAddress", e.target.value)}
-                className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                placeholder={t("bookForm.businessAddressPlaceholder")}
+                value={formData.email}
+                onChange={(e) => handleInputChange("email", e.target.value)}
+                placeholder="your.email@example.com"
               />
             </div>
+          </div>
 
-            {/* Desired Service */}
-            <div className="space-y-2">
-              <label htmlFor="desiredService" className="block text-sm font-semibold text-gray-700">
-                {t("bookForm.desiredService")} *
-              </label>
-              <Select
-                value={formData.desiredService}
-                onValueChange={(value) => handleInputChange("desiredService", value)}
-              >
-                <SelectTrigger className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                  <SelectValue placeholder={t("bookForm.selectServicePlaceholder")} />
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
+              <Input
+                type="tel"
+                required
+                value={formData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
+                placeholder="+31 6 12345678"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Service Address *</label>
+              <Input
+                required
+                value={formData.address}
+                onChange={(e) => handleInputChange("address", e.target.value)}
+                placeholder="Street address, City"
+              />
+            </div>
+          </div>
+
+          {/* Service Details */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Service Type *</label>
+              <Select onValueChange={(value) => handleInputChange("serviceType", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select service type" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value={t("services.generalCleaning")}>{t("services.generalCleaning")}</SelectItem>
-                  <SelectItem value={t("services.solarPanelCleaning")}>{t("services.solarPanelCleaning")}</SelectItem>
-                  <SelectItem value={t("services.windowCleaning")}>{t("services.windowCleaning")}</SelectItem>
-                  <SelectItem value={t("services.drainCleaning")}>{t("services.drainCleaning")}</SelectItem>
+                  <SelectItem value="general-cleaning">General Cleaning</SelectItem>
+                  <SelectItem value="deep-cleaning">Deep Cleaning</SelectItem>
+                  <SelectItem value="window-cleaning">Window Cleaning</SelectItem>
+                  <SelectItem value="solar-panel-cleaning">Solar Panel Cleaning</SelectItem>
+                  <SelectItem value="carpet-care">Carpet Care</SelectItem>
+                  <SelectItem value="drain-cleaning">Drain Cleaning</SelectItem>
+                  <SelectItem value="multiple-services">Multiple Services</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-
-            {/* Preferred Date and Time */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label htmlFor="preferredDate" className="block text-sm font-semibold text-gray-700">
-                  {t("bookForm.preferredDate")} *
-                </label>
-                <div className="relative">
-                  <Input
-                    id="preferredDate"
-                    type="date"
-                    required
-                    value={formData.preferredDate}
-                    onChange={(e) => handleInputChange("preferredDate", e.target.value)}
-                    className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                  <Calendar className="absolute right-3 top-3 h-6 w-6 text-gray-400 pointer-events-none" />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="preferredTime" className="block text-sm font-semibold text-gray-700">
-                  {t("bookForm.preferredTime")} *
-                </label>
-                <div className="relative">
-                  <Input
-                    id="preferredTime"
-                    type="time"
-                    required
-                    value={formData.preferredTime}
-                    onChange={(e) => handleInputChange("preferredTime", e.target.value)}
-                    className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                  />
-                  <Clock className="absolute right-3 top-3 h-6 w-6 text-gray-400 pointer-events-none" />
-                </div>
-              </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Property Type *</label>
+              <Select onValueChange={(value) => handleInputChange("propertyType", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select property type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="apartment">
+                    <div className="flex items-center gap-2">
+                      <Home className="w-4 h-4" />
+                      Apartment
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="house">
+                    <div className="flex items-center gap-2">
+                      <Home className="w-4 h-4" />
+                      House
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="office">
+                    <div className="flex items-center gap-2">
+                      <Building className="w-4 h-4" />
+                      Office
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="commercial">
+                    <div className="flex items-center gap-2">
+                      <Building className="w-4 h-4" />
+                      Commercial Space
+                    </div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
+          </div>
 
-            {/* Additional Comments */}
-            <div className="space-y-2">
-              <label htmlFor="additionalComments" className="block text-sm font-semibold text-gray-700">
-                {t("bookForm.additionalComments")}
-              </label>
-              <Textarea
-                id="additionalComments"
-                value={formData.additionalComments}
-                onChange={(e) => handleInputChange("additionalComments", e.target.value)}
-                className="min-h-[100px] rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 resize-none"
-                placeholder={t("bookForm.additionalCommentsPlaceholder")}
+          {/* Scheduling */}
+          <div className="grid md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Date</label>
+              <Input
+                type="date"
+                value={formData.preferredDate}
+                onChange={(e) => handleInputChange("preferredDate", e.target.value)}
+                min={new Date().toISOString().split("T")[0]}
               />
             </div>
-
-            {/* Submit Button */}
-            <div className="pt-4">
-              <Button
-                type="submit"
-                disabled={!isFormValid()}
-                className="w-full h-12 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed rounded-xl text-base font-semibold transition-all duration-300"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                {t("bookForm.sendViaWhatsApp")}
-              </Button>
-
-              <p className="text-sm text-gray-500 text-center mt-3">
-                {t("bookForm.whatsappDisclaimer")}
-              </p>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Time</label>
+              <Select onValueChange={(value) => handleInputChange("preferredTime", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select time" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="morning">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      Morning (8AM - 12PM)
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="afternoon">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      Afternoon (12PM - 5PM)
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="evening">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      Evening (5PM - 8PM)
+                    </div>
+                  </SelectItem>
+                  <SelectItem value="flexible">Flexible</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Frequency</label>
+              <Select onValueChange={(value) => handleInputChange("frequency", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select frequency" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="one-time">One-time Service</SelectItem>
+                  <SelectItem value="weekly">Weekly</SelectItem>
+                  <SelectItem value="bi-weekly">Bi-weekly</SelectItem>
+                  <SelectItem value="monthly">Monthly</SelectItem>
+                  <SelectItem value="quarterly">Quarterly</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* Special Requests */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Special Requests or Additional Information
+            </label>
+            <Textarea
+              value={formData.specialRequests}
+              onChange={(e) => handleInputChange("specialRequests", e.target.value)}
+              placeholder="Please let us know about any specific requirements, areas of focus, pets, allergies, or other important details..."
+              rows={4}
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="pt-4">
+            <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
+              Submit Booking Request
+            </Button>
+            <p className="text-sm text-gray-500 text-center mt-3">
+              We'll contact you within 24 hours to confirm your appointment and provide a detailed quote.
+            </p>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   )
 }

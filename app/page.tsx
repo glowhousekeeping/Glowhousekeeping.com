@@ -1,186 +1,170 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { AutoScrollingGallery } from "@/components/auto-scrolling-gallery"
+import { ImageComparison } from "@/components/image-comparison"
 import {
   Star,
   CheckCircle,
-  MessageCircle,
-  Calendar,
-  ArrowRight,
-  Sparkles,
-  Heart,
+  Clock,
   Shield,
   Users,
-  Award,
-  Clock,
-  Zap,
+  Sparkles,
+  Home,
+  Droplets,
+  Album as Vacuum,
+  Sun,
+  Phone,
 } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import { getCurrentTranslations } from "@/components/language-switcher"
-import AutoScrollingGallery from "@/components/auto-scrolling-gallery"
-import ImageComparison from "@/components/image-comparison"
 
 export default function HomePage() {
-  const [translations, setTranslations] = useState(getCurrentTranslations())
+  const { t } = useTranslation()
 
-  useEffect(() => {
-    // Listen for global language changes
-    const handleGlobalLanguageChange = (event: CustomEvent) => {
-      setTranslations(event.detail.translations)
-    }
+  const services = [
+    {
+      icon: Home,
+      title: t("services.generalCleaning"),
+      description: t("services.generalCleaningDesc"),
+      price: t("pricing.generalCleaning"),
+      href: "/services/general-cleaning",
+    },
+    {
+      icon: Sparkles,
+      title: t("services.deepCleaning"),
+      description: t("services.deepCleaningDesc"),
+      price: t("pricing.deepCleaning"),
+      href: "/services/deep-cleaning",
+    },
+    {
+      icon: Droplets,
+      title: t("services.windowCleaning"),
+      description: t("services.windowCleaningDesc"),
+      price: t("pricing.windowCleaning"),
+      href: "/services/window-cleaning",
+    },
+    {
+      icon: Vacuum,
+      title: t("services.carpetCare"),
+      description: t("services.carpetCareDesc"),
+      price: t("pricing.carpetCare"),
+      href: "/services/carpet-care",
+    },
+    {
+      icon: Sun,
+      title: t("services.solarPanelCleaning"),
+      description: t("services.solarPanelCleaningDesc"),
+      price: t("pricing.solarPanelCleaning"),
+      href: "/services/solar-panel-cleaning",
+    },
+  ]
 
-    if (typeof window !== "undefined") {
-      window.addEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
+  const features = [
+    {
+      icon: CheckCircle,
+      title: t("features.qualityAssurance"),
+      description: t("features.qualityAssuranceDesc"),
+    },
+    {
+      icon: Clock,
+      title: t("features.flexibleScheduling"),
+      description: t("features.flexibleSchedulingDesc"),
+    },
+    {
+      icon: Shield,
+      title: t("features.insuredBonded"),
+      description: t("features.insuredBondedDesc"),
+    },
+    {
+      icon: Users,
+      title: t("features.experiencedTeam"),
+      description: t("features.experiencedTeamDesc"),
+    },
+  ]
 
-      return () => {
-        window.removeEventListener("globalLanguageChanged", handleGlobalLanguageChange as EventListener)
-      }
-    }
-  }, [])
-
-  const t = translations
+  const testimonials = [
+    "/thank-you-note-1.png",
+    "/client-appreciation-gift.png",
+    "/positive-client-review.png",
+    "/cleaning-transformation.png",
+    "/client-testimonial-card.png",
+    "/holiday-appreciation-card.png",
+  ]
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/hero-background-premium.jpg')] bg-cover bg-center opacity-5"></div>
-        <div className="max-w-7xl mx-auto relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 text-sm px-4 py-2">
-                  ✨ {t.heroTagline}
-                </Badge>
-                <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">{t.heroTitle}</h1>
-                <p className="text-xl text-gray-600 leading-relaxed">{t.heroSubtitle}</p>
-                <p className="text-lg text-blue-600 font-medium">{t.heroSpecialization}</p>
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-8 text-lg">
-                  <Link href="/book-service" className="flex items-center gap-2">
-                    <Calendar className="w-5 h-5" />
-                    {t.requestQuote}
-                  </Link>
+      <section className="relative bg-gradient-to-br from-blue-50 to-indigo-100 py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/hero-background-cleaning.png')] bg-cover bg-center opacity-10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <Badge className="mb-4 bg-blue-100 text-blue-800 hover:bg-blue-200">{t("hero.badge")}</Badge>
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">{t("hero.title")}</h1>
+              <p className="text-xl text-gray-600 mb-8 max-w-2xl">{t("hero.subtitle")}</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-lg px-8 py-3">
+                  <Link href="/book-service">{t("hero.bookNow")}</Link>
                 </Button>
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 rounded-full px-8 text-lg">
-                  <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
-                    <MessageCircle className="w-5 h-5" />
-                    {t.whatsapp}
-                  </Link>
+                <Button asChild variant="outline" size="lg" className="text-lg px-8 py-3 bg-transparent">
+                  <Link href="/services">{t("hero.viewServices")}</Link>
                 </Button>
               </div>
-
-              <div className="bg-blue-50 rounded-2xl p-6">
-                <p className="text-blue-800 font-semibold text-lg text-center">{t.heroServiceArea}</p>
+              <div className="mt-8 flex items-center justify-center lg:justify-start space-x-4">
+                <div className="flex items-center">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <span className="text-gray-600">{t("hero.rating")}</span>
               </div>
             </div>
-
             <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative z-10">
                 <Image
                   src="/professional-cleaner-home.png"
-                  alt="Professional cleaning service"
+                  alt="Professional Cleaning Service"
                   width={600}
-                  height={500}
-                  className="w-full h-auto"
-                  priority
+                  height={400}
+                  className="rounded-lg shadow-2xl hover-lift"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-xl">
-                    <p className="text-lg font-semibold text-gray-900 mb-2">{t.imageCaption}</p>
-                    <p className="text-gray-600">{t.imageSubCaption}</p>
-                    <Button className="mt-4 bg-blue-600 hover:bg-blue-700 rounded-full">
-                      <Link href="/client-assessment" className="flex items-center gap-2">
-                        {t.clientAssessment}
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
               </div>
+              <div className="absolute -top-4 -right-4 w-72 h-72 bg-blue-200 rounded-full opacity-20 animate-float"></div>
+              <div
+                className="absolute -bottom-4 -left-4 w-48 h-48 bg-indigo-200 rounded-full opacity-20 animate-float"
+                style={{ animationDelay: "1s" }}
+              ></div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="bg-green-100 text-green-800 hover:bg-green-200 text-sm px-4 py-2 mb-4">
-              {t.ourProfessionalServices}
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.ourProfessionalServices}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.servicesSubtitle}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("services.title")}</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t("services.subtitle")}</p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: t.generalCleaning,
-                description: t.generalCleaningDesc,
-                price: t.generalCleaningPricing,
-                icon: <Sparkles className="w-8 h-8 text-blue-600" />,
-                href: "/services/general-cleaning",
-                color: "blue",
-              },
-              {
-                title: t.solarPanelCleaning,
-                description: t.solarPanelCleaningDesc,
-                price: "€150-500",
-                icon: <Zap className="w-8 h-8 text-yellow-600" />,
-                href: "/services/solar-panel-cleaning",
-                color: "yellow",
-              },
-              {
-                title: t.windowCleaning,
-                description: t.windowCleaningDesc,
-                price: "€150-550",
-                icon: <Star className="w-8 h-8 text-green-600" />,
-                href: "/services/window-cleaning",
-                color: "green",
-              },
-              {
-                title: t.drainCleaning,
-                description: t.drainCleaningDesc,
-                price: "€20-120",
-                icon: <CheckCircle className="w-8 h-8 text-purple-600" />,
-                href: "/services/drain-cleaning",
-                color: "purple",
-              },
-            ].map((service, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-2xl transition-all duration-500 rounded-3xl border-0 shadow-lg transform hover:-translate-y-2"
-              >
-                <CardContent className="p-8 text-center h-full flex flex-col">
-                  <div
-                    className={`bg-${service.color}-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-${service.color}-200 transition-colors duration-300`}
-                  >
-                    {service.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <Card key={index} className="service-card hover-lift">
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-4">
+                    <service.icon className="h-12 w-12 text-blue-600" />
+                    <Badge variant="secondary">{service.price}</Badge>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{service.description}</p>
-                  <div className="space-y-4">
-                    <div className="bg-gray-50 rounded-2xl p-4">
-                      <p className="text-lg font-bold text-green-600">{service.price}</p>
-                    </div>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 rounded-full">
-                      <Link href={service.href} className="flex items-center gap-2">
-                        {t.learnMore}
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </Button>
-                  </div>
+                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                  <CardDescription>{service.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link href={service.href}>{t("common.learnMore")}</Link>
+                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -188,287 +172,73 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Before & After Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      {/* Before/After Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="bg-purple-100 text-purple-800 hover:bg-purple-200 text-sm px-4 py-2 mb-4">
-              {t.transformation}
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.transformationTitle}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.transformationSubtitle}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("beforeAfter.title")}</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t("beforeAfter.subtitle")}</p>
           </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
+          <div className="max-w-4xl mx-auto">
             <ImageComparison
-              beforeImage="/cleaning-transformation.png"
-              afterImage="/professional-office-cleaning.png"
-              title={t.officeTransformation}
-              description={t.officeTransformationDesc}
+              beforeImage="/images/design-mode/IMG_1009.jpeg"
+              afterImage="/images/design-mode/IMG_1009 (1).jpeg"
+              alt="Cleaning transformation"
             />
-            <ImageComparison
-              beforeImage="/cleaning-transformation.png"
-              afterImage="/modern-dutch-office-cleaning.png"
-              title={t.kitchenCleaning}
-              description={t.kitchenCleaningDesc}
-            />
-          </div>
-
-          <div className="text-center">
-            <Card className="rounded-3xl border-0 shadow-2xl overflow-hidden bg-gradient-to-br from-blue-50 to-green-50 max-w-4xl mx-auto">
-              <CardContent className="p-12">
-                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">{t.readyForTransformation}</h3>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">{t.transformationCTA}</p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-8">
-                    <Link href="/book-service">{t.getYourQuote}</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent">
-                    <Link href="/contact">{t.bookNow}</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
+      {/* Features Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="bg-rose-100 text-rose-800 hover:bg-rose-200 text-sm px-4 py-2 mb-4">Why Choose Us</Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.whyChooseUs}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.whyChooseUsSubtitle}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("features.title")}</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t("features.subtitle")}</p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {[
-              {
-                icon: <Users className="w-8 h-8 text-blue-500" />,
-                title: t.trustedCleaners,
-                description: t.trustedCleanersDesc,
-                color: "blue",
-              },
-              {
-                icon: <Award className="w-8 h-8 text-green-500" />,
-                title: t.professionalResults,
-                description: t.professionalResultsDesc,
-                color: "green",
-              },
-              {
-                icon: <CheckCircle className="w-8 h-8 text-purple-500" />,
-                title: t.affordableRates,
-                description: t.affordableRatesDesc,
-                color: "purple",
-              },
-              {
-                icon: <Clock className="w-8 h-8 text-orange-500" />,
-                title: t.easyBooking,
-                description: t.easyBookingDesc,
-                color: "orange",
-              },
-              {
-                icon: <Heart className="w-8 h-8 text-red-500" />,
-                title: t.flexiblePassionate,
-                description: t.flexiblePassionateDesc,
-                color: "red",
-              },
-              {
-                icon: <Shield className="w-8 h-8 text-teal-500" />,
-                title: "Fully Insured",
-                description: "Complete insurance coverage and bonded team members for your peace of mind.",
-                color: "teal",
-              },
-            ].map((feature, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-2xl transition-all duration-500 rounded-3xl border-0 shadow-lg transform hover:-translate-y-2"
-              >
-                <CardContent className="p-8 text-center">
-                  <div
-                    className={`bg-${feature.color}-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-${feature.color}-200 transition-colors duration-300`}
-                  >
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-                </CardContent>
-              </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
+                  <feature.icon className="h-8 w-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
             ))}
           </div>
-
-          <div className="text-center">
-            <Card className="rounded-3xl border-0 shadow-2xl overflow-hidden bg-gradient-to-br from-green-50 to-blue-50 max-w-4xl mx-auto">
-              <CardContent className="p-12">
-                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">{t.experienceGlowDifference}</h3>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">{t.experienceGlowCTA}</p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Button size="lg" className="bg-green-600 hover:bg-green-700 rounded-full px-8">
-                    <Link href="/book-service">{t.getStartedToday}</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent">
-                    <Link href="/about">{t.learnMoreAboutUs}</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      {/* Testimonials Gallery */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <Badge className="bg-indigo-100 text-indigo-800 hover:bg-indigo-200 text-sm px-4 py-2 mb-4">
-              {t.gallery?.badge || "Professional Results"}
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              {t.gallery?.title || "Our Professional Results"}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t.gallery?.description ||
-                "A glimpse into the spaces we've transformed — spotless, glowing, and beautifully organized."}
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("testimonials.title")}</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t("testimonials.subtitle")}</p>
           </div>
-
-          <AutoScrollingGallery />
-
-          <div className="text-center mt-16">
-            <Card className="rounded-3xl border-0 shadow-2xl overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 max-w-4xl mx-auto">
-              <CardContent className="p-12">
-                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
-                  {t.gallery?.cta?.title || "Ready to See Your Space Transformed?"}
-                </h3>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                  {t.gallery?.cta?.description ||
-                    "These results speak for themselves. Experience the same level of professional cleaning excellence in your own space."}
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 rounded-full px-8">
-                    <Link href="/book-service">{t.gallery?.cta?.button1 || "Get Your Quote"}</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent">
-                    <Link href="/services/general-cleaning">{t.gallery?.cta?.button2 || "View All Services"}</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-200 text-sm px-4 py-2 mb-4">
-              {t.clientLove}
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.whatClientsSay}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.clientsSaySubtitle}</p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            <Card className="rounded-3xl border-0 shadow-xl overflow-hidden">
-              <CardContent className="p-0">
-                <Image
-                  src="/thank-you-note-1.png"
-                  alt="Thank you note from satisfied client"
-                  width={400}
-                  height={300}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 italic">"Exceptional service and attention to detail!"</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-3xl border-0 shadow-xl overflow-hidden">
-              <CardContent className="p-0">
-                <Image
-                  src="/client-appreciation-gift.png"
-                  alt="Client appreciation gift"
-                  width={400}
-                  height={300}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 italic">"They go above and beyond every time."</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-3xl border-0 shadow-xl overflow-hidden">
-              <CardContent className="p-0">
-                <Image
-                  src="/positive-client-review.png"
-                  alt="Positive client review"
-                  width={400}
-                  height={300}
-                  className="w-full h-64 object-cover"
-                />
-                <div className="p-6">
-                  <div className="flex items-center gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-gray-700 italic">"Professional, reliable, and trustworthy."</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center">
-            <Card className="rounded-3xl border-0 shadow-2xl overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50 max-w-4xl mx-auto">
-              <CardContent className="p-12">
-                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">{t.shareYourExperience}</h3>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8">{t.shareExperienceCTA}</p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Button size="lg" className="bg-yellow-600 hover:bg-yellow-700 rounded-full px-8">
-                    <Link href="/contact">{t.shareYourStory}</Link>
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent">
-                    <Link href="/book-service">{t.bookYourService}</Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <AutoScrollingGallery images={testimonials} />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">{t.readyToExperience}</h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">{t.ctaSubtitle}</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
-              <Link href="/book-service" className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                {t.getFreeQuote}
-              </Link>
+      <section className="py-20 bg-blue-600">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t("cta.title")}</h2>
+          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">{t("cta.subtitle")}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-3">
+              <Link href="/book-service">{t("cta.bookNow")}</Link>
             </Button>
-            <Button size="lg" className="bg-green-700 hover:bg-green-800 text-white rounded-full px-8">
-              <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
-                <MessageCircle className="w-5 h-5" />
-                {t.contactWhatsApp}
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="text-lg px-8 py-3 text-white border-white hover:bg-white hover:text-blue-600 bg-transparent"
+            >
+              <Link href="tel:+31612345678">
+                <Phone className="h-5 w-5 mr-2" />
+                {t("cta.callNow")}
               </Link>
             </Button>
           </div>
