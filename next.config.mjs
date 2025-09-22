@@ -7,25 +7,14 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['blob.v0.app', 'hebbkx1anhila5yf.public.blob.vercel-storage.com'],
+    domains: ['localhost'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'blob.v0.app',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
-        port: '',
-        pathname: '/**',
+        hostname: '**',
       },
     ],
     unoptimized: true,
-  },
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
   },
 }
 

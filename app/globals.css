@@ -150,7 +150,7 @@
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-20px);
   }
 }
 
@@ -265,7 +265,7 @@
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
@@ -282,6 +282,14 @@
 
 .animate-auto-scroll {
   animation: scroll 20s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 3s infinite;
 }
 
 .loading-spinner {
@@ -316,17 +324,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #888;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #555;
 }
 
 /* Gradient backgrounds */
@@ -413,7 +420,11 @@ html {
   border: 1px solid transparent;
 }
 
-.service-card:hover {
+.service-card-hover {
+  transition: all 0.3s ease;
+}
+
+.service-card-hover:hover {
   border-color: #3b82f6;
   box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
   transform: translateY(-5px);
@@ -502,7 +513,7 @@ html {
     background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
   }
 
-  .service-card:hover {
+  .service-card-hover {
     transform: none;
   }
 }
