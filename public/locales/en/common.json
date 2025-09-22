@@ -1,41 +1,95 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
+    "about": "About Us",
     "services": "Services",
     "contact": "Contact",
     "blog": "Blog",
     "joinTeam": "Join Our Team"
   },
   "hero": {
-    "title": "Professional Cleaning Services in the Netherlands",
-    "subtitle": "Transform your space with our expert cleaning services. From homes to offices, we bring the shine back to your world.",
-    "cta": "Book Your Service",
-    "learnMore": "Learn More"
+    "title": "Expert Cleaning Services Across the Netherlands",
+    "subtitle": "Bring back the sparkle to your home or office with our professional cleaning team. Reliable, thorough, and passionate about making your space shine.",
+    "cta": "Book a Service",
+    "learnMore": "Discover More"
   },
   "about": {
     "title": "About Glow Housekeeping",
     "founder": "Glorija Beberina",
     "founderTitle": "Founder & CEO",
-    "founderDescription": "Glorija Beberina is the founder and CEO of Glow Housekeeping, a company built on trust, transparency, and a passion for helping others live and work in clean, uplifting spaces."
+    "founderDescription": "Glorija Beberina founded Glow Housekeeping to create a trusted, transparent, and high-quality cleaning service that makes every space feel fresh, welcoming, and cared for."
   },
   "services": {
-    "title": "Our Services",
+    "title": "Our Cleaning Services",
     "generalCleaning": "General Cleaning",
-    "generalCleaningPricing": "Pricing starts at €35 per hour and may vary depending on the size of your space",
+    "generalCleaningPricing": "Starting at €35/hour, pricing varies by space size",
     "solarPanelCleaning": "Solar Panel Cleaning",
     "windowCleaning": "Window Cleaning",
     "drainCleaning": "Drain Cleaning"
   },
   "contact": {
-    "title": "Contact Us",
+    "title": "Get in Touch",
     "phone": "Phone",
     "email": "Email",
     "address": "Address"
   },
   "footer": {
     "company": "Glow Housekeeping",
-    "description": "Professional cleaning services across the Netherlands",
-    "rights": "All rights reserved"
-  }
+    "description": "Professional cleaning services throughout the Netherlands",
+    "rights": "© 2025 Glow Housekeeping. All rights reserved."
+  },
+  "navbar": {
+    "getQuote": "Book a Service",
+    "careers": "Join Our Team"
+  },
+  "gallery": {
+    "badge": "Professional Results",
+    "title": "Our Professional Results",
+    "description": "A glimpse into the spaces we've transformed — spotless, glowing, and beautifully organized.",
+    "images": [
+      { "alt": "Modern dishwasher cleaning result", "caption": "Spotless Kitchen Appliances" },
+      { "alt": "Perfect floor and baseboard cleaning", "caption": "Pristine Floor Detailing" },
+      { "alt": "Professional window cleaning service", "caption": "Crystal Clear Windows" },
+      { "alt": "Sparkling clean modern shower", "caption": "Luxurious Shower Spaces" },
+      { "alt": "Clean shower enclosure with glass doors", "caption": "Immaculate Bathroom Details" },
+      { "alt": "Professional appliance cleaning", "caption": "Expert Equipment Care" },
+      { "alt": "Pristine white bathtub", "caption": "Gleaming Bathtub Restoration" },
+      { "alt": "Sparkling chrome fixtures", "caption": "Polished Chrome Perfection" },
+      { "alt": "Clean bathroom vanity area", "caption": "Modern Vanity Excellence" }
+    ],
+    "cta": {
+      "title": "Ready to See Your Space Transformed?",
+      "description": "These results speak for themselves. Experience the same level of professional cleaning excellence in your own space.",
+      "button1": "Get Your Quote",
+      "button2": "View All Services"
+    }
+  },
+  "bookForm": {
+    "title": "Book Your Service",
+    "subtitle": "Fill out the form and we'll contact you via WhatsApp",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Enter your full name",
+    "phoneNumber": "Phone Number",
+    "phoneNumberPlaceholder": "+31 6 12345678",
+    "emailAddress": "Email Address",
+    "emailAddressPlaceholder": "your.email@example.com",
+    "businessAddress": "Business Address",
+    "businessAddressPlaceholder": "Enter your business address",
+    "desiredService": "Desired Service",
+    "desiredServicePlaceholder": "Select a service",
+    "services": {
+      "general": "General Cleaning",
+      "solar": "Solar Panel Cleaning",
+      "window": "Window Cleaning",
+      "drain": "Drain Cleaning"
+    },
+    "preferredDate": "Preferred Date",
+    "preferredTime": "Preferred Time",
+    "additionalComments": "Additional Comments",
+    "additionalCommentsPlaceholder": "Tell us about your specific cleaning needs...",
+    "submitButton": "Send via WhatsApp",
+    "whatsappNote": "By clicking, you will be redirected to WhatsApp to confirm your booking."
+  },
+  "before": "Before",
+  "after": "After"
 }

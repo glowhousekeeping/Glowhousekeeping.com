@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -15,6 +15,8 @@ interface BookServiceFormProps {
 }
 
 export default function BookServiceForm({ className = "" }: BookServiceFormProps) {
+  const { t } = useTranslation("common")
+
   const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
@@ -36,25 +38,21 @@ export default function BookServiceForm({ className = "" }: BookServiceFormProps
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
-    // Create WhatsApp message
-    const message = `Hello, I would like to request a cleaning service quote:
+    const message = `${t("bookForm.messageIntro")}
 
-- Name: ${formData.fullName}
-- Phone: ${formData.phoneNumber}
-- Email: ${formData.emailAddress}
-- Address: ${formData.businessAddress}
-- Service: ${formData.desiredService}
-- Date: ${formData.preferredDate}
-- Time: ${formData.preferredTime}
-- Comments: ${formData.additionalComments || "None"}
+- ${t("bookForm.fullName")}: ${formData.fullName}
+- ${t("bookForm.phoneNumber")}: ${formData.phoneNumber}
+- ${t("bookForm.emailAddress")}: ${formData.emailAddress}
+- ${t("bookForm.businessAddress")}: ${formData.businessAddress}
+- ${t("bookForm.desiredService")}: ${formData.desiredService}
+- ${t("bookForm.preferredDate")}: ${formData.preferredDate}
+- ${t("bookForm.preferredTime")}: ${formData.preferredTime}
+- ${t("bookForm.additionalComments")}: ${formData.additionalComments || t("bookForm.none")}
 
-Thank you!`
+${t("bookForm.thankYou")}`
 
-    // Encode the message for URL
     const encodedMessage = encodeURIComponent(message)
     const whatsappUrl = `https://wa.me/31610756699?text=${encodedMessage}`
-
-    // Open WhatsApp
     window.open(whatsappUrl, "_blank")
   }
 
@@ -73,8 +71,8 @@ Thank you!`
   return (
     <div className={`max-w-2xl mx-auto ${className}`}>
       <div className="text-center mb-8">
-        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Book Your Service</h2>
-        <p className="text-lg text-gray-600">Fill out the form and we'll contact you via WhatsApp</p>
+        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t("bookForm.title")}</h2>
+        <p className="text-lg text-gray-600">{t("bookForm.subtitle")}</p>
       </div>
 
       <Card className="rounded-3xl border-0 shadow-xl">
@@ -83,7 +81,7 @@ Thank you!`
             {/* Full Name */}
             <div className="space-y-2">
               <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700">
-                Full Name *
+                {t("bookForm.fullName")} *
               </label>
               <Input
                 id="fullName"
@@ -92,7 +90,7 @@ Thank you!`
                 value={formData.fullName}
                 onChange={(e) => handleInputChange("fullName", e.target.value)}
                 className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                placeholder="Enter your full name"
+                placeholder={t("bookForm.fullNamePlaceholder")}
               />
             </div>
 
@@ -100,7 +98,7 @@ Thank you!`
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label htmlFor="phoneNumber" className="block text-sm font-semibold text-gray-700">
-                  Phone Number *
+                  {t("bookForm.phoneNumber")} *
                 </label>
                 <Input
                   id="phoneNumber"
@@ -109,13 +107,13 @@ Thank you!`
                   value={formData.phoneNumber}
                   onChange={(e) => handleInputChange("phoneNumber", e.target.value)}
                   className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="+31 6 12345678"
+                  placeholder={t("bookForm.phoneNumberPlaceholder")}
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="emailAddress" className="block text-sm font-semibold text-gray-700">
-                  Email Address *
+                  {t("bookForm.emailAddress")} *
                 </label>
                 <Input
                   id="emailAddress"
@@ -124,7 +122,7 @@ Thank you!`
                   value={formData.emailAddress}
                   onChange={(e) => handleInputChange("emailAddress", e.target.value)}
                   className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                  placeholder="your.email@example.com"
+                  placeholder={t("bookForm.emailAddressPlaceholder")}
                 />
               </div>
             </div>
@@ -132,7 +130,7 @@ Thank you!`
             {/* Business Address */}
             <div className="space-y-2">
               <label htmlFor="businessAddress" className="block text-sm font-semibold text-gray-700">
-                Business Address *
+                {t("bookForm.businessAddress")} *
               </label>
               <Input
                 id="businessAddress"
@@ -141,27 +139,27 @@ Thank you!`
                 value={formData.businessAddress}
                 onChange={(e) => handleInputChange("businessAddress", e.target.value)}
                 className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                placeholder="Enter your business address"
+                placeholder={t("bookForm.businessAddressPlaceholder")}
               />
             </div>
 
             {/* Desired Service */}
             <div className="space-y-2">
               <label htmlFor="desiredService" className="block text-sm font-semibold text-gray-700">
-                Desired Service *
+                {t("bookForm.desiredService")} *
               </label>
               <Select
                 value={formData.desiredService}
                 onValueChange={(value) => handleInputChange("desiredService", value)}
               >
                 <SelectTrigger className="h-12 rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                  <SelectValue placeholder="Select a service" />
+                  <SelectValue placeholder={t("bookForm.selectServicePlaceholder")} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="General Cleaning">General Cleaning</SelectItem>
-                  <SelectItem value="Solar Panel Cleaning">Solar Panel Cleaning</SelectItem>
-                  <SelectItem value="Window Cleaning">Window Cleaning</SelectItem>
-                  <SelectItem value="Drain Cleaning">Drain Cleaning</SelectItem>
+                  <SelectItem value={t("services.generalCleaning")}>{t("services.generalCleaning")}</SelectItem>
+                  <SelectItem value={t("services.solarPanelCleaning")}>{t("services.solarPanelCleaning")}</SelectItem>
+                  <SelectItem value={t("services.windowCleaning")}>{t("services.windowCleaning")}</SelectItem>
+                  <SelectItem value={t("services.drainCleaning")}>{t("services.drainCleaning")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -170,7 +168,7 @@ Thank you!`
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label htmlFor="preferredDate" className="block text-sm font-semibold text-gray-700">
-                  Preferred Date *
+                  {t("bookForm.preferredDate")} *
                 </label>
                 <div className="relative">
                   <Input
@@ -187,7 +185,7 @@ Thank you!`
 
               <div className="space-y-2">
                 <label htmlFor="preferredTime" className="block text-sm font-semibold text-gray-700">
-                  Preferred Time *
+                  {t("bookForm.preferredTime")} *
                 </label>
                 <div className="relative">
                   <Input
@@ -206,14 +204,14 @@ Thank you!`
             {/* Additional Comments */}
             <div className="space-y-2">
               <label htmlFor="additionalComments" className="block text-sm font-semibold text-gray-700">
-                Additional Comments
+                {t("bookForm.additionalComments")}
               </label>
               <Textarea
                 id="additionalComments"
                 value={formData.additionalComments}
                 onChange={(e) => handleInputChange("additionalComments", e.target.value)}
                 className="min-h-[100px] rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 resize-none"
-                placeholder="Tell us about your specific cleaning needs..."
+                placeholder={t("bookForm.additionalCommentsPlaceholder")}
               />
             </div>
 
@@ -225,11 +223,11 @@ Thank you!`
                 className="w-full h-12 bg-green-600 hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed rounded-xl text-base font-semibold transition-all duration-300"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Send via WhatsApp
+                {t("bookForm.sendViaWhatsApp")}
               </Button>
 
               <p className="text-sm text-gray-500 text-center mt-3">
-                By clicking, you will be redirected to WhatsApp to confirm your booking.
+                {t("bookForm.whatsappDisclaimer")}
               </p>
             </div>
           </form>

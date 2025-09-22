@@ -1,8 +1,13 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Phone, Mail, MapPin, Clock, Star } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export default function Footer() {
+  const { t } = useTranslation("common")
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -12,14 +17,14 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <Image
                 src="/glow-housekeeping-logo.png"
-                alt="Glow Housekeeping Logo"
+                alt={t("footer.company")}
                 width={40}
                 height={40}
                 className="rounded-lg"
               />
               <div>
-                <h3 className="text-xl font-bold">Glow Housekeeping</h3>
-                <p className="text-sm text-gray-400">Professional Cleaning Services</p>
+                <h3 className="text-xl font-bold">{t("footer.company")}</h3>
+                <p className="text-sm text-gray-400">{t("footer.description")}</p>
               </div>
             </div>
             <p className="text-gray-300 leading-relaxed">
@@ -36,50 +41,41 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold">Quick Links</h4>
+            <h4 className="text-lg font-semibold">{t("nav.home")}</h4>
             <nav className="space-y-3">
               <Link href="/" className="block text-gray-300 hover:text-white transition-colors">
-                Home
+                {t("nav.home")}
               </Link>
               <Link href="/about" className="block text-gray-300 hover:text-white transition-colors">
-                About Us
+                {t("nav.about")}
               </Link>
-              <Link
-                href="/services/general-cleaning"
-                className="block text-gray-300 hover:text-white transition-colors"
-              >
-                Services
+              <Link href="/services/general-cleaning" className="block text-gray-300 hover:text-white transition-colors">
+                {t("nav.services")}
               </Link>
               <Link href="/blog" className="block text-gray-300 hover:text-white transition-colors">
-                Blog
+                {t("nav.blog")}
               </Link>
               <Link href="/contact" className="block text-gray-300 hover:text-white transition-colors">
-                Contact
+                {t("nav.contact")}
               </Link>
             </nav>
           </div>
 
           {/* Services */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold">Our Services</h4>
+            <h4 className="text-lg font-semibold">{t("services.title")}</h4>
             <nav className="space-y-3">
-              <Link
-                href="/services/general-cleaning"
-                className="block text-gray-300 hover:text-white transition-colors"
-              >
-                General Cleaning
+              <Link href="/services/general-cleaning" className="block text-gray-300 hover:text-white transition-colors">
+                {t("services.generalCleaning")}
               </Link>
-              <Link
-                href="/services/solar-panel-cleaning"
-                className="block text-gray-300 hover:text-white transition-colors"
-              >
-                Solar Panel Cleaning
+              <Link href="/services/solar-panel-cleaning" className="block text-gray-300 hover:text-white transition-colors">
+                {t("services.solarPanelCleaning")}
               </Link>
               <Link href="/services/window-cleaning" className="block text-gray-300 hover:text-white transition-colors">
-                Window Cleaning
+                {t("services.windowCleaning")}
               </Link>
               <Link href="/services/drain-cleaning" className="block text-gray-300 hover:text-white transition-colors">
-                Drain Cleaning
+                {t("services.drainCleaning")}
               </Link>
               <Link href="/services/carpet-care" className="block text-gray-300 hover:text-white transition-colors">
                 Carpet Care
@@ -89,7 +85,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold">Get in Touch</h4>
+            <h4 className="text-lg font-semibold">{t("contact.title")}</h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
@@ -130,7 +126,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm">
-              © 2024 Glow Housekeeping. All rights reserved. Founded by Glorija Beberina.
+              © 2025 {t("footer.company")}. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">

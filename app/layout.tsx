@@ -1,12 +1,16 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import AIChatbotGlorija from "@/components/ai-chatbot-glorija"
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import AIChatbotGlorija from "@/components/ai-chatbot-glorija";
 
-const inter = Inter({ subsets: ["latin"] })
+// ✅ Import i18next provider and i18n setup
+import { I18nextProvider } from "react-i18next";
+import i18n from "../i18n"; // make sure i18n.js exists in your project root
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Glow Housekeeping - Professional Cleaning Services in Netherlands",
@@ -18,12 +22,12 @@ export const metadata: Metadata = {
     apple: "/glow-housekeeping-logo.png",
   },
     generator: 'v0.app'
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -35,11 +39,14 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <AIChatbotGlorija />
+        {/* ✅ Wrap the app with i18next provider */}
+        <I18nextProvider i18n={i18n}>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <AIChatbotGlorija />
+        </I18nextProvider>
       </body>
     </html>
-  )
+  );
 }
