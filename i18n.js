@@ -1,25 +1,19 @@
-// i18n.js
-const i18n = require('i18next');
-const { initReactI18next } = require('react-i18next');
-const Backend = require('i18next-fs-backend');
-const path = require('path');
-const nextI18NextConfig = require('./next-i18next.config.js');
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+import en from './public/locales/en/common.json';
+import nl from './public/locales/nl/common.json';
 
 i18n
-  .use(Backend)
   .use(initReactI18next)
   .init({
-    ...nextI18NextConfig.i18n,
-    backend: {
-      loadPath: path.join(__dirname, nextI18NextConfig.i18n.localePath, '/{{lng}}/{{ns}}.json'),
+    resources: {
+      en: { common: en },
+      nl: { common: nl },
     },
-    react: {
-      useSuspense: false, // you can set true if you want Suspense for loading translations
-    },
-    fallbackLng: nextI18NextConfig.i18n.defaultLocale,
-    interpolation: {
-      escapeValue: false, // not needed for React
-    },
+    lng: 'en', // default language
+    fallbackLng: 'en',
+    interpolation: { escapeValue: false },
   });
 
-module.exports = i18n;
+export default i18n;

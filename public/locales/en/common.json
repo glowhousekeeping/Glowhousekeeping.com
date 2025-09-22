@@ -46,17 +46,6 @@
     "badge": "Professional Results",
     "title": "Our Professional Results",
     "description": "A glimpse into the spaces we've transformed — spotless, glowing, and beautifully organized.",
-    "images": [
-      { "alt": "Modern dishwasher cleaning result", "caption": "Spotless Kitchen Appliances" },
-      { "alt": "Perfect floor and baseboard cleaning", "caption": "Pristine Floor Detailing" },
-      { "alt": "Professional window cleaning service", "caption": "Crystal Clear Windows" },
-      { "alt": "Sparkling clean modern shower", "caption": "Luxurious Shower Spaces" },
-      { "alt": "Clean shower enclosure with glass doors", "caption": "Immaculate Bathroom Details" },
-      { "alt": "Professional appliance cleaning", "caption": "Expert Equipment Care" },
-      { "alt": "Pristine white bathtub", "caption": "Gleaming Bathtub Restoration" },
-      { "alt": "Sparkling chrome fixtures", "caption": "Polished Chrome Perfection" },
-      { "alt": "Clean bathroom vanity area", "caption": "Modern Vanity Excellence" }
-    ],
     "cta": {
       "title": "Ready to See Your Space Transformed?",
       "description": "These results speak for themselves. Experience the same level of professional cleaning excellence in your own space.",
@@ -89,7 +78,5 @@
     "additionalCommentsPlaceholder": "Tell us about your specific cleaning needs...",
     "submitButton": "Send via WhatsApp",
     "whatsappNote": "By clicking, you will be redirected to WhatsApp to confirm your booking."
-  },
-  "before": "Before",
-  "after": "After"
+  }
 }

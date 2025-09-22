@@ -46,17 +46,6 @@
     "badge": "Professionele Resultaten",
     "title": "Onze Professionele Resultaten",
     "description": "Een kijkje in de ruimtes die we hebben getransformeerd — vlekkeloos, stralend en prachtig georganiseerd.",
-    "images": [
-      { "alt": "Modern dishwasher cleaning result", "caption": "Vlekkeloze Keukenapparaten" },
-      { "alt": "Perfect floor and baseboard cleaning", "caption": "Perfecte Vloerafwerking" },
-      { "alt": "Professional window cleaning service", "caption": "Kristalheldere Ramen" },
-      { "alt": "Sparkling clean modern shower", "caption": "Luxe Douche Ruimtes" },
-      { "alt": "Clean shower enclosure with glass doors", "caption": "Onberispelijke Badkamerdetails" },
-      { "alt": "Professional appliance cleaning", "caption": "Expert Apparatuur Zorg" },
-      { "alt": "Pristine white bathtub", "caption": "Stralend Witte Badkuip" },
-      { "alt": "Sparkling chrome fixtures", "caption": "Perfect Gepolijste Chrome Afwerking" },
-      { "alt": "Clean bathroom vanity area", "caption": "Moderne Wastafel Excellentie" }
-    ],
     "cta": {
       "title": "Klaar om uw ruimte te transformeren?",
       "description": "Deze resultaten spreken voor zich. Ervaar hetzelfde niveau van professionele schoonmaakkwaliteit in uw eigen ruimte.",
@@ -89,7 +78,5 @@
     "additionalCommentsPlaceholder": "Vertel ons over uw specifieke schoonmaakbehoeften...",
     "submitButton": "Verstuur via WhatsApp",
     "whatsappNote": "Door te klikken wordt u doorgestuurd naar WhatsApp om uw boeking te bevestigen."
-  },
-  "before": "Voor",
-  "after": "Na"
+  }
 }
