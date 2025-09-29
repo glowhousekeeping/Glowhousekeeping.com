@@ -5,78 +5,37 @@
     "services": "Diensten",
     "contact": "Contact",
     "blog": "Blog",
-    "joinTeam": "Word Ons Team Lid"
+    "joinTeam": "Word Lid van Ons Team"
   },
   "hero": {
     "title": "Professionele Schoonmaakdiensten in Nederland",
-    "subtitle": "Breng de glans terug in uw huis of kantoor met ons professionele schoonmaakteam. Betrouwbaar, grondig en gepassioneerd om uw ruimte te laten stralen.",
-    "cta": "Boek een Dienst",
-    "learnMore": "Meer Ontdekken"
+    "subtitle": "Transformeer uw ruimte met onze deskundige schoonmaakdiensten. Van huizen tot kantoren, wij brengen de glans terug in uw wereld.",
+    "cta": "Boek Uw Service",
+    "learnMore": "Meer Informatie"
   },
   "about": {
     "title": "Over Glow Housekeeping",
     "founder": "Glorija Beberina",
-    "founderTitle": "Oprichtster & CEO",
-    "founderDescription": "Glorija Beberina richtte Glow Housekeeping op om een betrouwbare, transparante en hoogwaardige schoonmaakservice te bieden die elke ruimte fris, welkom en verzorgd laat aanvoelen."
+    "founderTitle": "Oprichter & CEO",
+    "founderDescription": "Glorija Beberina is de oprichter en CEO van Glow Housekeeping, een bedrijf gebouwd op vertrouwen, transparantie en een passie voor het helpen van anderen om te leven en werken in schone, opbeurende ruimtes."
   },
   "services": {
-    "title": "Onze Schoonmaakdiensten",
-    "generalCleaning": "Algemene Schoonmaak",
-    "generalCleaningPricing": "Vanaf €35/uur, prijs varieert per ruimte",
-    "solarPanelCleaning": "Zonnepanelen Schoonmaak",
-    "windowCleaning": "Ramenwassen",
-    "drainCleaning": "Afvoerreiniging"
+    "title": "Onze Diensten",
+    "generalCleaning": "Algemene Reiniging",
+    "generalCleaningPricing": "Prijzen beginnen bij €35 per uur en kunnen variëren afhankelijk van de grootte van uw ruimte",
+    "solarPanelCleaning": "Zonnepaneel Reiniging",
+    "windowCleaning": "Ramen Wassen",
+    "drainCleaning": "Afvoer Reiniging"
   },
   "contact": {
-    "title": "Neem Contact Op",
+    "title": "Contact",
     "phone": "Telefoon",
     "email": "E-mail",
     "address": "Adres"
   },
   "footer": {
     "company": "Glow Housekeeping",
-    "description": "Professionele schoonmaakdiensten in heel Nederland",
-    "rights": "© 2025 Glow Housekeeping. Alle rechten voorbehouden."
-  },
-  "navbar": {
-    "getQuote": "Boek een Dienst",
-    "careers": "Word Ons Team Lid"
-  },
-  "gallery": {
-    "badge": "Professionele Resultaten",
-    "title": "Onze Professionele Resultaten",
-    "description": "Een kijkje in de ruimtes die we hebben getransformeerd — vlekkeloos, stralend en prachtig georganiseerd.",
-    "cta": {
-      "title": "Klaar om uw ruimte te transformeren?",
-      "description": "Deze resultaten spreken voor zich. Ervaar hetzelfde niveau van professionele schoonmaakkwaliteit in uw eigen ruimte.",
-      "button1": "Vraag uw Offerte Aan",
-      "button2": "Bekijk Alle Diensten"
-    }
-  },
-  "bookForm": {
-    "title": "Boek Uw Dienst",
-    "subtitle": "Vul het formulier in en wij nemen contact met u op via WhatsApp",
-    "fullName": "Volledige Naam",
-    "fullNamePlaceholder": "Voer uw volledige naam in",
-    "phoneNumber": "Telefoonnummer",
-    "phoneNumberPlaceholder": "+31 6 12345678",
-    "emailAddress": "E-mailadres",
-    "emailAddressPlaceholder": "uw.email@voorbeeld.com",
-    "businessAddress": "Adres",
-    "businessAddressPlaceholder": "Voer uw adres in",
-    "desiredService": "Gewenste Dienst",
-    "desiredServicePlaceholder": "Selecteer een dienst",
-    "services": {
-      "general": "Algemene Schoonmaak",
-      "solar": "Zonnepanelen Schoonmaak",
-      "window": "Ramenwassen",
-      "drain": "Afvoerreiniging"
-    },
-    "preferredDate": "Voorkeursdatum",
-    "preferredTime": "Voorkeurstijd",
-    "additionalComments": "Extra Opmerkingen",
-    "additionalCommentsPlaceholder": "Vertel ons over uw specifieke schoonmaakbehoeften...",
-    "submitButton": "Verstuur via WhatsApp",
-    "whatsappNote": "Door te klikken wordt u doorgestuurd naar WhatsApp om uw boeking te bevestigen."
+    "description": "Professionele schoonmaakdiensten door heel Nederland",
+    "rights": "Alle rechten voorbehouden"
   }
 }
