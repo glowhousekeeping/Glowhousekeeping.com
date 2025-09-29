@@ -1,3 +1,8 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -6,6 +11,67 @@ import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import Link from "next/link"
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Format the message for WhatsApp
+    const whatsappMessage = `
+*New Contact Form Submission*
+
+*Name:* ${formData.firstName} ${formData.lastName}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone || "Not provided"}
+*Subject:* ${formData.subject}
+
+*Message:*
+${formData.message}
+
+---
+Sent from Glow Housekeeping website contact form
+    `.trim()
+
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(whatsappMessage)
+
+    // WhatsApp URL with the message
+    const whatsappUrl = `https://wa.me/31610756699?text=${encodedMessage}`
+
+    // Open WhatsApp
+    window.open(whatsappUrl, "_blank")
+
+    // Reset form
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    })
+
+    setIsSubmitting(false)
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -119,7 +185,7 @@ export default function ContactPage() {
                 <CardContent className="p-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
 
-                  <form className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -127,8 +193,11 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="firstName"
+                          name="firstName"
                           type="text"
                           required
+                          value={formData.firstName}
+                          onChange={handleInputChange}
                           className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="Your first name"
                         />
@@ -139,8 +208,11 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="lastName"
+                          name="lastName"
                           type="text"
                           required
+                          value={formData.lastName}
+                          onChange={handleInputChange}
                           className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                           placeholder="Your last name"
                         />
@@ -153,8 +225,11 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
                         required
+                        value={formData.email}
+                        onChange={handleInputChange}
                         className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="your.email@example.com"
                       />
@@ -166,7 +241,10 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="phone"
+                        name="phone"
                         type="tel"
+                        value={formData.phone}
+                        onChange={handleInputChange}
                         className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="+31 6 12345678"
                       />
@@ -178,8 +256,11 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="subject"
+                        name="subject"
                         type="text"
                         required
+                        value={formData.subject}
+                        onChange={handleInputChange}
                         className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="What can we help you with?"
                       />
@@ -191,8 +272,11 @@ export default function ContactPage() {
                       </label>
                       <Textarea
                         id="message"
+                        name="message"
                         required
                         rows={6}
+                        value={formData.message}
+                        onChange={handleInputChange}
                         className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                         placeholder="Please describe your cleaning needs, preferred schedule, and any specific requirements..."
                       />
@@ -205,8 +289,13 @@ export default function ContactPage() {
                       </p>
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl">
-                      Send Message
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl"
+                    >
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
 
