@@ -14,8 +14,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import LanguageSwitcher from "./language-switcher"
-import MobileLanguageSwitcher from "./mobile-language-switcher"
 import { getCurrentTranslations } from "./language-switcher"
 
 const services = [
@@ -201,9 +199,6 @@ export default function Navbar() {
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
-
-                  {/* Language Switcher */}
-                  <LanguageSwitcher />
                 </NavigationMenuList>
               </NavigationMenu>
 
@@ -346,9 +341,6 @@ export default function Navbar() {
                           {t.careers}
                         </span>
                       </Link>
-
-                      {/* Mobile Language Switcher */}
-                      <MobileLanguageSwitcher onLanguageChange={() => setIsOpen(false)} />
 
                       {/* Mobile CTA Button */}
                       <div className="pt-4">
