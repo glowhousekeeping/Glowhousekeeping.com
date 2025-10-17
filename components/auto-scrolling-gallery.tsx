@@ -51,6 +51,31 @@ const galleryImages = [
     alt: "Clean bathroom vanity area",
     caption: "Modern Vanity Excellence",
   },
+  {
+    src: "/kitchen-after-new.jpeg",
+    alt: "Beautifully cleaned modern kitchen",
+    caption: "Pristine Kitchen Transformation",
+  },
+  {
+    src: "/workspace-after-new.jpeg",
+    alt: "Organized and clean workspace",
+    caption: "Professional Workspace Clean",
+  },
+  {
+    src: "/entrance-after-new.jpeg",
+    alt: "Spotless entrance area",
+    caption: "Welcoming Entrance Space",
+  },
+  {
+    src: "/clean-kitchen-detail-1.jpeg",
+    alt: "Detailed kitchen cleaning result",
+    caption: "Meticulous Kitchen Care",
+  },
+  {
+    src: "/clean-kitchen-detail-2.jpeg",
+    alt: "Another detailed kitchen view",
+    caption: "Expert Kitchen Cleaning",
+  },
 ]
 
 export default function AutoScrollingGallery() {
@@ -164,7 +189,7 @@ export default function AutoScrollingGallery() {
       {/* Mobile Gallery - Stacked Grid */}
       <div className="md:hidden px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {galleryImages.slice(0, 6).map((image, index) => (
+          {galleryImages.slice(0, 8).map((image, index) => (
             <div key={index} className="group">
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
                 <div className="relative overflow-hidden">

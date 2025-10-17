@@ -7,16 +7,18 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: [
-      'blob.v0.app',
-      'hebbkx1anhila5yf.public.blob.vercel-storage.com'
+    domains: ['hebbkx1anhila5yf.public.blob.vercel-storage.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
     ],
-    unoptimized: true,
   },
   i18n: {
-    locales: ['en'], // keep only English
+    locales: ['en'],
     defaultLocale: 'en',
-    localeDetection: false, // stop redirecting by location
+    localeDetection: false,
   },
 }
 

@@ -102,13 +102,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3 group">
               <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
-                <Image
-                  src="/glow-housekeeping-logo.png"
-                  alt="Glow Housekeeping Logo"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+                <Image src="/glow-logo-new.jpg" alt="Glow Housekeeping Logo" fill className="object-contain" priority />
               </div>
               <div className="hidden sm:block">
                 <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
@@ -233,10 +227,10 @@ export default function Navbar() {
                       <div className="flex items-center space-x-3">
                         <div className="relative w-10 h-10 rounded-full overflow-hidden shadow-lg">
                           <Image
-                            src="/glow-housekeeping-logo.png"
+                            src="/glow-logo-new.jpg"
                             alt="Glow Housekeeping Logo"
                             fill
-                            className="object-cover"
+                            className="object-contain"
                           />
                         </div>
                         <div>

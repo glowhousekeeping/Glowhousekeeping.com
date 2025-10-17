@@ -13,9 +13,9 @@ export const metadata: Metadata = {
   description:
     "Professional housekeeping and cleaning services across the Netherlands. We treat every space like it's our own home, delivering exceptional results with flexibility, affordability, and trust.",
   icons: {
-    icon: "/glow-housekeeping-logo.png",
-    shortcut: "/glow-housekeeping-logo.png",
-    apple: "/glow-housekeeping-logo.png",
+    icon: "/glow-logo-new.jpg",
+    shortcut: "/glow-logo-new.jpg",
+    apple: "/glow-logo-new.jpg",
   },
     generator: 'v0.app'
 }
@@ -28,6 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/glow-logo-new.jpg" />
+        <link rel="apple-touch-icon" href="/glow-logo-new.jpg" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6205268462730211"

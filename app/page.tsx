@@ -506,6 +506,132 @@ export default function HomePage() {
                 </div>
               </CardContent>
             </Card>
+
+            {/* NEW: Modern Kitchen Transformation */}
+            <Card className="rounded-3xl border-0 shadow-2xl overflow-hidden bg-white hover:shadow-3xl transition-all duration-500">
+              <CardContent className="p-6">
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                  {/* Before Image */}
+                  <div className="relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/kitchen-before-new.jpeg"
+                      alt="Modern kitchen before professional cleaning"
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
+                    </div>
+                  </div>
+
+                  {/* After Image */}
+                  <div className="relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/kitchen-after-new.jpeg"
+                      alt="Modern kitchen after professional cleaning"
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-3 right-3">
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Modern Kitchen Revival</h3>
+                  <p className="text-gray-600">
+                    Complete transformation of a contemporary kitchen space with attention to every detail
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* NEW: Workspace Transformation */}
+            <Card className="rounded-3xl border-0 shadow-2xl overflow-hidden bg-white hover:shadow-3xl transition-all duration-500">
+              <CardContent className="p-6">
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                  {/* Before Image */}
+                  <div className="relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/workspace-before-new.jpeg"
+                      alt="Workspace before professional cleaning"
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
+                    </div>
+                  </div>
+
+                  {/* After Image */}
+                  <div className="relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/workspace-after-new.jpeg"
+                      alt="Workspace after professional cleaning"
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-3 right-3">
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Professional Workspace Clean</h3>
+                  <p className="text-gray-600">
+                    Creating an organized and spotless work environment for maximum productivity
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* NEW: Entrance Transformation */}
+            <Card className="rounded-3xl border-0 shadow-2xl overflow-hidden bg-white hover:shadow-3xl transition-all duration-500">
+              <CardContent className="p-6">
+                <div className="grid md:grid-cols-2 gap-4 mb-6">
+                  {/* Before Image */}
+                  <div className="relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/entrance-before-new.jpeg"
+                      alt="Entrance area before professional cleaning"
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <Badge className="bg-red-500 text-white hover:bg-red-500 font-semibold">{t.before}</Badge>
+                    </div>
+                  </div>
+
+                  {/* After Image */}
+                  <div className="relative rounded-2xl overflow-hidden">
+                    <Image
+                      src="/entrance-after-new.jpeg"
+                      alt="Entrance area after professional cleaning"
+                      width={400}
+                      height={250}
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="absolute top-3 right-3">
+                      <Badge className="bg-green-500 text-white hover:bg-green-500 font-semibold">{t.after}</Badge>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">Welcoming Entrance</h3>
+                  <p className="text-gray-600">
+                    First impressions matter - creating an inviting entrance with meticulous care
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Call to Action */}

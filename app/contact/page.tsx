@@ -4,10 +4,10 @@ import type React from "react"
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react"
 import Link from "next/link"
 
 export default function ContactPage() {
@@ -20,9 +20,7 @@ export default function ContactPage() {
     message: "",
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({
       ...prev,
@@ -30,34 +28,28 @@ export default function ContactPage() {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
 
-    // Format the message for WhatsApp
-    const whatsappMessage = `
-*New Contact Form Submission*
+    // Format message for WhatsApp
+    const whatsappMessage = `*New Contact Form Submission*
 
 *Name:* ${formData.firstName} ${formData.lastName}
 *Email:* ${formData.email}
-*Phone:* ${formData.phone || "Not provided"}
+*Phone:* ${formData.phone}
 *Subject:* ${formData.subject}
 
 *Message:*
-${formData.message}
+${formData.message}`
 
----
-Sent from Glow Housekeeping website contact form
-    `.trim()
-
-    // Encode the message for URL
+    // Encode message for URL
     const encodedMessage = encodeURIComponent(whatsappMessage)
 
-    // WhatsApp URL with the message
-    const whatsappUrl = `https://wa.me/31610756699?text=${encodedMessage}`
+    // WhatsApp number (without + or spaces)
+    const whatsappNumber = "31610756699"
 
-    // Open WhatsApp
-    window.open(whatsappUrl, "_blank")
+    // Open WhatsApp with pre-filled message
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank")
 
     // Reset form
     setFormData({
@@ -68,19 +60,17 @@ Sent from Glow Housekeeping website contact form
       subject: "",
       message: "",
     })
-
-    setIsSubmitting(false)
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-50 via-white to-green-50 py-20 px-4">
+      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Get in Touch</h1>
-          <p className="text-xl text-gray-600 leading-relaxed">
-            Ready to experience the Glow difference? We're here to answer your questions and provide you with a
-            personalized cleaning solution.
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6">Get in Touch</h1>
+          <p className="text-xl text-blue-100 leading-relaxed">
+            Have questions about our cleaning services? We're here to help! Reach out to us through any of the methods
+            below.
           </p>
         </div>
       </section>
@@ -93,98 +83,113 @@ Sent from Glow Housekeeping website contact form
             <div className="space-y-8">
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  We're available to discuss your cleaning needs and provide personalized quotes. Reach out through any
-                  of the methods below.
+                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                  We're available to answer your questions and schedule your cleaning service. Choose the method that
+                  works best for you.
                 </p>
               </div>
 
               <div className="space-y-6">
-                <Card className="rounded-2xl border-0 shadow-lg">
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-start gap-4">
                       <div className="bg-blue-100 p-3 rounded-full">
-                        <Mail className="w-6 h-6 text-blue-600" />
+                        <Phone className="w-6 h-6 text-blue-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Email</h3>
-                        <a
-                          href="mailto:glowhousekeeping.org@gmail.com"
-                          className="text-blue-600 hover:text-blue-700 transition-colors"
-                        >
-                          glowhousekeeping.org@gmail.com
+                        <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
+                        <a href="tel:+31610756699" className="text-blue-600 hover:text-blue-700 transition-colors">
+                          +31 6 10756699
                         </a>
+                        <p className="text-sm text-gray-600 mt-1">Available 24/7 for emergencies</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="rounded-2xl border-0 shadow-lg">
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-start gap-4">
                       <div className="bg-green-100 p-3 rounded-full">
-                        <Phone className="w-6 h-6 text-green-600" />
+                        <MessageCircle className="w-6 h-6 text-green-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">WhatsApp</h3>
+                        <h3 className="font-semibold text-gray-900 mb-2">WhatsApp</h3>
                         <a
                           href="https://wa.me/31610756699"
                           className="text-green-600 hover:text-green-700 transition-colors"
                         >
-                          +31 6 10756699
+                          Chat with us on WhatsApp
                         </a>
+                        <p className="text-sm text-gray-600 mt-1">Quick response guaranteed</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="rounded-2xl border-0 shadow-lg">
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-start gap-4">
                       <div className="bg-purple-100 p-3 rounded-full">
-                        <MapPin className="w-6 h-6 text-purple-600" />
+                        <Mail className="w-6 h-6 text-purple-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Service Area</h3>
-                        <p className="text-gray-600">Netherlands</p>
+                        <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
+                        <a
+                          href="mailto:glowhousekeeping.org@gmail.com"
+                          className="text-purple-600 hover:text-purple-700 transition-colors"
+                        >
+                          glowhousekeeping.org@gmail.com
+                        </a>
+                        <p className="text-sm text-gray-600 mt-1">We'll respond within 24 hours</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
 
-                <Card className="rounded-2xl border-0 shadow-lg">
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
-                    <div className="flex items-center gap-4">
-                      <div className="bg-yellow-100 p-3 rounded-full">
-                        <Clock className="w-6 h-6 text-yellow-600" />
+                    <div className="flex items-start gap-4">
+                      <div className="bg-amber-100 p-3 rounded-full">
+                        <MapPin className="w-6 h-6 text-amber-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Response Time</h3>
-                        <p className="text-gray-600">Within 24 hours</p>
+                        <h3 className="font-semibold text-gray-900 mb-2">Service Area</h3>
+                        <p className="text-gray-700">Serving all of Netherlands</p>
+                        <p className="text-sm text-gray-600 mt-1">Free quotes available in your area</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-              </div>
 
-              <div className="bg-blue-50 rounded-2xl p-6">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Prefer Instant Communication?</h3>
-                <p className="text-gray-600 mb-4">
-                  For immediate responses and quick quotes, WhatsApp is your best option. We're usually online during
-                  business hours and respond quickly.
-                </p>
-                <Button className="bg-green-600 hover:bg-green-700 rounded-full">
-                  <Link href="https://wa.me/31610756699">Chat on WhatsApp</Link>
-                </Button>
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-rose-100 p-3 rounded-full">
+                        <Clock className="w-6 h-6 text-rose-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-2">Business Hours</h3>
+                        <p className="text-gray-700">Monday - Sunday</p>
+                        <p className="text-gray-700">7:00 AM - 8:00 PM</p>
+                        <p className="text-sm text-gray-600 mt-1">Flexible scheduling available</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
             {/* Contact Form */}
             <div>
-              <Card className="rounded-2xl border-0 shadow-lg">
-                <CardContent className="p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
-
+              <Card className="border-0 shadow-xl">
+                <CardHeader>
+                  <CardTitle className="text-2xl">Send us a message</CardTitle>
+                  <p className="text-gray-600">
+                    Fill out the form below and we'll get back to you as soon as possible.
+                  </p>
+                </CardHeader>
+                <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
@@ -194,12 +199,10 @@ Sent from Glow Housekeeping website contact form
                         <Input
                           id="firstName"
                           name="firstName"
-                          type="text"
-                          required
                           value={formData.firstName}
-                          onChange={handleInputChange}
-                          className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Your first name"
+                          onChange={handleChange}
+                          required
+                          className="w-full"
                         />
                       </div>
                       <div>
@@ -209,44 +212,41 @@ Sent from Glow Housekeeping website contact form
                         <Input
                           id="lastName"
                           name="lastName"
-                          type="text"
-                          required
                           value={formData.lastName}
-                          onChange={handleInputChange}
-                          className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="Your last name"
+                          onChange={handleChange}
+                          required
+                          className="w-full"
                         />
                       </div>
                     </div>
 
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                        Email Address *
+                        Email *
                       </label>
                       <Input
                         id="email"
                         name="email"
                         type="email"
-                        required
                         value={formData.email}
-                        onChange={handleInputChange}
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="your.email@example.com"
+                        onChange={handleChange}
+                        required
+                        className="w-full"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone Number
+                        Phone Number *
                       </label>
                       <Input
                         id="phone"
                         name="phone"
                         type="tel"
                         value={formData.phone}
-                        onChange={handleInputChange}
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="+31 6 12345678"
+                        onChange={handleChange}
+                        required
+                        className="w-full"
                       />
                     </div>
 
@@ -257,12 +257,10 @@ Sent from Glow Housekeeping website contact form
                       <Input
                         id="subject"
                         name="subject"
-                        type="text"
-                        required
                         value={formData.subject}
-                        onChange={handleInputChange}
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="What can we help you with?"
+                        onChange={handleChange}
+                        required
+                        className="w-full"
                       />
                     </div>
 
@@ -273,38 +271,22 @@ Sent from Glow Housekeeping website contact form
                       <Textarea
                         id="message"
                         name="message"
+                        value={formData.message}
+                        onChange={handleChange}
                         required
                         rows={6}
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        className="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Please describe your cleaning needs, preferred schedule, and any specific requirements..."
+                        className="w-full"
                       />
-                    </div>
-
-                    <div className="bg-gray-50 rounded-xl p-4">
-                      <p className="text-sm text-gray-600">
-                        <strong>For faster service:</strong> Include your location, type of property (office/home),
-                        approximate size, and preferred cleaning frequency in your message.
-                      </p>
                     </div>
 
                     <Button
                       type="submit"
                       size="lg"
-                      disabled={isSubmitting}
-                      className="w-full bg-blue-600 hover:bg-blue-700 rounded-xl"
+                      className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
+                      Send Message via WhatsApp
                     </Button>
                   </form>
-
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <p className="text-sm text-gray-500 text-center">
-                      We respect your privacy and will never share your information with third parties. You can expect a
-                      response within 24 hours.
-                    </p>
-                  </div>
                 </CardContent>
               </Card>
             </div>
@@ -313,57 +295,73 @@ Sent from Glow Housekeeping website contact form
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-gray-600">Quick answers to common questions about our services.</p>
-          </div>
-
+          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Frequently Asked Questions</h2>
           <div className="space-y-6">
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">How quickly can you provide a quote?</h3>
+                <h3 className="font-semibold text-lg mb-2">What areas do you serve?</h3>
                 <p className="text-gray-600">
-                  We typically provide quotes within 24 hours via email, or immediately via WhatsApp for standard
-                  services. For complex projects, we may schedule a brief consultation.
+                  We provide professional cleaning services throughout the Netherlands, with a focus on Venlo and the
+                  Limburg region.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  Do you provide cleaning supplies and equipment?
-                </h3>
+                <h3 className="font-semibold text-lg mb-2">How quickly can I get a quote?</h3>
                 <p className="text-gray-600">
-                  Yes, we bring all necessary professional-grade cleaning supplies and equipment. We use eco-friendly
-                  products that are safe for your family, pets, and the environment.
+                  We typically respond to quote requests within a few hours. For urgent needs, please call or WhatsApp
+                  us directly.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Are you insured and bonded?</h3>
+                <h3 className="font-semibold text-lg mb-2">Do you offer emergency cleaning services?</h3>
                 <p className="text-gray-600">
-                  Absolutely. We are fully insured and bonded for your peace of mind. All our team members are
-                  background-checked and professionally trained.
+                  Yes! We're available 24/7 for emergency cleaning situations. Contact us immediately for urgent
+                  assistance.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border-0 shadow-lg">
+            <Card>
               <CardContent className="p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  What areas do you serve in the Netherlands?
-                </h3>
+                <h3 className="font-semibold text-lg mb-2">What cleaning products do you use?</h3>
                 <p className="text-gray-600">
-                  We provide services throughout the Netherlands. Contact us to confirm availability in your specific
-                  area and discuss any travel fees if applicable.
+                  We use professional-grade, eco-friendly cleaning products that are safe for your family and pets while
+                  delivering exceptional results.
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-4 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Experience Professional Cleaning?</h2>
+          <p className="text-xl text-green-100 mb-8">
+            Book your service today and discover the Glow Housekeeping difference.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 rounded-full px-8">
+              <Link href="/book-service">Book Now</Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-green-600 rounded-full px-8 bg-transparent"
+            >
+              <a href="https://calendar.app.google/RU6yxXUM6GZED7Nm7" target="_blank" rel="noopener noreferrer">
+                Schedule Appointment
+              </a>
+            </Button>
           </div>
         </div>
       </section>
