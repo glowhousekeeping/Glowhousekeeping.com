@@ -14,9 +14,9 @@ const nextConfig = {
     unoptimized: true,
   },
   i18n: {
-    locales: ['en', 'nl', 'fy'],
+    locales: ['en'], // keep only English
     defaultLocale: 'en',
-    localeDetection: true,
+    localeDetection: false, // stop redirecting by location
   },
 }
 
