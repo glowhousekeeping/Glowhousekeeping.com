@@ -6,24 +6,29 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Loader2, Save } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { Save, Loader2 } from "lucide-react"
+import { toast } from "sonner"
 
-export default function ContentManagement() {
-  const { toast } = useToast()
+export default function ContentManagementPage() {
+  const [content, setContent] = useState<Record<string, any>>({})
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
-  const [content, setContent] = useState<Record<string, any>>({})
 
   useEffect(() => {
-    async function fetchContent() {
+    fetchContent()
+  }, [])
+
+  const fetchContent = async () => {
+    try {
       const response = await fetch("/api/admin/content")
       const data = await response.json()
       setContent(data)
+    } catch (error) {
+      toast.error("Failed to load content")
+    } finally {
       setLoading(false)
     }
-    fetchContent()
-  }, [])
+  }
 
   const handleSave = async (section: string) => {
     setSaving(true)
@@ -31,30 +36,38 @@ export default function ContentManagement() {
       const response = await fetch("/api/admin/content", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section, content: content[section] }),
+        body: JSON.stringify({
+          section,
+          content: content[section],
+        }),
       })
 
-      if (!response.ok) throw new Error("Failed to save")
-
-      toast({
-        title: "Success",
-        description: "Content updated successfully",
-      })
+      if (response.ok) {
+        toast.success("Content updated successfully!")
+      } else {
+        toast.error("Failed to update content")
+      }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to update content",
-        variant: "destructive",
-      })
+      toast.error("An error occurred")
     } finally {
       setSaving(false)
     }
   }
 
+  const updateContent = (section: string, field: string, value: string) => {
+    setContent((prev) => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [field]: value,
+      },
+    }))
+  }
+
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-cyan-600" />
+      <div className="flex items-center justify-center h-screen">
+        <Loader2 className="h-12 w-12 animate-spin text-cyan-500" />
       </div>
     )
   }
@@ -62,121 +75,128 @@ export default function ContentManagement() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Content Management</h1>
-        <p className="text-gray-600 mt-2">Edit website content sections</p>
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          Content Management
+        </h1>
+        <p className="text-gray-600 mt-2">Edit website text and content</p>
       </div>
 
-      <div className="space-y-6">
-        {/* Homepage Hero */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Homepage Hero Section</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="hero-title">Main Title</Label>
-              <Input
-                id="hero-title"
-                value={content.homepage_hero?.title || ""}
-                onChange={(e) =>
-                  setContent({
-                    ...content,
-                    homepage_hero: { ...content.homepage_hero, title: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="hero-subtitle">Subtitle</Label>
-              <Textarea
-                id="hero-subtitle"
-                value={content.homepage_hero?.subtitle || ""}
-                onChange={(e) =>
-                  setContent({
-                    ...content,
-                    homepage_hero: { ...content.homepage_hero, subtitle: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="hero-cta">Call-to-Action Text</Label>
-              <Input
-                id="hero-cta"
-                value={content.homepage_hero?.cta_text || ""}
-                onChange={(e) =>
-                  setContent({
-                    ...content,
-                    homepage_hero: { ...content.homepage_hero, cta_text: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <Button onClick={() => handleSave("homepage_hero")} disabled={saving}>
-              {saving ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                <>
-                  <Save className="mr-2 h-4 w-4" />
-                  Save Changes
-                </>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
+      {/* Hero Section */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <CardTitle>Hero Section</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="hero-title">Title</Label>
+            <Input
+              id="hero-title"
+              value={content.hero?.title || ""}
+              onChange={(e) => updateContent("hero", "title", e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="hero-subtitle">Subtitle</Label>
+            <Input
+              id="hero-subtitle"
+              value={content.hero?.subtitle || ""}
+              onChange={(e) => updateContent("hero", "subtitle", e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="hero-cta">CTA Button Text</Label>
+            <Input
+              id="hero-cta"
+              value={content.hero?.cta || ""}
+              onChange={(e) => updateContent("hero", "cta", e.target.value)}
+            />
+          </div>
+          <Button
+            onClick={() => handleSave("hero")}
+            disabled={saving}
+            className="bg-gradient-to-r from-cyan-500 to-blue-500"
+          >
+            <Save className="mr-2 h-4 w-4" />
+            {saving ? "Saving..." : "Save Hero"}
+          </Button>
+        </CardContent>
+      </Card>
 
-        {/* About Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle>About Section</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="about-title">Section Title</Label>
-              <Input
-                id="about-title"
-                value={content.about_section?.title || ""}
-                onChange={(e) =>
-                  setContent({
-                    ...content,
-                    about_section: { ...content.about_section, title: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="about-description">Description</Label>
-              <Textarea
-                id="about-description"
-                rows={6}
-                value={content.about_section?.description || ""}
-                onChange={(e) =>
-                  setContent({
-                    ...content,
-                    about_section: { ...content.about_section, description: e.target.value },
-                  })
-                }
-              />
-            </div>
-            <Button onClick={() => handleSave("about_section")} disabled={saving}>
-              {saving ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                <>
-                  <Save className="mr-2 h-4 w-4" />
-                  Save Changes
-                </>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
+      {/* About Section */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <CardTitle>About Section</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="about-title">Title</Label>
+            <Input
+              id="about-title"
+              value={content.about?.title || ""}
+              onChange={(e) => updateContent("about", "title", e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="about-description">Description</Label>
+            <Textarea
+              id="about-description"
+              value={content.about?.description || ""}
+              onChange={(e) => updateContent("about", "description", e.target.value)}
+              rows={5}
+            />
+          </div>
+          <Button
+            onClick={() => handleSave("about")}
+            disabled={saving}
+            className="bg-gradient-to-r from-cyan-500 to-blue-500"
+          >
+            <Save className="mr-2 h-4 w-4" />
+            {saving ? "Saving..." : "Save About"}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Contact Section */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <CardTitle>Contact Information</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="contact-email">Email</Label>
+            <Input
+              id="contact-email"
+              type="email"
+              value={content.contact?.email || ""}
+              onChange={(e) => updateContent("contact", "email", e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="contact-phone">Phone</Label>
+            <Input
+              id="contact-phone"
+              value={content.contact?.phone || ""}
+              onChange={(e) => updateContent("contact", "phone", e.target.value)}
+            />
+          </div>
+          <div>
+            <Label htmlFor="contact-address">Address</Label>
+            <Input
+              id="contact-address"
+              value={content.contact?.address || ""}
+              onChange={(e) => updateContent("contact", "address", e.target.value)}
+            />
+          </div>
+          <Button
+            onClick={() => handleSave("contact")}
+            disabled={saving}
+            className="bg-gradient-to-r from-cyan-500 to-blue-500"
+          >
+            <Save className="mr-2 h-4 w-4" />
+            {saving ? "Saving..." : "Save Contact"}
+          </Button>
+        </CardContent>
+      </Card>
     </div>
   )
 }

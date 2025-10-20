@@ -1,34 +1,46 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { authenticateAdmin } from "@/lib/auth"
-import { SignJWT } from "jose"
+import { compare } from "bcryptjs"
+import { supabaseAdmin } from "@/lib/supabase"
+import { signToken, setSession } from "@/lib/auth"
 
 export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json()
 
-    const result = await authenticateAdmin(email, password)
+    // Fetch user from database
+    const { data: user, error } = await supabaseAdmin.from("admin_users").select("*").eq("email", email).single()
 
-    if (!result.success) {
-      return NextResponse.json({ error: result.error }, { status: 401 })
+    if (error || !user) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 })
     }
 
-    // Create JWT token
-    const secret = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key")
-    const token = await new SignJWT({ email: result.admin?.email, id: result.admin?.id })
-      .setProtectedHeader({ alg: "HS256" })
-      .setExpirationTime("24h")
-      .sign(secret)
+    // Verify password
+    const isValidPassword = await compare(password, user.password_hash)
 
-    const response = NextResponse.json({ success: true })
-    response.cookies.set("admin-token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 86400, // 24 hours
+    if (!isValidPassword) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 })
+    }
+
+    // Update last login
+    await supabaseAdmin.from("admin_users").update({ last_login: new Date().toISOString() }).eq("id", user.id)
+
+    // Create session token
+    const token = await signToken({
+      userId: user.id,
+      email: user.email,
     })
 
-    return response
+    // Set cookie
+    await setSession(token)
+
+    return NextResponse.json({
+      success: true,
+      user: {
+        id: user.id,
+        email: user.email,
+      },
+    })
   } catch (error) {
-    return NextResponse.json({ error: "Login failed" }, { status: 500 })
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

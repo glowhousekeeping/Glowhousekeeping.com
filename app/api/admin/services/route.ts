@@ -1,8 +1,14 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { supabaseAdmin } from "@/lib/supabase"
+import { getSession } from "@/lib/auth"
 
 export async function GET() {
   try {
+    const session = await getSession()
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
     const { data, error } = await supabaseAdmin.from("services").select("*").order("display_order", { ascending: true })
 
     if (error) throw error
@@ -15,12 +21,18 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const service = await request.json()
+    const session = await getSession()
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const body = await request.json()
 
     const { error } = await supabaseAdmin.from("services").insert({
-      ...service,
-      is_active: true,
+      ...body,
+      display_order: 0,
       created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     })
 
     if (error) throw error

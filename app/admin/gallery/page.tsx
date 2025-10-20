@@ -1,46 +1,56 @@
 "use client"
 
+import type React from "react"
+
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Trash2, Loader2 } from "lucide-react"
-import { useToast } from "@/hooks/use-toast"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Trash2, Loader2, ImageIcon } from "lucide-react"
+import { toast } from "sonner"
 import Image from "next/image"
 
 interface GalleryImage {
   id: string
-  category: string
-  image_url: string
   title: string
-  description: string
+  image_url: string
+  image_type: "before" | "after" | "transition"
+  pair_id?: string
   display_order: number
 }
 
-export default function GalleryManagement() {
-  const { toast } = useToast()
-  const [loading, setLoading] = useState(true)
+export default function GalleryManagementPage() {
   const [images, setImages] = useState<GalleryImage[]>([])
+  const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
+  const [selectedType, setSelectedType] = useState<"before" | "after" | "transition">("after")
 
   useEffect(() => {
     fetchImages()
   }, [])
 
-  async function fetchImages() {
-    const response = await fetch("/api/admin/gallery")
-    const data = await response.json()
-    setImages(data)
-    setLoading(false)
+  const fetchImages = async () => {
+    try {
+      const response = await fetch("/api/admin/gallery")
+      const data = await response.json()
+      setImages(data)
+    } catch (error) {
+      toast.error("Failed to load images")
+    } finally {
+      setLoading(false)
+    }
   }
 
-  async function handleUpload(category: string, file: File) {
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
     setUploading(true)
     const formData = new FormData()
     formData.append("file", file)
-    formData.append("category", category)
+    formData.append("type", selectedType)
 
     try {
       const response = await fetch("/api/admin/gallery/upload", {
@@ -48,26 +58,20 @@ export default function GalleryManagement() {
         body: formData,
       })
 
-      if (!response.ok) throw new Error("Upload failed")
-
-      toast({
-        title: "Success",
-        description: "Image uploaded successfully",
-      })
-
-      fetchImages()
+      if (response.ok) {
+        toast.success("Image uploaded successfully!")
+        fetchImages()
+      } else {
+        toast.error("Failed to upload image")
+      }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to upload image",
-        variant: "destructive",
-      })
+      toast.error("An error occurred")
     } finally {
       setUploading(false)
     }
   }
 
-  async function handleDelete(id: string) {
+  const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this image?")) return
 
     try {
@@ -75,188 +79,178 @@ export default function GalleryManagement() {
         method: "DELETE",
       })
 
-      if (!response.ok) throw new Error("Delete failed")
-
-      toast({
-        title: "Success",
-        description: "Image deleted successfully",
-      })
-
-      fetchImages()
+      if (response.ok) {
+        toast.success("Image deleted successfully!")
+        fetchImages()
+      } else {
+        toast.error("Failed to delete image")
+      }
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to delete image",
-        variant: "destructive",
-      })
+      toast.error("An error occurred")
     }
   }
 
-  const beforeImages = images.filter((img) => img.category === "before")
-  const afterImages = images.filter((img) => img.category === "after")
-  const transitionImages = images.filter((img) => img.category === "transition")
-
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="h-8 w-8 animate-spin text-cyan-600" />
+      <div className="flex items-center justify-center h-screen">
+        <Loader2 className="h-12 w-12 animate-spin text-cyan-500" />
       </div>
     )
   }
 
+  const beforeImages = images.filter((img) => img.image_type === "before")
+  const afterImages = images.filter((img) => img.image_type === "after")
+  const transitionImages = images.filter((img) => img.image_type === "transition")
+
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Gallery Management</h1>
-        <p className="text-gray-600 mt-2">Manage before, after, and transition images</p>
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+          Gallery Management
+        </h1>
+        <p className="text-gray-600 mt-2">Upload and manage before/after images</p>
       </div>
 
-      <Tabs defaultValue="before" className="w-full">
-        <TabsList>
-          <TabsTrigger value="before">Before ({beforeImages.length})</TabsTrigger>
-          <TabsTrigger value="after">After ({afterImages.length})</TabsTrigger>
-          <TabsTrigger value="transition">Transition ({transitionImages.length})</TabsTrigger>
-        </TabsList>
+      {/* Upload Card */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <CardTitle>Upload New Image</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="image-type">Image Type</Label>
+            <Select value={selectedType} onValueChange={(value: any) => setSelectedType(value)}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="before">Before</SelectItem>
+                <SelectItem value="after">After</SelectItem>
+                <SelectItem value="transition">Transition Gallery</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Label htmlFor="file-upload">Choose Image</Label>
+            <Input
+              id="file-upload"
+              type="file"
+              accept="image/*"
+              onChange={handleUpload}
+              disabled={uploading}
+              className="cursor-pointer"
+            />
+          </div>
+          {uploading && (
+            <div className="flex items-center gap-2 text-cyan-600">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              <span>Uploading...</span>
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
-        <TabsContent value="before" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Upload Before Image</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <Label htmlFor="before-upload">Select Image</Label>
-                <Input
-                  id="before-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0]
-                    if (file) handleUpload("before", file)
-                  }}
-                  disabled={uploading}
+      {/* Before Images */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <ImageIcon className="h-5 w-5 text-orange-500" />
+            Before Images ({beforeImages.length})
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {beforeImages.map((image) => (
+              <div key={image.id} className="relative group">
+                <Image
+                  src={image.image_url || "/placeholder.svg"}
+                  alt={image.title || "Before image"}
+                  width={300}
+                  height={200}
+                  className="w-full h-48 object-cover rounded-lg"
                 />
-                {uploading && <p className="text-sm text-gray-500">Uploading...</p>}
+                <Button
+                  size="icon"
+                  variant="destructive"
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={() => handleDelete(image.id)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               </div>
-            </CardContent>
-          </Card>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {beforeImages.map((img) => (
-              <Card key={img.id}>
-                <CardContent className="p-4">
-                  <div className="relative aspect-video mb-4">
-                    <Image
-                      src={img.image_url || "/placeholder.svg"}
-                      alt={img.title || "Before image"}
-                      fill
-                      className="object-cover rounded-lg"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">{img.title || "Untitled"}</span>
-                    <Button variant="destructive" size="icon" onClick={() => handleDelete(img.id)}>
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
             ))}
           </div>
-        </TabsContent>
+          {beforeImages.length === 0 && <p className="text-center text-gray-500 py-8">No before images yet</p>}
+        </CardContent>
+      </Card>
 
-        <TabsContent value="after" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Upload After Image</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <Label htmlFor="after-upload">Select Image</Label>
-                <Input
-                  id="after-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0]
-                    if (file) handleUpload("after", file)
-                  }}
-                  disabled={uploading}
+      {/* After Images */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <ImageIcon className="h-5 w-5 text-green-500" />
+            After Images ({afterImages.length})
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {afterImages.map((image) => (
+              <div key={image.id} className="relative group">
+                <Image
+                  src={image.image_url || "/placeholder.svg"}
+                  alt={image.title || "After image"}
+                  width={300}
+                  height={200}
+                  className="w-full h-48 object-cover rounded-lg"
                 />
+                <Button
+                  size="icon"
+                  variant="destructive"
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={() => handleDelete(image.id)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               </div>
-            </CardContent>
-          </Card>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {afterImages.map((img) => (
-              <Card key={img.id}>
-                <CardContent className="p-4">
-                  <div className="relative aspect-video mb-4">
-                    <Image
-                      src={img.image_url || "/placeholder.svg"}
-                      alt={img.title || "After image"}
-                      fill
-                      className="object-cover rounded-lg"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">{img.title || "Untitled"}</span>
-                    <Button variant="destructive" size="icon" onClick={() => handleDelete(img.id)}>
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
             ))}
           </div>
-        </TabsContent>
+          {afterImages.length === 0 && <p className="text-center text-gray-500 py-8">No after images yet</p>}
+        </CardContent>
+      </Card>
 
-        <TabsContent value="transition" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Upload Transition Image</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <Label htmlFor="transition-upload">Select Image</Label>
-                <Input
-                  id="transition-upload"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0]
-                    if (file) handleUpload("transition", file)
-                  }}
-                  disabled={uploading}
+      {/* Transition Gallery Images */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <ImageIcon className="h-5 w-5 text-purple-500" />
+            Transition Gallery ({transitionImages.length})
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {transitionImages.map((image) => (
+              <div key={image.id} className="relative group">
+                <Image
+                  src={image.image_url || "/placeholder.svg"}
+                  alt={image.title || "Transition image"}
+                  width={300}
+                  height={200}
+                  className="w-full h-48 object-cover rounded-lg"
                 />
+                <Button
+                  size="icon"
+                  variant="destructive"
+                  className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                  onClick={() => handleDelete(image.id)}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
               </div>
-            </CardContent>
-          </Card>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {transitionImages.map((img) => (
-              <Card key={img.id}>
-                <CardContent className="p-4">
-                  <div className="relative aspect-video mb-4">
-                    <Image
-                      src={img.image_url || "/placeholder.svg"}
-                      alt={img.title || "Transition image"}
-                      fill
-                      className="object-cover rounded-lg"
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium">{img.title || "Untitled"}</span>
-                    <Button variant="destructive" size="icon" onClick={() => handleDelete(img.id)}>
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
             ))}
           </div>
-        </TabsContent>
-      </Tabs>
+          {transitionImages.length === 0 && <p className="text-center text-gray-500 py-8">No transition images yet</p>}
+        </CardContent>
+      </Card>
     </div>
   )
 }

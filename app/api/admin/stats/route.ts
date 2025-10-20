@@ -1,25 +1,47 @@
 import { NextResponse } from "next/server"
 import { supabaseAdmin } from "@/lib/supabase"
+import { getSession } from "@/lib/auth"
 
 export async function GET() {
   try {
-    const [messages, services, images, analytics] = await Promise.all([
-      supabaseAdmin.from("contact_messages").select("id, is_read"),
-      supabaseAdmin.from("services").select("id").eq("is_active", true),
-      supabaseAdmin.from("gallery_images").select("id"),
-      supabaseAdmin.from("page_analytics").select("visits, unique_visitors"),
-    ])
+    const session = await getSession()
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
 
-    const totalVisits = analytics.data?.reduce((sum, page) => sum + page.visits, 0) || 0
-    const uniqueVisitors = analytics.data?.reduce((sum, page) => sum + page.unique_visitors, 0) || 0
+    // Get message stats
+    const { data: messages, error: messagesError } = await supabaseAdmin.from("contact_messages").select("*")
+
+    const totalMessages = messages?.length || 0
+    const unreadMessages = messages?.filter((m) => !m.is_read).length || 0
+
+    // Get gallery stats
+    const { data: gallery, error: galleryError } = await supabaseAdmin.from("gallery_images").select("*")
+
+    const totalGalleryImages = gallery?.length || 0
+
+    // Get service stats
+    const { data: services, error: servicesError } = await supabaseAdmin.from("services").select("*")
+
+    const totalServices = services?.length || 0
+    const activeServices = services?.filter((s) => s.is_active).length || 0
+
+    // Get page view stats
+    const { data: analytics, error: analyticsError } = await supabaseAdmin.from("page_analytics").select("visit_count")
+
+    const totalPageViews = analytics?.reduce((sum, a) => sum + a.visit_count, 0) || 0
+
+    // Get recent messages
+    const recentMessages = messages?.slice(0, 5) || []
 
     return NextResponse.json({
-      totalMessages: messages.data?.length || 0,
-      unreadMessages: messages.data?.filter((m) => !m.is_read).length || 0,
-      totalServices: services.data?.length || 0,
-      totalImages: images.data?.length || 0,
-      totalVisits,
-      uniqueVisitors,
+      totalMessages,
+      unreadMessages,
+      totalGalleryImages,
+      totalServices,
+      activeServices,
+      totalPageViews,
+      recentMessages,
     })
   } catch (error) {
     return NextResponse.json({ error: "Failed to fetch stats" }, { status: 500 })
