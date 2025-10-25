@@ -42,7 +42,7 @@ export default function HomePage() {
   const t = translations
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] md:min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-amber-50 overflow-hidden">
         {/* Subtle Background Pattern */}
@@ -69,10 +69,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Floating Decorative Elements */}
-        <div className="absolute top-32 right-16 w-24 h-24 bg-green-200/30 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-40 left-16 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-amber-200/30 rounded-full blur-xl animate-pulse delay-2000"></div>
+        {/* Floating Decorative Elements with better spacing on mobile */}
+        <div className="absolute top-32 right-16 w-24 h-24 bg-green-200/30 rounded-full blur-xl animate-pulse mx-4"></div>
+        <div className="absolute bottom-40 left-16 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl animate-pulse delay-1000 mx-4"></div>
+        <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-amber-200/30 rounded-full blur-xl animate-pulse delay-2000 mx-4"></div>
 
         {/* Content Container - Mobile First */}
         <div className="relative z-10 w-full px-4 py-8 md:py-20">
@@ -84,7 +84,7 @@ export default function HomePage() {
                 <div className="relative w-full h-64 sm:h-72 animate-fade-in-up">
                   <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
                     <Image
-                      src="/images/design-mode/pexels-karolina-grabowska-4239037.jpg.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
                       alt="Professional cleaner creating sparkling clean spaces"
                       fill
                       className="object-cover"
@@ -150,104 +150,115 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* CTA Buttons - Mobile Optimized */}
+                {/* CTA Buttons - Mobile Optimized - FIXED CLICKABILITY */}
                 <div className="space-y-4 lg:space-y-6 animate-fade-in-up">
                   {/* Mobile Layout - Full Width Stacked */}
                   <div className="flex flex-col gap-3 w-full max-w-sm mx-auto lg:hidden">
-                    <Button
-                      size="lg"
-                      className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                    >
-                      <Link href="/book-service" className="flex items-center justify-center gap-2">
-                        {t.requestQuote}
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </Button>
-
-                    <Button
-                      size="lg"
-                      className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                    >
-                      <Link href="https://wa.me/31610756699" className="flex items-center justify-center gap-2">
-                        <MessageCircle className="w-4 h-4" />
-                        {t.whatsapp}
-                      </Link>
-                    </Button>
-
-                    <Button
-                      size="lg"
-                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                    >
-                      <a
-                        href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2"
+                    <Link href="/book-service" className="w-full">
+                      <Button
+                        size="lg"
+                        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
                       >
-                        <Calendar className="w-4 h-4" />
-                        {t.bookAppointment}
-                      </a>
-                    </Button>
+                        <span className="flex items-center justify-center gap-2">
+                          {t.requestQuote}
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </Button>
+                    </Link>
 
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
+                    <Link href="https://wa.me/31610756699" className="w-full">
+                      <Button
+                        size="lg"
+                        className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
+                      >
+                        <span className="flex items-center justify-center gap-2">
+                          <MessageCircle className="w-4 h-4" />
+                          {t.whatsapp}
+                        </span>
+                      </Button>
+                    </Link>
+
+                    <a
+                      href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full"
                     >
-                      <Link href="/client-assessment" className="flex items-center justify-center gap-2">
-                        <ClipboardList className="w-4 h-4" />
-                        {t.clientAssessment}
-                      </Link>
-                    </Button>
+                      <Button
+                        size="lg"
+                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
+                      >
+                        <span className="flex items-center justify-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {t.bookAppointment}
+                        </span>
+                      </Button>
+                    </a>
+
+                    <Link href="/client-assessment" className="w-full">
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
+                      >
+                        <span className="flex items-center justify-center gap-2">
+                          <ClipboardList className="w-4 h-4" />
+                          {t.clientAssessment}
+                        </span>
+                      </Button>
+                    </Link>
                   </div>
 
-                  {/* Desktop Layout - Horizontal */}
+                  {/* Desktop Layout - Horizontal - FIXED CLICKABILITY */}
                   <div className="hidden lg:flex flex-wrap gap-4 xl:gap-6">
-                    <Button
-                      size="lg"
-                      className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                    >
-                      <Link href="/book-service" className="flex items-center gap-2">
-                        {t.requestQuote}
-                        <ArrowRight className="w-5 h-5" />
-                      </Link>
-                    </Button>
-
-                    <Button
-                      size="lg"
-                      className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                    >
-                      <Link href="https://wa.me/31610756699" className="flex items-center gap-2">
-                        <MessageCircle className="w-5 h-5" />
-                        {t.whatsapp}
-                      </Link>
-                    </Button>
-
-                    <Button
-                      size="lg"
-                      className="bg-blue-500 hover:bg-blue-600 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                    >
-                      <a
-                        href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2"
+                    <Link href="/book-service">
+                      <Button
+                        size="lg"
+                        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
                       >
-                        <Calendar className="w-5 h-5" />
-                        {t.bookAppointment}
-                      </a>
-                    </Button>
+                        <span className="flex items-center gap-2">
+                          {t.requestQuote}
+                          <ArrowRight className="w-5 h-5" />
+                        </span>
+                      </Button>
+                    </Link>
 
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                    >
-                      <Link href="/client-assessment" className="flex items-center gap-2">
-                        <ClipboardList className="w-5 h-5" />
-                        {t.clientAssessment}
-                      </Link>
-                    </Button>
+                    <Link href="https://wa.me/31610756699">
+                      <Button
+                        size="lg"
+                        className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                      >
+                        <span className="flex items-center gap-2">
+                          <MessageCircle className="w-5 h-5" />
+                          {t.whatsapp}
+                        </span>
+                      </Button>
+                    </Link>
+
+                    <a href="https://calendar.app.google/RU6yxXUM6GZED7Nm7" target="_blank" rel="noopener noreferrer">
+                      <Button
+                        size="lg"
+                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Calendar className="w-5 h-5" />
+                          {t.bookAppointment}
+                        </span>
+                      </Button>
+                    </a>
+
+                    <Link href="/client-assessment">
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                      >
+                        <span className="flex items-center gap-2">
+                          <ClipboardList className="w-5 h-5" />
+                          {t.clientAssessment}
+                        </span>
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -261,7 +272,7 @@ export default function HomePage() {
                     <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-105 hover:-rotate-1">
                       {/* Background Image */}
                       <Image
-                        src="/images/design-mode/pexels-karolina-grabowska-4239037.jpg.jpeg"
+                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
                         alt="Professional cleaner creating sparkling clean spaces with care and attention to detail"
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -288,8 +299,8 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  {/* Floating Service Cards */}
-                  <div className="absolute -top-4 -right-4 transform rotate-6 group-hover:rotate-3 transition-transform duration-500">
+                  {/* Floating Service Cards with proper spacing */}
+                  <div className="absolute -top-4 -right-4 transform rotate-6 group-hover:rotate-3 transition-transform duration-500 m-4">
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 bg-green-500 rounded-full"></div>
@@ -298,7 +309,7 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-1/4 -right-8 transform rotate-3 group-hover:-rotate-1 transition-transform duration-500">
+                  <div className="absolute bottom-1/4 -right-8 transform rotate-3 group-hover:-rotate-1 transition-transform duration-500 m-4">
                     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-amber-100 hover:shadow-2xl transition-all duration-300">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
@@ -328,7 +339,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Auto-Scrolling Gallery */}
+      {/* Auto-Scrolling Gallery with smooth transitions */}
       <AutoScrollingGallery />
 
       {/* Before & After Section */}
@@ -354,7 +365,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1013%20%281%29.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1013%20%281%29-5DARACq5qdWvq8FLdov4FWRidCnbag.jpeg"
                       alt="Office before cleaning"
                       width={400}
                       height={250}
@@ -368,7 +379,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1013.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1013-csmlb9AsSbeqDrppZI1GgAIoZg7jEq.jpeg"
                       alt="Office after cleaning"
                       width={400}
                       height={250}
@@ -394,7 +405,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1009.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1009-phkoTVerFMXqgtwycjvdHwZCTp3Uoz.jpeg"
                       alt="Kitchen before cleaning"
                       width={400}
                       height={250}
@@ -408,7 +419,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1009%20%281%29.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1009%20%281%29-8OOXzLVPxBdmkMOLla9HkXEQVQiJDD.jpeg"
                       alt="Kitchen after cleaning"
                       width={400}
                       height={250}
@@ -434,7 +445,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1011%20%281%29.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1011%20%281%29-HiDVrYMLKiEvyFRsbhwwaVTFirHUCT.jpeg"
                       alt="Bathroom before cleaning"
                       width={400}
                       height={250}
@@ -448,7 +459,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1011.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1011-3IwnA2h3VJCNzab5ViMXeDe6aGP437.jpeg"
                       alt="Bathroom after cleaning"
                       width={400}
                       height={250}
@@ -474,7 +485,7 @@ export default function HomePage() {
                   {/* Before Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1015%20%281%29.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1015%20%281%29-AQq2TpE6cklJ6kslHQEMeWAPjhIuGv.jpeg"
                       alt="Sink before cleaning"
                       width={400}
                       height={250}
@@ -488,7 +499,7 @@ export default function HomePage() {
                   {/* After Image */}
                   <div className="relative rounded-2xl overflow-hidden">
                     <Image
-                      src="/images/design-mode/IMG_1015.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_1015-qvmtEMC3MoLS495sCf4LDTrDwyCM1i.jpeg"
                       alt="Sink after cleaning"
                       width={400}
                       height={250}
@@ -672,7 +683,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/design-mode/pexels-karolina-grabowska-4239037.jpg.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
                     alt="Professional general cleaning service"
                     width={400}
                     height={250}
@@ -697,7 +708,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/design-mode/image.png"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-doPfwCDXXc8UHdMVYdAo5oP36vxbfy.png"
                     alt="Professional solar panel cleaning service"
                     width={400}
                     height={250}
@@ -722,7 +733,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/design-mode/pexels-mvntlie-17085462.jpg.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-mvntlie-17085462.jpg-fqixxMmyxdUHVdqDaJ0fZ7Ar2q3jpa.jpeg"
                     alt="Professional window cleaning service"
                     width={400}
                     height={250}
@@ -747,7 +758,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="/images/design-mode/pexels-vi-nguy-n-hoang-duy-256538407-14308927.jpg.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-vi-nguy-n-hoang-duy-256538407-14308927.jpg-MQSzGben6XIErazmiuI86pemhViioX.jpeg"
                     alt="Professional drain cleaning service"
                     width={400}
                     height={250}
@@ -1041,7 +1052,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="/images/design-mode/8095c50d-8884-420d-8536-8a37460d83b3.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8095c50d-8884-420d-8536-8a37460d83b3-cgFDiUCRPrydl2GTslyoZKCyf5OL59.jpeg"
                       alt="Beautiful rainbow card saying Specially for You"
                       width={400}
                       height={300}
@@ -1080,7 +1091,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="/images/design-mode/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf-I6iXL1ZFDFByyb1kKcNbVjzPZMFndF.jpeg"
                       alt="Sweet note from local bakery saying just eat the pie"
                       width={400}
                       height={300}
@@ -1120,7 +1131,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="/images/design-mode/58298937-1665-437a-9b72-75fe53794c85.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/58298937-1665-437a-9b72-75fe53794c85-Lo2Rk8u7glb4zMyKLiPRPsTX7xqHWI.jpeg"
                       alt="Handmade congratulations card from children with Peppa Pig stickers"
                       width={400}
                       height={300}
@@ -1159,7 +1170,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="/images/design-mode/c0fd41ea-09a1-42b7-a4f3-64ddfa80a80f.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c0fd41ea-09a1-42b7-a4f3-64ddfa80a80f-L0IzB1qIAYWfd0FrmgGvT31B3eOqhc.jpeg"
                       alt="Sinterklaas gift wrapped with love for Glorija"
                       width={400}
                       height={300}
@@ -1198,7 +1209,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="/images/design-mode/18d2f142-9684-4f30-8db0-27790e613abd.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/18d2f142-9684-4f30-8db0-27790e613abd-MvhGJ0oFEkxkkZ7jbSHB8qJiG78if7.jpeg"
                       alt="Pink card with Glorija's name and thoughtful gift"
                       width={400}
                       height={300}
@@ -1221,7 +1232,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="/images/design-mode/9f7fbb6e-62d1-4306-8c50-830ac07381f2.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9f7fbb6e-62d1-4306-8c50-830ac07381f2-x1d6EgXAVhXCJl8DAJ332LY5U9IAcT.jpeg"
                       alt="Handwritten thank you note in Dutch with thoughtful gifts"
                       width={400}
                       height={300}
@@ -1242,7 +1253,7 @@ export default function HomePage() {
             <div className="bg-white rounded-3xl p-6 shadow-lg border border-rose-100">
               <div className="relative rounded-2xl overflow-hidden mb-4">
                 <Image
-                  src="/images/design-mode/8095c50d-8884-420d-8536-8a37460d83b3.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/8095c50d-8884-420d-8536-8a37460d83b3-cgFDiUCRPrydl2GTslyoZKCyf5OL59.jpeg"
                   alt="Beautiful rainbow card saying Specially for You"
                   width={400}
                   height={300}
@@ -1267,7 +1278,7 @@ export default function HomePage() {
             <div className="bg-white rounded-3xl p-6 shadow-lg border border-amber-100">
               <div className="relative rounded-2xl overflow-hidden mb-4">
                 <Image
-                  src="/images/design-mode/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/d3fca4dc-764c-48af-a3d1-93eeedd5fdcf-I6iXL1ZFDFByyb1kKcNbVjzPZMFndF.jpeg"
                   alt="Sweet note from local bakery"
                   width={400}
                   height={300}
@@ -1292,7 +1303,7 @@ export default function HomePage() {
             <div className="bg-white rounded-3xl p-6 shadow-lg border border-yellow-100">
               <div className="relative rounded-2xl overflow-hidden mb-4">
                 <Image
-                  src="/images/design-mode/58298937-1665-437a-9b72-75fe53794c85.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/58298937-1665-437a-9b72-75fe53794c85-Lo2Rk8u7glb4zMyKLiPRPsTX7xqHWI.jpeg"
                   alt="Handmade congratulations card from children"
                   width={400}
                   height={300}
@@ -1343,16 +1354,20 @@ export default function HomePage() {
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">{t.readyToExperience}</h2>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">{t.ctaSubtitle}</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
-              <Link href="/book-service">{t.getFreeQuote}</Link>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 rounded-full px-8 bg-transparent"
-            >
-              <Link href="https://wa.me/31610756699">{t.contactWhatsApp}</Link>
-            </Button>
+            <Link href="/book-service">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
+                {t.getFreeQuote}
+              </Button>
+            </Link>
+            <Link href="https://wa.me/31610756699">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-600 rounded-full px-8 bg-transparent"
+              >
+                {t.contactWhatsApp}
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

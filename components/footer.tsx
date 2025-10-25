@@ -95,14 +95,20 @@ export default function Footer() {
                 <Phone className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-gray-300">+31 6 10756699</p>
-                  <p className="text-sm text-gray-400">Available 24/7</p>
+                  <p className="text-gray-300">+31 6 31330807</p>
+                  <p className="text-sm text-gray-400">Available for inquiries</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">glowhousekeeping.org@gmail.com</p>
+                  <a
+                    href="mailto:glowhousekeeping.org@gmail.com"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    glowhousekeeping.org@gmail.com
+                  </a>
                   <p className="text-sm text-gray-400">Quick response guaranteed</p>
                 </div>
               </div>
@@ -118,8 +124,9 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Clock className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">Flexible Scheduling</p>
-                  <p className="text-sm text-gray-400">Mon-Sun: 7AM-8PM</p>
+                  <p className="text-gray-300 font-semibold">Opening Hours</p>
+                  <p className="text-gray-300">08:00 - 16:00</p>
+                  <p className="text-sm text-gray-400">Monday - Friday</p>
                 </div>
               </div>
             </div>

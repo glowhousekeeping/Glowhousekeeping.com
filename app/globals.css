@@ -119,6 +119,15 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Fix mobile scrolling */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+
+  /* Ensure all pages can scroll properly on mobile */
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 }
 
@@ -131,7 +140,7 @@
   display: none; /* Safari and Chrome */
 }
 
-/* Custom animations */
+/* Custom animations with smoother transitions */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -175,4 +184,52 @@
 
 .animate-slide-in-right {
   animation: slide-in-right 1.2s ease-out 0.5s both;
+}
+
+/* Fix for mobile scrolling issues */
+@media (max-width: 768px) {
+  body {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* Ensure service pages scroll properly */
+  main {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+/* Better spacing for circular elements on mobile */
+@media (max-width: 640px) {
+  .rounded-full {
+    margin: 0.5rem;
+  }
+
+  /* Add padding around circular profile images */
+  .w-16.h-16.rounded-full,
+  .w-20.h-20.rounded-full {
+    margin: 1rem auto;
+  }
+}
+
+/* Smooth transition for all interactive elements */
+button,
+a,
+.transition-all {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Ensure buttons are always clickable */
+button,
+a {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }

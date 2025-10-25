@@ -4,14 +4,13 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import AIChatbotGlorija from "@/components/ai-chatbot-glorija"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Glow Housekeeping - Professional Cleaning Services in Netherlands",
   description:
-    "Professional housekeeping and cleaning services across the Netherlands. We treat every space like it's our own home, delivering exceptional results with flexibility, affordability, and trust.",
+    "Founded by Glorija Beberina, Glow Housekeeping offers professional cleaning services across the Netherlands. Experience honest, reliable, and exceptional cleaning tailored to your needs.",
   icons: {
     icon: "/glow-logo-new.jpg",
     shortcut: "/glow-logo-new.jpg",
@@ -22,25 +21,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/glow-logo-new.jpg" />
+        <link rel="icon" type="image/jpeg" href="/glow-logo-new.jpg" />
         <link rel="apple-touch-icon" href="/glow-logo-new.jpg" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6205268462730211"
-          crossOrigin="anonymous"
-        />
       </head>
       <body className={inter.className}>
         <Navbar />
         <main>{children}</main>
         <Footer />
-        <AIChatbotGlorija />
       </body>
     </html>
   )
