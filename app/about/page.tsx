@@ -134,10 +134,10 @@ export default function AboutPage() {
               <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-3xl p-8 border border-green-200">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
                   <MapPin className="w-8 h-8 text-green-600" />
-                  From Latvia to Netherlands
+                  From Latvia to The Netherlands
                 </h3>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  Originally from <span className="font-semibold text-green-600">Latvia</span>, Glorija moved to the
+                  Originally from <span className="font-semibold text-green-600">Latvia</span>, Glorija moved to The
                   Netherlands in <span className="font-semibold">2022</span>, bringing with her a strong work ethic and
                   determination to build something meaningful.
                 </p>

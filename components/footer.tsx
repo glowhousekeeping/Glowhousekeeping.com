@@ -24,7 +24,7 @@ export default function Footer() {
             </div>
             <p className="text-gray-300 leading-relaxed">
               Founded by Glorija Beberina, we bring passion, integrity, and excellence to every cleaning service across
-              the Netherlands.
+              The Netherlands.
             </p>
             <div className="flex items-center gap-1">
               {[...Array(5)].map((_, i) => (
@@ -94,7 +94,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">+31 6 10756699</p>
+                  <p className="text-gray-300">+31 6 10756699 (WhatsApp only)</p>
                   <p className="text-gray-300">+31 6 31330807</p>
                   <p className="text-sm text-gray-400">Available for inquiries</p>
                 </div>
@@ -116,7 +116,7 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-blue-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">Serving all of Netherlands</p>
+                  <p className="text-gray-300">Serving all of The Netherlands</p>
                   <p className="text-sm text-gray-400">Free quotes available</p>
                 </div>
               </div>

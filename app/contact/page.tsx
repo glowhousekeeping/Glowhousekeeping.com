@@ -98,10 +98,8 @@ ${formData.message}`
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-                        <a href="tel:+31610756699" className="text-blue-600 hover:text-blue-700 transition-colors">
-                          +31 6 10756699
-                        </a>
-                        <p className="text-sm text-gray-600 mt-1">Available 24/7 for emergencies</p>
+                        <p className="text-gray-700">+31 6 10756699</p>
+                        <p className="text-sm text-gray-600 mt-1">WhatsApp only (+31610756699)</p>
                       </div>
                     </div>
                   </CardContent>
@@ -155,7 +153,7 @@ ${formData.message}`
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">Service Area</h3>
-                        <p className="text-gray-700">Serving all of Netherlands</p>
+                        <p className="text-gray-700">Serving all of The Netherlands</p>
                         <p className="text-sm text-gray-600 mt-1">Free quotes available in your area</p>
                       </div>
                     </div>
@@ -303,7 +301,7 @@ ${formData.message}`
               <CardContent className="p-6">
                 <h3 className="font-semibold text-lg mb-2">What areas do you serve?</h3>
                 <p className="text-gray-600">
-                  We provide professional cleaning services throughout the Netherlands, with a focus on Venlo and the
+                  We provide professional cleaning services throughout The Netherlands, with a focus on Venlo and the
                   Limburg region.
                 </p>
               </CardContent>

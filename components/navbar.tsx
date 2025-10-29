@@ -52,20 +52,14 @@ export default function Navbar() {
             </Link>
 
             <div className="flex items-center gap-4 ml-4 border-l pl-4">
-              <a
-                href="tel:+31610756699"
-                className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
-              >
+              <div className="flex items-center gap-2 text-gray-700">
                 <Phone className="w-4 h-4" />
                 <span className="text-sm font-medium">+31 6 10756699</span>
-              </a>
-              <a
-                href="tel:+31631330807"
-                className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition-colors"
-              >
+              </div>
+              <div className="flex items-center gap-2 text-gray-700">
                 <Phone className="w-4 h-4" />
                 <span className="text-sm font-medium">+31 6 31330807</span>
-              </a>
+              </div>
             </div>
 
             <Button className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full px-6">
@@ -121,20 +115,14 @@ export default function Navbar() {
             </Link>
 
             <div className="pt-4 space-y-3 border-t">
-              <a
-                href="tel:+31610756699"
-                className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
-              >
+              <div className="flex items-center gap-2 text-gray-700">
                 <Phone className="w-4 h-4" />
-                <span className="font-medium">+31 6 10756699</span>
-              </a>
-              <a
-                href="tel:+31631330807"
-                className="flex items-center gap-2 text-gray-700 hover:text-green-600 transition-colors"
-              >
+                <span className="font-medium">+31 6 10756699 (WhatsApp only)</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-700">
                 <Phone className="w-4 h-4" />
                 <span className="font-medium">+31 6 31330807</span>
-              </a>
+              </div>
               <a
                 href="mailto:glowhousekeeping.org@gmail.com"
                 className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"

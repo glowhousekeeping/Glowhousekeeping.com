@@ -8,9 +8,9 @@ import Footer from "@/components/footer"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Glow Housekeeping - Professional Cleaning Services in Netherlands",
+  title: "Glow Housekeeping - Professional Cleaning Services in The Netherlands",
   description:
-    "Founded by Glorija Beberina, Glow Housekeeping offers professional cleaning services across the Netherlands. Experience honest, reliable, and exceptional cleaning tailored to your needs.",
+    "Founded by Glorija Beberina, Glow Housekeeping offers professional cleaning services across The Netherlands. Experience honest, reliable, and exceptional cleaning tailored to your needs.",
   icons: {
     icon: "/glow-logo-new.jpg",
     shortcut: "/glow-logo-new.jpg",

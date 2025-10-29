@@ -88,7 +88,7 @@ const translations: Translations = {
     // Why Choose Us Section
     whyChooseUs: "Why Choose Glow Housekeeping?",
     whyChooseUsSubtitle:
-      "Discover what makes us the trusted choice for professional cleaning services across the Netherlands.",
+      "Discover what makes us the trusted choice for professional cleaning services across The Netherlands.",
     trustedCleaners: "Trusted Cleaners",
     trustedCleanersDesc: "Screened professionals with experience and reliability you can count on.",
     professionalResults: "Professional Results",
@@ -102,7 +102,7 @@ const translations: Translations = {
       "We care deeply about what we do and adapt to each client's unique needs - no cookie-cutter cleaning.",
     experienceGlowDifference: "Experience the Glow Difference Today",
     experienceGlowCTA:
-      "Join hundreds of satisfied customers who trust us with their most important spaces. See why we're the preferred choice for professional cleaning in the Netherlands.",
+      "Join hundreds of satisfied customers who trust us with their most important spaces. See why we're the preferred choice for professional cleaning in The Netherlands.",
     getStartedToday: "Get Started Today",
     learnMoreAboutUs: "Learn More About Us",
 
@@ -119,7 +119,7 @@ const translations: Translations = {
     // CTA Section
     readyToExperience: "Ready to Experience the Glow Difference?",
     ctaSubtitle:
-      "Join hundreds of satisfied customers across the Netherlands. Get your personalized quote today and see why we're the trusted choice for professional cleaning.",
+      "Join hundreds of satisfied customers across The Netherlands. Get your personalized quote today and see why we're the trusted choice for professional cleaning.",
     getFreeQuote: "Get Free Quote",
     contactWhatsApp: "Contact WhatsApp",
 
