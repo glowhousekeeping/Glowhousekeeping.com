@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -6,6 +9,8 @@ import Link from "next/link"
 import Image from "next/image"
 
 export default function BlogPage() {
+  const [activeCategory, setActiveCategory] = useState("All")
+
   const blogPosts = [
     {
       id: 1,
@@ -97,6 +102,9 @@ export default function BlogPage() {
     "Maintenance",
   ]
 
+  const filteredPosts =
+    activeCategory === "All" ? blogPosts : blogPosts.filter((post) => post.category === activeCategory)
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -125,9 +133,10 @@ export default function BlogPage() {
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={category === "All" ? "default" : "outline"}
+                variant={category === activeCategory ? "default" : "outline"}
                 size="sm"
                 className="rounded-full"
+                onClick={() => setActiveCategory(category)}
               >
                 {category}
               </Button>
@@ -137,7 +146,7 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Post */}
-      {blogPosts
+      {filteredPosts
         .filter((post) => post.featured)
         .map((post) => (
           <section key={post.id} className="py-16 px-4 bg-gradient-to-r from-blue-50 to-green-50">
@@ -201,7 +210,7 @@ export default function BlogPage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts
+            {filteredPosts
               .filter((post) => !post.featured)
               .map((post) => (
                 <Card

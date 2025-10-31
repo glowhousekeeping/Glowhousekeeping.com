@@ -54,10 +54,6 @@ export default function Navbar() {
             <div className="flex items-center gap-4 ml-4 border-l pl-4">
               <div className="flex items-center gap-2 text-gray-700">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm font-medium">+31 6 10756699</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-700">
-                <Phone className="w-4 h-4" />
                 <span className="text-sm font-medium">+31 6 31330807</span>
               </div>
             </div>
