@@ -91,45 +91,30 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                {/* Feature Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 animate-fade-in-up">
-                  {/* Free Shipping Card */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 pt-8 animate-fade-in-up">
+                  {/* Trusted Cleaners Card */}
                   <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
                     <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-                        />
-                      </svg>
+                      <Shield className="w-8 h-8 text-blue-600" />
                     </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Free Shipping</p>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Trusted Cleaners</p>
                     <p className="text-slate-600 text-xs text-center">
-                      {t.serviceArea || "Free Worldwide Shipping Area on order above $100"}
+                      Screened professionals with experience and reliability you can count on.
                     </p>
                   </div>
 
-                  {/* Payment Secure Card */}
+                  {/* Professional Results Card */}
                   <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
                     <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                        />
-                      </svg>
+                      <Sparkles className="w-8 h-8 text-blue-600" />
                     </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Payment Secure</p>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Professional Results</p>
                     <p className="text-slate-600 text-xs text-center">
-                      {t.securePayment || "Our support team always for you 7 days a week"}
+                      We deliver hotel-level sparkle and precision in every cleaning session.
                     </p>
                   </div>
 
-                  {/* 24/7 Support Card */}
+                  {/* Affordable Rates Card */}
                   <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
                     <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,13 +122,43 @@ export default function HomePage() {
                           strokeLinecap="round"
                           strokeLinejoin="round"
                           strokeWidth={2}
-                          d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
                     </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">24/7 Friendly Support</p>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Affordable Rates</p>
                     <p className="text-slate-600 text-xs text-center">
-                      {t.support || "Our support team always for you 7 days a week"}
+                      Competitive pricing with no surprise fees — transparent and fair.
+                    </p>
+                  </div>
+
+                  {/* Easy Booking Card */}
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
+                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Easy Booking</p>
+                    <p className="text-slate-600 text-xs text-center">
+                      Book your service in minutes, stress-free through multiple channels.
+                    </p>
+                  </div>
+
+                  {/* Flexible & Passionate Card */}
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
+                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Heart className="w-8 h-8 text-blue-600" />
+                    </div>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Flexible & Passionate</p>
+                    <p className="text-slate-600 text-xs text-center">
+                      We care deeply about what we do and adapt to each client's unique needs — no cookie-cutter
+                      cleaning.
                     </p>
                   </div>
                 </div>
@@ -616,7 +631,7 @@ export default function HomePage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden">
                   <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-vi-nguy-n-hoang-duy-256538407-14308927.jpg-MQSzGben6XIErazmiuI86pemhViioX.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-vi-nguy-nhoang-duy-256538407-14308927.jpg-MQSzGben6XIErazmiuI86pemhViioX.jpeg"
                     alt="Professional drain cleaning service"
                     width={400}
                     height={250}
