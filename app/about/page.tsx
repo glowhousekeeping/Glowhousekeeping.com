@@ -100,7 +100,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/glorija-founder-actual.jpeg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-10-31%20at%207.44.13%20PM-ZUGdwjv0jHNnpAKgleaDKxtOAuSBYt.jpeg"
                   alt="Glorija Beberina - Founder and CEO of Glow Housekeeping"
                   fill
                   className="object-cover"
@@ -464,13 +464,12 @@ export default function AboutPage() {
               <CardContent className="p-0">
                 <div className="relative overflow-hidden rounded-t-2xl">
                   <Image
-                    src="/glorija-founder-alternate.jpeg"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-10-31%20at%207.44.13%20PM-ZUGdwjv0jHNnpAKgleaDKxtOAuSBYt.jpeg"
                     alt="Glorija Beberina - Founder and CEO"
                     width={400}
                     height={300}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-8 text-center">
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">Glorija Beberina</h3>

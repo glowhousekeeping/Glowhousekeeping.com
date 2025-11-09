@@ -269,7 +269,7 @@ export default function ProfessionalCleaningEssentialPage() {
           <div className="bg-white rounded-3xl p-8 shadow-lg">
             <div className="flex items-start gap-6">
               <Image
-                src="/glorija-founder-actual.jpeg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-10-31%20at%207.44.13%20PM-ZUGdwjv0jHNnpAKgleaDKxtOAuSBYt.jpeg"
                 alt="Glorija Beberina, Founder of Glow Housekeeping"
                 width={120}
                 height={120}

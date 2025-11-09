@@ -120,7 +120,7 @@ export default function Navbar() {
                 <span className="font-medium">+31 6 31330807</span>
               </div>
               <a
-                href="mailto:glowhousekeeping.org@gmail.com"
+                href="mailto:gbeberina@gmail.com"
                 className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
               >
                 <Mail className="w-4 h-4" />

@@ -134,10 +134,10 @@ ${formData.message}`
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
                         <a
-                          href="mailto:glowhousekeeping.org@gmail.com"
+                          href="mailto:gbeberina@gmail.com"
                           className="text-purple-600 hover:text-purple-700 transition-colors"
                         >
-                          glowhousekeeping.org@gmail.com
+                          gbeberina@gmail.com
                         </a>
                         <p className="text-sm text-gray-600 mt-1">We'll respond within 24 hours</p>
                       </div>
