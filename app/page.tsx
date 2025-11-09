@@ -63,12 +63,16 @@ export default function HomePage() {
                 {/* Main Headline */}
                 <div className="space-y-4 animate-fade-in">
                   <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
-                    Get Professional Services Cleaning For Your <span className="text-blue-600">Home Provide</span>
+                    Want Your Business To Shine With <span className="text-blue-600">Professionalism?</span>
                   </h1>
 
                   <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed max-w-xl">
-                    {t.heroSubtitle ||
-                      "Understand to achieve anything requires faith and belief in yourself, vision, hard work, determination, and dedication."}
+                    We provide exceptional commercial cleaning services in Venlo, Limburg tailored to satisfy businesses
+                    who strive for excellence — while focusing on what really matters.
+                  </p>
+
+                  <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-xl">
+                    Specialized care for offices, retail stores, restaurants and professional facilities.
                   </p>
 
                   {/* Discount Banner */}
@@ -91,7 +95,7 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 pt-8 animate-fade-in-up">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8 animate-fade-in-up">
                   {/* Trusted Cleaners Card */}
                   <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
                     <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -129,36 +133,6 @@ export default function HomePage() {
                     <p className="text-blue-600 font-bold text-sm text-center mb-1">Affordable Rates</p>
                     <p className="text-slate-600 text-xs text-center">
                       Competitive pricing with no surprise fees — transparent and fair.
-                    </p>
-                  </div>
-
-                  {/* Easy Booking Card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
-                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                    </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Easy Booking</p>
-                    <p className="text-slate-600 text-xs text-center">
-                      Book your service in minutes, stress-free through multiple channels.
-                    </p>
-                  </div>
-
-                  {/* Flexible & Passionate Card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
-                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Heart className="w-8 h-8 text-blue-600" />
-                    </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Flexible & Passionate</p>
-                    <p className="text-slate-600 text-xs text-center">
-                      We care deeply about what we do and adapt to each client's unique needs — no cookie-cutter
-                      cleaning.
                     </p>
                   </div>
                 </div>
