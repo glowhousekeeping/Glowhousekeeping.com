@@ -137,9 +137,21 @@ export default function HomePage() {
                   <div className="absolute -top-8 -left-8 w-32 h-32 bg-white/50 rounded-full blur-2xl"></div>
                   <div className="absolute bottom-16 -right-8 w-24 h-24 bg-blue-400/50 rounded-full blur-xl"></div>
 
-                  {/* Circular image spots - decorative */}
-                  <div className="absolute bottom-24 left-8 lg:left-16 z-20">
-                    <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                  {/* Main cleaner image - positioned first with lower z-index */}
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-full max-w-md lg:max-w-lg">
+                    <Image
+                      src="/friendly-young-cleaner-smiling-wearing-gloves-and-.jpg"
+                      alt="Professional cleaner with cleaning supplies"
+                      width={500}
+                      height={600}
+                      className="w-full h-auto drop-shadow-2xl"
+                      priority
+                    />
+                  </div>
+
+                  {/* Top circular image - window cleaning */}
+                  <div className="absolute top-8 left-4 lg:top-12 lg:left-8 z-40">
+                    <div className="relative w-36 h-36 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white hover:scale-105 transition-transform duration-300">
                       <Image
                         src="/window-cleaning-with-spray-bottle.jpg"
                         alt="Window cleaning service"
@@ -149,8 +161,9 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-48 left-24 lg:left-32 z-10">
-                    <div className="relative w-28 h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden shadow-xl border-4 border-white">
+                  {/* Bottom circular image - cleaning supplies */}
+                  <div className="absolute bottom-16 left-12 lg:bottom-20 lg:left-20 z-30">
+                    <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-xl border-4 border-white hover:scale-105 transition-transform duration-300">
                       <Image
                         src="/cleaning-supplies-and-green-sponge.jpg"
                         alt="Professional cleaning tools"
@@ -158,18 +171,6 @@ export default function HomePage() {
                         className="object-cover"
                       />
                     </div>
-                  </div>
-
-                  {/* Main cleaner image */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-full max-w-md lg:max-w-lg">
-                    <Image
-                      src="/friendly-young-cleaner-smiling-wearing-gloves-and-.jpg"
-                      alt="Professional cleaner with cleaning supplies"
-                      width={500}
-                      height={600}
-                      className="w-full h-auto drop-shadow-2xl"
-                      priority
-                    />
                   </div>
                 </div>
               </div>
