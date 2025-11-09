@@ -59,28 +59,21 @@ export default function HomePage() {
             {/* Grid Layout */}
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
               {/* Left Side - Text Content */}
-              <div className="space-y-6 lg:space-y-8 text-left order-2 lg:order-1">
+              <div className="space-y-4 lg:space-y-6 text-left order-2 lg:order-1">
                 {/* Main Headline */}
-                <div className="space-y-4 animate-fade-in">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
+                <div className="space-y-3 animate-fade-in">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-900 leading-tight">
                     Want Your Business To Shine With <span className="text-blue-600">Professionalism?</span>
                   </h1>
 
-                  <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed max-w-xl">
+                  <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl">
                     We provide exceptional commercial cleaning services in Venlo, Limburg tailored to satisfy businesses
                     who strive for excellence — while focusing on what really matters.
                   </p>
 
-                  <p className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-xl">
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
                     Specialized care for offices, retail stores, restaurants and professional facilities.
                   </p>
-
-                  {/* Discount Banner */}
-                  <div className="inline-block">
-                    <p className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600 uppercase tracking-wide">
-                      GET UP TO 30% OFF
-                    </p>
-                  </div>
                 </div>
 
                 {/* CTA Button */}
@@ -95,7 +88,7 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-8 animate-fade-in-up">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6 animate-fade-in-up">
                   {/* Trusted Cleaners Card */}
                   <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
                     <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -141,9 +134,8 @@ export default function HomePage() {
               {/* Right Side - Hero Image */}
               <div className="relative order-1 lg:order-2 animate-slide-in-right">
                 <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px]">
-                  {/* Circular decorative elements */}
-                  <div className="absolute -top-8 -left-8 w-32 h-32 bg-white/30 rounded-full blur-2xl"></div>
-                  <div className="absolute bottom-16 -right-8 w-24 h-24 bg-blue-400/30 rounded-full blur-xl"></div>
+                  <div className="absolute -top-8 -left-8 w-32 h-32 bg-white/50 rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-16 -right-8 w-24 h-24 bg-blue-400/50 rounded-full blur-xl"></div>
 
                   {/* Circular image spots - decorative */}
                   <div className="absolute bottom-24 left-8 lg:left-16 z-20">
@@ -1017,7 +1009,7 @@ export default function HomePage() {
                   </div>
                   <div className="relative rounded-2xl overflow-hidden mb-4 group-hover:scale-105 transition-transform duration-300">
                     <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c0fd41ea-09a1-42b7-a4f3-64ddfa80a80f-L0IzB1qIAYWfd0FrmgGvT31B3eOqhc.jpeg"
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/c0fd41ea-09a1-42b7-a4f3-64ddfa80a80f-L0IzB1qIAYWfd0FrmgGvT31B3eOqJiG78if7.jpeg"
                       alt="Sinterklaas gift wrapped with love for Glorija"
                       width={400}
                       height={300}

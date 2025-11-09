@@ -1,11 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Poppins } from "next/font/google"
 import "./globals.css"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 
-const inter = Inter({ subsets: ["latin"] })
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+})
 
 export const metadata: Metadata = {
   title: "Glow Housekeeping - Professional Cleaning Services in The Netherlands",
@@ -30,7 +34,7 @@ export default function RootLayout({
         <link rel="icon" type="image/jpeg" href="/glow-logo-new.jpg" />
         <link rel="apple-touch-icon" href="/glow-logo-new.jpg" />
       </head>
-      <body className={inter.className}>
+      <body className={poppins.variable}>
         <Navbar />
         <main>{children}</main>
         <Footer />
