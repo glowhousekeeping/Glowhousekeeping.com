@@ -4,17 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import {
-  Shield,
-  Heart,
-  CheckCircle,
-  Sparkles,
-  ArrowRight,
-  MessageCircle,
-  Calendar,
-  ClipboardList,
-  Star,
-} from "lucide-react"
+import { Shield, Heart, CheckCircle, Sparkles } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import AutoScrollingGallery from "@/components/auto-scrolling-gallery"
@@ -43,299 +33,167 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] md:min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-amber-50 overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-10 w-16 h-16">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-green-400">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-          </div>
-          <div className="absolute top-40 right-20 w-12 h-12">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-blue-400">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-            </svg>
-          </div>
-          <div className="absolute bottom-32 left-1/4 w-20 h-20">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-green-300">
-              <path d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM10 6a2 2 0 0 1 4 0v1h-4V6zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2v10z" />
-            </svg>
-          </div>
-          <div className="absolute top-1/3 right-1/3 w-14 h-14">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-blue-300">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-            </svg>
-          </div>
+      <section className="relative min-h-[60vh] md:min-h-screen bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-400 overflow-hidden">
+        {/* Blue Wave Accent - Top Right */}
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 overflow-hidden">
+          <svg viewBox="0 0 500 500" preserveAspectRatio="none" className="w-full h-full">
+            <path
+              d="M0,0 Q250,100 500,0 L500,500 Q250,400 0,500 Z"
+              fill="#3b82f6"
+              opacity="0.9"
+              className="drop-shadow-2xl"
+            />
+          </svg>
         </div>
 
-        {/* Floating Decorative Elements with better spacing on mobile */}
-        <div className="absolute top-32 right-16 w-24 h-24 bg-green-200/30 rounded-full blur-xl animate-pulse mx-4"></div>
-        <div className="absolute bottom-40 left-16 w-32 h-32 bg-blue-200/30 rounded-full blur-2xl animate-pulse delay-1000 mx-4"></div>
-        <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-amber-200/30 rounded-full blur-xl animate-pulse delay-2000 mx-4"></div>
+        {/* Blue Wave Accent - Bottom Left */}
+        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 overflow-hidden">
+          <svg viewBox="0 0 300 300" preserveAspectRatio="none" className="w-full h-full">
+            <circle cx="0" cy="300" r="200" fill="#3b82f6" opacity="0.85" className="drop-shadow-xl" />
+          </svg>
+        </div>
 
-        {/* Content Container - Mobile First */}
-        <div className="relative z-10 w-full px-4 py-8 md:py-20">
+        {/* Content Container */}
+        <div className="relative z-10 w-full px-4 py-8 md:py-12">
           <div className="max-w-7xl mx-auto">
-            {/* Mobile Layout - Stacked Vertically */}
-            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 lg:items-center lg:min-h-[80vh]">
-              {/* Mobile Hero Image - Above Text */}
-              <div className="lg:hidden order-1 w-full">
-                <div className="relative w-full h-64 sm:h-72 animate-fade-in-up">
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl">
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
-                      alt="Professional cleaner creating sparkling clean spaces"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-white/15"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 via-transparent to-blue-900/10"></div>
-
-                    {/* Mobile Caption */}
-                    <div className="absolute bottom-3 left-3 right-3">
-                      <div className="bg-white/90 backdrop-blur-md rounded-xl p-3 shadow-lg">
-                        <p className="text-slate-800 font-bold text-sm sm:text-base text-center">"{t.imageCaption}"</p>
-                      </div>
-                    </div>
-
-                    {/* Mobile Badge */}
-                    <div className="absolute top-3 right-3">
-                      <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-2 py-1 rounded-full shadow-lg">
-                        <div className="flex items-center gap-1">
-                          <Star className="w-3 h-3 fill-current" />
-                          <span className="text-xs font-bold">Glow Approved</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Text Content - Mobile Optimized */}
-              <div className="order-2 lg:order-1 space-y-6 lg:space-y-8 text-center lg:text-left lg:mt-16">
-                {/* Main Headline - Mobile Responsive */}
-                <div className="space-y-4 lg:space-y-6 animate-fade-in">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-800 leading-tight">
-                    {t.heroTitle.split(" ").map((word, index) => {
-                      if (word === "Shine" || word === "straalt" || word === "strielt") {
-                        return (
-                          <span
-                            key={index}
-                            className="bg-gradient-to-r from-green-600 via-blue-600 to-green-500 bg-clip-text text-transparent"
-                          >
-                            {word}{" "}
-                          </span>
-                        )
-                      }
-                      return word + " "
-                    })}
+            {/* Grid Layout */}
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
+              {/* Left Side - Text Content */}
+              <div className="space-y-6 lg:space-y-8 text-left order-2 lg:order-1">
+                {/* Main Headline */}
+                <div className="space-y-4 animate-fade-in">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
+                    Get Professional Services Cleaning For Your <span className="text-blue-600">Home Provide</span>
                   </h1>
 
-                  <div className="space-y-3 lg:space-y-4 text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 leading-relaxed">
-                    <p>{t.heroSubtitle}</p>
-                    <p>
-                      <span className="font-semibold text-green-700">{t.heroSpecialization}</span>
-                    </p>
-                  </div>
+                  <p className="text-base sm:text-lg lg:text-xl text-slate-700 leading-relaxed max-w-xl">
+                    {t.heroSubtitle ||
+                      "Understand to achieve anything requires faith and belief in yourself, vision, hard work, determination, and dedication."}
+                  </p>
 
-                  <div className="bg-white/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-4 lg:p-6 shadow-lg border border-white/40">
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-800 mb-2">
-                      {t.heroTagline}
-                    </p>
-                    <p className="text-xs sm:text-sm md:text-base lg:text-lg text-slate-600 font-medium">
-                      {t.heroServiceArea}
+                  {/* Discount Banner */}
+                  <div className="inline-block">
+                    <p className="text-lg sm:text-xl lg:text-2xl font-bold text-blue-600 uppercase tracking-wide">
+                      GET UP TO 30% OFF
                     </p>
                   </div>
                 </div>
 
-                {/* CTA Buttons - Mobile Optimized - FIXED CLICKABILITY */}
-                <div className="space-y-4 lg:space-y-6 animate-fade-in-up">
-                  {/* Mobile Layout - Full Width Stacked */}
-                  <div className="flex flex-col gap-3 w-full max-w-sm mx-auto lg:hidden">
-                    <Link href="/book-service" className="w-full">
-                      <Button
-                        size="lg"
-                        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                      >
-                        <span className="flex items-center justify-center gap-2">
-                          {t.requestQuote}
-                          <ArrowRight className="w-4 h-4" />
-                        </span>
-                      </Button>
-                    </Link>
-
-                    <Link href="https://wa.me/31610756699" className="w-full">
-                      <Button
-                        size="lg"
-                        className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                      >
-                        <span className="flex items-center justify-center gap-2">
-                          <MessageCircle className="w-4 h-4" />
-                          {t.whatsapp}
-                        </span>
-                      </Button>
-                    </Link>
-
-                    <a
-                      href="https://calendar.app.google/RU6yxXUM6GZED7Nm7"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full"
+                {/* CTA Button */}
+                <div className="animate-fade-in-up">
+                  <Link href="/book-service">
+                    <Button
+                      size="lg"
+                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-8 py-6 text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                     >
-                      <Button
-                        size="lg"
-                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                      >
-                        <span className="flex items-center justify-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          {t.bookAppointment}
-                        </span>
-                      </Button>
-                    </a>
+                      Get Started
+                    </Button>
+                  </Link>
+                </div>
 
-                    <Link href="/client-assessment" className="w-full">
-                      <Button
-                        size="lg"
-                        variant="outline"
-                        className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-xl px-6 py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 w-full"
-                      >
-                        <span className="flex items-center justify-center gap-2">
-                          <ClipboardList className="w-4 h-4" />
-                          {t.clientAssessment}
-                        </span>
-                      </Button>
-                    </Link>
+                {/* Feature Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 animate-fade-in-up">
+                  {/* Free Shipping Card */}
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
+                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Free Shipping</p>
+                    <p className="text-slate-600 text-xs text-center">
+                      {t.serviceArea || "Free Worldwide Shipping Area on order above $100"}
+                    </p>
                   </div>
 
-                  {/* Desktop Layout - Horizontal - FIXED CLICKABILITY */}
-                  <div className="hidden lg:flex flex-wrap gap-4 xl:gap-6">
-                    <Link href="/book-service">
-                      <Button
-                        size="lg"
-                        className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                      >
-                        <span className="flex items-center gap-2">
-                          {t.requestQuote}
-                          <ArrowRight className="w-5 h-5" />
-                        </span>
-                      </Button>
-                    </Link>
+                  {/* Payment Secure Card */}
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
+                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Payment Secure</p>
+                    <p className="text-slate-600 text-xs text-center">
+                      {t.securePayment || "Our support team always for you 7 days a week"}
+                    </p>
+                  </div>
 
-                    <Link href="https://wa.me/31610756699">
-                      <Button
-                        size="lg"
-                        className="bg-white hover:bg-green-50 text-green-600 border-2 border-green-200 hover:border-green-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                      >
-                        <span className="flex items-center gap-2">
-                          <MessageCircle className="w-5 h-5" />
-                          {t.whatsapp}
-                        </span>
-                      </Button>
-                    </Link>
-
-                    <a href="https://calendar.app.google/RU6yxXUM6GZED7Nm7" target="_blank" rel="noopener noreferrer">
-                      <Button
-                        size="lg"
-                        className="bg-blue-500 hover:bg-blue-600 text-white rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                      >
-                        <span className="flex items-center gap-2">
-                          <Calendar className="w-5 h-5" />
-                          {t.bookAppointment}
-                        </span>
-                      </Button>
-                    </a>
-
-                    <Link href="/client-assessment">
-                      <Button
-                        size="lg"
-                        variant="outline"
-                        className="bg-white/80 hover:bg-white text-slate-700 hover:text-slate-800 border-2 border-slate-200 hover:border-slate-300 rounded-2xl px-8 py-4 text-lg font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
-                      >
-                        <span className="flex items-center gap-2">
-                          <ClipboardList className="w-5 h-5" />
-                          {t.clientAssessment}
-                        </span>
-                      </Button>
-                    </Link>
+                  {/* 24/7 Support Card */}
+                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
+                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-blue-600 font-bold text-sm text-center mb-1">24/7 Friendly Support</p>
+                    <p className="text-slate-600 text-xs text-center">
+                      {t.support || "Our support team always for you 7 days a week"}
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Desktop Hero Image - Right Side */}
-              <div className="hidden lg:block relative order-3 lg:order-2">
-                <div className="relative w-full h-[600px] animate-slide-in-right">
-                  {/* Main Hero Image Container */}
-                  <div className="relative w-full h-full group">
-                    {/* Hero Image with Stylish Effects */}
-                    <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-105 hover:-rotate-1">
-                      {/* Background Image */}
+              {/* Right Side - Hero Image */}
+              <div className="relative order-1 lg:order-2 animate-slide-in-right">
+                <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px]">
+                  {/* Circular decorative elements */}
+                  <div className="absolute -top-8 -left-8 w-32 h-32 bg-white/30 rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-16 -right-8 w-24 h-24 bg-blue-400/30 rounded-full blur-xl"></div>
+
+                  {/* Circular image spots - decorative */}
+                  <div className="absolute bottom-24 left-8 lg:left-16 z-20">
+                    <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-2xl border-4 border-white">
                       <Image
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/pexels-karolina-grabowska-4239037.jpg-R5r64ltfSDkOmKYuxNJpmjw8wmyvsG.jpeg"
-                        alt="Professional cleaner creating sparkling clean spaces with care and attention to detail"
+                        src="/window-cleaning-with-spray-bottle.jpg"
+                        alt="Window cleaning service"
                         fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        priority
+                        className="object-cover"
                       />
-
-                      {/* Soft White Overlay for Blending */}
-                      <div className="absolute inset-0 bg-white/15 group-hover:bg-white/10 transition-all duration-500"></div>
-
-                      {/* Gradient Overlay for Better Text Contrast */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 via-transparent to-blue-900/10"></div>
-
-                      {/* Floating Animation Elements */}
-                      <div className="absolute top-6 right-6 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-75"></div>
-                      <div className="absolute bottom-8 left-8 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-
-                      {/* Caption Overlay */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8">
-                        <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/50 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                          <p className="text-slate-800 font-bold text-xl mb-2 leading-tight">"{t.imageCaption}"</p>
-                          <p className="text-slate-600 text-sm">{t.imageSubCaption}</p>
-                        </div>
-                      </div>
                     </div>
                   </div>
 
-                  {/* Floating Service Cards with proper spacing */}
-                  <div className="absolute -top-4 -right-4 transform rotate-6 group-hover:rotate-3 transition-transform duration-500 m-4">
-                    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                        <span className="text-green-700 font-semibold text-sm">Eco-Friendly</span>
-                      </div>
+                  <div className="absolute bottom-48 left-24 lg:left-32 z-10">
+                    <div className="relative w-28 h-28 lg:w-36 lg:h-36 rounded-full overflow-hidden shadow-xl border-4 border-white">
+                      <Image
+                        src="/cleaning-supplies-and-green-sponge.jpg"
+                        alt="Professional cleaning tools"
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                   </div>
 
-                  <div className="absolute bottom-1/4 -right-8 transform rotate-3 group-hover:-rotate-1 transition-transform duration-500 m-4">
-                    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-4 shadow-xl border border-amber-100 hover:shadow-2xl transition-all duration-300">
-                      <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-amber-500 rounded-full"></div>
-                        <span className="text-amber-700 font-semibold text-sm">Venlo & Limburg</span>
-                      </div>
-                    </div>
+                  {/* Main cleaner image */}
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 z-30 w-full max-w-md lg:max-w-lg">
+                    <Image
+                      src="/friendly-young-cleaner-smiling-wearing-gloves-and-.jpg"
+                      alt="Professional cleaner with cleaning supplies"
+                      width={500}
+                      height={600}
+                      className="w-full h-auto drop-shadow-2xl"
+                      priority
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Bottom wave transition */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-12 md:h-16 fill-white">
-            <path
-              d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-              opacity=".25"
-            ></path>
-            <path
-              d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-              opacity=".5"
-            ></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
-          </svg>
         </div>
       </section>
 
