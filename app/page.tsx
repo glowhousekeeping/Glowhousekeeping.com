@@ -59,19 +59,19 @@ export default function HomePage() {
             {/* Grid Layout */}
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
               {/* Left Side - Text Content */}
-              <div className="space-y-4 lg:space-y-6 text-left order-2 lg:order-1">
+              <div className="space-y-4 lg:space-y-6 text-left order-2 lg:order-1 px-2 md:px-0">
                 {/* Main Headline */}
                 <div className="space-y-3 animate-fade-in">
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-900 leading-tight">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-900 leading-tight">
                     Want Your Business To Shine With <span className="text-blue-600">Professionalism?</span>
                   </h1>
 
-                  <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl">
+                  <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed max-w-xl">
                     We provide exceptional commercial cleaning services in Venlo, Limburg tailored to satisfy businesses
                     who strive for excellence — while focusing on what really matters.
                   </p>
 
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-xl">
                     Specialized care for offices, retail stores, restaurants and professional facilities.
                   </p>
                 </div>
@@ -81,40 +81,45 @@ export default function HomePage() {
                   <Link href="/book-service">
                     <Button
                       size="lg"
-                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-8 py-6 text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-6 py-5 sm:px-8 sm:py-6 text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
                     >
                       Get Started
                     </Button>
                   </Link>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6 animate-fade-in-up">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6 animate-fade-in-up">
                   {/* Trusted Cleaners Card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
-                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Shield className="w-8 h-8 text-blue-600" />
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
+                    <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
                     </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Trusted Cleaners</p>
-                    <p className="text-slate-600 text-xs text-center">
+                    <p className="text-blue-600 font-bold text-xs sm:text-sm text-center mb-1">Trusted Cleaners</p>
+                    <p className="text-slate-600 text-[10px] sm:text-xs text-center">
                       Screened professionals with experience and reliability you can count on.
                     </p>
                   </div>
 
                   {/* Professional Results Card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
-                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Sparkles className="w-8 h-8 text-blue-600" />
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
+                    <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
                     </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Professional Results</p>
-                    <p className="text-slate-600 text-xs text-center">
+                    <p className="text-blue-600 font-bold text-xs sm:text-sm text-center mb-1">Professional Results</p>
+                    <p className="text-slate-600 text-[10px] sm:text-xs text-center">
                       We deliver hotel-level sparkle and precision in every cleaning session.
                     </p>
                   </div>
 
                   {/* Affordable Rates Card */}
-                  <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
-                    <div className="bg-yellow-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100 sm:col-span-2 lg:col-span-1">
+                    <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <svg
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -123,8 +128,8 @@ export default function HomePage() {
                         />
                       </svg>
                     </div>
-                    <p className="text-blue-600 font-bold text-sm text-center mb-1">Affordable Rates</p>
-                    <p className="text-slate-600 text-xs text-center">
+                    <p className="text-blue-600 font-bold text-xs sm:text-sm text-center mb-1">Affordable Rates</p>
+                    <p className="text-slate-600 text-[10px] sm:text-xs text-center">
                       Competitive pricing with no surprise fees — transparent and fair.
                     </p>
                   </div>
@@ -133,12 +138,12 @@ export default function HomePage() {
 
               {/* Right Side - Hero Image */}
               <div className="relative order-1 lg:order-2 animate-slide-in-right">
-                <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px]">
+                <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
                   <div className="absolute -top-8 -left-8 w-32 h-32 bg-white/50 rounded-full blur-2xl"></div>
                   <div className="absolute bottom-16 -right-8 w-24 h-24 bg-blue-400/50 rounded-full blur-xl"></div>
 
                   {/* Main cleaner image - positioned first with lower z-index */}
-                  <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-full max-w-md lg:max-w-lg">
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-[90%] sm:w-full max-w-md lg:max-w-lg">
                     <Image
                       src="/friendly-young-cleaner-smiling-wearing-gloves-and-.jpg"
                       alt="Professional cleaner with cleaning supplies"
@@ -150,8 +155,8 @@ export default function HomePage() {
                   </div>
 
                   {/* Top circular image - window cleaning */}
-                  <div className="absolute top-8 left-4 lg:top-12 lg:left-8 z-40">
-                    <div className="relative w-36 h-36 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white hover:scale-105 transition-transform duration-300">
+                  <div className="absolute top-2 left-1 sm:top-4 sm:left-4 lg:top-12 lg:left-8 z-40">
+                    <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-full overflow-hidden shadow-2xl border-2 sm:border-4 border-white hover:scale-105 transition-transform duration-300">
                       <Image
                         src="/window-cleaning-with-spray-bottle.jpg"
                         alt="Window cleaning service"
@@ -162,8 +167,8 @@ export default function HomePage() {
                   </div>
 
                   {/* Bottom circular image - cleaning supplies */}
-                  <div className="absolute bottom-16 left-12 lg:bottom-20 lg:left-20 z-30">
-                    <div className="relative w-32 h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-xl border-4 border-white hover:scale-105 transition-transform duration-300">
+                  <div className="absolute bottom-8 left-4 sm:bottom-12 sm:left-8 md:bottom-16 md:left-12 lg:bottom-20 lg:left-20 z-30">
+                    <div className="relative w-18 h-18 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden shadow-xl border-2 sm:border-4 border-white hover:scale-105 transition-transform duration-300">
                       <Image
                         src="/cleaning-supplies-and-green-sponge.jpg"
                         alt="Professional cleaning tools"
