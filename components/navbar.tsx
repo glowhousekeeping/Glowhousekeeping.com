@@ -32,22 +32,22 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-            <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link href="/" className="text-gray-700 hover:text-cyan-600 transition-colors font-medium">
               Home
             </Link>
-            <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link href="/about" className="text-gray-700 hover:text-cyan-600 transition-colors font-medium">
               About
             </Link>
             <Link
               href="/services/general-cleaning"
-              className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="text-gray-700 hover:text-cyan-600 transition-colors font-medium"
             >
               Services
             </Link>
-            <Link href="/blog" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link href="/blog" className="text-gray-700 hover:text-cyan-600 transition-colors font-medium">
               Blog
             </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+            <Link href="/contact" className="text-gray-700 hover:text-cyan-600 transition-colors font-medium">
               Contact
             </Link>
 
@@ -58,7 +58,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            <Button className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full px-6">
+            <Button className="bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white rounded-full px-6">
               <Link href="/book-service">Book Now</Link>
             </Button>
           </div>
@@ -76,35 +76,35 @@ export default function Navbar() {
           <div className="px-4 py-6 space-y-4">
             <Link
               href="/"
-              className="block py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="block py-2 text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link
               href="/about"
-              className="block py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="block py-2 text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               onClick={toggleMenu}
             >
               About
             </Link>
             <Link
               href="/services/general-cleaning"
-              className="block py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="block py-2 text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               onClick={toggleMenu}
             >
               Services
             </Link>
             <Link
               href="/blog"
-              className="block py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="block py-2 text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               onClick={toggleMenu}
             >
               Blog
             </Link>
             <Link
               href="/contact"
-              className="block py-2 text-gray-700 hover:text-blue-600 transition-colors font-medium"
+              className="block py-2 text-gray-700 hover:text-cyan-600 transition-colors font-medium"
               onClick={toggleMenu}
             >
               Contact
@@ -121,7 +121,7 @@ export default function Navbar() {
               </div>
               <a
                 href="mailto:gbeberina@gmail.com"
-                className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition-colors"
+                className="flex items-center gap-2 text-gray-700 hover:text-cyan-600 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span className="font-medium">Email Us</span>
@@ -129,7 +129,7 @@ export default function Navbar() {
             </div>
 
             <Button
-              className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white rounded-full"
+              className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white rounded-full"
               onClick={toggleMenu}
             >
               <Link href="/book-service">Book Now</Link>

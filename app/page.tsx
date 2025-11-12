@@ -33,13 +33,13 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <section className="relative min-h-[60vh] md:min-h-screen bg-gradient-to-br from-yellow-400 via-yellow-300 to-yellow-400 overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-screen bg-gradient-to-br from-cyan-400 via-cyan-300 to-sky-400 overflow-hidden">
         {/* Blue Wave Accent - Top Right */}
         <div className="absolute top-0 right-0 w-1/2 h-1/2 overflow-hidden">
           <svg viewBox="0 0 500 500" preserveAspectRatio="none" className="w-full h-full">
             <path
               d="M0,0 Q250,100 500,0 L500,500 Q250,400 0,500 Z"
-              fill="#3b82f6"
+              fill="#0891b2"
               opacity="0.9"
               className="drop-shadow-2xl"
             />
@@ -49,7 +49,7 @@ export default function HomePage() {
         {/* Blue Wave Accent - Bottom Left */}
         <div className="absolute bottom-0 left-0 w-1/3 h-1/3 overflow-hidden">
           <svg viewBox="0 0 300 300" preserveAspectRatio="none" className="w-full h-full">
-            <circle cx="0" cy="300" r="200" fill="#3b82f6" opacity="0.85" className="drop-shadow-xl" />
+            <circle cx="0" cy="300" r="200" fill="#0891b2" opacity="0.85" className="drop-shadow-xl" />
           </svg>
         </div>
 
@@ -63,7 +63,7 @@ export default function HomePage() {
                 {/* Main Headline */}
                 <div className="space-y-3 animate-fade-in">
                   <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-900 leading-tight">
-                    Want Your Business To Shine With <span className="text-blue-600">Professionalism?</span>
+                    Want Your Business To Shine With <span className="text-cyan-700">Professionalism?</span>
                   </h1>
 
                   <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed max-w-xl">
@@ -81,7 +81,7 @@ export default function HomePage() {
                   <Link href="/book-service">
                     <Button
                       size="lg"
-                      className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl px-6 py-5 sm:px-8 sm:py-6 text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+                      className="bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl px-6 py-5 sm:px-8 sm:py-6 text-base sm:text-lg font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
                     >
                       Get Started
                     </Button>
@@ -90,32 +90,32 @@ export default function HomePage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 pt-4 sm:pt-6 animate-fade-in-up">
                   {/* Trusted Cleaners Card */}
-                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
-                    <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                      <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-cyan-100">
+                    <div className="bg-cyan-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-800" />
                     </div>
-                    <p className="text-blue-600 font-bold text-xs sm:text-sm text-center mb-1">Trusted Cleaners</p>
+                    <p className="text-cyan-700 font-bold text-xs sm:text-sm text-center mb-1">Trusted Cleaners</p>
                     <p className="text-slate-600 text-[10px] sm:text-xs text-center">
                       Screened professionals with experience and reliability you can count on.
                     </p>
                   </div>
 
                   {/* Professional Results Card */}
-                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100">
-                    <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                      <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-cyan-100">
+                    <div className="bg-cyan-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                      <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-800" />
                     </div>
-                    <p className="text-blue-600 font-bold text-xs sm:text-sm text-center mb-1">Professional Results</p>
+                    <p className="text-cyan-700 font-bold text-xs sm:text-sm text-center mb-1">Professional Results</p>
                     <p className="text-slate-600 text-[10px] sm:text-xs text-center">
                       We deliver hotel-level sparkle and precision in every cleaning session.
                     </p>
                   </div>
 
                   {/* Affordable Rates Card */}
-                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100 sm:col-span-2 lg:col-span-1">
-                    <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-cyan-100 sm:col-span-2 lg:col-span-1">
+                    <div className="bg-cyan-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                       <svg
-                        className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600"
+                        className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-800"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -128,7 +128,7 @@ export default function HomePage() {
                         />
                       </svg>
                     </div>
-                    <p className="text-blue-600 font-bold text-xs sm:text-sm text-center mb-1">Affordable Rates</p>
+                    <p className="text-cyan-700 font-bold text-xs sm:text-sm text-center mb-1">Affordable Rates</p>
                     <p className="text-slate-600 text-[10px] sm:text-xs text-center">
                       Competitive pricing with no surprise fees — transparent and fair.
                     </p>
@@ -188,18 +188,18 @@ export default function HomePage() {
       <AutoScrollingGallery />
 
       {/* Before & After Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <section className="py-20 px-4 bg-gradient-to-br from-slate-50 via-cyan-50 to-sky-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Sparkles className="w-8 h-8 text-blue-600" />
-              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">
+              <Sparkles className="w-8 h-8 text-cyan-600" />
+              <Badge className="bg-cyan-100 text-cyan-800 hover:bg-cyan-100 text-lg px-4 py-2">
                 {t.transformation}
               </Badge>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.transformationTitle}</h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.transformationSubtitle}</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-sky-400 mx-auto rounded-full mt-6"></div>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8">
@@ -492,17 +492,17 @@ export default function HomePage() {
 
           {/* Call to Action */}
           <div className="text-center mt-16">
-            <div className="bg-white rounded-3xl p-12 shadow-xl border border-blue-100">
+            <div className="bg-white rounded-3xl p-12 shadow-xl border border-cyan-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.readyForTransformation}</h3>
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto">{t.transformationCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 rounded-full px-8">
+                <Button size="lg" className="bg-cyan-600 hover:bg-cyan-700 rounded-full px-8">
                   <Link href="/book-service">{t.getYourQuote}</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-full px-8 bg-transparent border-blue-300 text-blue-600 hover:bg-blue-50"
+                  className="rounded-full px-8 bg-transparent border-cyan-300 text-cyan-600 hover:bg-cyan-50"
                 >
                   <a href="https://calendar.app.google/RU6yxXUM6GZED7Nm7" target="_blank" rel="noopener noreferrer">
                     {t.bookNow}
@@ -514,7 +514,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Services Overview - keeping existing colors for variety */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -627,39 +627,39 @@ export default function HomePage() {
       </section>
 
       {/* Why Choose Glow Housekeeping - Enhanced Timeline */}
-      <section className="py-20 px-4 bg-gradient-to-br from-green-50 via-white to-blue-50">
+      <section className="py-20 px-4 bg-gradient-to-br from-cyan-50 via-white to-sky-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Sparkles className="w-8 h-8 text-green-600" />
-              <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-lg px-4 py-2">Why Choose Us</Badge>
+              <Sparkles className="w-8 h-8 text-cyan-600" />
+              <Badge className="bg-cyan-100 text-cyan-800 hover:bg-cyan-100 text-lg px-4 py-2">Why Choose Us</Badge>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">{t.whyChooseUs}</h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.whyChooseUsSubtitle}</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-400 mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-sky-400 mx-auto rounded-full mt-6"></div>
           </div>
 
           {/* Desktop Timeline - Horizontal */}
           <div className="hidden lg:block relative">
             {/* Timeline Line */}
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-green-200 via-blue-200 to-green-200 rounded-full transform -translate-y-1/2 z-0"></div>
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-cyan-200 via-sky-200 to-cyan-200 rounded-full transform -translate-y-1/2 z-0"></div>
 
             {/* Timeline Items */}
             <div className="relative z-10 grid grid-cols-5 gap-8">
               {/* Trusted Cleaners */}
               <div className="group">
-                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-green-100">
+                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-cyan-100">
                   <div className="text-center">
                     {/* Timeline Dot */}
-                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-cyan-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
 
                     {/* Icon */}
-                    <div className="bg-green-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors duration-300">
-                      <Shield className="w-10 h-10 text-green-600" />
+                    <div className="bg-cyan-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-200 transition-colors duration-300">
+                      <Shield className="w-10 h-10 text-cyan-600" />
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-cyan-600 transition-colors duration-300">
                       {t.trustedCleaners}
                     </h3>
                     <p className="text-gray-600 leading-relaxed text-sm">{t.trustedCleanersDesc}</p>
@@ -669,18 +669,18 @@ export default function HomePage() {
 
               {/* Professional Results */}
               <div className="group">
-                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100">
+                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-sky-100">
                   <div className="text-center">
                     {/* Timeline Dot */}
-                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-sky-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
 
                     {/* Icon */}
-                    <div className="bg-blue-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-                      <Sparkles className="w-10 h-10 text-blue-600" />
+                    <div className="bg-sky-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-sky-200 transition-colors duration-300">
+                      <Sparkles className="w-10 h-10 text-sky-600" />
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-sky-600 transition-colors duration-300">
                       {t.professionalResults}
                     </h3>
                     <p className="text-gray-600 leading-relaxed text-sm">{t.professionalResultsDesc}</p>
@@ -690,14 +690,14 @@ export default function HomePage() {
 
               {/* Affordable Rates */}
               <div className="group">
-                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-purple-100">
+                <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-teal-100">
                   <div className="text-center">
                     {/* Timeline Dot */}
-                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-teal-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
 
                     {/* Icon */}
-                    <div className="bg-purple-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 transition-colors duration-300">
-                      <svg className="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="bg-teal-100 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                      <svg className="w-10 h-10 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -708,7 +708,7 @@ export default function HomePage() {
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-teal-600 transition-colors duration-300">
                       {t.affordableRates}
                     </h3>
                     <p className="text-gray-600 leading-relaxed text-sm">{t.affordableRatesDesc}</p>
@@ -772,15 +772,15 @@ export default function HomePage() {
             {/* Timeline Items */}
             <div className="relative">
               {/* Vertical Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-green-200 via-blue-200 to-rose-200 rounded-full"></div>
+              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-200 via-sky-200 to-rose-200 rounded-full"></div>
 
               <div className="space-y-12">
                 {/* Trusted Cleaners */}
                 <div className="relative flex items-start gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                  <div className="flex-shrink-0 w-16 h-16 bg-cyan-500 rounded-full flex items-center justify-center shadow-lg z-10">
                     <Shield className="w-8 h-8 text-white" />
                   </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-green-100">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-cyan-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{t.trustedCleaners}</h3>
                     <p className="text-gray-600 leading-relaxed">{t.trustedCleanersDesc}</p>
                   </div>
@@ -788,10 +788,10 @@ export default function HomePage() {
 
                 {/* Professional Results */}
                 <div className="relative flex items-start gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                  <div className="flex-shrink-0 w-16 h-16 bg-sky-500 rounded-full flex items-center justify-center shadow-lg z-10">
                     <Sparkles className="w-8 h-8 text-white" />
                   </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-blue-100">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-sky-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{t.professionalResults}</h3>
                     <p className="text-gray-600 leading-relaxed">{t.professionalResultsDesc}</p>
                   </div>
@@ -799,7 +799,7 @@ export default function HomePage() {
 
                 {/* Affordable Rates */}
                 <div className="relative flex items-start gap-6">
-                  <div className="flex-shrink-0 w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                  <div className="flex-shrink-0 w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center shadow-lg z-10">
                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
@@ -809,7 +809,7 @@ export default function HomePage() {
                       />
                     </svg>
                   </div>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-purple-100">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-teal-100">
                     <h3 className="text-xl font-bold text-gray-900 mb-3">{t.affordableRates}</h3>
                     <p className="text-gray-600 leading-relaxed">{t.affordableRatesDesc}</p>
                   </div>
@@ -849,17 +849,17 @@ export default function HomePage() {
 
           {/* Call to Action */}
           <div className="text-center mt-20">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-green-100">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-12 shadow-xl border border-cyan-100">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">{t.experienceGlowDifference}</h3>
               <p className="text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">{t.experienceGlowCTA}</p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" className="bg-green-600 hover:bg-green-700 rounded-full px-8">
+                <Button size="lg" className="bg-cyan-600 hover:bg-cyan-700 rounded-full px-8">
                   <Link href="/book-service">{t.getStartedToday}</Link>
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-full px-8 bg-transparent border-green-300 text-green-600 hover:bg-green-50"
+                  className="rounded-full px-8 bg-transparent border-cyan-300 text-cyan-600 hover:bg-cyan-50"
                 >
                   <Link href="/about">{t.learnMoreAboutUs}</Link>
                 </Button>
@@ -1194,13 +1194,13 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600">
+      <section className="py-20 px-4 bg-gradient-to-r from-cyan-600 to-teal-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">{t.readyToExperience}</h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">{t.ctaSubtitle}</p>
+          <p className="text-xl text-cyan-100 mb-8 leading-relaxed">{t.ctaSubtitle}</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/book-service">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
+              <Button size="lg" className="bg-white text-cyan-600 hover:bg-gray-100 rounded-full px-8">
                 {t.getFreeQuote}
               </Button>
             </Link>
@@ -1208,7 +1208,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 rounded-full px-8 bg-transparent"
+                className="border-white text-white hover:bg-white hover:text-cyan-600 rounded-full px-8 bg-transparent"
               >
                 {t.contactWhatsApp}
               </Button>
