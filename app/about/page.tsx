@@ -47,16 +47,16 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 bg-gradient-to-br from-blue-50 via-white to-green-50 overflow-hidden">
+      <section className="relative py-20 px-4 bg-gradient-to-br from-cyan-50 via-white to-sky-50 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-16 h-16">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-blue-400">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-cyan-400">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
             </svg>
           </div>
           <div className="absolute top-40 right-20 w-12 h-12">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-green-400">
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full text-teal-400">
               <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
             </svg>
           </div>
@@ -65,12 +65,12 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto relative">
           <div className="text-center">
             <div className="space-y-6">
-              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-200 text-lg px-6 py-3">
+              <Badge className="bg-cyan-100 text-cyan-800 hover:bg-cyan-200 text-lg px-6 py-3">
                 ✨ About Glow Housekeeping
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Built on <span className="text-blue-600">Trust</span>, <span className="text-green-600">Care</span> &{" "}
-                <span className="text-purple-600">Excellence</span>
+                Built on <span className="text-cyan-600">Trust</span>, <span className="text-teal-600">Care</span> &{" "}
+                <span className="text-sky-600">Excellence</span>
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
                 Discover the story behind Glow Housekeeping and meet the passionate founder who's transforming the
@@ -91,7 +91,7 @@ export default function AboutPage() {
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Glorija Beberina</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Founder & CEO of <span className="font-semibold text-blue-600">Glow Housekeeping</span>
+              Founder & CEO of <span className="font-semibold text-cyan-600">Glow Housekeeping</span>
             </p>
           </div>
 
@@ -118,26 +118,26 @@ export default function AboutPage() {
             </div>
 
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl p-8 border border-blue-200">
+              <div className="bg-gradient-to-br from-cyan-50 to-sky-100 rounded-3xl p-8 border border-cyan-200">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                  <Globe className="w-8 h-8 text-blue-600" />
+                  <Globe className="w-8 h-8 text-cyan-600" />
                   The Foundation
                 </h3>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  <span className="font-semibold text-blue-600">Glorija Beberina</span> is the founder and CEO of Glow
+                  <span className="font-semibold text-cyan-600">Glorija Beberina</span> is the founder and CEO of Glow
                   Housekeeping, a company built on{" "}
-                  <span className="font-semibold text-green-600">trust, transparency, and a passion</span> for helping
+                  <span className="font-semibold text-teal-600">trust, transparency, and a passion</span> for helping
                   others live and work in clean, uplifting spaces.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-3xl p-8 border border-green-200">
+              <div className="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-3xl p-8 border border-teal-200">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                  <MapPin className="w-8 h-8 text-green-600" />
+                  <MapPin className="w-8 h-8 text-teal-600" />
                   From Latvia to The Netherlands
                 </h3>
                 <p className="text-gray-700 leading-relaxed text-lg">
-                  Originally from <span className="font-semibold text-green-600">Latvia</span>, Glorija moved to The
+                  Originally from <span className="font-semibold text-teal-600">Latvia</span>, Glorija moved to The
                   Netherlands in <span className="font-semibold">2022</span>, bringing with her a strong work ethic and
                   determination to build something meaningful.
                 </p>
@@ -156,17 +156,17 @@ export default function AboutPage() {
 
             {/* Desktop Timeline */}
             <div className="hidden lg:block relative">
-              <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-green-200 to-purple-200 rounded-full transform -translate-y-1/2"></div>
+              <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-cyan-200 via-teal-200 to-sky-200 rounded-full transform -translate-y-1/2"></div>
 
               <div className="grid grid-cols-3 gap-8 relative z-10">
                 {/* Step 1: The Question */}
                 <div className="group">
-                  <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100">
-                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
-                    <div className="bg-blue-100 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-                      <Lightbulb className="w-8 h-8 text-blue-600" />
+                  <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-cyan-100">
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-cyan-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="bg-cyan-100 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-200 transition-colors duration-300">
+                      <Lightbulb className="w-8 h-8 text-cyan-600" />
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
+                    <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-cyan-600 transition-colors">
                       The Realization
                     </h4>
                     <p className="text-gray-600 leading-relaxed text-sm">
@@ -178,37 +178,36 @@ export default function AboutPage() {
 
                 {/* Step 2: The Answer */}
                 <div className="group">
-                  <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-green-100">
-                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
-                    <div className="bg-green-100 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors duration-300">
-                      <Sparkles className="w-8 h-8 text-green-600" />
+                  <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-teal-100">
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-teal-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="bg-teal-100 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-teal-200 transition-colors duration-300">
+                      <Sparkles className="w-8 h-8 text-teal-600" />
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-green-600 transition-colors">
+                    <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-teal-600 transition-colors">
                       The Answer
                     </h4>
                     <p className="text-gray-600 leading-relaxed text-sm">
                       <strong>The answer was clear—cleaning.</strong> It wasn't just a task to her; it was a meaningful
                       service. The ability to transform a space and bring comfort through cleanliness gave her{" "}
-                      <span className="font-semibold text-green-600">purpose and energy</span>.
+                      <span className="font-semibold text-teal-600">purpose and energy</span>.
                     </p>
                   </div>
                 </div>
 
                 {/* Step 3: The Mission */}
                 <div className="group">
-                  <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-purple-100">
-                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
-                    <div className="bg-purple-100 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-200 transition-colors duration-300">
-                      <Target className="w-8 h-8 text-purple-600" />
+                  <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-sky-100">
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-sky-500 rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="bg-sky-100 w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:bg-sky-200 transition-colors duration-300">
+                      <Target className="w-8 h-8 text-sky-600" />
                     </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">
+                    <h4 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-sky-600 transition-colors">
                       The Mission
                     </h4>
                     <p className="text-gray-600 leading-relaxed text-sm">
                       In <strong>2024</strong>, she launched{" "}
-                      <span className="font-semibold text-purple-600">Glow Housekeeping</span> with a mission: To create
-                      a cleaning service where integrity, care, and professionalism come first—for both clients and
-                      staff.
+                      <span className="font-semibold text-sky-600">Glow Housekeeping</span> with a mission: To create a
+                      cleaning service where integrity, care, and professionalism come first—for both clients and staff.
                     </p>
                   </div>
                 </div>
@@ -218,14 +217,14 @@ export default function AboutPage() {
             {/* Mobile Timeline */}
             <div className="lg:hidden space-y-8">
               <div className="relative">
-                <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-200 via-green-200 to-purple-200 rounded-full"></div>
+                <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-200 via-teal-200 to-sky-200 rounded-full"></div>
 
                 <div className="space-y-12">
                   <div className="relative flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                    <div className="flex-shrink-0 w-16 h-16 bg-cyan-500 rounded-full flex items-center justify-center shadow-lg z-10">
                       <Lightbulb className="w-8 h-8 text-white" />
                     </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-blue-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-cyan-100">
                       <h4 className="text-xl font-bold text-gray-900 mb-3">The Realization</h4>
                       <p className="text-gray-600 leading-relaxed">
                         After spending a year working in a warehouse—a job that left her unfulfilled—she asked herself:{" "}
@@ -235,30 +234,30 @@ export default function AboutPage() {
                   </div>
 
                   <div className="relative flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                    <div className="flex-shrink-0 w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center shadow-lg z-10">
                       <Sparkles className="w-8 h-8 text-white" />
                     </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-green-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-teal-100">
                       <h4 className="text-xl font-bold text-gray-900 mb-3">The Answer</h4>
                       <p className="text-gray-600 leading-relaxed">
                         <strong>The answer was clear—cleaning.</strong> It wasn't just a task to her; it was a
                         meaningful service. The ability to transform a space and bring comfort through cleanliness gave
-                        her <span className="font-semibold text-green-600">purpose and energy</span>.
+                        her <span className="font-semibold text-teal-600">purpose and energy</span>.
                       </p>
                     </div>
                   </div>
 
                   <div className="relative flex items-start gap-6">
-                    <div className="flex-shrink-0 w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center shadow-lg z-10">
+                    <div className="flex-shrink-0 w-16 h-16 bg-sky-500 rounded-full flex items-center justify-center shadow-lg z-10">
                       <Target className="w-8 h-8 text-white" />
                     </div>
-                    <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-purple-100">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg flex-1 border border-sky-100">
                       <h4 className="text-xl font-bold text-gray-900 mb-3">The Mission</h4>
                       <p className="text-gray-600 leading-relaxed">
                         In <strong>2024</strong>, she launched{" "}
-                        <span className="font-semibold text-purple-600">Glow Housekeeping</span> with a mission: To
-                        create a cleaning service where integrity, care, and professionalism come first—for both clients
-                        and staff.
+                        <span className="font-semibold text-sky-600">Glow Housekeeping</span> with a mission: To create
+                        a cleaning service where integrity, care, and professionalism come first—for both clients and
+                        staff.
                       </p>
                     </div>
                   </div>
@@ -324,30 +323,30 @@ export default function AboutPage() {
 
           {/* Current Success */}
           <div className="text-center mb-16">
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-100 rounded-3xl p-12 shadow-xl border border-indigo-200">
+            <div className="bg-gradient-to-br from-cyan-50 to-sky-100 rounded-3xl p-12 shadow-xl border border-cyan-200">
               <div className="flex items-center justify-center gap-3 mb-6">
-                <Zap className="w-10 h-10 text-indigo-600" />
+                <Zap className="w-10 h-10 text-cyan-600" />
                 <h3 className="text-3xl font-bold text-gray-900">Today's Success</h3>
               </div>
               <p className="text-xl text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8">
-                Today, <span className="font-bold text-indigo-600">Glow Housekeeping</span> proudly serves a diverse
-                range of clients—from <span className="font-semibold">families and busy professionals</span> to{" "}
+                Today, <span className="font-bold text-cyan-600">Glow Housekeeping</span> proudly serves a diverse range
+                of clients—from <span className="font-semibold">families and busy professionals</span> to{" "}
                 <span className="font-semibold">offices and commercial spaces</span>—bringing not just cleanliness, but{" "}
-                <span className="font-semibold text-purple-600">peace of mind</span>.
+                <span className="font-semibold text-teal-600">peace of mind</span>.
               </p>
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-white/60 rounded-2xl p-6">
-                  <Building className="w-8 h-8 text-indigo-600 mx-auto mb-3" />
+                  <Building className="w-8 h-8 text-cyan-600 mx-auto mb-3" />
                   <h4 className="font-bold text-gray-900 mb-2">Commercial Spaces</h4>
                   <p className="text-gray-600 text-sm">Offices, retail stores, and professional facilities</p>
                 </div>
                 <div className="bg-white/60 rounded-2xl p-6">
-                  <Heart className="w-8 h-8 text-purple-600 mx-auto mb-3" />
+                  <Heart className="w-8 h-8 text-teal-600 mx-auto mb-3" />
                   <h4 className="font-bold text-gray-900 mb-2">Families</h4>
                   <p className="text-gray-600 text-sm">Homes where families create lasting memories</p>
                 </div>
                 <div className="bg-white/60 rounded-2xl p-6">
-                  <Users className="w-8 h-8 text-green-600 mx-auto mb-3" />
+                  <Users className="w-8 h-8 text-sky-600 mx-auto mb-3" />
                   <h4 className="font-bold text-gray-900 mb-2">Professionals</h4>
                   <p className="text-gray-600 text-sm">Busy individuals who value quality and reliability</p>
                 </div>
@@ -357,7 +356,7 @@ export default function AboutPage() {
               </blockquote>
               <p className="text-lg text-gray-600">
                 With Glorija's leadership, the company is grounded in{" "}
-                <span className="font-semibold text-indigo-600">compassion, honesty, and a deep belief</span> in doing
+                <span className="font-semibold text-cyan-600">compassion, honesty, and a deep belief</span> in doing
                 things the right way.
               </p>
             </div>
@@ -366,12 +365,12 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values */}
-      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-cyan-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Award className="w-8 h-8 text-blue-600" />
-              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 text-lg px-4 py-2">Our Core Values</Badge>
+              <Award className="w-8 h-8 text-cyan-600" />
+              <Badge className="bg-cyan-100 text-cyan-800 hover:bg-cyan-100 text-lg px-4 py-2">Our Core Values</Badge>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">What Drives Us Every Day</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -383,11 +382,11 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Shield className="w-8 h-8 text-blue-600" />,
+                icon: <Shield className="w-8 h-8 text-cyan-600" />,
                 title: "Integrity First",
                 description:
                   "We believe in doing the right thing, even when no one is watching. Transparency and honesty guide every decision we make.",
-                color: "blue",
+                color: "cyan",
               },
               {
                 icon: <Heart className="w-8 h-8 text-rose-600" />,
@@ -397,18 +396,18 @@ export default function AboutPage() {
                 color: "rose",
               },
               {
-                icon: <Users className="w-8 h-8 text-green-600" />,
+                icon: <Users className="w-8 h-8 text-teal-600" />,
                 title: "Respect for All",
                 description:
                   "We treat our team members, clients, and community with dignity and respect. Everyone deserves to be valued.",
-                color: "green",
+                color: "teal",
               },
               {
-                icon: <Sparkles className="w-8 h-8 text-purple-600" />,
+                icon: <Sparkles className="w-8 h-8 text-sky-600" />,
                 title: "Excellence",
                 description:
                   "We're not satisfied with 'good enough.' We strive for excellence in every detail, every time.",
-                color: "purple",
+                color: "sky",
               },
               {
                 icon: <CheckCircle className="w-8 h-8 text-orange-600" />,
@@ -449,8 +448,8 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Users className="w-8 h-8 text-green-600" />
-              <Badge className="bg-green-100 text-green-800 hover:bg-green-100 text-lg px-4 py-2">Our Team</Badge>
+              <Users className="w-8 h-8 text-teal-600" />
+              <Badge className="bg-teal-100 text-teal-800 hover:bg-teal-100 text-lg px-4 py-2">Our Team</Badge>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">The People Behind the Glow</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -473,7 +472,7 @@ export default function AboutPage() {
                 </div>
                 <div className="p-8 text-center">
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">Glorija Beberina</h3>
-                  <p className="text-blue-600 font-medium mb-4">Founder & CEO</p>
+                  <p className="text-cyan-600 font-medium mb-4">Founder & CEO</p>
                   <p className="text-gray-600 leading-relaxed">
                     Passionate about creating clean, comfortable spaces and building a company based on integrity and
                     care.
@@ -496,7 +495,7 @@ export default function AboutPage() {
                 </div>
                 <div className="p-8 text-center">
                   <h3 className="text-xl font-semibold mb-2 text-gray-900">Our Professional Team</h3>
-                  <p className="text-green-600 font-medium mb-4">Cleaning Specialists</p>
+                  <p className="text-teal-600 font-medium mb-4">Cleaning Specialists</p>
                   <p className="text-gray-600 leading-relaxed">
                     Trained, experienced, and dedicated professionals who share our commitment to excellence.
                   </p>
@@ -505,16 +504,16 @@ export default function AboutPage() {
             </Card>
 
             {/* Join Our Team Card */}
-            <Card className="group hover:shadow-xl transition-all duration-300 rounded-2xl border-0 shadow-lg hover:-translate-y-2 bg-gradient-to-br from-blue-50 to-green-50">
+            <Card className="group hover:shadow-xl transition-all duration-300 rounded-2xl border-0 shadow-lg hover:-translate-y-2 bg-gradient-to-br from-cyan-50 to-teal-50">
               <CardContent className="p-8 text-center flex flex-col justify-center h-full">
-                <div className="bg-blue-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-200 transition-colors duration-300">
-                  <Users className="w-8 h-8 text-blue-600" />
+                <div className="bg-cyan-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-cyan-200 transition-colors duration-300">
+                  <Users className="w-8 h-8 text-cyan-600" />
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-gray-900">Join Our Team</h3>
                 <p className="text-gray-600 leading-relaxed mb-6">
                   We're always looking for passionate individuals who share our values and want to make a difference.
                 </p>
-                <Button className="bg-blue-600 hover:bg-blue-700 rounded-full">
+                <Button className="bg-cyan-600 hover:bg-cyan-700 rounded-full">
                   <Link href="/join-our-team" className="flex items-center gap-2">
                     View Opportunities <ArrowRight className="w-4 h-4" />
                   </Link>
@@ -526,21 +525,21 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600">
+      <section className="py-20 px-4 bg-gradient-to-r from-cyan-600 to-teal-600">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">Ready to Experience the Glow Difference?</h2>
-          <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+          <p className="text-xl text-cyan-100 mb-8 leading-relaxed">
             Join the families and businesses who trust us with their most important spaces. Experience cleaning services
             built on integrity, care, and excellence.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 rounded-full px-8">
+            <Button size="lg" className="bg-white text-cyan-600 hover:bg-gray-100 rounded-full px-8">
               <Link href="/book-service">Book Your Service</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-blue-600 rounded-full px-8 bg-transparent"
+              className="border-white text-white hover:bg-white hover:text-cyan-600 rounded-full px-8 bg-transparent"
             >
               <Link href="/contact">Get in Touch</Link>
             </Button>

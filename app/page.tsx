@@ -62,16 +62,16 @@ export default function HomePage() {
               <div className="space-y-4 lg:space-y-6 text-left order-2 lg:order-1 px-2 md:px-0">
                 {/* Main Headline */}
                 <div className="space-y-3 animate-fade-in">
-                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-900 leading-tight">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight">
                     Want Your Business To Shine With <span className="text-cyan-700">Professionalism?</span>
                   </h1>
 
-                  <p className="text-sm sm:text-base md:text-lg text-slate-700 leading-relaxed max-w-xl">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed max-w-xl">
                     We provide exceptional commercial cleaning services in Venlo, Limburg tailored to satisfy businesses
                     who strive for excellence — while focusing on what really matters.
                   </p>
 
-                  <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-xl">
+                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed max-w-xl">
                     Specialized care for offices, retail stores, restaurants and professional facilities.
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export default function HomePage() {
                       <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-800" />
                     </div>
                     <p className="text-cyan-700 font-bold text-xs sm:text-sm text-center mb-1">Trusted Cleaners</p>
-                    <p className="text-slate-600 text-[10px] sm:text-xs text-center">
+                    <p className="text-gray-700 text-[10px] sm:text-xs text-center">
                       Screened professionals with experience and reliability you can count on.
                     </p>
                   </div>
@@ -106,7 +106,7 @@ export default function HomePage() {
                       <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-800" />
                     </div>
                     <p className="text-cyan-700 font-bold text-xs sm:text-sm text-center mb-1">Professional Results</p>
-                    <p className="text-slate-600 text-[10px] sm:text-xs text-center">
+                    <p className="text-gray-700 text-[10px] sm:text-xs text-center">
                       We deliver hotel-level sparkle and precision in every cleaning session.
                     </p>
                   </div>
@@ -129,7 +129,7 @@ export default function HomePage() {
                       </svg>
                     </div>
                     <p className="text-cyan-700 font-bold text-xs sm:text-sm text-center mb-1">Affordable Rates</p>
-                    <p className="text-slate-600 text-[10px] sm:text-xs text-center">
+                    <p className="text-gray-700 text-[10px] sm:text-xs text-center">
                       Competitive pricing with no surprise fees — transparent and fair.
                     </p>
                   </div>

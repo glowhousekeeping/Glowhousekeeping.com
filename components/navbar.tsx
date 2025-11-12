@@ -23,7 +23,7 @@ export default function Navbar() {
               <Image src="/glow-logo-new.jpg" alt="Glow Housekeeping Logo" fill className="object-cover" priority />
             </div>
             <div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent">
                 Glow Housekeeping
               </span>
               <p className="text-xs text-gray-600">Professional Cleaning Services</p>

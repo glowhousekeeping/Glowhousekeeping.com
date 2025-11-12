@@ -63,12 +63,12 @@ ${formData.message}`
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-cyan-50 via-white to-sky-50">
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600 text-white">
+      <section className="py-20 px-4 bg-gradient-to-r from-cyan-600 to-teal-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl lg:text-5xl font-bold mb-6">Get in Touch</h1>
-          <p className="text-xl text-blue-100 leading-relaxed">
+          <p className="text-xl text-cyan-100 leading-relaxed">
             Have questions about our cleaning services? We're here to help! Reach out to us through any of the methods
             below.
           </p>
@@ -93,8 +93,8 @@ ${formData.message}`
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div className="bg-blue-100 p-3 rounded-full">
-                        <Phone className="w-6 h-6 text-blue-600" />
+                      <div className="bg-cyan-100 p-3 rounded-full">
+                        <Phone className="w-6 h-6 text-cyan-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
@@ -108,14 +108,14 @@ ${formData.message}`
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div className="bg-green-100 p-3 rounded-full">
-                        <MessageCircle className="w-6 h-6 text-green-600" />
+                      <div className="bg-teal-100 p-3 rounded-full">
+                        <MessageCircle className="w-6 h-6 text-teal-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">WhatsApp</h3>
                         <a
                           href="https://wa.me/31610756699"
-                          className="text-green-600 hover:text-green-700 transition-colors"
+                          className="text-teal-600 hover:text-teal-700 transition-colors"
                         >
                           Chat with us on WhatsApp
                         </a>
@@ -128,14 +128,14 @@ ${formData.message}`
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <div className="bg-purple-100 p-3 rounded-full">
-                        <Mail className="w-6 h-6 text-purple-600" />
+                      <div className="bg-sky-100 p-3 rounded-full">
+                        <Mail className="w-6 h-6 text-sky-600" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
                         <a
                           href="mailto:gbeberina@gmail.com"
-                          className="text-purple-600 hover:text-purple-700 transition-colors"
+                          className="text-sky-600 hover:text-sky-700 transition-colors"
                         >
                           gbeberina@gmail.com
                         </a>
@@ -280,7 +280,7 @@ ${formData.message}`
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white"
+                      className="w-full bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white"
                     >
                       Send Message via WhatsApp
                     </Button>
@@ -341,20 +341,20 @@ ${formData.message}`
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+      <section className="py-20 px-4 bg-gradient-to-r from-teal-600 to-cyan-600 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Experience Professional Cleaning?</h2>
-          <p className="text-xl text-green-100 mb-8">
+          <p className="text-xl text-teal-100 mb-8">
             Book your service today and discover the Glow Housekeeping difference.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" className="bg-white text-green-600 hover:bg-gray-100 rounded-full px-8">
+            <Button size="lg" className="bg-white text-teal-600 hover:bg-gray-100 rounded-full px-8">
               <Link href="/book-service">Book Now</Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-green-600 rounded-full px-8 bg-transparent"
+              className="border-white text-white hover:bg-white hover:text-teal-600 rounded-full px-8 bg-transparent"
             >
               <a href="https://calendar.app.google/RU6yxXUM6GZED7Nm7" target="_blank" rel="noopener noreferrer">
                 Schedule Appointment
