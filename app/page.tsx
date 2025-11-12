@@ -35,7 +35,7 @@ export default function HomePage() {
     <div className="min-h-screen overflow-x-hidden">
       <section className="relative min-h-[60vh] md:min-h-screen bg-gradient-to-br from-cyan-400 via-cyan-300 to-sky-400 overflow-hidden">
         {/* Blue Wave Accent - Top Right */}
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 overflow-hidden">
+        <div className="hidden md:block absolute top-0 right-0 w-1/2 h-1/2 overflow-hidden">
           <svg viewBox="0 0 500 500" preserveAspectRatio="none" className="w-full h-full">
             <path
               d="M0,0 Q250,100 500,0 L500,500 Q250,400 0,500 Z"
@@ -47,7 +47,7 @@ export default function HomePage() {
         </div>
 
         {/* Blue Wave Accent - Bottom Left */}
-        <div className="absolute bottom-0 left-0 w-1/3 h-1/3 overflow-hidden">
+        <div className="hidden md:block absolute bottom-0 left-0 w-1/3 h-1/3 overflow-hidden">
           <svg viewBox="0 0 300 300" preserveAspectRatio="none" className="w-full h-full">
             <circle cx="0" cy="300" r="200" fill="#0891b2" opacity="0.85" className="drop-shadow-xl" />
           </svg>

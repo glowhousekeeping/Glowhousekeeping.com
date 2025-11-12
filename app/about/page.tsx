@@ -98,12 +98,12 @@ export default function AboutPage() {
           {/* Founder Image and Introduction */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
             <div className="relative">
-              <div className="relative w-full h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative w-full h-[600px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-10-31%20at%207.44.13%20PM-ZUGdwjv0jHNnpAKgleaDKxtOAuSBYt.jpeg"
                   alt="Glorija Beberina - Founder and CEO of Glow Housekeeping"
                   fill
-                  className="object-cover"
+                  className="object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 <div className="absolute bottom-6 left-6 right-6">
