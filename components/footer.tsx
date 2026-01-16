@@ -100,9 +100,15 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-gray-300">+31 6 10756699 (WhatsApp only)</p>
-                  <p className="text-gray-300">+31 6 31330807</p>
-                  <p className="text-sm text-gray-400">Available for inquiries</p>
+                  <a
+                    href="https://wa.me/31610756699"
+                    className="text-gray-300 hover:text-green-400 transition-colors block"
+                  >
+                    +31 6 10756699 (WhatsApp only)
+                  </a>
+                  <a href="tel:+31631330807" className="text-gray-300 hover:text-cyan-400 transition-colors block">
+                    +31 6 31330807 (Calls & inquiries)
+                  </a>
                 </div>
               </div>
 

@@ -97,9 +97,11 @@ ${formData.message}`
                         <Phone className="w-6 h-6 text-cyan-600" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-                        <p className="text-gray-700">+31 6 10756699</p>
-                        <p className="text-sm text-gray-600 mt-1">WhatsApp only (+31610756699)</p>
+                        <h3 className="font-semibold text-gray-900 mb-2">Phone (Calls)</h3>
+                        <a href="tel:+31631330807" className="text-cyan-600 hover:text-cyan-700 transition-colors">
+                          +31 6 31330807
+                        </a>
+                        <p className="text-sm text-gray-600 mt-1">Available for calls and inquiries</p>
                       </div>
                     </div>
                   </CardContent>
@@ -117,7 +119,7 @@ ${formData.message}`
                           href="https://wa.me/31610756699"
                           className="text-teal-600 hover:text-teal-700 transition-colors"
                         >
-                          Chat with us on WhatsApp
+                          +31 6 10756699 (WhatsApp only)
                         </a>
                         <p className="text-sm text-gray-600 mt-1">Quick response guaranteed</p>
                       </div>
@@ -168,8 +170,8 @@ ${formData.message}`
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">Business Hours</h3>
-                        <p className="text-gray-700">Monday - Sunday</p>
-                        <p className="text-gray-700">7:00 AM - 8:00 PM</p>
+                        <p className="text-gray-700">Monday - Friday</p>
+                        <p className="text-gray-700">08:00 - 16:00</p>
                         <p className="text-sm text-gray-600 mt-1">Flexible scheduling available</p>
                       </div>
                     </div>

@@ -105,9 +105,12 @@ export default function DrainCleaningPage() {
                   size="lg"
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-emerald-600 px-8 py-3 rounded-full transition-all duration-300 bg-transparent"
+                  asChild
                 >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Emergency Call
+                  <a href="tel:+31631330807">
+                    <Phone className="w-4 h-4 mr-2" />
+                    Emergency Call
+                  </a>
                 </Button>
               </div>
             </div>
@@ -130,7 +133,13 @@ export default function DrainCleaningPage() {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center gap-4 text-center">
             <AlertTriangle className="w-6 h-6 text-yellow-300" />
-            <span className="text-lg font-semibold">Drain Emergency? Call us now: +31 6 10756699 - Available 24/7</span>
+            <span className="text-lg font-semibold">
+              Drain Emergency? Call us now:{" "}
+              <a href="tel:+31631330807" className="underline">
+                +31 6 31330807
+              </a>{" "}
+              - Available 24/7
+            </span>
             <AlertTriangle className="w-6 h-6 text-yellow-300" />
           </div>
         </div>

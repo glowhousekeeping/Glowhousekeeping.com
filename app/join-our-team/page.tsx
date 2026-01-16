@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, Heart, Award, Clock, Mail, Phone } from "lucide-react"
-import Link from "next/link"
 import Image from "next/image"
 
 export default function JoinOurTeamPage() {
@@ -34,8 +33,8 @@ export default function JoinOurTeamPage() {
                     Apply Now
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent">
-                  <Link href="https://wa.me/31610756699">WhatsApp Us</Link>
+                <Button size="lg" variant="outline" className="rounded-full px-8 bg-transparent" asChild>
+                  <a href="https://wa.me/31610756699">WhatsApp Us</a>
                 </Button>
               </div>
             </div>
@@ -290,13 +289,17 @@ export default function JoinOurTeamPage() {
               <div className="text-center">
                 <p className="text-sm text-gray-500 mb-4">Having trouble with the form? You can also apply directly:</p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <Button variant="outline" className="rounded-full bg-transparent">
-                    <Mail className="w-4 h-4 mr-2" />
-                    <a href="mailto:gbeberina@gmail.com">Email Application</a>
+                  <Button variant="outline" className="rounded-full bg-transparent" asChild>
+                    <a href="mailto:gbeberina@gmail.com">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Email Application
+                    </a>
                   </Button>
-                  <Button variant="outline" className="rounded-full bg-transparent">
-                    <Phone className="w-4 h-4 mr-2" />
-                    <Link href="https://wa.me/31610756699">WhatsApp Us</Link>
+                  <Button variant="outline" className="rounded-full bg-transparent" asChild>
+                    <a href="https://wa.me/31610756699">
+                      <Phone className="w-4 h-4 mr-2" />
+                      WhatsApp Us
+                    </a>
                   </Button>
                 </div>
               </div>
